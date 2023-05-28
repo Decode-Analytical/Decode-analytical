@@ -1,4 +1,6 @@
 import React from 'react'
+
+
 import HeroSection from '../../components/homeComponents/heroSection/HeroSection'
 import HomeGrid from '../../components/homeComponents/homeGridComponents/HomeGrid'
 import AddReview from '../../components/homeComponents/review/AddReview'
@@ -15,7 +17,7 @@ export default function HomePage() {
         <HomeGrid/>
         <AddReview/>
       </div>
-        <Review/>
+      <Review/>
     </>
   )
 }

@@ -9,7 +9,7 @@ export default function AddReview() {
         <form action="">
             <div className=" my-5 w-3/4 m-auto md:w-[200px] space-y-5">
                 <div className="">
-                    <input type="text" placeholder='FirstName' className=' border border-blue-950 rounded-sm pl-2'/>
+                    <input type="text" placeholder='FirstName' required className=' border border-blue-950 rounded-sm pl-2'/>
                 </div>
 
                 <div className="">
@@ -18,10 +18,10 @@ export default function AddReview() {
 
 
                 <div className="">
-                    <textarea name='comment' placeholder='Review' className=' border border-blue-950 rounded-sm pl-2 w-48'/>
+                    <textarea name='review' placeholder='Review' required className=' border border-blue-950 rounded-sm pl-2 w-48'/>
                 </div>
 
-                <div className="">
+                <div className=" w-36 m-auto">
                     <button type='submit' className=' bg-blue-950 text-white py-2 px-5 hover:bg-white hover:text-blue-950 border border-blue-950'>
                         Submit Review
                     </button>
