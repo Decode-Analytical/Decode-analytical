@@ -1,12 +1,18 @@
 import React from 'react'
+import Frame1 from "../heroSection/Frame1.png"
 
 export default function HeroSection() {
   return (
     <>
         <section>
-            <div className=" mt-5">
-              <div className="text-center">
-                <p className=" text-3xl text-[#01051D] ">
+            <div className=" mt-10 md:flex justify-between md:flex-row-reverse space-y-5 items-center">
+            <div className=" max-w-[400px]">
+                <img src={Frame1} alt="" />
+              </div>
+
+
+              <div className="text-center max-w-[400px]">
+                <p className=" text-3xl md:text-5xl text-[#01051D] ">
                   ... welcome to decode learning management system ...
                 </p>
 
@@ -17,10 +23,6 @@ export default function HeroSection() {
                 <button className=' bg-[#020625] text-white py-1 px-4 mt-5'>
                   Get Started
                 </button>
-              </div>
-
-              <div className="">
-                <img src="" alt="" />
               </div>
             </div>
         </section>

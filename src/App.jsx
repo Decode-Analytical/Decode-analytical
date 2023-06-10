@@ -9,19 +9,30 @@ import {
 import NavBar from './components/homeComponents/navbar/NavBar';
 import HomePage from './pages/homepage/HomePage';
 import LoginSignUp from './pages/login/LoginSignUp';
+import Profile from './pages/studentProfile/Profile';
+import TecHistory from './pages/studentProfile/TecHistory';
+import DeskTopNav from "./components/homeComponents/navbar/DeskTopNav"
+import PasswordReset from './components/loginComponents/PasswordReset';
 
 function App() {
 
   return (
     <div className="App">
       <Router>
-        <NavBar/>
+        
+        <div className=" flex justify-between relative">
+              <DeskTopNav />
 
-        <div className="">
-          <Routes>
-            <Route path='/' exact element = {<HomePage/>} />
-            <Route path='/LoginSignUp' element = {<LoginSignUp/>} />
-          </Routes>
+            <div className=" flex-1">
+              <NavBar />
+              <Routes>
+                <Route path='/' exact element = {<HomePage/>} />
+                <Route path='/LoginSignUp' element = {<LoginSignUp/>} />
+                <Route path='/Profile' element = {<Profile/>} />
+                <Route path='/TecHistory' element = {<TecHistory/>} />
+                <Route path='/PasswordReset' element = {<PasswordReset />} />
+              </Routes>
+            </div>
         </div>
       </Router>
     </div>

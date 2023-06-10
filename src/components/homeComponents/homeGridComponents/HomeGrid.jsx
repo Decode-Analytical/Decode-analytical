@@ -13,7 +13,7 @@ export default function HomeGrid() {
             <div className=" py-20 md:py-40 space-y-14 text-sm max-w-3xl m-auto">
                 <div className=" md:flex justify-between items-center">
                     <img src={Rectangle18} alt="" className=' md:max-w-[300px] rounded-3xl' />
-                    <p className=" max-w-[400px]">
+                    <p className=" max-w-[400px] mt-2">
                         <span className=" font-bold md:text-xl ">
                             Develop practical skills on the go
                         </span> <br />
@@ -23,7 +23,7 @@ export default function HomeGrid() {
 
                 <div className="md:flex justify-between items-center">
                     <img src={Rectangle17} alt="" className='md:max-w-[300px] rounded-3xl'/>
-                    <p className="max-w-[400px]">
+                    <p className="max-w-[400px] mt-2">
                         <span className=" font-bold md:text-xl">
                             Learn the basic  fundamentals from stratch
                         </span> <br />
@@ -34,7 +34,7 @@ export default function HomeGrid() {
 
                 <div className="md:flex justify-between items-center">
                     <img src={Rectangle16} alt="" className='md:max-w-[300px] rounded-3xl' />
-                    <p className="max-w-[400px]">
+                    <p className="max-w-[400px] mt-2">
                         <span className=" font-bold md:text-xl">
                             Learn the basic  fundamentals from stratch
                         </span> <br />
