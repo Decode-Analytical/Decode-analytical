@@ -14,21 +14,21 @@ export default function navBar() {
 
     if (showDropDown) {
         dropDown =
-            <section className=" absolute top-0 w-full text-5xl text-white mt-20 bg-[#02061F] flex flex-col justify-center origin-top animate-open-menu">
+            <section className=" absolute top-0 w-full text-2xl text-white mt-20 bg-[#02061F] flex flex-col justify-center origin-top animate-open-menu">
                 <nav className=" flex flex-col min-h-screen items-center space-y-8 py-8">
                     <Link to="/" onClick={()=> setShowDropDown (!showDropDown)} className=" hover:opacity-80">
                         Decode LMS
                     </Link>
 
-                    <Link to="" onClick={()=> setShowDropDown (!showDropDown)} className=" hover:opacity-80">
+                    <Link to="/Dashboard" onClick={()=> setShowDropDown (!showDropDown)} className=" hover:opacity-80">
                         Dashboard
                     </Link>
 
-                    <Link to="" onClick={()=> setShowDropDown (!showDropDown)} className=" hover:opacity-80">
+                    <Link to="/Account" onClick={()=> setShowDropDown (!showDropDown)} className=" hover:opacity-80">
                         Account
                     </Link>
 
-                    <Link to="" onClick={()=> setShowDropDown (!showDropDown)} className=" hover:opacity-80">
+                    <Link to="/mobileCourses" onClick={()=> setShowDropDown (!showDropDown)} className=" hover:opacity-80">
                         Courses
                     </Link>
 
@@ -67,7 +67,7 @@ export default function navBar() {
 
 
                             {/* THE HAMBUGER ICON FOR MOBILE */}
-                        <div onClick={()=> setShowDropDown (!showDropDown)} className=" text-4xl cursor-pointer md:hidden border border-blue-950 rounded-full px-1 pb-1 ">
+                        <div onClick={()=> setShowDropDown (!showDropDown)} className=" text-3xl cursor-pointer md:hidden border border-blue-950 rounded-full px-2 pb-1 ">
                             &#9776;
                         </div>
                     </div>

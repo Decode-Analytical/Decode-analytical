@@ -13,6 +13,9 @@ import Profile from './pages/studentProfile/Profile';
 import TecHistory from './pages/studentProfile/TecHistory';
 import DeskTopNav from "./components/homeComponents/navbar/DeskTopNav"
 import PasswordReset from './components/loginComponents/PasswordReset';
+import Dashboard from './components/overlay components/Dashboard';
+import Account from './components/overlay components/Account';
+import MobileCourses from './components/homeComponents/navbar/MobileCourses';
 
 function App() {
 
@@ -22,7 +25,6 @@ function App() {
         
         <div className=" flex justify-between relative">
               <DeskTopNav />
-
             <div className=" flex-1">
               <NavBar />
               <Routes>
@@ -31,6 +33,10 @@ function App() {
                 <Route path='/Profile' element = {<Profile/>} />
                 <Route path='/TecHistory' element = {<TecHistory/>} />
                 <Route path='/PasswordReset' element = {<PasswordReset />} />
+                <Route path='/Dashboard' element = {<Dashboard/>} />
+                <Route path='/Account' element = {<Account/>} />
+                <Route path='/MobileCourses' element = {<MobileCourses />
+} />
               </Routes>
             </div>
         </div>
