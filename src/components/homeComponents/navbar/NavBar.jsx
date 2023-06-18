@@ -14,7 +14,7 @@ export default function navBar() {
 
     if (showDropDown) {
         dropDown =
-            <section className=" absolute top-0 w-full text-2xl text-white mt-20 bg-[#02061F] flex flex-col justify-center origin-top animate-open-menu">
+            <section className=" absolute top-0 w-full text-4xl text-white mt-20 bg-[#02061F] flex flex-col justify-center origin-top animate-open-menu">
                 <nav className=" flex flex-col min-h-screen items-center space-y-8 py-8">
                     <Link to="/" onClick={()=> setShowDropDown (!showDropDown)} className=" hover:opacity-80">
                         Decode LMS
