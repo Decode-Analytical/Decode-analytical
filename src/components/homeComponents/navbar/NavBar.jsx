@@ -88,8 +88,37 @@ export default function navBar() {
         </div> */}
       </nav>
 
+<<<<<<< HEAD
       {/*======== THE HAMBUGER MENU FOR SMALLER SCREEN DEVICES======= */}
       {/* <div className="">{dropDown}</div> */}
     </>
   );
 }
+=======
+
+                        <div className="hidden md:block">
+                            <Link to='/LoginSignUp' className=" bg-blue-950 text-white py-1 px-4 border border-blue-950 hover:bg-white hover:text-blue-950">
+                                Login
+                            </Link>
+                        </div>
+
+
+                            {/* THE HAMBUGER ICON FOR MOBILE */}
+                        <div onClick={()=> setShowDropDown (!showDropDown)} className=" text-3xl cursor-pointer md:hidden border border-blue-950 rounded-full px-2 pb-1 ">
+                            &#9776;
+                        </div>
+                    </div>
+                </nav>
+
+                        {/*======== THE HAMBUGER MENU FOR SMALLER SCREEN DEVICES======= */}
+                    <div className="">
+                        {dropDown}
+                    </div>
+            </section>
+      </div>
+
+      
+      </>
+    )
+}
+>>>>>>> 4334ed0f9f188bf8838255d2b3f49f6fbcaef663

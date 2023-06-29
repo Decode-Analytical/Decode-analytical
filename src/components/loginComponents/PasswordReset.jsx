@@ -5,7 +5,7 @@ export default function PasswordReset() {
     <>
         <section>
             <div className=" max-w-[500px] m-auto text-[#02061F]">
-                <div className=" border p-10 rounded-md shadow-2xl mt-10">
+                <div className=" border p-10 rounded-md shadow-2xl mt-10 mx-5">
                     <p className=" text-2xl font-bold">
                         User Profile 
                     </p>

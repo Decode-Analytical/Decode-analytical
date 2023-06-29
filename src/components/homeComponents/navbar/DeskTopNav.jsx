@@ -141,6 +141,7 @@ export default function () {
         </div>
       </section>
     </>
+<<<<<<< HEAD
   );
 }
 
@@ -193,3 +194,7 @@ export default function () {
             {sideSlide}
         </div> */
 }
+=======
+  )
+}
+>>>>>>> 4334ed0f9f188bf8838255d2b3f49f6fbcaef663

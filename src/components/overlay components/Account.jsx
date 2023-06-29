@@ -28,11 +28,11 @@ export default function Account() {
                         User Profile
                     </p>
 
-                    <Link to="/PasswordReset" >
-                    <p className=" mt-2 flex cursor-pointer items-center">
-                        <BsKey className='  text-3xl mr-2'/> 
-                        Change Password
-                    </p>
+                    <Link to="/PasswordReset">
+                        <p className=" mt-2 flex cursor-pointer items-center">
+                            <BsKey className='  text-3xl mr-2'/> 
+                            Change Password
+                        </p>
                     </Link>
                 </div>
             </div>
