@@ -7,29 +7,29 @@ import mouse from "../../../assets/SVG/mouse.svg";
 export default function HeroSection() {
   return (
     <>
-        <div className="relative grid grid-cols-[0.95fr_auto] gap-10 items-center pb-20 max-h-[100vh]">
-          <div className="grid grid-rows-[1fr_auto_auto] gap-6">
-            <p className="text-[58px] leading-[74px] font-bold">
+        <div className="relative md:grid md:grid-cols-[0.95fr_auto] gap-10 items-center md:pb-20 h-[80vh]">
+          <div className="grid md:grid-rows-[1fr_auto_auto] grid-rows-[auto_1fr_1fr] md:gap-6 gap-10">
+            <p className="md:text-[58px] mt-10 text-[25px] md:leading-[74px] font-bold">
               Welcome to Decode Learning Management System
             </p>
 
-            <p className="text-[25px] leading-[39px] text-justify">
+            <p className="md:text-[25px] text-xl md:leading-[39px] md:text-justify">
               Decode LMS is a learning management system that gives you all the
               tools required in your tech journey. It is comprised of the most
               resourceful materials one would ever think of. Have the best
               experience from us.
             </p>
 
-            <div>
+            <div className="self-end">
               <button className="bg-[#040E53] text-white py-4 px-14 border text-lg rounded-md">
                 Get Started
               </button>
 
               {/* mouse icon */}
-              <div className="absolute left-[48%] bottom-1 flex">
-                <div class="animate-bounce p-2 w-10 h-10 rounded-full flex items-center justify-center">
+              <div className="md:flex hidden absolute left-[48%] bottom-1">
+                <div className="animate-bounce p-2 w-10 h-10 rounded-full flex items-center justify-center">
                   <svg
-                    class="w-6 h-6 text-black"
+                    className="w-6 h-6 text-black"
                     fill="none"
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -55,7 +55,7 @@ export default function HeroSection() {
             width={700}
             height={700}
             alt="hero background"
-            className="place-self-end"
+            className="md:block hidden place-self-end"
           />
 
           {/* Arrow Icon */}

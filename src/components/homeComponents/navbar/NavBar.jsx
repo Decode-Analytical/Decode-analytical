@@ -74,7 +74,7 @@ export default function navBar() {
         </div>
 
         <Link to="/LoginSignUp" className="place-self-end">
-          <button className="bg-[#040E53] text-white py-4 px-14 border text-lg rounded-md">
+          <button className="bg-[#040E53] text-white md:py-4 md:px-14 px-10 py-3 border text-lg rounded-md">
             Login
           </button>
         </Link>
