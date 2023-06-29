@@ -8,6 +8,7 @@ import { BsFileLock } from "react-icons/bs";
 import { BsQuestionLg } from "react-icons/bs";
 import { RxDashboard } from "react-icons/rx";
 import Account from "../../overlay components/Account";
+import arrowUp from "../../../assets/SVG/arrow_up.svg"
 
 export default function () {
   const [open, setOpen] = useState(true);
@@ -19,11 +20,9 @@ export default function () {
     <>
       <section>
         <div
-          className={`hidden bg-[#02061F] h-screen md:grid grid-rows-[1fr_auto] p-5 ${
-            open ? "w-72" : "w-20"
-          } duration-700 sticky top-0 z-10 text-white`}
+          className={`hidden bg-[#02061F] h-screen md:grid grid-rows-[1fr_auto] py-5 px-[50px] duration-700 sticky top-0 z-10 text-white`}
         >
-          <div className="space-y-6">
+          <div className="py-10">
             <BsArrowLeftShort
               onClick={() => setOpen(!open)}
               className={`bg-white text-[#02061F] text-xl rounded-full absolute -right-2 top-20 border border-[#02061F] cursor-pointer ${
@@ -32,15 +31,15 @@ export default function () {
             />
 
             {/* Dashboard  */}
-            <div className="grid grid-cols-[auto_1fr] gap-5 items-center">
+            <div className="grid grid-cols-[auto_1fr] gap-5 items-center py-3">
               <RxDashboard
                 className={`bg-white text-[#02061F] p-2 text-4xl rounded cursor-pointer duration-500`}
                 // ${open && "rotate-[360deg]"}
               />
               <h1
                 className={`text-xl font-semibold cursor-pointer duration-700 ${
-                  !open && "scale-0"
-                } hover:opacity-50 `}
+                  !open && "hidden"
+                }`}
               >
                 Dashboard
               </h1>
@@ -48,7 +47,7 @@ export default function () {
 
             {/* Account */}
             <div>
-              <div className="grid grid-cols-[auto_1fr] gap-5 items-center">
+              <div className="grid grid-cols-[auto_1fr] gap-5 items-center py-3">
                 <BsPerson
                   className={`bg-white text-[#02061F] p-2 text-4xl rounded cursor-pointer duration-500 ${
                     open && ""
@@ -57,8 +56,8 @@ export default function () {
                 <h1
                   onClick={() => setOverDrop(!overDrop)}
                   className={`text-xl cursor-pointer font-semibold duration-700 ${
-                    !open && "scale-0"
-                  } hover:opacity-50`}
+                    !open && "hidden"
+                  }`}
                 >
                   Account
                 </h1>
@@ -73,7 +72,7 @@ export default function () {
             </div>
 
             {/* Courses */}
-            <div className="grid grid-cols-[auto_1fr] gap-5 items-center">
+            <div className="grid grid-cols-[auto_1fr_auto] gap-5 items-center py-3">
               <BsBook
                 className={`bg-white text-[#02061F] p-2 text-4xl rounded cursor-pointer duration-500 ${
                   open && ""
@@ -81,49 +80,50 @@ export default function () {
               />
               <h1
                 className={`text-xl font-semibold cursor-pointer duration-700 ${
-                  !open && "scale-0"
-                } hover:opacity-50`}
+                  !open && "hidden"
+                }`}
               >
                 Courses
               </h1>
+              <img className={!open && "hidden"} src={arrowUp} width={18} height={8} />
             </div>
 
             {/* Certificate */}
-            <div className="grid grid-cols-[auto_1fr] gap-5 items-center">
+            <div className="grid grid-cols-[auto_1fr] gap-5 items-center py-3">
               <BsAward
-                className={`bg-white text-[#02061F] p-2 text-4xl rounded cursor-pointer  float-left duration-500 ${
+                className={`bg-white text-[#02061F] p-2 text-4xl rounded cursor-pointer duration-500 ${
                   open && ""
                 }`}
               />
               <h1
                 className={`text-xl font-semibold cursor-pointer duration-700 ${
-                  !open && "scale-0"
-                } hover:opacity-50`}
+                  !open && "hidden"
+                }`}
               >
                 Certificate
               </h1>
             </div>
           </div>
 
-          <div className="space-y-6">
+          <div>
             {/* Support */}
-            <div className="grid grid-cols-[auto_1fr] gap-5 items-center">
+            <div className="grid grid-cols-[auto_1fr] gap-5 items-center py-3">
               <BsQuestionLg
                 className={`bg-white text-[#02061F] p-2 text-4xl rounded cursor-pointer  float-left duration-500 ${
                   open && ""
                 }`}
               />
               <h1
-                className={`text-xl font-semibold cursor-pointer duration-700 ${
-                  !open && "scale-0"
-                } hover:opacity-50`}
+                className={`text-xl font-semibold cursor-pointer ${
+                  !open && "hidden"
+                }`}
               >
                 Support
               </h1>
             </div>
 
             {/* Logout */}
-            <div className="grid grid-cols-[auto_1fr] items-center gap-5">
+            <div className="grid grid-cols-[auto_1fr] items-center gap-5 py-3">
               <BsFileLock
                 className={`bg-white text-[#02061F] p-2 text-4xl rounded cursor-pointer  float-left duration-500 ${
                   open && ""
@@ -131,8 +131,8 @@ export default function () {
               />
               <h1
                 className={`text-xl font-semibold cursor-pointer duration-700 ${
-                  !open && "scale-0"
-                } hover:opacity-50`}
+                  !open && "hidden"
+                }`}
               >
                 LogOut
               </h1>
