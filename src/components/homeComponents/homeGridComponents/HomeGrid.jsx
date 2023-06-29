@@ -1,48 +1,29 @@
-import React from 'react'
-import Rectangle16 from '../homeGridComponents/Rectangle16.png'
-import Rectangle17 from '../homeGridComponents/Rectangle17.png'
-import Rectangle18 from '../homeGridComponents/Rectangle18.png'
+import React from "react";
+import clsx from "clsx";
 
+// import Rectangle17 from "../homeGridComponents/Rectangle17.png";
+// import Rectangle18 from "../homeGridComponents/Rectangle18.png";
 
-
-
-export default function HomeGrid() {
+export default function HomeGrid({img, title, description, orderleft }) {
   return (
-    <>
-        <section>
-            <div className=" py-20 md:py-40 space-y-14 text-sm max-w-3xl m-auto">
-                <div className=" md:flex justify-between items-center">
-                    <img src={Rectangle18} alt="" className=' md:max-w-[300px] rounded-3xl' />
-                    <p className=" max-w-[400px] mt-2">
-                        <span className=" font-bold md:text-xl ">
-                            Develop practical skills on the go
-                        </span> <br />
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi perspiciatis totam facere, eaque molestiae modi, consequatur dolor deserunt animi quasi magnam illum aspernatur architecto esse officia laudantium rerum ad obcaecati?
-                    </p>
-                </div>
-
-                <div className="md:flex justify-between items-center">
-                    <img src={Rectangle17} alt="" className='md:max-w-[300px] rounded-3xl'/>
-                    <p className="max-w-[400px] mt-2">
-                        <span className=" font-bold md:text-xl">
-                            Learn the basic  fundamentals from stratch
-                        </span> <br />
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi perspiciatis totam facere, eaque molestiae modi, consequatur dolor deserunt animi quasi magnam illum aspernatur architecto esse officia laudantium rerum ad obcaecati?
-                    </p>
-                </div>
-
-
-                <div className="md:flex justify-between items-center">
-                    <img src={Rectangle16} alt="" className='md:max-w-[300px] rounded-3xl' />
-                    <p className="max-w-[400px] mt-2">
-                        <span className=" font-bold md:text-xl">
-                            Learn the basic  fundamentals from stratch
-                        </span> <br />
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi perspiciatis totam facere, eaque molestiae modi, consequatur dolor deserunt animi quasi magnam illum aspernatur architecto esse officia laudantium rerum ad obcaecati?
-                    </p>
-                </div>
-            </div>
-        </section>
-    </>
-  )
+    <div className="bg-[#B1B4CA0F] py-20">
+      <div className="container flex space-x-5 items-center mx-auto">
+        <img
+          src={img}
+          width={1500}
+          height={1500}
+          alt="feature1"
+          className={clsx("rounded-3xl", orderleft && "order-2")}
+        />
+        <div className="grid grid-rows-[auto_1fr] gap-2">
+          <p className="text-3xl font-semibold text-[#040E53] leading-[44px] ">
+            {title}
+          </p>
+          <p className="text-xl leading-[30px]">
+            {description}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 }
