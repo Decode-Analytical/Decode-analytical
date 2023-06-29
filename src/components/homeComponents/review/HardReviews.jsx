@@ -35,22 +35,22 @@ export default function HardReviews() {
 
   const [showAllComments, setShowAllComments] = useState(false); //   SEETING THE SHOW THE ALL REVIEWS BUTTON TO FALSE BY DEFAULT
 
-  const handleAddComment = (newComment) => {
-    if (newComment.trim() !== "") {
-      setDefaultComments((prevComments) => {
-        const updatedComments = [
-          ...prevComments.slice(0, 3),
-          { id: Date.now(), author: "You", text: newComment },
-        ]; //WHEN THERE IS A NEW UPDATE, IT REDUCES THE DEFAULT BY ONE
-        return updatedComments;
-      });
-    }
-    setUserComment("");
-  };
+  // const handleAddComment = (newComment) => {
+  //   if (newComment.trim() !== "") {
+  //     setDefaultComments((prevComments) => {
+  //       const updatedComments = [
+  //         ...prevComments.slice(0, 3),
+  //         { id: Date.now(), author: "You", text: newComment },
+  //       ]; //WHEN THERE IS A NEW UPDATE, IT REDUCES THE DEFAULT BY ONE
+  //       return updatedComments;
+  //     });
+  //   }
+  //   setUserComment("");
+  // };
 
-  const handleShowAllComments = () => {
-    setShowAllComments(true);
-  };
+  // const handleShowAllComments = () => {
+  //   setShowAllComments(true);
+  // };
 
   // const displayedComments = showAllComments
   //   ? [...defaultComments]
@@ -69,14 +69,9 @@ export default function HardReviews() {
         <div className="bg-[#020625]">
           <div className=" mt-10  py-20">
             <div className=" text-center">
-              <p className="text-white">Our learners review</p>
+              <p className="text-white text-2xl font-semibold">Our learners review</p>
             </div>
-
-            <div className="grid">
-              <div className="">
-                <CustomReviews comments={allComments} />;
-              </div>
-            </div>
+            <CustomReviews comments={defaultComments} />;
           </div>
         </div>
       </section>
