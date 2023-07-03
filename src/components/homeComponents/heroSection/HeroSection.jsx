@@ -1,31 +1,65 @@
-import React from 'react'
-import Frame1 from "../heroSection/Frame1.png"
+import React from "react";
+import Frame1 from "../heroSection/Frame1.png";
+import Hero from "../../../assets/Images/Hero.jpg";
+import arrowDown from "../../../assets/SVG/arrow_down.svg";
+import mouse from "../../../assets/SVG/mouse.svg";
 
 export default function HeroSection() {
   return (
     <>
-        <section>
-            <div className=" mt-10 md:flex justify-between md:flex-row-reverse space-y-5 items-center">
-            <div className=" max-w-[400px]">
-                <img src={Frame1} alt="" />
-              </div>
+        <div className="relative md:grid md:grid-cols-[0.95fr_auto] gap-10 items-center md:pb-20 h-[80vh]">
+          <div className="grid md:grid-rows-[1fr_auto_auto] grid-rows-[auto_1fr_1fr] md:gap-6 gap-10">
+            <p className="md:text-[58px] mt-10 text-[25px] md:leading-[74px] font-bold">
+              Welcome to Decode Learning Management System
+            </p>
 
+            <p className="md:text-[25px] text-xl md:leading-[39px] md:text-justify">
+              Decode LMS is a learning management system that gives you all the
+              tools required in your tech journey. It is comprised of the most
+              resourceful materials one would ever think of. Have the best
+              experience from us.
+            </p>
 
-              <div className="text-center max-w-[400px]">
-                <p className=" text-3xl md:text-5xl text-[#01051D] ">
-                  ... welcome to decode learning management system ...
-                </p>
+            <div className="self-end">
+              <button className="bg-[#040E53] text-white py-4 px-14 border text-lg rounded-md">
+                Get Started
+              </button>
 
-                <p className=" mt-5">
-                  Decode LMS is a learning management system that gives you all the tools required in your tech journey. It is comprised of the most resourceful materials one would ever think of. Have the  best experience from us.
-                </p>
+              {/* mouse icon */}
+              <div className="md:flex hidden absolute left-[48%] bottom-1">
+                <div className="animate-bounce p-2 w-10 h-10 rounded-full flex items-center justify-center">
+                  <svg
+                    className="w-6 h-6 text-black"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                  </svg>
+                </div>
 
-                <button className=' bg-[#020625] text-white py-1 px-4 mt-5'>
-                  Get Started
-                </button>
+                <div>
+                  <img src={mouse} width={25} height={25} alt="mouse icon" />
+                  <p>Scroll bar</p>
+                </div>
               </div>
             </div>
-        </section>
+          </div>
+
+          {/* Hero Image */}
+          <img
+            src={Hero}
+            width={700}
+            height={700}
+            alt="hero background"
+            className="md:block hidden place-self-end"
+          />
+
+          {/* Arrow Icon */}
+        </div>
     </>
-  )
+  );
 }
