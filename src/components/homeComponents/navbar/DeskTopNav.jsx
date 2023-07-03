@@ -103,15 +103,16 @@ export default function () {
                         </p>
                     </div>
 
-
-                    <div className=" inline-flex space-x-2">
-                        <BsAward className={`bg-white text-[#02061F] p-2 text-4xl rounded cursor-pointer  float-left duration-500 ${open && ""}`}/>
-                        <h1 className={` block text-xl cursor-pointer duration-700 ${!open && "scale-0"} hover:opacity-50`}>
-                            Certificate
-                        </h1>
-                    </div> <br />
+                    <Link to = "/Certificate">
+                        <div className=" inline-flex space-x-2">
+                            <BsAward className={`bg-white text-[#02061F] p-2 text-4xl rounded cursor-pointer  float-left duration-500 ${open && ""}`}/>
+                            <h1 className={` block text-xl cursor-pointer duration-700 ${!open && "scale-0"} hover:opacity-50`}>
+                                Certificate
+                            </h1>
+                        </div> <br />
+                    </Link>
                 </div>
-
+                
 
                 <div className=" space-y-6">
                     <div className=" inline-flex space-x-2">

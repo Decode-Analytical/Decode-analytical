@@ -16,6 +16,7 @@ import PasswordReset from './components/loginComponents/PasswordReset';
 import Dashboard from './components/overlay components/Dashboard';
 import Account from './components/overlay components/Account';
 import MobileCourses from './components/homeComponents/navbar/MobileCourses';
+import Certificate from './components/overlay components/Certificate';
 
 function App() {
 
@@ -35,8 +36,8 @@ function App() {
                 <Route path='/PasswordReset' element = {<PasswordReset />} />
                 <Route path='/Dashboard' element = {<Dashboard/>} />
                 <Route path='/Account' element = {<Account/>} />
-                <Route path='/MobileCourses' element = {<MobileCourses />
-} />
+                <Route path='/MobileCourses' element = {<MobileCourses />} /> 
+                <Route path='/Certificate' element = {<Certificate />} /> 
               </Routes>
             </div>
         </div>
