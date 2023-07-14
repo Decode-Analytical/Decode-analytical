@@ -13,6 +13,18 @@ import Account from './components/overlay components/Account';
 import MobileCourses from './components/homeComponents/navbar/MobileCourses';
 import Certificate from './components/overlay components/Certificate';
 
+<<<<<<< HEAD
+import NavBar from './components/homeComponents/navbar/NavBar';
+import HomePage from './pages/homepage/HomePage';
+import LoginSignUp from './pages/login/LoginSignUp';
+import Profile from './pages/studentProfile/Profile';
+import TecHistory from './pages/studentProfile/TecHistory';
+import DeskTopNav from "./components/homeComponents/navbar/DeskTopNav"
+import PasswordReset from './components/loginComponents/PasswordReset';
+
+
+=======
+>>>>>>> aa5cc33a9a442b80c6b44fd9da65a3fe86e4b205
 function App() {
   return (
     <div className="App">
@@ -29,10 +41,14 @@ function App() {
                 <Route path='/Profile' element = {<Profile/>} />
                 <Route path='/TecHistory' element = {<TecHistory/>} />
                 <Route path='/PasswordReset' element = {<PasswordReset />} />
+<<<<<<< HEAD
+                <Route path="/Course" element={<Course />} />
+=======
                 <Route path='/Dashboard' element = {<Dashboard/>} />
                 <Route path='/Account' element = {<Account/>} />
                 <Route path='/MobileCourses' element = {<MobileCourses />} /> 
-                <Route path='/Certificate' element = {<Certificate />} /> 
+                <Route path='/Certificate' element = {<Certificate />} />
+>>>>>>> aa5cc33a9a442b80c6b44fd9da65a3fe86e4b205
               </Routes>
             </div>
 =======
