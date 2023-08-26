@@ -4,24 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/homeComponents/navbar/NavBar";
 import HomePage from "./pages/homepage/HomePage";
 import LoginSignUp from "./pages/login/LoginSignUp";
-import Profile from "./pages/studentProfile/Profile";
-import TecHistory from "./pages/studentProfile/TecHistory";
 import DeskTopNav from "./components/homeComponents/navbar/DeskTopNav";
 import PasswordReset from "./components/loginComponents/PasswordReset";
-import Dashboard from './components/overlay components/Dashboard';
-import Account from './components/overlay components/Account';
-import MobileCourses from './components/homeComponents/navbar/MobileCourses';
-import Certificate from './components/overlay components/Certificate';
-
-
-import NavBar from './components/homeComponents/navbar/NavBar';
-import HomePage from './pages/homepage/HomePage';
-import LoginSignUp from './pages/login/LoginSignUp';
-import DeskTopNav from "./components/homeComponents/navbar/DeskTopNav"
-import PasswordReset from './components/loginComponents/PasswordReset';
-import Dashboard from './components/overlay components/Dashboard';
-import Account from './components/overlay components/Account';
-import MobileCourses from './components/homeComponents/navbar/MobileCourses';
 
 function App() {
   return (
@@ -36,9 +20,6 @@ function App() {
                 <Route path='/' exact element = {<HomePage/>} />
                 <Route path='/LoginSignUp' element = {<LoginSignUp/>} />
                 <Route path='/PasswordReset' element = {<PasswordReset />} />
-                <Route path='/Dashboard' element = {<Dashboard/>} />
-                <Route path='/Account' element = {<Account/>} />
-                <Route path='/MobileCourses' element = {<MobileCourses />} />
               </Routes>
             </div>
             </div>
