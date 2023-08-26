@@ -4,7 +4,7 @@ import Login from "../../components/loginComponents/Login"
 export default function LoginSignUp() {
   return (
     <>
-      <Login/>
+      {/* THE LOGIN SIGN UP PAGE IMPORTED HERE */}
     </>
   )
 }

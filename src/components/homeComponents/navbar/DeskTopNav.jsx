@@ -7,7 +7,6 @@ import { BsBook } from "react-icons/bs";
 import { BsFileLock } from "react-icons/bs";
 import { BsQuestionLg } from "react-icons/bs";
 import { RxDashboard } from "react-icons/rx";
-import Account from '../../overlay components/Account';
 
 
 
@@ -48,60 +47,20 @@ export default function () {
                     </Link>
 
 
-                    <div className="">
-                        <div className=" inline-flex space-x-2">
-                            <BsPerson className={`bg-white text-[#02061F] p-2 text-4xl rounded cursor-pointer  float-left duration-500 ${open && ""}`}/>
-                            <h1 onClick={ () => setOverDrop(!overDrop)} className={` block text-xl cursor-pointer duration-700 ${!open && "scale-0"} hover:opacity-50`}>
-                                Account
-                            </h1> <br />
-                        </div> 
-                            {/* ACCOUNT OVERLAY FOR STATIC NAVBAR IMPORTED FROM OVERLAY COMPONENT FOLDER */}
-                            {overDrop && <div className={` duration-150 ${!open && "scale-0"}`}>
-                                <Account />
-                            </div>}
-                    </div><br />
-
-                            
-
                                 {/*  THE COURSES DROP DOWN OPTIONS */}
 
                     <div className=" inline-flex space-x-2">
                         <BsBook className={`bg-white text-[#02061F] p-2 text-4xl rounded cursor-pointer  float-left duration-500 ${open && ""}`}/>
-                        <label className={` block text-xl cursor-pointer duration-700 ${!open && "scale-0"} hover:opacity-50`}>
-                            Courses
-                        </label> <br />
+                        <Link to = '/premiumCourses'>
+                            <label className={` block text-xl cursor-pointer duration-700 ${!open && "scale-0"} hover:opacity-50`}>
+                                Courses
+                            </label> <br />
+                        </Link>
 
-                        <select name="courses" id="courses"  onChange={handleCourseChange} className={` text-sm bg-[#02061F] duration-100 ${!open && "scale-0"} max-w-[100px]`}>
-                            <option value="select">--SELECT--</option>
-                            <option value="Java">Java</option>
-                            <option value="Php">PHP</option>
-                            <option value="Python">Python</option>
-                            <option value="Flutter">Flutter</option>
-                            <option value="Swift">Swift</option>
-                            <option value="C++">C++</option>
-                            <option value="Data Analysis">Data Analysis</option>
-                            <option value="Cyber Security">Ethical Hacking</option>
-                            <option value="Product Design">UI/UX</option>
-                            <option value="R">R</option>
-                            <option value="React.JS">React.JS</option>
-                            <option value="React Native">React Native</option>
-                            <option value="Vue.JS">Vue.JS</option>
-                            <option value="Angular">Angular</option>
-                            <option value="Kotlin">Kotlin</option>
-                            <option value="HTML/CSS & JS">Web Development</option>
-                        </select>
                     </div> <br />
 
 
 
-
-
-                                    {/* IF YOU WISH TO DISPLAY THE SELECTED OPTION FROM THE COURSES, YOU CAN DISPLAY IT WITH THIS PARAGRAPH */}
-                    <div className="">
-                        <p className="">
-                            {coursesDropValue}
-                        </p>
-                    </div>
 
 
                     <div className=" inline-flex space-x-2">

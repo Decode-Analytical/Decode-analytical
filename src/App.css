@@ -4,3 +4,9 @@
   height: 100vh;
   overflow-x: hidden;
 }
+
+
+        /* THIS IS IMPORTED TO THE COURSES PAGE */
+.bg-img{
+  background-image: url('../src/assets/courses\ Images/Rectangle.png');
+}

@@ -9,13 +9,10 @@ import {
 import NavBar from './components/homeComponents/navbar/NavBar';
 import HomePage from './pages/homepage/HomePage';
 import LoginSignUp from './pages/login/LoginSignUp';
-import Profile from './pages/studentProfile/Profile';
-import TecHistory from './pages/studentProfile/TecHistory';
 import DeskTopNav from "./components/homeComponents/navbar/DeskTopNav"
 import PasswordReset from './components/loginComponents/PasswordReset';
-import Dashboard from './components/overlay components/Dashboard';
-import Account from './components/overlay components/Account';
-import MobileCourses from './components/homeComponents/navbar/MobileCourses';
+import PremiumCourses from './pages/coursesPage/premiumCourses';
+
 
 function App() {
 
@@ -30,13 +27,8 @@ function App() {
               <Routes>
                 <Route path='/' exact element = {<HomePage/>} />
                 <Route path='/LoginSignUp' element = {<LoginSignUp/>} />
-                <Route path='/Profile' element = {<Profile/>} />
-                <Route path='/TecHistory' element = {<TecHistory/>} />
                 <Route path='/PasswordReset' element = {<PasswordReset />} />
-                <Route path='/Dashboard' element = {<Dashboard/>} />
-                <Route path='/Account' element = {<Account/>} />
-                <Route path='/MobileCourses' element = {<MobileCourses />
-} />
+                <Route path='/PremiumCourses' element = {<PremiumCourses />} />
               </Routes>
             </div>
         </div>

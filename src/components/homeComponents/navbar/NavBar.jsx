@@ -28,7 +28,7 @@ export default function navBar() {
                         Account
                     </Link>
 
-                    <Link to="/mobileCourses" onClick={()=> setShowDropDown (!showDropDown)} className=" hover:opacity-80">
+                    <Link to="/PremiumCourses" onClick={()=> setShowDropDown (!showDropDown)} className=" hover:opacity-80">
                         Courses
                     </Link>
 
