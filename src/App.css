@@ -7,13 +7,11 @@
   overflow-x: hidden;
 }
 
-<<<<<<< HEAD
 
         /* THIS IS IMPORTED TO THE COURSES PAGE */
 .bg-img{
-  background-image: url('../src/assets/courses\ Images/Rectangle.png');
-=======
+  background-image: url('../src/assets/courses\ Images/Hero.png');
+}
 body{
   font-family: Montserrat;
->>>>>>> 2bf8cadb606da89660c8cb85a0574ac6774beeb7
 }

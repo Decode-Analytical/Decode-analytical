@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../../../assets/SVG/Logo.svg";
 
 export default function navBar() {
   // MOBILE DROPDOWN CONTENT
@@ -35,11 +34,11 @@ export default function navBar() {
             Account
           </Link>
 
-<<<<<<< HEAD
+
                     <Link to="/PremiumCourses" onClick={()=> setShowDropDown (!showDropDown)} className=" hover:opacity-80">
                         Courses
                     </Link>
-=======
+
           <Link
             to=""
             onClick={() => setShowDropDown(!showDropDown)}
@@ -47,7 +46,6 @@ export default function navBar() {
           >
             Courses
           </Link>
->>>>>>> 2bf8cadb606da89660c8cb85a0574ac6774beeb7
 
           <Link
             to=""
@@ -75,7 +73,7 @@ export default function navBar() {
         {/* LINKS FOR MOBILE DROPDOWN */}
         <div className=" cursor-pointer">
           <Link to="/">
-            <img src={logo} width={101} height={80} alt="Analytical logo" />
+            {/* <img src={logo} width={101} height={80} alt="Analytical logo" /> */}
           </Link>
         </div>
 

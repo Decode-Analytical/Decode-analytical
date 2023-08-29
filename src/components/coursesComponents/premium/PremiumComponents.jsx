@@ -7,7 +7,7 @@ export default function PremiumComponents() {
         <section>
             <div className="">
                                 {/* BG-IMG CLASS IMPORTED FROM APP.CSS */}
-                <div className="bg-img text-white bg-cover bg-no-repeat bg-center h-64 " >
+                <div className="bg-img mt-20 text-white bg-cover bg-no-repeat bg-center h-64 md:h-[400px] " >
                     <div className=" w-3/4 m-auto pt-4">
                         <p className="mt-5 text-2xl ">
                             Courses 
@@ -18,7 +18,7 @@ export default function PremiumComponents() {
                         </p>
 
                         <form action="/search" method="get">
-                            <input type="text" placeholder='search' name='courses' className='p-1 w-full rounded-xl'/>
+                            <input type="text" placeholder='search' name='courses' className='p-1 w-full  rounded-xl md:w-1/2'/>
                         </form>
 
                         <div className=" mt-3 flex justify-between w-[150px]">

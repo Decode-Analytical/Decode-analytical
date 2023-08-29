@@ -20,8 +20,8 @@ export default function courseDisplay() {
                 </div>
 
 
-                <div className="mt-10 md:flex">
-                    <div className=" shadow-2xl pb-10 rounded-xl">
+                <div className="mt-10 md:flex justify-between">
+                    <div className=" shadow-2xl pb-10 rounded-xl md:max-w-[30%]">
                         <img src={buyCourse} alt="" className=''/>
 
                         <p className=" mt-3">
@@ -61,10 +61,10 @@ export default function courseDisplay() {
                     </div>
 
                     
-                                        {/* THIS DOWN HERE WILL BE CLEARED WHEN WE HAVE ACCESS TO THE APIs THE CODE WILL BE CLEARED*/}
+                    {/* THIS DOWN HERE WILL BE CLEARED WHEN WE HAVE ACCESS TO THE APIs THE CODE WILL BE CLEARED*/}
 
 
-                    <div className="mt-20 shadow-2xl pb-10 rounded-xl">
+                    <div className="mt-20 md:mt-0 shadow-2xl pb-10 rounded-xl md:max-w-[30%]">
                         <img src={buyCourse2} alt="" className=''/>
 
                         <p className=" mt-3">
@@ -102,48 +102,47 @@ export default function courseDisplay() {
                             </p>
                         </div>
                     </div>
-                </div>
 
 
 
 
+                    <div className="mt-20 md:mt-0 shadow-2xl pb-10 rounded-xl md:max-w-[30%]">
+                        <img src={buyCourse} alt="" className=''/>
 
-                <div className="mt-20 shadow-2xl pb-10 rounded-xl">
-                    <img src={buyCourse} alt="" className=''/>
-
-                    <p className=" mt-3">
-                         Data Analytics 
-                    </p>
-
-                    <div className=" flex items-center mt-2">
-                        <img src={Ellipse} alt="" /> 
-                        <p className=" ml-3">
-                            by Jane Doe
-                        </p>
-                    </div>
-
-                    <div className="">
-                        {/* RATING STARS WILL BE HERE INSIDE THE DIV */}
-                    </div>
-
-                    <div className="flex justify-between w-[80%] mt-5">
-                        <p className="">
-                            2h 30m
+                        <p className=" mt-3">
+                            Data Analytics 
                         </p>
 
-                        <p className="">
-                            Beginner
-                        </p>
-                    </div>
+                        <div className=" flex items-center mt-2">
+                            <img src={Ellipse} alt="" /> 
+                            <p className=" ml-3">
+                                by Jane Doe
+                            </p>
+                        </div>
 
-                    <div className=" flex justify-between w-[70%] mt-5 items-center">
-                        <button className='border p-1 border-black'>
-                            15,000
-                        </button>
+                        <div className="">
+                            {/* RATING STARS WILL BE HERE INSIDE THE DIV */}
+                        </div>
 
-                        <p className=" line-through">
-                             45,000 NGN
-                        </p>
+                        <div className="flex justify-between w-[80%] mt-5">
+                            <p className="">
+                                2h 30m
+                            </p>
+
+                            <p className="">
+                                Beginner
+                            </p>
+                        </div>
+
+                        <div className=" flex justify-between w-[70%] mt-5 items-center">
+                            <button className='border p-1 border-black'>
+                                15,000
+                            </button>
+
+                            <p className=" line-through">
+                                45,000 NGN
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
