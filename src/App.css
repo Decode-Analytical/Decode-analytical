@@ -8,10 +8,16 @@
 }
 
 
-        /* THIS IS IMPORTED TO THE COURSES PAGE */
+        /* THIS IS EXPORTED TO THE PREMIUM COURSES PAGE */
 .bg-img{
-  background-image: url('../src/assets/courses\ Images/Hero.png');
+  background-image: url('../src/assets/courses\ Images/Rectangle1.png');
 }
+
+    /* THIS EXPORTED TO  */
+.free-bg{
+  background-image: url('../src/assets/courses\ Images/Rectangle2.png');
+}
+
 body{
   font-family: Montserrat;
 }
