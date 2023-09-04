@@ -1,5 +1,6 @@
 import React from "react";
 import { FiSearch } from "react-icons/fi";
+import { GrPrevious } from "react-icons/gr";
 export default function PremiumComponents() {
   return (
     <>
@@ -46,15 +47,18 @@ export default function PremiumComponents() {
             </form>
           </div>
           <div className="gap-4 flex text-black font-semibold text-sm pl-64 ">
-            <button className="bg-white rounded-full py-1 px-3 hover:translate-y-1 transition-all duration-75">
+            <button className="bg-white rounded-3xl py-1.5 px-3 hover:translate-y-1 transition-all duration-75">
               Free
             </button>
-            <button className="bg-white rounded-full py-1 px-3 hover:translate-y-1 transition-all duration-75">
+            <button className="bg-white rounded-3xl py-1.5 px-3 hover:translate-y-1 transition-all duration-75">
               Paid
             </button>
-            <button className="bg-white rounded-full py-1 px-3.5 hover:translate-y-1 transition-all duration-75">
+            <button className="bg-white rounded-3xl py-1.5 px-3.5 hover:translate-y-1 transition-all duration-75">
               AllLevels
             </button>
+          </div>
+          <div className="rounded-full border-white border-2 border-solid  text-white w-14 h-14 flex items-center justify-center text-current">
+            <GrPrevious className="fill-white stroke-white stroke-2 text-white" />
           </div>
         </div>
       </main>
