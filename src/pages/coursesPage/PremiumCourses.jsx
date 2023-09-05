@@ -6,7 +6,7 @@ export default function premiumCourses() {
   return (
     <>
       <PremiumComponents />
-      <CourseDisplay />
+      {/* <CourseDisplay /> */}
     </>
   );
 }
