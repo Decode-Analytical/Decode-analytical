@@ -85,10 +85,10 @@ export default function PremiumComponents() {
             <p className="font-black text-5xl tracking-tight">Find trending courses </p>
             <p className="text-xl font-medium tracking-tight">Break into tech with any of the courses we have specially created for you</p> 
           </div>
-          <section className="grid grid-rows-3 grid-cols-3 gap-7 mt-8">
+          <section className="grid grid-rows-1 grid-cols-3 gap-7 mt-8">
             {/* mapping through the api comes here */}
 
-            <div className="w-94 min-h-0 rounded-3xl border border-slate-300 border-solid p-2.5 group relative cursor-pointer">
+            <div className="w-94 min-h-0 rounded-3xl border border-slate-300 border-solid p-2.5 group relative cursor-pointer bg-white">
               <div className="relative" >
                 <div className="">
                 <img className="rounded-t-2xl h-60 w-full transition duration-500 object-cover" src={buyCourseImage}/>
@@ -599,7 +599,7 @@ export default function PremiumComponents() {
             
           </section>
           <div className="flex justify-center items-center mt-20">
-          <button className=" rounded border border-black font-black text-xs text-black py-2 px-4" >View all courses</button>
+          <button className=" rounded border border-black font-black text-xs text-black py-2 px-4 hover:bg-blue-950 hover:text-white" >View all courses</button>
           </div>
 
         </div>
