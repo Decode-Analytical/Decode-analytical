@@ -5,6 +5,9 @@ import pattern2 from '../../../assets/courses Images/pattern2.png'
 import pattern3 from '../../../assets/courses Images/pattern3.png'
 import Ellipse from '../../../assets/courses Images/Ellipse.png'
 
+
+import {BsClockHistory} from "react-icons/bs"
+
 export default function AlsoLike() {
   return (
     <fragment className=''>
@@ -40,8 +43,8 @@ export default function AlsoLike() {
                             </p>
 
                             <div className=" mt-3 flex justify-between mx-3">
-                                <p className="">
-                                    2h 30m
+                                <p className=" flex items-center space-x-2">
+                                <BsClockHistory /> <span>2h 30m</span>
                                 </p>
 
                                 <p className="">

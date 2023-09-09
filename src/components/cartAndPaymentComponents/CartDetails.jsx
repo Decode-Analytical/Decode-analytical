@@ -1,6 +1,8 @@
 import React from 'react'
 import pattern from '../../assets/courses Images/pattern.png'
 import Ellipse from '../../assets/courses Images/Ellipse.png'
+import {BsClockHistory} from "react-icons/bs"
+import {BsGraphUpArrow} from "react-icons/bs"
 
 export default function CartDetails() {
   return (
@@ -17,7 +19,7 @@ export default function CartDetails() {
                     <div className=" border-white border-8 rounded-md">
                         <img src={pattern} alt="" />    
 
-                        <div className=" p-4">
+                        <div className=" p-4 space-y-4">
                             <p className=" font-bold">
                                 Data Analytics 
                             </p>
@@ -29,11 +31,11 @@ export default function CartDetails() {
                             </p>
 
                             <div className=" flex justify-between">
-                                <p className="">
-                                    2h 30m
+                                <p className=" flex items-center">
+                                    <BsClockHistory />2hrs 30m
                                 </p>
-                                <p className="">
-                                    beginner
+                                <p className=" flex space-x-2 items-center">
+                                    <BsGraphUpArrow /> <span>beginner</span> 
                                 </p>
                             </div>
 
@@ -54,7 +56,7 @@ export default function CartDetails() {
                     <div className=" border-white border-8 rounded-md">
                         <img src={pattern} alt="" />    
 
-                        <div className=" p-4">
+                        <div className=" p-4  space-y-4">
                             <p className="">
                                 Data Analytics 
                             </p>
@@ -66,8 +68,8 @@ export default function CartDetails() {
                             </p>
 
                             <div className=" flex justify-between">
-                                <p className="">
-                                    2h 30m
+                                <p className=" flex items-center">
+                                    <BsClockHistory />2hrs 30m
                                 </p>
                                 <p className="">
                                     beginner
@@ -89,7 +91,7 @@ export default function CartDetails() {
                     <div className=" border-white border-8 rounded-md">
                         <img src={pattern} alt="" />    
 
-                        <div className=" p-4">
+                        <div className=" p-4  space-y-4">
                             <p className="">
                                 Data Analytics 
                             </p>
@@ -101,8 +103,8 @@ export default function CartDetails() {
                             </p>
 
                             <div className=" flex justify-between">
-                                <p className="">
-                                    2h 30m
+                                <p className=" flex items-center">
+                                    <BsClockHistory />2hrs 30m
                                 </p>
                                 <p className="">
                                     beginner

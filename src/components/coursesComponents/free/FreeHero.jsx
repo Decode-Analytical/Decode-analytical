@@ -2,6 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
+import {BsClockHistory} from "react-icons/bs"
+import {BsCart3} from "react-icons/bs"
+
+
 export default function FreeHero() {
   return (
     <>
@@ -24,8 +28,8 @@ export default function FreeHero() {
                                 14 Courses
                             </p>
 
-                            <p className="">
-                                2:50 hours to complelte
+                            <p className="flex items-center space-x-2">
+                                <BsClockHistory /> <span>2:50 hours to complete</span>
                             </p>
                         </div>
 
@@ -44,8 +48,9 @@ export default function FreeHero() {
                                 248  Students enrolled
                             </p>
 
-                            <button className=' px-2 mt-3 bg-yellow-500 text-black'>
-                                Add to Cart
+                            <button className=' px-2 mt-3 bg-yellow-500 text-black flex items-center'>
+                                Add to Cart 
+                                <div className=' ml-5'><BsCart3 /></div>
                             </button>
                         </div>
                     </div>
