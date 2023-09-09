@@ -1,13 +1,13 @@
 import React from 'react'
 
-export default function CourseOverview() {
+export default function Curriculum() {
   return (
     <>
         <section className='max-w-[1000px] m-auto'>
             <div className=" px-[5%] md:w-[90%]">
                 <div className="">
                     <p className=" text-3xl mt-5">
-                        Course Overview 
+                        Curriculum 
                     </p>
 
                     <p className=" text-xs md:text-sm">
