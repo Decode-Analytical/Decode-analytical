@@ -70,7 +70,7 @@ const Profile = () => {
             </li>
           </ul>
         </div>
-        <div className="">column2</div> 
+        <div className="">{/* column2 */}</div> 
       </div> 
     </>
   )
