@@ -64,7 +64,7 @@ const Profile = () => {
             })}
             <li className='flex flex-row cursor-pointer mt-4'>
               <NavLink to="/profile/become_instructor" 
-                className={({isActive})=> `py-3 flex-1 font-semibold ${isActive && "border-l-2 border-l-gray-950"}`}
+                className="py-3 flex-1 font-semibold"
                 >Become Instructor
               </NavLink>
             </li>
