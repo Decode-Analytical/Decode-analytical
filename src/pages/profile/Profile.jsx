@@ -40,7 +40,19 @@ const Profile = () => {
   return (
     <>
       <div className="flex flex-row">
+        <div className="flex flex-col fixed top-0 bottom-0 lg:left-0 border-r-2 w-[300px] overflow-y-auto text-center profile-sidebar">
+          <div className="flex flex-col items-center pt-5 profile-sidebar-heading">
+            <img src='https://cdn.vcgamers.com/news/wp-content/uploads/2022/01/paquito-ml-3.jpg' alt='profile' 
+              className='w-16 h-16 my-2 rounded-full'  />
+              <h2 className='font-bold'>Papaquito Vuenaos</h2>
+              <div className='text-sm my-1'>
+                Reg. Student
+              </div>
+              <button className='border my-1 px-4 py-2 rounded-md text-xs border-gray-600 text-gray-700 hover:bg-gray-600 hover:text-white'>Edit Profile</button>
+          </div>
 
+        </div>
+        <div className="">column2</div> 
       </div> 
     </>
   )
