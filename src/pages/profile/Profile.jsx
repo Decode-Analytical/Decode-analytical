@@ -51,6 +51,24 @@ const Profile = () => {
               <button className='border my-1 px-4 py-2 rounded-md text-xs border-gray-600 text-gray-700 hover:bg-gray-600 hover:text-white'>Edit Profile</button>
           </div>
 
+          <ul className="flex flex-col mt-9 profile-sidebar-options">
+            {listOptions.map(el => {
+              return (
+              <li className='flex flex-row cursor-pointer'>
+                <NavLink to={el.url} 
+                  className={({isActive})=> `py-3 flex-1 hover:bg-cyan-100 hover:font-semibold ${isActive && "border-l-2 border-l-gray-950"}`}
+                  >{el.title}
+                </NavLink>
+              </li>
+              )
+            })}
+            <li className='flex flex-row cursor-pointer mt-4'>
+              <NavLink to="/profile/become_instructor" 
+                className={({isActive})=> `py-3 flex-1 font-semibold ${isActive && "border-l-2 border-l-gray-950"}`}
+                >Become Instructor
+              </NavLink>
+            </li>
+          </ul>
         </div>
         <div className="">column2</div> 
       </div> 
