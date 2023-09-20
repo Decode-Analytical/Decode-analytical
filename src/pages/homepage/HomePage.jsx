@@ -5,7 +5,7 @@ import picTwo from "../../assets/homepageImages/pics2.png";
 import picThree from "../../assets/homepageImages/pics3.png";
 import picFour from "../../assets/homepageImages/pics4.png";
 import track from "../../assets/homepageImages/track.jpg";
-import logo from "../../assets/homepageImages/star 1.png";
+import logo from "../../assets/homepageImages/Star 1.png";
 import {FaArrowRight} from 'react-icons/fa'
 
 export default function Homepage() {
