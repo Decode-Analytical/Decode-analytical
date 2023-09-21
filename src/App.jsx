@@ -6,13 +6,13 @@ import HomePage from "./pages/homepage/HomePage";
 import LoginSignUp from "./pages/login/LoginSignUp";
 import PasswordReset from "./components/loginComponents/PasswordReset";
 import PremiumCourses from './pages/coursesPage/PremiumCourses'
+import StudentMessage from './pages/message_page/index'
 
 
 function App() {
   return (
     <div className="App">
       <Router>
-        
         <div className=" flex justify-between relative">
             <div className=" flex-1">
               <NavBar />
@@ -21,6 +21,7 @@ function App() {
                 <Route path='/LoginSignUp' element = {<LoginSignUp/>} />
                 <Route path='/PasswordReset' element = {<PasswordReset />} />
                 <Route path='/PremiumCourses' element = {<PremiumCourses />} />
+                <Route path='/Message' element = {<StudentMessage />} />
               </Routes>
             </div>
           </div>
