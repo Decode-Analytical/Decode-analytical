@@ -5,7 +5,7 @@ import CourseContent from "../../components/courseContent/CourseContent"
 const CoursePage = () => {
   return (
     <div>
-      <div className='grid grid-cols-video-grid'>
+      <div className='md:grid md:grid-cols-video-grid mx-2 h-screen'>
         <Video />
         <CourseContent />
       </div>

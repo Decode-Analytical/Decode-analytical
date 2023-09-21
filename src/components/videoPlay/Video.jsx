@@ -1,6 +1,9 @@
 import React, { useState, useRef } from 'react';
 import controlImage from './control.png'
 import volumnImage from './volume.png'
+import cc from './bi_badge-cc-fill.png'
+import setting from './Setting.png'
+import reszing from './Resizing.png'
 
 const Video = () => {
     const videoRef = useRef(null);
@@ -55,25 +58,34 @@ const Video = () => {
     }
     return (
         <div className="w-full h-full">
+            <img src='http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg' className={`${isPlaying ? 'hidden' : "w-full h-[37rem]"}`} onClick={handlePlayandPause} />
             <video
                 src='http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
-                poster='http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg'
-                className='w-full'
+                className={`${isPlaying ? 'block' : "hidden"} w-full h-[37rem]}`}
                 id='video'
                 ref={videoRef}
                 onTimeUpdate={handleTime}
                 onClick={handlePlayandPause}
             >
             </video>
-                <img src={controlImage}  className={`w-20 h-[75.88px] bg-white rounded-full z-50 absolute top-48 left-72 ${isPlaying ? "hidden" : "block"} `} />
-            <div className='flex absolute bottom-2 gap-2 mx-2 w-[70%]'>
-                <div>
-                    <span className="w-[81px] h-[27px] font-medium text-base text-[#ffff]">{currentMinutes}</span> / <span className="w-[81px] h-[27px] font-medium text-base text-[#ffff]">{duration}</span>
+                <img src={controlImage} onClick={handlePlayandPause} className={`w-20 h-[75.88px] bg-white rounded-full z-50 absolute top-[50%] left-1/3 ${isPlaying ? "hidden" : "block"} `} />
+            <div className='flex absolute bottom-24 gap-6 md:mx-5 mx-2 w-2/3 items-center'>
+                <div className="text-[#ffff]">
+                    <span className="w-[81px] h-[27px] font-medium text-base">{currentMinutes}</span> / <span className="w-[81px] h-[27px] font-medium text-base ">{duration}</span>
                 </div>
-                <progress max="100" className="w-2/3 h-4 rounded-md " onClick={handleProgressBarClick} value={progress}></progress>
+                    <progress max="100" min="0" className="md:w-[65%] h-2 rounded-md bg-[#FFFFF] [&::-moz-progress-bar]:bg-[#E72020] cursor-pointer " onClick={handleProgressBarClick} value={progress}></progress>
                 <div>
                     <img src={volumnImage} alt="volumn" className="w-6 cursor-pointer" onClick={HandleVolumnHidden} />
                     <input type="range" min="0" max="1" value={volume} onChange={handleVolume} step="0.1" className={`${hiddenVolumn ? 'block' : 'hidden' } transform -rotate-90 origin-left absolute bottom-[14px] ml-3`} />
+                </div>
+                <div>
+                    <img src={cc} alt="cc" className="w-6 cursor-pointer" />
+                </div>
+                <div>
+                    <img src={setting} alt="setting" className="w-6 cursor-pointer" />
+                </div>
+                <div>
+                    <img src={reszing} alt="reszing" className="w-6 cursor-pointer" />
                 </div>
             </div>
         </div>
