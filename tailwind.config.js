@@ -16,6 +16,9 @@ export default {
       animation: {
         'open-menu': 'open-menu 0.5s ease-in-out forwards',
       },
+      gridTemplateColumns: {
+        'video-grid' : 'repeat(2 , minmax(70%,30%))'
+      }
     },
   },
   plugins: [],

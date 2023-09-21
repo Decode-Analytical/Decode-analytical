@@ -1,4 +1,6 @@
 import React, { useState, useRef } from 'react';
+import controlImage from './control.png'
+import volumnImage from './volume.png'
 
 const Video = () => {
     const videoRef = useRef(null);
@@ -6,13 +8,17 @@ const Video = () => {
     const [currentMinutes, setCurrentMinutes] = useState('0:00');
     const [duration, setDuration] = useState('0:00');
     const [progress, setProgress] = useState(0);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [hiddenVolumn, setHiddenVolumn] = useState(false);
 
     const handlePlayandPause = () => {
         const video = videoRef.current;
         if (video.paused) {
             video.play();
+            setIsPlaying(true);
         } else {
             video.pause();
+            setIsPlaying(false);
         }
     };
 
@@ -44,29 +50,33 @@ const Video = () => {
         video.currentTime = pos * video.duration;
     }
 
+    const HandleVolumnHidden = () => {
+            setHiddenVolumn(!hiddenVolumn);
+    }
     return (
-        <>
+        <div className="w-full h-full">
             <video
                 src='http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
                 poster='http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg'
-                className='w-full h-72'
+                className='w-full'
                 id='video'
                 ref={videoRef}
                 onTimeUpdate={handleTime}
-            ></video>
-            <div>
-                <button type='button' onClick={handlePlayandPause} className="bg-black">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                </button>
+                onClick={handlePlayandPause}
+            >
+            </video>
+                <img src={controlImage}  className={`w-20 h-[75.88px] bg-white rounded-full z-50 absolute top-48 left-72 ${isPlaying ? "hidden" : "block"} `} />
+            <div className='flex absolute bottom-2 gap-2 mx-2 w-[70%]'>
                 <div>
-                    <span className="text-black">{currentMinutes}</span> / <span className="text-black">{duration}</span>
+                    <span className="w-[81px] h-[27px] font-medium text-base text-[#ffff]">{currentMinutes}</span> / <span className="w-[81px] h-[27px] font-medium text-base text-[#ffff]">{duration}</span>
                 </div>
-                <input type="range" min="0" max="1" value={volume} onChange={handleVolume} step="0.1" />
+                <progress max="100" className="w-2/3 h-4 rounded-md " onClick={handleProgressBarClick} value={progress}></progress>
+                <div>
+                    <img src={volumnImage} alt="volumn" className="w-6 cursor-pointer" onClick={HandleVolumnHidden} />
+                    <input type="range" min="0" max="1" value={volume} onChange={handleVolume} step="0.1" className={`${hiddenVolumn ? 'block' : 'hidden' } transform -rotate-90 origin-left absolute bottom-[14px] ml-3`} />
+                </div>
             </div>
-                <progress max="100" className='mx-2' onClick={handleProgressBarClick} value={progress}></progress>
-        </>
+        </div>
     )
 }
 
