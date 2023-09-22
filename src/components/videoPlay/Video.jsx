@@ -8,7 +8,6 @@ import Background from "./BackgroudScreen.png";
 import DefaultSize from './DefaultSize.png'
 
 const Video = ({ fullScreen, handleFullScreen }) => {
-  // const { fullScreen, handleFullScreen } = props
   const videoRef = useRef(null);
   const [volume, setVolume] = useState(1);
   const [currentMinutes, setCurrentMinutes] = useState("0:00");
@@ -64,25 +63,6 @@ const Video = ({ fullScreen, handleFullScreen }) => {
       (e.pageX - (e.target.offsetLeft + e.target.offsetParent.offsetLeft)) /
       e.target.offsetWidth;
     video.currentTime = pos * video.duration;
-  };
-
-  const Fullscreen = () => {
-    if (isPlaying) {
-      const video = videoRef.current;
-      if (!video) return;
-
-      if (video.requestFullscreen) {
-        video.requestFullscreen();
-      } else if (video.webkitRequestFullscreen) {
-        video.webkitRequestFullscreen();
-      } else if (video.mozRequestFullscreen) {
-        video.mozRequestFullscreen();
-      } else if (video.msRequestFullscreen) {
-        video.msRequestFullscreen();
-      }
-    } else {
-      alert("Please play video first");
-    }
   };
 
   const HandleVolumnHidden = () => {
