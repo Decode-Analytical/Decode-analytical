@@ -1,5 +1,8 @@
 import React from 'react'
 import { NavLink } from "react-router-dom";
+import PremiumHero from '../../components/coursesComponents/premium/PremiumHero';
+import FreeHero from '../../components/coursesComponents/free/FreeHero';
+import CourseOverview from '../../components/coursesComponents/premium/CourseOverview';
 
 const Profile = () => {
   const listOptions = [
@@ -40,7 +43,7 @@ const Profile = () => {
   return (
     <>
       <div className="flex flex-row">
-        <div className="flex flex-col fixed top-0 bottom-0 lg:left-0 border-r-2 w-[300px] overflow-y-auto text-center profile-sidebar">
+        <div className="flex flex-col fixed top-0 bottom-0 lg:left-0 border-r-2 w-[300px] overflow-y-auto text-center bg-white profile-sidebar">
           <div className="flex flex-col items-center pt-5 profile-sidebar-heading">
             <img src='https://cdn.vcgamers.com/news/wp-content/uploads/2022/01/paquito-ml-3.jpg' alt='profile' 
               className='w-16 h-16 my-2 rounded-full'  />
@@ -70,7 +73,10 @@ const Profile = () => {
             </li>
           </ul>
         </div>
-        <div className="">{/* column2 */}</div> 
+        <div className="flex ml-[300px] p-12">{/* column2 */}
+            <PremiumHero />
+            <premiumCourses />
+        </div> 
       </div> 
     </>
   )
