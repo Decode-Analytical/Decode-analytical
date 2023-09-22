@@ -10,6 +10,7 @@ export default {
       'md': '769px',
       'lg': '1024px',
       'xl': '1280px',
+      '2xl' : '1380'
     },
     fontSize: {
       smR: "10px",
