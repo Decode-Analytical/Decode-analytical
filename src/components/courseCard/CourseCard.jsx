@@ -6,7 +6,7 @@ const CourseCard = () => {
   const progress = 38
   return (
     <>
-    <div className="max-w-sm w-full lg:max-w-full lg:flex course-card">
+    <div className="max-w-none w-full flex flex-wrap course-card">
       <div className="h-48 lg:h-auto lg:w-80 flex-none bg-cover rounded text-center overflow-hidden img-container" title="Woman holding a mug">
       </div>
       <div className="bg-white flex flex-col flex-1 justify-between leading-normal">

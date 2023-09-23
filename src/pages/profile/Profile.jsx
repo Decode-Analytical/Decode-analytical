@@ -33,7 +33,15 @@ const Profile = () => {
               </nav>
             </header>
 
-            <CourseCard />
+            <div className='flex flex-col'>
+              <CourseCard />
+              <div className='flex flex-row'>
+              <CourseCard />
+              <CourseCard />
+              <CourseCard />
+
+              </div>
+            </div>
 
         </div> 
       </div> 
