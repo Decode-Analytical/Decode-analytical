@@ -9,6 +9,7 @@ import PremiumCourses from './pages/courseDetailPage/premiumCourses'
 import FreeCourses from './pages/courseDetailPage/freeCourses'
 import Profile from "./pages/profile/Profile";
 import Dashboard from "./pages/dashboard/Dashboard";
+import MyCourse from "./pages/MyCourse/MyCourse";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
                 <Route path='/PremiumCourses' element = {<PremiumCourses />} />
                 <Route path='/FreeCourses' element = {<FreeCourses />} />
                 <Route path='/dashboard' element = {<Dashboard />} />
+                <Route path='/mycourses' element = {<MyCourse />} />
                 <Route path='/profile/*' element = {<Profile />} />
               </Routes>
             </div>
