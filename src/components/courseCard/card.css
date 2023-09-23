@@ -12,7 +12,8 @@
 }
 
 .course-card .img-container {
+  min-width: 280px;
   max-width: 350px;
-  min-height: 300px;
+  min-height: 12rem;
   background-image: url('https://img.le-dictionnaire.com/manger-nourriture.jpg');
 }

@@ -6,10 +6,10 @@ const CourseCard = () => {
   const progress = 38
   return (
     <>
-    <div className="max-w-none w-full flex flex-wrap course-card">
-      <div className="h-48 lg:h-auto lg:w-80 flex-none bg-cover rounded text-center overflow-hidden img-container" title="Woman holding a mug">
+    <div className="max-w-none w-full flex flex-wrap bg-white course-card">
+      <div className="h-auto flex-1 m-2 bg-cover rounded text-center overflow-hidden img-container" title="Woman holding a mug">
       </div>
-      <div className="bg-white flex flex-col flex-1 justify-between leading-normal">
+      <div className="flex flex-col flex-1 justify-between leading-normal">
         <div className="mb-1 mt-6 lg:mx-4 lg:mt-0 flex flex-col justify-between">
           <h3 className="text-gray-900 font-bold text-xl mb-2 ">Can coffee make you a better developer?</h3>
           <div className='flex flex-row items-center gap-2'>
