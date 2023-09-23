@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+}
+.course-card {
+  width: 90%;
+  min-height: 220px;
+  border-radius: 13px;
+  border: 1px solid #D9D9D9;
+  padding: 12.8px;
+  margin: 16px;
+}
+
+.course-card .img-container {
+  max-width: 350px;
+  min-height: 300px;
+  background-image: url('https://img.le-dictionnaire.com/manger-nourriture.jpg');
+}
