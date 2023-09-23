@@ -13,7 +13,7 @@ const ListCourseCard = (props) => {
         </div>
         <ul className='flex flex-wrap justify-evenly gap-4'>
             {list.map(el => (
-                <li className='w-80'>
+                <li className='w-72'>
                     <CourseCard data={el} />
                 </li>
             ))}
