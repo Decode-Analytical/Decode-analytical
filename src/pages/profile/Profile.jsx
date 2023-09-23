@@ -3,10 +3,25 @@ import React from 'react'
 import CourseCard from '../../components/courseCard/courseCard';
 import ProfileSideBar from './ProfileSideBar';
 import { NavLink } from 'react-router-dom';
+import ListCourseCard from '../../components/courseCard/ListCourseCard';
+import EnrolledCourseCard from '../../components/courseCard/EnrolledCourseCard';
 
 
 const Profile = () => {
-
+  const listCoursesTest = [
+    {
+      title: "Can coffee make you a better developer?",
+      progress: 36,
+    },
+    {
+      title: "No, I love café",
+      progress: 12,
+    },
+    {
+      title: "Course help me!",
+      progress: 99,
+    }
+  ]
 
   return (
     <>
@@ -33,43 +48,16 @@ const Profile = () => {
               </nav>
             </header>
 
+            {/* Dashbord content (will change when click on profile) */} 
             <div className='flex flex-col'>
-              <div className='flex flex-col mt-16 mx-6 border border-gray-300 rounded-2xl p-3'>
-                <div className='flex justify-between pt-3 pb-2 border-b-2 mb-4'>
-                  <h3 className='font-semibold text-lg'>Ongoing Courses</h3>
-                  <p className='text-gray-400'>see all ongoing courses</p>
-                </div>
-                <CourseCard />
-              </div>
-              <div className='flex flex-col mt-6 mx-6 border border-gray-300 rounded-2xl p-3'>
-                <div className='flex justify-between pt-3 pb-2 mb-4'>
-                  <h3 className='font-semibold text-lg'>Completed Courses (6)</h3>
-                  <p className='text-gray-400'>see all</p>
-                </div>
-                <ul className='flex flex-wrap justify-evenly gap-4'>
-                  <li className='w-80'>
-                    <CourseCard />
-                  </li>
-                  <li className='w-80'>
-                    <CourseCard />
-                  </li>
-                  <li className='w-80'>
-                    <CourseCard />
-                  </li>
-                  <li className='w-80'>
-                    <CourseCard />
-                  </li>
-                  <li className='w-80'>
-                    <CourseCard />
-                  </li>
-                  <li className='w-80'>
-                    <CourseCard />
-                  </li>
-                </ul>
-              </div>
-              <div className='flex flex-row'>
+              {/* Ongoing Courses */} 
+              <EnrolledCourseCard title="Ongoing Courses" course={listCoursesTest[0]} />
 
-              </div>
+              {/* Completed Courses */} 
+              <ListCourseCard title="Completed Courses (6)" list={[...listCoursesTest, ...listCoursesTest]} />
+              {/* Completed Courses */} 
+              <ListCourseCard title="Claimed Certificate (3)" list={listCoursesTest} />
+
             </div>
 
         </div> 

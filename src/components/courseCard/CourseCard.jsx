@@ -1,9 +1,10 @@
 import React from 'react'
 import './card.css'
 
-const CourseCard = () => {
+const CourseCard = (props) => {
+  const {data} = props
+  const {title, progress} = data
   const levelNumber = 0
-  const progress = 38
   return (
     <>
     <div className="max-w-none w-full flex flex-wrap bg-white course-card">
@@ -11,7 +12,7 @@ const CourseCard = () => {
       </div>
       <div className="flex flex-col flex-1 justify-between leading-normal">
         <div className="mb-1 mt-6 lg:mx-4 lg:mt-0 flex flex-col justify-between">
-          <h3 className="text-gray-900 font-bold text-xl mb-2 ">Can coffee make you a better developer?</h3>
+          <h3 className="text-gray-900 font-bold text-xl mb-2 ">{title}</h3>
           <div className='flex flex-row items-center gap-2'>
             <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
               <div className="bg-blue-600 h-2.5 rounded-full dark:bg-blue-500" style={{width: `${progress}%`}}></div>
