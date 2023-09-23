@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import PremiumHero from '../../components/coursesComponents/premium/PremiumHero';
 import FreeHero from '../../components/coursesComponents/free/FreeHero';
 import CourseOverview from '../../components/coursesComponents/premium/CourseOverview';
+import CourseCard from '../../components/courseCard/courseCard';
+
 
 const Profile = () => {
   const listOptions = [
@@ -73,9 +75,9 @@ const Profile = () => {
             </li>
           </ul>
         </div>
-        <div className="flex ml-[300px] p-12">{/* column2 */}
-            <PremiumHero />
-            <premiumCourses />
+        <div className="flex flex-col ml-[300px] p-12 flex-1">{/* column2 */}
+            <CourseCard />
+
         </div> 
       </div> 
     </>
