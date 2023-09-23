@@ -34,7 +34,13 @@ const Profile = () => {
             </header>
 
             <div className='flex flex-col'>
-              <CourseCard />
+              <div className='flex flex-col mt-16 mx-6 border border-gray-300 rounded-2xl p-3'>
+                <div className='flex justify-between pt-3 pb-2 border-b-2 mb-4'>
+                  <h3 className='font-semibold text-lg'>Ongoing Courses</h3>
+                  <p className='text-gray-400'>see all ongoing courses</p>
+                </div>
+                <CourseCard />
+              </div>
               <div className='flex flex-row'>
               <CourseCard />
               <CourseCard />
