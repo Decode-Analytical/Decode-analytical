@@ -9,6 +9,7 @@ import PremiumCourses from './pages/courseDetailPage/premiumCourses'
 import FreeCourses from './pages/courseDetailPage/freeCourses'
 import CartPage from "./pages/cartAndPaymentPage/CartPage";
 import PaymentPage from "./pages/cartAndPaymentPage/PaymentPage";
+import Dashboard from "./pages/dashBoard/Dashboard";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                 <Route path='/FreeCourses' element = {<FreeCourses />} />
                 <Route path='/CartPage' element = {<CartPage />} />
                 <Route path='/PaymentPage' element = {<PaymentPage />} />
+                <Route path='/Dashboard' element = {<Dashboard />} />
               </Routes>
             </div>
           </div>

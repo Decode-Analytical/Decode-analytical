@@ -4,8 +4,7 @@ import picFour from "../../assets/homepageImages/pics4.png";
 import logo from "../../assets/homepageImages/star 1.png";
 import {
   FaArrowRight,
-  FaChartBar,
-  FaClock,
+ 
   FaFile,
   FaFolder,
   FaPeopleCarry,
@@ -20,7 +19,7 @@ export default function Homepage() {
     <>
       <main>
         <section className="bg-white">
-          <div className="pt-14 pb-2 bg-black text-center text-white relative">
+          <div className="pt-14 pb-2 bg-black hero text-center text-white relative">
             <h2 className="font-bold text-[61px] bigText text-center text-white py-3 px-[10%]">
               Unlock Your Potential, Expand Your Horizons, and Excel in Tech
             </h2>
