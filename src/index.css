@@ -3,7 +3,10 @@
 @tailwind utilities;
 
 .hero {
-  background-image: ur;
+  background-image: url(../src/assets/homepageImages/main.png);
+}
+.bg {
+  background-image: url(../src//assets/homepageImages/bg.png);
 }
 .center {
   display: block;

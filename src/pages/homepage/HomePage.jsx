@@ -19,7 +19,7 @@ export default function Homepage() {
     <>
       <main>
         <section className="bg-white">
-          <div className="pt-14 pb-2 bg-black hero text-center text-white relative">
+          <div className="pt-14 pb-2  hero text-center text-white relative">
             <h2 className="font-bold text-[61px] bigText text-center text-white py-3 px-[10%]">
               Unlock Your Potential, Expand Your Horizons, and Excel in Tech
             </h2>
@@ -103,7 +103,7 @@ export default function Homepage() {
             </div>
           </div>
         </section>
-        <section className="py-28 bg-slate-500 px-[10%] text-[20px] text-center">
+        <section className="py-28 bg px-[10%] text-[20px] text-center">
           <h5 className="font-bold text-[31px] text-white py-4 midFont">
             EXPLORE COURSES
           </h5>
