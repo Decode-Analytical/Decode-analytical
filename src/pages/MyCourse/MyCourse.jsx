@@ -32,18 +32,19 @@ const MyCourse = () => {
       ]
     
   return (
-    <div className='bg-gray-50 flex flex-col justify-center'>
-      <div className="flex flex-col fixed top-0 bottom-0 lg:left-0 border-r-2 w-16 overflow-y-auto text-center bg-gray-900 profile-sidebar">
-      </div>
+    <>
+    <div className="flex-col fixed top-0 bottom-0 lg:left-0 border-r-2 w-16 overflow-y-auto text-center bg-gray-900 hidden md:flex profile-sidebar">
+    </div>
 
-      <div className='flex flex-1 bg-white '>
-        <div className='flex justify-between flex-1 shadow-md px-28'>
-            <h2 className='text-3xl font-extrabold flex items-center'>My Courses</h2>
-            <img src={iconHeading} alt="" />
-        </div>
+    <div className='flex flex-1 bg-white'>
+      <div className='flex justify-between flex-1 shadow-md px-3 md:px-20'>
+          <h2 className='text-3xl font-extrabold flex items-center'>My Dashboard</h2>
+          <img src={iconHeading} alt="" />
       </div>
+    </div>
+    <div className='bg-gray-50 flex flex-col justify-center md:ml-20'>
 
-      <ul className='flex flex-wrap mt-6 justify-between'>
+      <ul className='flex flex-wrap mt-6 justify-evenly'>
         <li className='flex p-4 shadow-md'>
             <div className='w-24 pr-3'>
                 <p className='text-gray-600'>On going courses</p>
@@ -74,42 +75,36 @@ const MyCourse = () => {
         </li>
       </ul>
 
-      <div>
         <EnrolledCourseCard title="On Going Courses (3)" course={listCoursesTest[0]} />
-      </div>
-      <div>
+
         <ListCourseCard title="Completed Courses" list={listCoursesTest} />
-      </div>
 
-      <div>
         <ListCourseCard title="Similar Courses" list={listCoursesTest} />
-      </div>
-      <div>
-        <ListCourseCard title="Recommanded Courses" list={listCoursesTest} />
-      </div>
-      <div>
-        <ListCourseCard title="Recently Viewed Courses" list={listCoursesTest} />
-      </div>
 
-      <nav className=' mt-6 mx-6 mb-16'>
-        <ul className='flex gap-4'>
-            <li key="nav-dashboard" className='flex-1 bg-gray-100'>
+        <ListCourseCard title="Recommanded Courses" list={listCoursesTest} />
+
+        <ListCourseCard title="Recently Viewed Courses" list={listCoursesTest} />
+
+
+      <nav className='mt-6 mb-16 mx-6'>
+        <ul className='flex flex-wrap justify-evenly gap-4'>
+            <li key="nav-dashboard" className='flex-1 bg-gray-100 min-w-[250px]'>
             <NavLink end to="/profile/dashboard" 
-                className={({isActive})=> `flex items-center flex-1 justify-evenly p-6 shadow-md text-gray-900 ${isActive && "border-b-2 border-b-gray-950 font-semibold text-gray-950"}`}>
+                className={({isActive})=> `flex items-center flex-1 justify-evenly p-6 shadow-md text-gray-900`}>
                     <h3 className='font-bold'>Go to Forum</h3>
                     <img src={forumsImage} alt="" className='w-40 ml-4' />
             </NavLink>
             </li>
-            <li key="nav-dashboard" className='flex-1 bg-gray-100'>
-            <NavLink end to="/profile/dashboard" 
-                className={({isActive})=> `flex items-center flex-1 justify-evenly p-6 shadow-md text-gray-900 ${isActive && "border-b-2 border-b-gray-950 font-semibold text-gray-950"}`}>
+            <li key="nav-dashboard" className='flex-1 bg-gray-100 min-w-[250px]'>
+            <NavLink end to="/mycourses" 
+                className={({isActive})=> `flex items-center flex-1 justify-evenly p-6 shadow-md text-gray-900`}>
                     <h3 className='font-bold'>Go to Courses</h3>
                     <img src={coursesImage} alt="" className='w-40 ml-4' />
             </NavLink>
             </li>
-            <li key="nav-dashboard" className='flex-1 bg-gray-100'>
+            <li key="nav-dashboard" className='flex-1 bg-gray-100 min-w-[250px]'>
             <NavLink end to="/profile/dashboard" 
-                className={({isActive})=> `flex items-center flex-1 justify-evenly p-6 shadow-md text-gray-900 ${isActive && "border-b-2 border-b-gray-950 font-semibold text-gray-950"}`}>
+                className={({isActive})=> `flex items-center flex-1 justify-evenly p-6 shadow-md text-gray-900`}>
                     <h3 className='font-bold'>Go to Tools</h3>
                     <img src={toolsImage} alt="" className='w-40 ml-4' />
             </NavLink>
@@ -117,6 +112,7 @@ const MyCourse = () => {
         </ul>
       </nav>
     </div>
+    </>
   )
 }
 

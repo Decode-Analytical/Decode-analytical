@@ -105,21 +105,21 @@ const Dashboard = () => {
         <ul className='flex flex-wrap justify-evenly gap-4'>
             <li key="nav-dashboard" className='flex-1 bg-gray-100 min-w-[250px]'>
             <NavLink end to="/profile/dashboard" 
-                className={({isActive})=> `flex items-center flex-1 justify-evenly p-6 shadow-md text-gray-900 ${isActive && "border-b-2 border-b-gray-950 font-semibold text-gray-950"}`}>
+                className={({isActive})=> `flex items-center flex-1 justify-evenly p-6 shadow-md text-gray-900`}>
                     <h3 className='font-bold'>Go to Forum</h3>
                     <img src={forumsImage} alt="" className='w-40 ml-4' />
             </NavLink>
             </li>
             <li key="nav-dashboard" className='flex-1 bg-gray-100 min-w-[250px]'>
             <NavLink end to="/mycourses" 
-                className={({isActive})=> `flex items-center flex-1 justify-evenly p-6 shadow-md text-gray-900 ${isActive && "border-b-2 border-b-gray-950 font-semibold text-gray-950"}`}>
+                className={({isActive})=> `flex items-center flex-1 justify-evenly p-6 shadow-md text-gray-900`}>
                     <h3 className='font-bold'>Go to Courses</h3>
                     <img src={coursesImage} alt="" className='w-40 ml-4' />
             </NavLink>
             </li>
             <li key="nav-dashboard" className='flex-1 bg-gray-100 min-w-[250px]'>
             <NavLink end to="/profile/dashboard" 
-                className={({isActive})=> `flex items-center flex-1 justify-evenly p-6 shadow-md text-gray-900 ${isActive && "border-b-2 border-b-gray-950 font-semibold text-gray-950"}`}>
+                className={({isActive})=> `flex items-center flex-1 justify-evenly p-6 shadow-md text-gray-900`}>
                     <h3 className='font-bold'>Go to Tools</h3>
                     <img src={toolsImage} alt="" className='w-40 ml-4' />
             </NavLink>
