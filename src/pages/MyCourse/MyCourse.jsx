@@ -32,7 +32,7 @@ const MyCourse = () => {
       ]
     
   return (
-    <div className='bg-gray-50'>
+    <div className='bg-gray-50 flex flex-col justify-center'>
       <div className="flex flex-col fixed top-0 bottom-0 lg:left-0 border-r-2 w-16 overflow-y-auto text-center bg-gray-900 profile-sidebar">
       </div>
 
@@ -43,7 +43,7 @@ const MyCourse = () => {
         </div>
       </div>
 
-      <ul className='flex flex-wrap px-28 mt-6 justify-between'>
+      <ul className='flex flex-wrap mt-6 justify-between'>
         <li className='flex p-4 shadow-md'>
             <div className='w-24 pr-3'>
                 <p className='text-gray-600'>On going courses</p>
@@ -74,24 +74,24 @@ const MyCourse = () => {
         </li>
       </ul>
 
-      <div className='px-28'>
+      <div>
         <EnrolledCourseCard title="On Going Courses (3)" course={listCoursesTest[0]} />
       </div>
-      <div className='px-28'>
+      <div>
         <ListCourseCard title="Completed Courses" list={listCoursesTest} />
       </div>
 
-      <div className='px-28'>
+      <div>
         <ListCourseCard title="Similar Courses" list={listCoursesTest} />
       </div>
-      <div className='px-28'>
+      <div>
         <ListCourseCard title="Recommanded Courses" list={listCoursesTest} />
       </div>
-      <div className='px-28'>
+      <div>
         <ListCourseCard title="Recently Viewed Courses" list={listCoursesTest} />
       </div>
 
-      <nav className='px-28 mt-6 mx-6 mb-16'>
+      <nav className=' mt-6 mx-6 mb-16'>
         <ul className='flex gap-4'>
             <li key="nav-dashboard" className='flex-1 bg-gray-100'>
             <NavLink end to="/profile/dashboard" 

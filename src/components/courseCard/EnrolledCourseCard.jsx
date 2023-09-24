@@ -12,11 +12,11 @@ const EnrolledCourseCard = (props) => {
             <h3 className='font-semibold text-lg'>{title}</h3>
             <p className='text-gray-400'>see all ongoing courses</p>
         </div>
-        <div className="max-w-none w-full flex flex-wrap bg-white course-card">
-            <div className="h-auto flex-1 m-2 bg-cover rounded text-center overflow-hidden img-container" title="Woman holding a mug">
+        <div className="max-w-none w-full flex flex-wrap justify-center bg-white course-card">
+            <div className="h-auto flex-1 m-2 bg-cover rounded text-center overflow-hidden img-container">
             </div>
-            <div className="flex flex-col flex-1 justify-between leading-normal">
-                <div className="mb-1 mt-6 lg:mx-4 lg:mt-0 flex flex-col justify-between">
+            <div className="flex flex-col flex-1 min-w-[300px] justify-between leading-normal">
+                <div className="mb-1 mt-6 mx-4 lg:mt-0 flex flex-col justify-between">
                 <h3 className="text-gray-900 font-bold text-xl mb-2 ">Can coffee make you a better developer? {courseTitle}</h3>
                 <div className='flex flex-row items-center gap-2'>
                     <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
