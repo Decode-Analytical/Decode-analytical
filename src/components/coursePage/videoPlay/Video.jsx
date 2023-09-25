@@ -136,7 +136,7 @@ const Video = ({ fullScreen, handleFullScreen }) => {
                <img src={setting} alt="setting" className="cursor-pointer" />
             </button>
           </li>
-          <li className="h-6">
+          <li className="h-6 md:block hidden">
             <button type="button" className="md:w-5 w-3">
               <img
                 src={fullScreen ? DefaultSize : reszing}
