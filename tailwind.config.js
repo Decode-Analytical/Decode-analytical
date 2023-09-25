@@ -12,9 +12,6 @@ export default {
       'xl': '1280px',
       '2xl' : '1380'
     },
-    fontSize: {
-      smR: "10px",
-    },
     extend: {
       keyframes:{
         'open-menu' : {

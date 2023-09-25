@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import controlImage from "./control.png";
 import volumnImage from "./volume.png";
 import cc from "./bi_badge-cc-fill.png";
@@ -8,6 +8,9 @@ import Background from "./BackgroudScreen.png";
 import DefaultSize from './DefaultSize.png'
 
 const Video = ({ fullScreen, handleFullScreen }) => {
+
+  const [FetchData, setFetchData] = useState([])
+  // useEffect(() => {}
   const videoRef = useRef(null);
   const [volume, setVolume] = useState(1);
   const [currentMinutes, setCurrentMinutes] = useState("0:00");
@@ -38,6 +41,7 @@ const Video = ({ fullScreen, handleFullScreen }) => {
   };
 
   const handleTime = () => {
+
     const video = videoRef.current;
     if (!video) return;
 
@@ -74,7 +78,7 @@ const Video = ({ fullScreen, handleFullScreen }) => {
         onMouseOver={() => setHiddenControl(!hiddenControl)}
         onMouseOut={() => setHiddenControl(!hiddenControl)}
       >
-        <img src={controlImage} className={`${isPlaying ? 'hidden' : "absolute  " }`} />
+        <img src={controlImage} className={`${isPlaying ? 'hidden' : "absolute" } md:w-28 w-14 `} />
       <video
         src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
         id="video"
@@ -89,12 +93,12 @@ const Video = ({ fullScreen, handleFullScreen }) => {
         className={`${hiddenControl ? "flex items-center justify-around mx-3" : "flex items-center justify-around mx-3" } `}
         >
           <li>
-          <p className="text-[#ffff] text-smR w-16 xl:font-medium  max-sm:w-20">
+          <p className="text-[#ffff] text-[12px] w-16 xl:font-medium  max-sm:w-20">
           <span className="">{currentMinutes}</span> /{" "}
            <span className="">{duration}</span>
          </p>
           </li>
-          <li className="w-[64%] rounded-full h-2 cursor-pointer bg-gray-300">
+          <li className="md:w-[64%] w-[49%]  rounded-full h-2 cursor-pointer bg-gray-300">
           <div
              className="h-2 bg-[#E72020] rounded-full"
              style={{ width: progress }}
@@ -106,7 +110,7 @@ const Video = ({ fullScreen, handleFullScreen }) => {
           <img
             src={volumnImage}
             alt="volumn"
-            className="w-5 cursor-pointer"
+            className="md:w-5 w-3 cursor-pointer"
             onClick={HandleVolumnHidden}
           />
             </button>
@@ -123,17 +127,17 @@ const Video = ({ fullScreen, handleFullScreen }) => {
           />
           </li>
           <li className="h-6">
-            <button type="button" className="w-5">
+            <button type="button" className="md:w-5 w-3">
               <img src={cc} alt="cc" className="w-6 cursor-pointer" />
             </button>
           </li>
           <li className="h-6">
-            <button type="button" className="w-5">
+            <button type="button" className="md:w-5 w-3">
                <img src={setting} alt="setting" className="cursor-pointer" />
             </button>
           </li>
           <li className="h-6">
-            <button type="button" className="w-5">
+            <button type="button" className="md:w-5 w-3">
               <img
                 src={fullScreen ? DefaultSize : reszing}
                 alt="reszing"
