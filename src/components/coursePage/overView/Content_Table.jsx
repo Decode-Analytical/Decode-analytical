@@ -2,7 +2,11 @@ import React from 'react'
 
 const Content_Table = () => {
   return (
-    <div>Content_Table</div>
+    <table>
+        <thead>
+
+        </thead>
+    </table>
   )
 }
 
