@@ -60,11 +60,10 @@ const CoursePage = () => {
         {showCourseContent === "Comment" && <div>Comment</div>}
         </div>
         <div className="bg-white">
-          <div className="flex justify-between">
-            <h1 className="text-2xl font-bold p-4">Course Content</h1>
+          <div className="flex justify-between p-4">
+            <h1 className="text-2xl font-bold">Course Content</h1>
             <button type="button" onClick={() => {
               setShowCourseContent(!showCourseContent)
-              console.log(showCourseContent)
               }}>
               <img src={showCourseContent ? Close : Menu} srcset="" />
             </button>

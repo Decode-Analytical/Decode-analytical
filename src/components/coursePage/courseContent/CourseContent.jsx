@@ -36,7 +36,7 @@ const CourseContent = () => {
   };
 
   return (
-    <ul className="bg-white">
+    <ul className="bg-white w-full">
       {courseContent.map((item, mainIndex) => {
         const courseTitle = Object.keys(item)[0];
         const isCourseOpen = openCourseIndices.includes(mainIndex);
@@ -103,7 +103,7 @@ const CourseContent = () => {
                         <input type="checkbox" name="DOne" />
                         <div>{index + 1}. {key}</div>
                       </div>
-                      <div>{item[courseTitle][key]}</div>
+                      <div className="text-[12px]">{item[courseTitle][key]}</div>
                     </div>
                   ))}
                 </div>
