@@ -10,7 +10,7 @@ import {BsClockHistory} from "react-icons/bs"
 
 export default function AlsoLike() {
   return (
-    <fragment className=''>
+    <>
         <section className=" mx-[5%] mt-20 mb-20">
             
             <div className="max-w-[1100px] m-auto">
@@ -158,6 +158,6 @@ export default function AlsoLike() {
                 </div>
             </div>
         </section>
-    </fragment>
+    </>
   )
 }
