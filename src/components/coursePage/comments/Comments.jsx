@@ -9,10 +9,10 @@ const Comments = () => {
   const CreateBar = ["50%", "45%", "39%", "35%", "30%"]
   return (
     <section className="w-full flex flex-col justify-center bg-white items-center my-5">
-      <div className="w-10/12">
+      <div className="md:w-10/12">
         <h1 className="text-2xl font-bold my-3">Student Feedback</h1>
         <div className="flex gap-3 my-5">
-            <div className="w-2/6">
+            <div className="md:w-2/6">
                 <h2 className="text-center" style={{fontSize: "5.25rem", lineHeight: "4.25rem"}}>4.0</h2>
                 <div>
                   <div className="flex gap-2 justify-around">
@@ -40,6 +40,7 @@ const Comments = () => {
               })}
             </div>
         </div>
+        <h3 className="text-2xl font-bold my-3">Reviews</h3>
         </div>
     </section>
   )

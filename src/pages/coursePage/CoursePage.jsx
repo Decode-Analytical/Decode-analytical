@@ -55,12 +55,12 @@ const CoursePage = () => {
         </li>
        </ul>
 
-        {showCourseContent === "OverView" && <OverView />}
         {/* {showCourseContent === "Course Content" && <CourseContent />} */}
+        {showCourseContent === "OverView" && <OverView />}
         {showCourseContent === "Comment" && <div><Comment /></div>}
-        </div>
+        {showCourseContent === "Course Content" && (
         <div className="bg-white">
-          <div className="flex justify-between p-4">
+          <div className={`flex justify-between p-4`}>
             <h1 className="text-2xl font-bold">Course Content</h1>
             <button type="button" onClick={() => {
               setShowCourseContent(!showCourseContent)
@@ -68,7 +68,22 @@ const CoursePage = () => {
               <img src={showCourseContent ? Close : Menu} srcset="" />
             </button>
           </div>
-          <div className={`${showCourseContent ? "md:flex hidden" : "hidden" }`}>
+          <div className={`${showCourseContent ? "flex" : "hidden" }`}>
+            <CourseContent />
+          </div>
+        </div>
+        )}
+        </div>
+        <div className={`bg-white  ${fullScreen ? "hidden" : "md:flex flex-col hidden"}`}>
+          <div className={`flex justify-between p-4`}>
+            <h1 className="text-2xl font-bold">Course Content</h1>
+            <button type="button" onClick={() => {
+              setShowCourseContent(!showCourseContent)
+              }}>
+              <img src={showCourseContent ? Close : Menu} srcset="" />
+            </button>
+          </div>
+          <div className={`${showCourseContent ? "flex" : "hidden" }`}>
             <CourseContent />
           </div>
         </div>
