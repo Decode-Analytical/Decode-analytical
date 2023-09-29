@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { OverView, Video, CourseContent } from '../../components/coursePage';
+import { OverView, Video, CourseContent, Comment } from '../../components/coursePage';
 import Menu from "./Menu.png";
 import Close from "./Close.png";
 
@@ -44,12 +44,12 @@ const CoursePage = () => {
         </button>
         </li>
         <li>
-        <button type="button" className={`${showCourseContent == "Comment" && "underline"}`} onClick={() => handleFullScreen("Comment")}>
+        <button type="button" className={`${showCourseContent == "Comment" && "underline"}`} onClick={() => handleShowCourseContent("Comment")}>
           Comment
         </button>
         </li>
         <li>
-        <button type="button" className={`${showCourseContent == "Review" && "underline"}`} onClick={() => handleFullScreen("Review")}>
+        <button type="button" className={`${showCourseContent == "Review" && "underline"}`} onClick={() => handleShowCourseContent("Review")}>
           Review
         </button>
         </li>
@@ -57,7 +57,7 @@ const CoursePage = () => {
 
         {showCourseContent === "OverView" && <OverView />}
         {/* {showCourseContent === "Course Content" && <CourseContent />} */}
-        {showCourseContent === "Comment" && <div>Comment</div>}
+        {showCourseContent === "Comment" && <div><Comment /></div>}
         </div>
         <div className="bg-white">
           <div className="flex justify-between p-4">
