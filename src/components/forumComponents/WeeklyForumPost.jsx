@@ -7,6 +7,7 @@ import {BsSortDown} from "react-icons/bs"
 import {BsHandThumbsUp} from "react-icons/bs"
 import {BsHandThumbsUpFill} from "react-icons/bs"
 import {BsReplyFill} from "react-icons/bs"
+import {BsXCircle} from "react-icons/bs"
 
 
 
@@ -31,9 +32,63 @@ function LikeButton() {
 
 
 export default function WeeklyForumPost() {
+
+    
+
+        // THE FUNTION THAT CONTROLS THE CREATE POST DROP DOWN
+
+    const [isPostVisible, setPostVisible] = useState(false);
+
+            // THE CONTENT OF THE DROPDOWN IS GOING TO BE HERE AND DISPLAYED  IF TOGGLED
+    let createPost 
+    if (isPostVisible) {
+        createPost = 
+        <div className=" bg-[#e0e0e0] px-3 md:px-10 md:mx-[5%] py-10  origin-top animate-open-menu">  {/* THE ANIMATION CLASS IS IN THE TAILWIND.CONFIG.JS */}
+            <div className=" flex justify-between items-center ">
+                <p className=" text-2xl md:text-3xl font-bold">
+                    Create a new post
+                </p>
+
+                <BsXCircle className=' hover:cursor-pointer'/>
+            </div>
+
+            <div className=" mt-5">
+               <form action="" method="post">
+                    <label htmlFor="">
+                        Post description <span className=" text-red-700">*</span>
+                    </label> <br />
+                    <input required type="text" placeholder='Write a descriptive title' className=' w-full p-2 rounded-md'/> <br /> <br /> <br />
+
+                    <label htmlFor="">
+                        body text <span className=" text-red-700">*</span>
+                    </label> <br />
+                    <textarea required name="body-text" id="" placeholder='Body Text' className=' w-full p-3 h-[100px]'/>
+               </form>
+            </div>
+
+            <div className=" flex justify-between mt-2">
+                <p className=" text-gray-400 text-sm">
+                    1000 characters max
+                </p>
+
+                <div className=" space-x-3">
+                    <button className=" border border-[#040E53] bg-white px-1 rounded-md">
+                        Cancel
+                    </button>
+
+                    <button className=" border border-[#040E53] bg-[#040E53] text-white px-3 rounded-md hover:bg-white hover:text-[#040E53]">
+                        Post
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+
+
+        //   <================================================================>
   return (
     <>
-        <section className=" md:max-w-[67%] md:border md:p-5">
+        <section className=" md:max-w-[67%] md:border md:p-5 relative">
             <div className="">
                 <div className="">
                     <p className=" text-[#040E53] text-xl md:text-2xl font-bold">
@@ -56,7 +111,7 @@ export default function WeeklyForumPost() {
                         <BsSearch className=' cursor-pointer mx-3'/>
                     </div>
 
-                    <button className=" text-[10px] mx-5 rounded-md px-3 py-2 font-extrabold border border-[#040E53]">
+                    <button onClick={()=>setPostVisible(!isPostVisible)} className=" text-[10px] mx-5 rounded-md px-3 py-2 font-extrabold border border-[#040E53]">
                         create a post 
                     </button>
                 </div>
@@ -163,7 +218,7 @@ export default function WeeklyForumPost() {
                             </p>
 
                             <div className="">
-                                <button className="">
+                                <button className=" border border-[#040E53] px-2 rounded-md">
                                     Cancel
                                 </button>
                                 <button className=" mx-3 bg-[#040E53] text-white px-2 rounded-md hover:bg-white hover:text-[#040E53] border border-[#040E53]">
@@ -173,6 +228,14 @@ export default function WeeklyForumPost() {
                         </div>
                     </div>
                 </div>
+            </div>
+
+
+            
+
+                        {/* THE DROPDOWN FOR CREATING POST */} 
+            <div className=" absolute top-44 w-full -left-1">
+                {createPost}
             </div>
         </section>
     </>

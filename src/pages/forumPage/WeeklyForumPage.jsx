@@ -7,7 +7,7 @@ export default function WeeklyForumPage() {
   return (
     <>
       <ForumNav />
-      <div className=' md:w-[80%] m-auto md:flex justify-between'>
+      <div className=' mx-[5%] md:w-[80%] m-auto md:flex justify-between'>
         <WeeklyForumPost />
         <ForumMemberComponent />
       </div>

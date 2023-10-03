@@ -151,13 +151,15 @@ export default function ReplyComponent() {
 
 
                   {/* ============THE REPLY INPUT  TO EACH COMMENT============= */}
-            <div className=" ">
+            <div className=" "> 
               <p className="">
                 Reply 
               </p>
 
-              <textarea type="text" placeholder='REPLY' className=' w-full border border-gray-500 p-2'/>
-
+              <form action="" method="post">
+                <textarea type="text" placeholder='REPLY' className=' w-full border border-gray-500 p-2'/>
+              </form>
+              
               <div className=" flex justify-between">
                 <p className=" text-gray-400 text-[10px]">
                   not more than 100 words
