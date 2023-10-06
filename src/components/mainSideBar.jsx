@@ -41,17 +41,6 @@ const MainSideBar = () => {
     <>
       <div onMouseEnter={()=> openMenu(true)} onMouseLeave={()=>openMenu(false)}
       className={`flex flex-col fixed top-0 bottom-0 lg:left-0 border-r-2 text-center bg-gray-900 text-white profile-sidebar overflow-y-hidden duration-500 ${menuOpened ? "w-[300px]" : "w-[80px]"}`}>
-          <div className={`flex w-full mt-2 h-4 ${menuOpened ? 'justify-end': 'justify-center'}`}>
-            { menuOpened ? (
-              <button type='button' className='text-white mr-4'  onClick={()=> openMenu(false)}>
-                X
-              </button>
-            ): (
-              <button type='button' className='text-white mr-4' onClick={()=> openMenu(true)}>
-              Y
-            </button>
-            )}
-          </div>
           <div className="flex flex-col items-center pt-4 profile-sidebar-heading">
             <img src='https://cdn.vcgamers.com/news/wp-content/uploads/2022/01/paquito-ml-3.jpg' alt='profile' 
               className={`my-2 rounded-full duration-500 ${menuOpened ? 'w-16 h-16': 'w-12 h-12'}`}  />
@@ -67,9 +56,9 @@ const MainSideBar = () => {
           <ul className="flex flex-col gap-1 mt-9 profile-sidebar-options">
             {listOptions.map(el => {
               return (
-              <li className={`flex flex-row cursor-pointer duration-500 ${menuOpened && 'mx-6 px-2'} `}>
+              <li className={`flex flex-row cursor-pointer duration-300 ${menuOpened && 'mx-6 px-2'} `}>
                 <NavLink to={el.url} 
-                  className={({isActive})=> `flex-1 duration-500 hover:bg-cyan-600 hover:font-semibold rounded-sm hover:text-cyan-950 hover:fill-cyan-950 ${menuOpened ? 'py-3 px-8' : 'mx-2 py-2'} ${!isActive && "fill-white"} ${isActive && "bg-cyan-600 text-cyan-950 fill-cyan-950 font-bold"}`}
+                  className={({isActive})=> `flex-1 duration-300 hover:bg-cyan-600 hover:font-semibold rounded-sm hover:text-cyan-950 hover:fill-cyan-950 ${menuOpened ? 'py-3 px-8' : 'mx-2 py-2'} ${!isActive && "fill-white"} ${isActive && "bg-cyan-600 text-cyan-950 fill-cyan-950 font-bold"}`}
                   >
                     <span className={`flex flex-row flex-1 gap-3 m-auto ${!menuOpened && 'justify-center'}`}>
                       {/* Icons */}
@@ -123,7 +112,7 @@ const MainSideBar = () => {
                           </svg>
                         )}
                       </>
-                      <span className={`duration-500 ${!menuOpened && 'w-0 h-0 overflow-hidden'}`}>
+                      <span className={`duration-300 ${!menuOpened && 'w-0 h-0 overflow-hidden'}`}>
                         {el.title}
                       </span>
                     </span>
