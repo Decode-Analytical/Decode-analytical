@@ -1,6 +1,6 @@
 import React from 'react'
 
-import CourseCard from '../../components/courseCard/courseCard';
+import CourseCard from '../../components/courseCard/CourseCard';
 import ProfileSideBar from './ProfileSideBar';
 import { NavLink } from 'react-router-dom';
 import ListCourseCard from '../../components/courseCard/ListCourseCard';
