@@ -10,6 +10,7 @@ import FreeCourses from './pages/courseDetailPage/FreeCourses'
 import CartPage from "./pages/cartAndPaymentPage/CartPage";
 import PaymentPage from "./pages/cartAndPaymentPage/PaymentPage";
 import CoursePage from "./pages/coursePage/CoursePage";
+import Quiz from "./pages/quiz /Quiz";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
                 <Route path='/CartPage' element = {<CartPage />} />
                 <Route path='/PaymentPage' element = {<PaymentPage />} />
                 <Route path="/CousrsePage" element = {<CoursePage />} />
+                <Route path="/Quiz" element= {<Quiz />} />
               </Routes>
             </div>
           </div>

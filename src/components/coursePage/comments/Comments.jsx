@@ -1,12 +1,15 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { AiFillStar } from "react-icons/ai";
-import Bar from './Bar';
 import BarComment from './BarComment';
 
 const Comments = () => {
   const [rating, setRating] = useState(null);
   const array = new Array(5).fill(";")
   const CreateBar = ["50%", "45%", "39%", "35%", "30%"]
+  useEffect(async () => {
+    let comment = await fetch()
+  }, [third])
+  
   return (
     <section className="w-full flex flex-col justify-center bg-white items-center my-5">
       <div className="md:w-10/12">
@@ -41,6 +44,7 @@ const Comments = () => {
             </div>
         </div>
         <h3 className="text-2xl font-bold my-3">Reviews</h3>
+              
         </div>
     </section>
   )

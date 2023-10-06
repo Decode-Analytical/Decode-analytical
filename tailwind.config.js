@@ -22,6 +22,7 @@ export default {
       },
       animation: {
         'open-menu': 'open-menu 0.5s ease-in-out forwards',
+        'ping-short': 'ping 1s ease-in-out 1'
       },
       gridTemplateColumns: {
         'video-grid' : 'repeat(2 , minmax(70%,30%))'
