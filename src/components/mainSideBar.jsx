@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from "react-router-dom";
 
 const MainSideBar = () => {
+  const [menuOpened, openMenu] = useState(true)
     const listOptions = [
         {
           title: "Dashboard",
@@ -38,25 +39,39 @@ const MainSideBar = () => {
       ]
   return (
     <>
-      <div className="flex flex-col fixed top-0 bottom-0 lg:left-0 border-r-2 w-[300px] overflow-y-auto text-center bg-gray-900 text-white profile-sidebar">
-          <div className="flex flex-col items-center pt-5 profile-sidebar-heading">
+      <div onMouseEnter={()=> openMenu(true)} onMouseLeave={()=>openMenu(false)}
+      className={`flex flex-col fixed top-0 bottom-0 lg:left-0 border-r-2 text-center bg-gray-900 text-white profile-sidebar overflow-y-hidden duration-500 ${menuOpened ? "w-[300px]" : "w-[80px]"}`}>
+          <div className={`flex w-full mt-2 h-4 ${menuOpened ? 'justify-end': 'justify-center'}`}>
+            { menuOpened ? (
+              <button type='button' className='text-white mr-4'  onClick={()=> openMenu(false)}>
+                X
+              </button>
+            ): (
+              <button type='button' className='text-white mr-4' onClick={()=> openMenu(true)}>
+              Y
+            </button>
+            )}
+          </div>
+          <div className="flex flex-col items-center pt-4 profile-sidebar-heading">
             <img src='https://cdn.vcgamers.com/news/wp-content/uploads/2022/01/paquito-ml-3.jpg' alt='profile' 
-              className='w-16 h-16 my-2 rounded-full'  />
-              <h2 className='font-bold'>Papaquito Vuenaos</h2>
-              <div className='text-sm my-1'>
-                Reg. Student
+              className={`my-2 rounded-full duration-500 ${menuOpened ? 'w-16 h-16': 'w-12 h-12'}`}  />
+              <div className={`flex flex-col duration-500 ${!menuOpened ? 'w-0 opacity-0 overflow-hidden' : 'w-fit h-fit overflow-hidden'}`}>
+                <h2 className='font-bold'>Papaquito Vuenaos</h2>
+                <div className='text-sm my-1'>
+                  Reg. Student
+                </div>
+                <button className='border my-1 px-4 py-2 rounded-md text-xs border-gray-600 text-white hover:bg-gray-600 hover:text-white'>Edit Profile</button>
               </div>
-              <button className='border my-1 px-4 py-2 rounded-md text-xs border-gray-600 text-white hover:bg-gray-600 hover:text-white'>Edit Profile</button>
           </div>
 
           <ul className="flex flex-col gap-1 mt-9 profile-sidebar-options">
             {listOptions.map(el => {
               return (
-              <li className='flex flex-row cursor-pointer mx-6'>
+              <li className={`flex flex-row cursor-pointer duration-500 ${menuOpened && 'mx-6 px-2'} `}>
                 <NavLink to={el.url} 
-                  className={({isActive})=> `py-3 flex-1 duration-300 hover:bg-cyan-600 hover:font-semibold rounded-sm hover:text-cyan-950 hover:fill-cyan-950 ${!isActive && "fill-white"} ${isActive && "bg-cyan-600 text-cyan-950 fill-cyan-950 font-bold"}`}
+                  className={({isActive})=> `flex-1 duration-500 hover:bg-cyan-600 hover:font-semibold rounded-sm hover:text-cyan-950 hover:fill-cyan-950 ${menuOpened ? 'py-3 px-8' : 'mx-2 py-2'} ${!isActive && "fill-white"} ${isActive && "bg-cyan-600 text-cyan-950 fill-cyan-950 font-bold"}`}
                   >
-                    <span className='flex flex-row flex-1 gap-3 m-auto px-8'>
+                    <span className={`flex flex-row flex-1 gap-3 m-auto ${!menuOpened && 'justify-center'}`}>
                       {/* Icons */}
                       <>
                         {el.url == "/dashboard" && (
@@ -108,7 +123,9 @@ const MainSideBar = () => {
                           </svg>
                         )}
                       </>
-                      {el.title}
+                      <span className={`duration-500 ${!menuOpened && 'w-0 h-0 overflow-hidden'}`}>
+                        {el.title}
+                      </span>
                     </span>
                 </NavLink>
               </li>
