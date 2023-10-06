@@ -10,6 +10,7 @@ import coursesImage from "../../assets/course.png"
 import EnrolledCourseCard from '../../components/courseCard/EnrolledCourseCard'
 import ListCourseCard from '../../components/courseCard/ListCourseCard'
 import { NavLink } from 'react-router-dom'
+import MainSideBar from '../../components/mainSideBar'
 
 const MyCourse = () => {
     const listCoursesTest = [
@@ -33,12 +34,11 @@ const MyCourse = () => {
     
   return (
     <>
-    <div className="flex-col fixed top-0 bottom-0 lg:left-0 border-r-2 w-16 overflow-y-auto text-center bg-gray-900 hidden md:flex profile-sidebar">
-    </div>
+    <MainSideBar />
 
     <div className='flex flex-1 bg-white'>
       <div className='flex justify-between flex-1 shadow-md px-3 md:px-20'>
-          <h2 className='text-3xl font-extrabold flex items-center'>My Dashboard</h2>
+          <h2 className='text-3xl font-extrabold flex items-center'>My Courses</h2>
           <img src={iconHeading} alt="" />
       </div>
     </div>

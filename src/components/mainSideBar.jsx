@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { NavLink } from "react-router-dom";
 
 const MainSideBar = () => {
-  const [menuOpened, openMenu] = useState(true)
+  const [menuOpened, openMenu] = useState(false)
     const listOptions = [
         {
           title: "Dashboard",
@@ -10,7 +10,7 @@ const MainSideBar = () => {
         },
         {
           title: "Courses",
-          url: "/dashboard/courses"
+          url: "/mycourses"
         },
         {
           title: "Forum",
@@ -39,8 +39,22 @@ const MainSideBar = () => {
       ]
   return (
     <>
+      <button onClick={() => openMenu(true)}
+        className={`fixed top-2 left-2 bg-gray-950 p-3 rounded-md md:hidden fill-white ${menuOpened && 'hidden'}`}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#fff">
+          <path d="M4 6H20M4 12H20M4 18H20" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
       <div onMouseEnter={()=> openMenu(true)} onMouseLeave={()=>openMenu(false)}
-      className={`flex flex-col fixed top-0 bottom-0 lg:left-0 border-r-2 text-center bg-gray-900 text-white profile-sidebar overflow-y-hidden duration-500 ${menuOpened ? "w-[300px]" : "w-[80px]"}`}>
+      className={`flex flex-col fixed top-0 bottom-0 lg:left-0 border-r-2 text-center 
+      bg-gray-900 text-white ${!menuOpened && 'left-[-80px]'} md:left-0 profile-sidebar 
+      overflow-y-hidden duration-500 ${menuOpened ? "w-[300px]" : "w-[80px]"}`}>
+          <button onClick={()=> openMenu(false)}
+            className='w-full flex justify-end absolute text-white px-4 pt-2 fill-white md:hidden'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 12 12">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M0.292893 0.292893C0.683417 -0.0976311 1.31658 -0.0976311 1.70711 0.292893L6 4.58579L10.2929 0.292893C10.6834 -0.0976311 11.3166 -0.0976311 11.7071 0.292893C12.0976 0.683417 12.0976 1.31658 11.7071 1.70711L7.41421 6L11.7071 10.2929C12.0976 10.6834 12.0976 11.3166 11.7071 11.7071C11.3166 12.0976 10.6834 12.0976 10.2929 11.7071L6 7.41421L1.70711 11.7071C1.31658 12.0976 0.683417 12.0976 0.292893 11.7071C-0.0976311 11.3166 -0.0976311 10.6834 0.292893 10.2929L4.58579 6L0.292893 1.70711C-0.0976311 1.31658 -0.0976311 0.683417 0.292893 0.292893Z"/>
+            </svg>
+          </button>
           <div className="flex flex-col items-center pt-4 profile-sidebar-heading">
             <img src='https://cdn.vcgamers.com/news/wp-content/uploads/2022/01/paquito-ml-3.jpg' alt='profile' 
               className={`my-2 rounded-full duration-500 ${menuOpened ? 'w-16 h-16': 'w-12 h-12'}`}  />
@@ -68,7 +82,7 @@ const MainSideBar = () => {
                             <path d="M1.33333 13.3333H9.33333C10.0667 13.3333 10.6667 12.7333 10.6667 12V1.33333C10.6667 0.6 10.0667 0 9.33333 0H1.33333C0.6 0 0 0.6 0 1.33333V12C0 12.7333 0.6 13.3333 1.33333 13.3333ZM1.33333 24H9.33333C10.0667 24 10.6667 23.4 10.6667 22.6667V17.3333C10.6667 16.6 10.0667 16 9.33333 16H1.33333C0.6 16 0 16.6 0 17.3333V22.6667C0 23.4 0.6 24 1.33333 24ZM14.6667 24H22.6667C23.4 24 24 23.4 24 22.6667V12C24 11.2667 23.4 10.6667 22.6667 10.6667H14.6667C13.9333 10.6667 13.3333 11.2667 13.3333 12V22.6667C13.3333 23.4 13.9333 24 14.6667 24ZM13.3333 1.33333V6.66667C13.3333 7.4 13.9333 8 14.6667 8H22.6667C23.4 8 24 7.4 24 6.66667V1.33333C24 0.6 23.4 0 22.6667 0H14.6667C13.9333 0 13.3333 0.6 13.3333 1.33333Z"/>
                           </svg>
                         )}
-                        {el.url == "/dashboard/courses" && (
+                        {el.url == "/mycourses" && (
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 20">
                             <path d="M9.31122 1.30007C7.50488 0.437646 4.98009 0.0151817 1.59987 0.000182944C1.28108 -0.00414815 0.968546 0.0888098 0.703944 0.266661C0.486756 0.413463 0.308969 0.611386 0.186222 0.84302C0.0634737 1.07465 -0.000474141 1.3329 2.64671e-06 1.59505V15.8989C2.64671e-06 16.8658 0.687945 17.5952 1.59987 17.5952C5.15307 17.5952 8.71727 17.9272 10.8521 19.945C10.8813 19.9727 10.918 19.9913 10.9577 19.9983C10.9973 20.0054 11.0382 20.0006 11.0751 19.9846C11.1121 19.9686 11.1435 19.9422 11.1656 19.9084C11.1876 19.8747 11.1993 19.8353 11.1991 19.795V2.94094C11.1992 2.82722 11.1748 2.71482 11.1277 2.61132C11.0806 2.50781 11.0119 2.41563 10.9261 2.34099C10.4371 1.92294 9.89389 1.57281 9.31122 1.30007ZM23.2941 0.265161C23.0293 0.0877525 22.7168 -0.00468643 22.3981 0.000182944C19.0179 0.0151817 16.4931 0.435646 14.6868 1.30007C14.1041 1.57231 13.5608 1.92176 13.0714 2.33899C12.9858 2.41376 12.9172 2.50598 12.8702 2.60946C12.8232 2.71294 12.7989 2.82528 12.7989 2.93894V19.794C12.7989 19.8327 12.8103 19.8706 12.8317 19.9028C12.8531 19.9351 12.8836 19.9603 12.9192 19.9753C12.9549 19.9903 12.9942 19.9944 13.0322 19.9872C13.0702 19.9799 13.1053 19.9616 13.1329 19.9345C14.4163 18.6596 16.6686 17.5937 22.4001 17.5942C22.8244 17.5942 23.2314 17.4257 23.5314 17.1256C23.8314 16.8256 24 16.4187 24 15.9943V1.59555C24.0006 1.33288 23.9365 1.07412 23.8134 0.842091C23.6902 0.610067 23.5119 0.411925 23.2941 0.265161Z"/>
                           </svg>
