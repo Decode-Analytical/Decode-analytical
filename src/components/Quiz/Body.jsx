@@ -3,7 +3,10 @@ import { GiCheckMark, GiCrossMark } from "react-icons/gi";
 
 const Body = ({ SendARequestAnser, Correct }) => {
   const [quiz, setQuiz] = useState(null);
-  const [checkedAnswer, setCheckedAnswer] = useState("");
+  const [checkedAnswer, setCheckedAnswer] = useState({
+    ans: "",
+    id: null
+  });
   //   let updateKey;
 
   useEffect(() => {
@@ -23,10 +26,15 @@ const Body = ({ SendARequestAnser, Correct }) => {
     fetchData();
   }, []);
 
-  const handleAnswerChange = (ans) => {
-    setCheckedAnswer(ans);
+  const handleAnswerChange = (ans, index) => {
+    setCheckedAnswer(prevState => ({
+      ...prevState,
+      ans,
+      id: index
+    }));
     SendARequestAnser(ans);
   };
+  
 
   return (
     <div className={` ${Correct == null && "my-5"}  md:h-[81vh] h-full`}>
@@ -37,7 +45,7 @@ const Body = ({ SendARequestAnser, Correct }) => {
         {quiz === null ? (
           <h1>Loading ...</h1>
         ) : (
-          quiz.map((data, index) => (
+          quiz.map((data) => (
             <li key={data.id} className="w-full md:w-[60%] flex flex-col gap-3">
               <h3 className="text-lg">{data.question}</h3>
 
@@ -45,27 +53,33 @@ const Body = ({ SendARequestAnser, Correct }) => {
               <ul>
                 {data.answer.map((ans, index) => (
                   <li
-                    className="flex gap-3 p-5 bg-[#FFFF] my-3 shadow-lg cursor-pointer"
-                    key={index}
-                    onClick={() => handleAnswerChange(ans)}
-                  >
-                    <div className="flex items-center p-2">
-                      <input
-                        type="radio"
-                        name="answerGroup"
-                        id={`radio-item-${ans}`}
-                        onChange={() => handleAnswerChange(ans)}
-                        checked={checkedAnswer === ans}
-                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                      />
-                      <label
-                        htmlFor={`radio-item-${ans}`}
-                        className="w-full ml-2 text-sm font-medium"
-                      >
-                        {ans}
-                      </label>
-                    </div>
-                  </li>
+                  className={`flex gap-3 p-5 my-3 shadow-lg cursor-pointer ${
+                    Correct != null && Correct && checkedAnswer.id === index
+                      ? 'bg-[#007722]'
+                      : Correct != null && !Correct && checkedAnswer.id === index
+                      ? 'bg-red-200'
+                      : 'bg-[#FFFF]'
+                  }`}
+                  key={index}
+                  onClick={() => handleAnswerChange(ans, index)}
+                >
+                  <div className="flex items-center p-2">
+                    <input
+                      type="radio"
+                      name="answerGroup"
+                      id={`radio-item-${ans}`}
+                      onChange={() => handleAnswerChange(ans, index)}
+                      checked={checkedAnswer.ans === ans}
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                    />
+                    <label
+                      htmlFor={`radio-item-${ans}`}
+                      className="w-full ml-2 text-sm font-medium"
+                    >
+                      {ans}
+                    </label>
+                  </div>
+                </li>                
                 ))}
                 {Correct != null && (
                   <li className="flex shadow-lg h-[7rem] justify-center items-center bg-white animate-ping-short">
