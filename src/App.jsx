@@ -29,10 +29,10 @@ function App() {
                 <Route path='/' exact element = {<HomePage/>} />
                 <Route path='/LoginSignUp' element = {<LoginSignUp/>} />
                 <Route path='/PasswordReset' element = {<PasswordReset />} />
-                <Route path='/PremiumCourses' element = {<PremiumCourses />} />
                 <Route path='/FreeCourses' element = {<FreeCourses />} />
                 <Route path='/CartPage' element = {<CartPage />} />
                 <Route path='/PaymentPage' element = {<PaymentPage />} />
+                <Route path='/Dashboard' element = {<Dashboard />} />
                 <Route path='/NotEnrolled' element = {<NotEnrolled />} />
                 <Route path='/ForumIntro' element = {<ForumIntro />} />
                 <Route path='/InForumReply' element = {<InForumReply />} />
