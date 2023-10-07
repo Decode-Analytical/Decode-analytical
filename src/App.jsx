@@ -5,7 +5,7 @@ import NavBar from "./components/homeComponents/navbar/NavBar";
 import HomePage from "./pages/homepage/HomePage";
 import LoginSignUp from "./pages/login/LoginSignUp";
 import PasswordReset from "./components/loginComponents/PasswordReset";
-import PremiumCourses from './pages/courseDetailPage/premiumCourses'
+import PremiumCourses from './pages/courseDetailPage/PremiumCourses'
 import FreeCourses from './pages/courseDetailPage/freeCourses'
 import Profile from "./pages/profile/Profile";
 import Dashboard from "./pages/dashboard/Dashboard";
