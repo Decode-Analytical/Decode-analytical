@@ -1,5 +1,5 @@
 import React from 'react'
-import CourseCard from '../../components/courseCard/courseCard';
+import CourseCard from '../../components/courseCard/CourseCard';
 
 const ListCourseCard = (props) => {
     const {title, list} = props
