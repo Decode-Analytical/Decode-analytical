@@ -3,6 +3,8 @@ import React from 'react'
 
  import courseSelected from '../../assets/Images/courseSelected.png'
  import customersImage from '../../assets/Images/customersImage.png'
+ import {BsCart3} from "react-icons/bs"
+ import {BsClockHistory} from "react-icons/bs"
 
 
 export default function CartHero() {
@@ -46,8 +48,8 @@ export default function CartHero() {
                     </p>
 
                     <div className=" flex justify-between">
-                      <p className="">
-                        2hrs 30m
+                      <p className=" flex items-center">
+                        <BsClockHistory />2hrs 30m
                       </p>
 
                       <p className=" ">
@@ -90,7 +92,7 @@ export default function CartHero() {
               {/* =========================================== */}
               {/* THE CART TOTAL AND CHECKOUT BUTTON */}
               <div className=" mt-10 md:mt-0">
-                <p className=" ">
+                <div className=" ">
                   <p className=" font-semibold">
                     Total:
                   </p> 
@@ -104,10 +106,13 @@ export default function CartHero() {
                   <p className=" my-3">
                     75% off
                   </p>
-                </p>
+                </div>
 
-                <button className=" mt-5 bg-yellow-500 hover:bg-yellow-300 font-bold rounded-sm border border-gray-600 px-2">
+                <button className=" mt-5 bg-yellow-500 hover:bg-yellow-300 font-bold rounded-sm border border-gray-600 px-2 flex items-center">
                   Checkout
+                  <div className=" ml-5">
+                    <BsCart3 />
+                  </div>
                 </button>
               </div>
             </div>
