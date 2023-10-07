@@ -1,12 +1,12 @@
 import React from "react";
-import illustration1 from "../../assets/studentDashboard/illustration.png";
-import illustration2 from "../../assets/studentDashboard/illustrations.png";
+import illustration1 from "../../assets/studentDashboard/Illustration.png";
+import illustration2 from "../../assets/studentDashboard/Illustrations.png";
 import illustration3 from "../../assets/studentDashboard/illustration 3.png";
 import chart from "../../assets/studentDashboard/chart.png";
 import Course from "../../components/studentDashboard/Course";
 import { FaArrowAltCircleRight, FaChartBar } from "react-icons/fa";
 import Certificate from "../../components/studentDashboard/Certificate";
-import CompletedCourses from "../../components/studentDashboard/completedCourses";
+import CompletedCourses from "../../components/studentDashboard/CompletedCourses";
 
 export default function Dashboard() {
   return (
