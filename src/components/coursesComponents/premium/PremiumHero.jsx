@@ -1,4 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
+import {BsClockHistory} from "react-icons/bs"
 
 export default function PremiumHero() {
   return (
@@ -6,7 +9,11 @@ export default function PremiumHero() {
         <section>
             <div className=" bg-img bg-cover bg-no-repeat bg-center  md:h-[400px] mt-10 p-10">
                 <div className=" md:max-w-[70%] m-auto">
-                    <button className=' bg-white rounded-xl px-2'>Free</button>
+                    <Link to='/freeCourses'>
+                        <button className=' bg-white rounded-xl px-2'>
+                            Free
+                        </button>
+                    </Link>
 
                     <div className=" text-white text-3xl mt-1">
                         Data Analytics
@@ -18,12 +25,12 @@ export default function PremiumHero() {
                                 14 Courses
                             </p>
 
-                            <p className="">
-                                2:50 hours to complelte
+                            <p className=" flex space-x-2 items-center">
+                                <BsClockHistory /> <span>2:50 hours to complete</span>
                             </p>
                         </div>
 
-                        <div className=" mt-5 max-w-[400px] md:flex justify-between">
+                        <div className=" mt-5 max-w-[500px] md:flex justify-between">
                             <p className="">
                                 Learn online at your own pace
                             </p>
