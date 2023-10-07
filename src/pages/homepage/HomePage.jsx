@@ -1,7 +1,7 @@
 import "../../App.css";
 import instructor from "../../assets/homepageImages/Ellipse 160.png";
 import picFour from "../../assets/homepageImages/pics4.png";
-import logo from "../../assets/homepageImages/star 1.png";
+import logo from "../../assets/homepageImages/Star 1.png";
 import {
   FaArrowRight,
  
@@ -10,7 +10,7 @@ import {
   FaPeopleCarry,
 } from "react-icons/fa";
 
-import Coursecomponent from "../../components/homepageComponents/coursecomponent";
+import Coursecomponent from "../../components/homepageComponents/CourseComponent";
 import Tutor from "../../components/homepageComponents/Tutor";
 import AbsoluteComponent from "../../components/homepageComponents/AbsoluteComponent";
 
