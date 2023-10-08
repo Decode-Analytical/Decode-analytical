@@ -10,7 +10,7 @@ import {
   FaPeopleCarry,
 } from "react-icons/fa";
 
-import Coursecomponent from "../../components/homepageComponents/CourseComponent";
+import Coursecomponent from "../../components/homepageComponents/Coursecomponent";
 import Tutor from "../../components/homepageComponents/Tutor";
 import AbsoluteComponent from "../../components/homepageComponents/AbsoluteComponent";
 
