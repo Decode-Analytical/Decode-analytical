@@ -29,7 +29,7 @@ function App() {
                 <Route path='/FreeCourses' element = {<FreeCourses />} />
                 <Route path='/CartPage' element = {<CartPage />} />
                 <Route path='/PaymentPage' element = {<PaymentPage />} />
-                <Route path="/CousrsePage" element = {<CoursePage />} />
+                <Route path="/CousrsePage/:id" element = {<CoursePage />} />
                 <Route path="/Quiz" element= {<Quiz />} />
               </Routes>
             </div>
