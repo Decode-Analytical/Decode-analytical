@@ -8,90 +8,24 @@ import {
 import Menu from "./Menu.png";
 import Close from "./Close.png";
 import { useParams } from "react-router-dom";
+import axios from "axios";
+import { useGetCourseDataQuery } from "../../redux/FetchApi/GetCourseData";
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFkMWMwMDQ1Y2NmNjEyMzY4NzRmNjEiLCJpYXQiOjE2OTcwMzcxMjMsImV4cCI6MTY5NzEyMzUyM30.VNTEB8QnYkpp1tSiPB8aYWVawkIuUCQNQlg0P0tcxyE";
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFkMWMwMDQ1Y2NmNjEyMzY4NzRmNjEiLCJpYXQiOjE2OTcxMzc1NjgsImV4cCI6MTY5NzIyMzk2OH0.6YQtqx-ThsiTa8u8OF-4Ljl-0lrptN6XkN2nHVW7swQ";
+
+axios.defaults.baseURL = "https://decode-mnjh.onrender.com/api";
 
 const CoursePage = () => {
   const param = useParams();
-  const [courseData, setCourseData] = useState({});
-  // console.log(param.id);
-
-  useEffect(() => {
-    async function FetchCourseData() {
-      try {
-        const fetchCourse = await fetch(
-          `https://decode-mnjh.onrender.com/api/student/studentViewCourse/${param.id}`,
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        // console.log(fetchCourse)
-
-        if (fetchCourse.ok) {
-          const courseData = await fetchCourse.json();
-          setCourseData(courseData);
-          console.log(courseData);
-        } else {
-          // Handle the error or failed response here
-          console.error("Failed to fetch course data.");
-        }
-      } catch (error) {
-        // Handle network errors or other exceptions here
-        console.error("An error occurred:", error);
-      }
-    }
-
-    FetchCourseData();
-  }, []);
+  const { isLoading, data } = useGetCourseDataQuery();
+  // const [courseData, setCourseData] = useState(undefined);
+  console.log(isLoading,data)
 
   const [fullScreen, setFullScreen] = useState(false);
   const [hiddenControl, setHiddenControl] = useState(false);
   const [courseContent, setCourseContent] = useState(false);
   const [showCourseContent, setShowCourseContent] = useState("OverView");
-
-  let CourseOverview;
-  if (courseData.courseTitle) {
-    let moduules = courseData.courseTitle.modules;
-    let videoTime = 0;
-    function convertDurationToMinutes(duration) {
-      console.log(duration)
-      if(duration == undefined) return undefined
-      const parts = duration.split(" ");
-      let totalMinutes = 0;
-
-      for (const part of parts) {
-        const [value, unit] = part.split(/hr|min/).map((str) => str.trim());
-
-        if (unit === "hr") {
-          totalMinutes += parseInt(value, 10) * 60;
-        } else if (unit === "min") {
-          totalMinutes += parseInt(value, 10);
-        }
-      }
-
-      return totalMinutes;
-    }
-    // const durationString = "1hr 20min";
-    // const totalMinutes = convertDurationToMinutes(durationString);
-    // console.log(totalMinutes); // Output: 80
-
-    for (let i = 0; i < moduules.length; i++) {
-      console.log(moduules.module_duration)
-      videoTime += convertDurationToMinutes(moduules.module_duration);
-    }
-    console.log(moduules.length);
-    CourseOverview = {
-      title: courseData.course_title,
-      description: courseData.course_description,
-      language: courseData.course_language,
-      modules: moduules.length,
-    };
-  }
-  // console.log(video.)
   const handleShowCourseContent = (value) => {
     setShowCourseContent(value);
     setHiddenControl(false);
@@ -105,6 +39,12 @@ const CoursePage = () => {
   const handleHiddenControl = () => {
     setHiddenControl(!hiddenControl);
   };
+
+  if (isLoading) {
+    return (
+      <h2>Loading ...</h2>
+    )
+  }
 
   return (
     <div className="bg-[#F5F5F5]">
@@ -165,7 +105,14 @@ const CoursePage = () => {
           </ul>
 
           {/* {showCourseContent === "Course Content" && <CourseContent />} */}
-          {showCourseContent === "OverView" && <OverView />}
+          {showCourseContent === "OverView" && (
+            <OverView
+              des={data.courseTitle.course_description}
+              lengthmodules={data.courseTitle.modules.length}
+              language={data.courseTitle.course_language}
+              modules={data.courseTitle.modules}
+            />
+          )}
           {showCourseContent === "Comment" && (
             <div>
               <Comment />
