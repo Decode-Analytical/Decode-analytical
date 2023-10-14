@@ -10,7 +10,7 @@ export default function FreeHero() {
   return (
     <>
         <section>
-            <div className=" mt-10 p-10 md:p-16 free-bg bg-cover bg-no-repeat bg-center md:h-[400px]">
+            <div className=" mt-10 p-10 md:p-16 free-bg bg-cover bg-no-repeat bg-center md:h-[400px]"> {/*  BACKGROUND IMAGE IMPORTED FROM APP.CSS */}
                 <div className=" md:max-w-[70%] m-auto">
                     <Link to='/premiumCourses'>
                         <button className=' bg-white rounded-xl px-2'>

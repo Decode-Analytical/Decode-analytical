@@ -115,7 +115,7 @@ export default function PaymentComponent() {
                 </div>
 
 
-                <div className=" md:flex justify-between border lg:max-w-[50%] items-center">
+                <div className=" md:flex justify-between lg:max-w-[50%] items-center">
                     <div className="">
                         <img src={courseSelected} alt="" className=''/>
                     </div>

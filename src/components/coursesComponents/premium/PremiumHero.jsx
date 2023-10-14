@@ -7,7 +7,7 @@ export default function PremiumHero() {
   return (
     <>
         <section>
-            <div className=" bg-img bg-cover bg-no-repeat bg-center  md:h-[400px] mt-10 p-10">
+            <div className=" bg-img bg-cover bg-no-repeat bg-center  md:h-[400px] mt-10 p-10"> {/*  BACKGROUND IMAGE IMPORTED FROM APP.CSS */}
                 <div className=" md:max-w-[70%] m-auto">
                     <Link to='/freeCourses'>
                         <button className=' bg-white rounded-xl px-2'>

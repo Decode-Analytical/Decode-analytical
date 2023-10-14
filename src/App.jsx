@@ -16,6 +16,8 @@ import WeeklyForumPage from "./pages/forumPage/WeeklyForumPage";
 import Profile from "./pages/profile/Profile";
 import Dashboard from "./pages/dashboard/Dashboard";
 import MyCourse from "./pages/MyCourse/MyCourse";
+import PurchasedPage from "./pages/purchsedPages/PurchasedPage";
+import AllPages from "./pages/AllPages";
 
 
 function App() {
@@ -30,6 +32,7 @@ function App() {
                 <Route path='/LoginSignUp' element = {<LoginSignUp/>} />
                 <Route path='/PasswordReset' element = {<PasswordReset />} />
                 <Route path='/FreeCourses' element = {<FreeCourses />} />
+                <Route path='/PremiumCourses' element = {<PremiumCourses />} />
                 <Route path='/CartPage' element = {<CartPage />} />
                 <Route path='/PaymentPage' element = {<PaymentPage />} />
                 <Route path='/Dashboard' element = {<Dashboard />} />
@@ -37,9 +40,11 @@ function App() {
                 <Route path='/ForumIntro' element = {<ForumIntro />} />
                 <Route path='/InForumReply' element = {<InForumReply />} />
                 <Route path='/WeeklyForumPage' element = {<WeeklyForumPage />} />
-                <Route path='/dashboard' element = {<Dashboard />} />
+                {/* <Route path='/dashboard' element = {<Dashboard />} /> */}
                 <Route path='/mycourses' element = {<MyCourse />} />
                 <Route path='/profile/*' element = {<Profile />} />
+                <Route path='/PurchasedPage' element = {<PurchasedPage />} />
+                <Route path='/AllPages' element = {<AllPages />} /> {/* this will be removed, not part of the code. it is just so we can navigate all pages  */}
               </Routes>
             </div>
           </div>
