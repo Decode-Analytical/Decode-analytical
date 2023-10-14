@@ -280,6 +280,8 @@ export default function CoursesPurchased() {
                 </div>
             </div>
         </section>
+
+        {/* test componennts */}
     </>
   )
 }

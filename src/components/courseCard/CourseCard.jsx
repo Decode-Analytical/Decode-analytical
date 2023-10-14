@@ -69,7 +69,7 @@ const CourseCard = (props) => {
               </div>
             </div>
 
-            <ul className='flex flex-wrap mt-4'>
+            <ul className='flex-wrap mt-4 hidden'>
               <li className='py-1 px-3 box rounded-2xl shadow-md text-sm'>Flexbox</li>
             </ul>
           </div>
