@@ -46,7 +46,7 @@ const MainSideBar = () => {
         </svg>
       </button>
       <div onMouseEnter={()=> openMenu(true)} onMouseLeave={()=>openMenu(false)}
-      className={`flex flex-col fixed top-0 bottom-0 lg:left-0 border-r-2 text-center 
+      className={`flex flex-col fixed top-0 bottom-0 lg:left-0 border-r-2 text-center bg-cyan-950
       bg-gray-900 text-white ${!menuOpened && 'left-[-80px]'} md:left-0 profile-sidebar 
       overflow-y-hidden duration-500 ${menuOpened ? "w-[300px]" : "w-[80px]"}`}>
           <button onClick={()=> openMenu(false)}
