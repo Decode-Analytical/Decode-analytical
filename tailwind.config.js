@@ -23,7 +23,10 @@ export default {
        "lightGrey": "rgb(241, 233, 233)",
        
    
-      }
+      },
+      fontFamily: {
+        montserrat: ['montserrat', 'sans'],
+      },
     },
   },
   plugins: [],
