@@ -18,7 +18,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import MyCourse from "./pages/MyCourse/MyCourse";
 import PurchasedPage from "./pages/purchsedPages/PurchasedPage";
 import AllPages from "./pages/AllPages";
-import InstrucructorProfile from "./pages/instructorProfile/instrucructorProfile";
+import InstrucructorProfile from "./pages/instructorProfile/InstrucructorProfile";
 
 
 function App() {
