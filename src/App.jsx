@@ -18,6 +18,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import MyCourse from "./pages/MyCourse/MyCourse";
 import PurchasedPage from "./pages/purchsedPages/PurchasedPage";
 import AllPages from "./pages/AllPages";
+import InstrucructorProfile from "./pages/instructorProfile/instrucructorProfile";
 
 
 function App() {
@@ -40,10 +41,11 @@ function App() {
                 <Route path='/ForumIntro' element = {<ForumIntro />} />
                 <Route path='/InForumReply' element = {<InForumReply />} />
                 <Route path='/WeeklyForumPage' element = {<WeeklyForumPage />} />
-                {/* <Route path='/dashboard' element = {<Dashboard />} /> */}
                 <Route path='/mycourses' element = {<MyCourse />} />
                 <Route path='/profile/*' element = {<Profile />} />
                 <Route path='/PurchasedPage' element = {<PurchasedPage />} />
+                <Route path='/InstrucructorProfile' element = {<InstrucructorProfile />} />
+                
                 <Route path='/AllPages' element = {<AllPages />} /> {/* this will be removed, not part of the code. it is just so we can navigate all pages  */}
               </Routes>
             </div>

@@ -20,9 +20,9 @@ export default function AlsoLike() {
             </div>
 
 
-            <div className="max-w-[1100px] m-auto md:flex justify-between">
-                <div >
-                    <div className=" mt-5 pb-5 shadow-2xl md:max-w-[80%]">
+            <div className="max-w-[1100px] m-auto md:flex justify-between border">
+                <div className=' w-full md:max-w-[350px] px-2'>
+                    <div className=" mt-5 pb-5 shadow-2xl ">
                         <div className="">
                             <img src={pattern} alt="" />
 
@@ -68,8 +68,8 @@ export default function AlsoLike() {
 
 
                     {/*TO BE DELETED.... TO BE GENERATED WHEN THERE IS APIs */}
-                <div >
-                    <div className=" mt-20 pb-5 md:mt-5 shadow-2xl md:max-w-[80%]">
+                <div className=' w-full md:max-w-[350px] px-2'>
+                    <div className=" mt-20 pb-5 md:mt-5 shadow-2xl ">
                         <div className="">
                             <img src={pattern2} alt="" />
 
@@ -113,8 +113,8 @@ export default function AlsoLike() {
                 </div>
 
 
-                <div >
-                    <div className=" mt-20 pb-5 md:mt-5 shadow-2xl md:max-w-[80%]">
+                <div className=' w-full md:max-w-[350px] px-2'>
+                    <div className=" mt-20 pb-5 md:mt-5 shadow-2xl ">
                         <div className="">
                             <img src={pattern3} alt="" />
 

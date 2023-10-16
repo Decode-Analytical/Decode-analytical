@@ -71,8 +71,8 @@ export default function AllPages() {
             PurchasedPage
         </Link> <br />
 
-        <Link to="">
-        
+        <Link to="/InstrucructorProfile">
+            Instructor profile
         </Link>
     </div>
   )

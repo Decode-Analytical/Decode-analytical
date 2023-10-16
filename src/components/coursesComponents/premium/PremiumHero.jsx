@@ -7,15 +7,15 @@ export default function PremiumHero() {
   return (
     <>
         <section>
-            <div className=" bg-img bg-cover bg-no-repeat bg-center  md:h-[400px] mt-10 p-10"> {/*  BACKGROUND IMAGE IMPORTED FROM APP.CSS */}
+            <div className=" bg-img bg-cover bg-no-repeat bg-center  md:h-[550px] mt-10 p-10"> {/*  BACKGROUND IMAGE IMPORTED FROM APP.CSS */}
                 <div className=" md:max-w-[70%] m-auto">
                     <Link to='/freeCourses'>
-                        <button className=' bg-white rounded-xl px-2'>
+                        <button className=' bg-white rounded-xl px-2 md:mt-24'>
                             Free
                         </button>
                     </Link>
 
-                    <div className=" text-white text-3xl mt-1">
+                    <div className=" text-white text-3xl md:text-6xl font-bold mt-1">
                         Data Analytics
                     </div>
 
@@ -30,7 +30,7 @@ export default function PremiumHero() {
                             </p>
                         </div>
 
-                        <div className=" mt-5 max-w-[500px] md:flex justify-between">
+                        <div className=" mt-5 max-w-[400px] md:flex justify-between">
                             <p className="">
                                 Learn online at your own pace
                             </p>
