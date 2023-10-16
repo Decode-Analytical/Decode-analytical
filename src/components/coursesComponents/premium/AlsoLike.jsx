@@ -20,11 +20,11 @@ export default function AlsoLike() {
             </div>
 
 
-            <div className="max-w-[1100px] m-auto md:flex justify-between border">
+            <div className="max-w-[1100px] m-auto md:flex justify-between">
                 <div className=' w-full md:max-w-[350px] px-2'>
-                    <div className=" mt-5 pb-5 shadow-2xl ">
-                        <div className="">
-                            <img src={pattern} alt="" />
+                    <div className=" mt-5 border p-3 rounded-lg border-gray">
+                        <div className=" ">
+                            <img src={pattern} alt="" className=' w-full'/>
 
                             <p className=" font-bold mt-2 mx-3">
                                 Data Analytics
@@ -69,9 +69,9 @@ export default function AlsoLike() {
 
                     {/*TO BE DELETED.... TO BE GENERATED WHEN THERE IS APIs */}
                 <div className=' w-full md:max-w-[350px] px-2'>
-                    <div className=" mt-20 pb-5 md:mt-5 shadow-2xl ">
+                    <div className=" mt-5  border p-3 rounded-lg border-gray ">
                         <div className="">
-                            <img src={pattern2} alt="" />
+                            <img src={pattern2} alt="" className=' w-full'/>
 
                             <p className=" font-bold mt-2 mx-3">
                                 Data Analytics
@@ -114,9 +114,9 @@ export default function AlsoLike() {
 
 
                 <div className=' w-full md:max-w-[350px] px-2'>
-                    <div className=" mt-20 pb-5 md:mt-5 shadow-2xl ">
+                    <div className=" mt-5 p-3  border rounded-lg border-gray">
                         <div className="">
-                            <img src={pattern3} alt="" />
+                            <img src={pattern3} alt="" className=' w-full'/>
 
                             <p className=" font-bold mt-2 mx-3">
                                 Data Analytics

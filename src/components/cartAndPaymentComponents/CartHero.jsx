@@ -11,11 +11,11 @@ export default function CartHero() {
   return (
     <>
         <section className=' mt-20 shadow-xl mx-[5%]  py-10'>
-          <div className=" max-w-[900px] m-auto">
+          <div className=" max-w-[1080px] m-auto">
             
               <div className="">
                 <div className="">
-                  <p className=" text-3xl font-bold">
+                  <p className=" text-3xl md:text-4xl font-bold md:font-extrabold">
                     Shopping Cart 
                   </p>
 
@@ -25,13 +25,13 @@ export default function CartHero() {
                 </div>
 
               <div className=" lg:flex justify-between "> {/* WRAPPER TO FLEX THE DESKTOP VIEW  */}
-                <div className=" md:flex justify-between items-center">
+                <div className=" md:flex justify-between items-center border space-x-10 p-3 rounded-2xl border-[#e7e7e7]">
                   <div className="">
                     <img src={courseSelected} alt="" className=''/>
                   </div>
 
 
-                  <div className=" space-y-2 mx-2">
+                  <div className=" space-y-5 mx-2">
                     <p className="">
                       Data Analytics 
                     </p>
@@ -62,31 +62,12 @@ export default function CartHero() {
                         15,000
                       </button>
 
-                      <p className=" line-through ml-9">
-                        45,000
+                      <p className=" line-through font-bold ml-9">
+                        45,000 NGN
                       </p>
                     </div>
                   </div>
                 </div>
-
-
-                
-
-              {/* ========================================= */}
-              <div className=" hidden md:block">
-                <p className="">
-                  Remove and <br />
-                  <span className="">
-                    save for later
-                  </span> <br />
-                  <span className=" font-bold">
-                    45,000 NGN 
-                  </span> <br />
-                  <span className=" line-through">
-                    95,000
-                  </span>
-                </p>
-              </div>
 
 
               {/* =========================================== */}
@@ -100,15 +81,15 @@ export default function CartHero() {
                   <p className=" my-3 text-xl font-extrabold">
                     45,000 NGN
                   </p> 
-                  <p className=" line-through">
+                  <p className=" text-[#030B42] line-through font-bold">
                     95,000 NGN
                   </p> 
-                  <p className=" my-3">
+                  <p className=" my-3 text-[#030B42]">
                     75% off
                   </p>
                 </div>
 
-                <button className=" mt-5 bg-yellow-500 hover:bg-yellow-300 font-bold rounded-sm border border-gray-600 px-2 flex items-center">
+                <button className=" mt-5 bg-[#FFCD05] hover:bg-yellow-300 font-bold rounded-sm  px-10 flex items-center">
                   Checkout
                   <div className=" ml-5">
                     <BsCart3 />
@@ -116,6 +97,16 @@ export default function CartHero() {
                 </button>
               </div>
             </div>
+          </div>
+
+          <div className=" space-x-10 mt-5">
+            <button className="">
+              Remove
+            </button>
+
+            <button className="">
+              Save for later
+            </button>
           </div>
         </div>
       </section>

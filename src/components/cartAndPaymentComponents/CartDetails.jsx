@@ -10,7 +10,7 @@ export default function CartDetails() {
         <section>
             <div className=" px-[5%] pt-20 cart-bg h-64 my-20"> {/*  BACKGROUND IMAGE IMPORTED FROM APP.CSS */}
                 <div className=" text-white">
-                    <p className=" text-4xl">
+                    <p className=" text-4xl md:text-6xl mb-10">
                         You may also be  <span className=" text-[#FFCD05]"> interested </span> in
                     </p>
                 </div>   
