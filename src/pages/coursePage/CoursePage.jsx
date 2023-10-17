@@ -91,6 +91,10 @@ const CoursePage = () => {
     return <h2>Internal Server Error</h2>;
   }
 
+  function courseUpdate(index) {
+    setTrackVideo(index)
+  }
+
   return (
     <div className="bg-[#F5F5F5]">
       <div className={`md:mx-2 mt-3 ${fullScreen ? "" : "md:flex md:gap-3"}`}>
@@ -119,7 +123,7 @@ const CoursePage = () => {
                 type="button"
                 className={`${
                   showCourseContent == "Course Content" && "underline"
-                } ${fullScreen ? "block" : "hidden"}`}
+                } ${fullScreen ? "block" : "md:hidden block"}`}
                 onClick={() => handleShowCourseContent("Course Content")}
               >
                 Course Content
@@ -186,6 +190,7 @@ const CoursePage = () => {
                 <CourseContent
                   modules={data.courseTitle.modules}
                   watchVideo={Trackvideo}
+                  courseClick={courseUpdate}
                 />
               </div>
             </div>
@@ -211,6 +216,7 @@ const CoursePage = () => {
             <CourseContent
               modules={data.courseTitle.modules}
               watchVideo={Trackvideo}
+              courseClick={courseUpdate}
             />
           </div>
         </div>

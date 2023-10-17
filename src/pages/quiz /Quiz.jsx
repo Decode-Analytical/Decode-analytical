@@ -16,7 +16,6 @@ const Quiz = () => {
   let { id } = param;
 
   const { data, isLoading } = useViewCourseQuizQuery(id);
-  console.log(data)
   const courseID = localStorage.getItem("courseID")
   if (data == undefined) {
     return navigation(`/CousrsePage/${courseID}`)
@@ -29,6 +28,7 @@ const Quiz = () => {
 
   let question = data.quiz.questions;
   const getItem = localStorage.getItem("course")
+  let currentModule = localStorage.getItem("trackVideo")
   console.log(getItem)
 
   async function NextQuiz() {
@@ -71,7 +71,7 @@ const Quiz = () => {
   // const checking = answer == useranswer
   return (
     <section className="my-6 bg-[#F5F5F5]">
-      <Header TotalQuiz={question.length} currentQuiz={quizIndex} />
+      <Header TotalQuiz={question.length} currentQuiz={quizIndex} Currentmodule={currentModule} />
       <Body
         question={question[quizIndex]}
         NextQuestion={NextQuiz}

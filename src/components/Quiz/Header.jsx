@@ -1,7 +1,7 @@
 import React from 'react'
 import { AiOutlineClose } from "react-icons/ai"
 
-const Header = ({TotalQuiz, currentQuiz}) => {
+const Header = ({TotalQuiz, currentQuiz, Currentmodule}) => {
   let quizPercenTage = (currentQuiz / TotalQuiz ) * 100
   console.log(quizPercenTage)
   return (
@@ -10,7 +10,7 @@ const Header = ({TotalQuiz, currentQuiz}) => {
         <button type="button">
             <AiOutlineClose color="#6B7F99" />
         </button>
-        <h5 className="text-center w-full">Module 1 Quiz </h5>
+        <h5 className="text-center w-full">Module {Currentmodule} Quiz </h5>
     </div>
     <div className="flex items-center justify-center md:w-2/4 w-[90%] gap-3 my-2 md:my-0 md:mx-0 mx-4">
         <p>{currentQuiz}/{TotalQuiz}</p>

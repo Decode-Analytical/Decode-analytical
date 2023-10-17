@@ -38,7 +38,7 @@ const CourseContent = ({ modules, watchVideo, courseClick }) => {
     <ul className="bg-white w-full">
       {modules.map((item, mainIndex) => {
         return (
-          <li key={mainIndex}>
+          <li key={item._id}>
             <div>
               <div className="text-lg font-bold w-full items-center flex gap-2 justify-between border-2 p-4">
                 <div className="flex gap-2 font-bold items-center">
@@ -88,11 +88,11 @@ const CourseContent = ({ modules, watchVideo, courseClick }) => {
                     key={video._id}
                     className={`${
                       openCourseIndices.includes(mainIndex) ? "hidden" : "flex"
-                    } flex-col p-5 gap-5 `}
+                    } flex-col p-5 gap-5 ml-4`}
                   >
                     <button
                       type="button"
-                      className="flex flex-col items-center"
+                      className="flex flex-col"
                       onClick={() => courseClick(mainIndex)}
                     >
                       <div className="flex gap-2">
