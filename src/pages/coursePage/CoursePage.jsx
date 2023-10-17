@@ -7,24 +7,26 @@ import {
 } from "../../components/coursePage";
 import Menu from "./Menu.png";
 import Close from "./Close.png";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGetCourseDataQuery } from "../../redux/FetchApi/GetCourseData";
 
-const token =
-  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFkMWMwMDQ1Y2NmNjEyMzY4NzRmNjEiLCJpYXQiOjE2OTcxMzc1NjgsImV4cCI6MTY5NzIyMzk2OH0.6YQtqx-ThsiTa8u8OF-4Ljl-0lrptN6XkN2nHVW7swQ";
+// const token =
+//   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFkMWMwMDQ1Y2NmNjEyMzY4NzRmNjEiLCJpYXQiOjE2OTcxMzc1NjgsImV4cCI6MTY5NzIyMzk2OH0.6YQtqx-ThsiTa8u8OF-4Ljl-0lrptN6XkN2nHVW7swQ";
 
-axios.defaults.baseURL = "https://decode-mnjh.onrender.com/api";
+// axios.defaults.baseURL = "https://decode-mnjh.onrender.com/api";
 
 const CoursePage = () => {
   const param = useParams();
-  const { isLoading, data } = useGetCourseDataQuery();
+  const navigation = useNavigate();
+  const { id } = param;
+  const { isLoading, data } = useGetCourseDataQuery(id);
+  console.log(data)
+  const [trackVideo, setTrackVideo] = useState(localStorage.getItem("trackVideo") || 0);
   // const [courseData, setCourseData] = useState(undefined);
-  console.log(isLoading,data)
+  // console.log(isLoading, data);
 
   const [fullScreen, setFullScreen] = useState(false);
   const [hiddenControl, setHiddenControl] = useState(false);
-  const [courseContent, setCourseContent] = useState(false);
   const [showCourseContent, setShowCourseContent] = useState("OverView");
   const handleShowCourseContent = (value) => {
     setShowCourseContent(value);
@@ -39,18 +41,66 @@ const CoursePage = () => {
   const handleHiddenControl = () => {
     setHiddenControl(!hiddenControl);
   };
+  const [Trackvideo, setTrackVideo2] = useState([]);
+  if (data && data.courseTitle && data.courseTitle.modules) {
+    var modules = data.courseTitle.modules;
+  }
 
+  function NextVideoTraker() {
+    if (data && data.courseTitle) {
+      if (trackVideo === null) {
+        setTrackVideo(0);
+      }
+      localStorage.removeItem("trackVideo")
+      localStorage.removeItem("courseID")
+      // console.log("Early",trackVideo)
+      if (trackVideo <= modules.length) {
+        setTrackVideo(trackVideo + 1);
+        console.log(trackVideo)
+        for (let tracker in modules) {
+          // console.log(tracker)
+          if (tracker == trackVideo) {
+            setTrackVideo2(() => [...Trackvideo, trackVideo]);
+            break;
+          }
+        }
+      }
+      return null;
+    }
+  }
+
+  function Nextpplay(play) {
+    if (play === true) {
+      // Increment the trackVideo using the current value
+      setTrackVideo((prevTrackVideo) => {
+        const nextTrackVideo = prevTrackVideo + 1;
+        // Store the updated value in localStorage
+        console.log(trackVideo)
+        localStorage.setItem("trackVideo", nextTrackVideo);
+        return nextTrackVideo;
+      });
+      localStorage.setItem("courseID", data.courseTitle._id);
+      navigation(`/Quiz/${modules[trackVideo]._id}`);
+    }
+  }
+  
   if (isLoading) {
-    return (
-      <h2>Loading ...</h2>
-    )
+    return <h2>Loading ...</h2>;
+  }
+  if (data.courseTitle === null) {
+    return <h2>Internal Server Error</h2>;
   }
 
   return (
     <div className="bg-[#F5F5F5]">
       <div className={`md:mx-2 mt-3 ${fullScreen ? "" : "md:flex md:gap-3"}`}>
         <div className={`${fullScreen ? "" : "md:flex-1"}`}>
-          <Video fullScreen={fullScreen} handleFullScreen={handleFullScreen} />
+          <Video
+            fullScreen={fullScreen}
+            handleFullScreen={handleFullScreen}
+            Nextplay={Nextpplay}
+            modules={data.courseTitle.modules[trackVideo]}
+          />
           <img
             alt=""
             src={Menu}
@@ -111,6 +161,7 @@ const CoursePage = () => {
               lengthmodules={data.courseTitle.modules.length}
               language={data.courseTitle.course_language}
               modules={data.courseTitle.modules}
+              totalRigistered={data.courseTitle.totalRegisteredByStudent}
             />
           )}
           {showCourseContent === "Comment" && (
@@ -132,7 +183,10 @@ const CoursePage = () => {
                 </button>
               </div>
               <div className={`${showCourseContent ? "flex" : "hidden"}`}>
-                <CourseContent />
+                <CourseContent
+                  modules={data.courseTitle.modules}
+                  watchVideo={Trackvideo}
+                />
               </div>
             </div>
           )}
@@ -154,7 +208,10 @@ const CoursePage = () => {
             </button>
           </div>
           <div className={`${showCourseContent ? "flex" : "hidden"}`}>
-            <CourseContent />
+            <CourseContent
+              modules={data.courseTitle.modules}
+              watchVideo={Trackvideo}
+            />
           </div>
         </div>
       </div>

@@ -2,40 +2,84 @@ import React, { useState } from "react";
 import Header from "../../components/Quiz/Header";
 import Body from "../../components/Quiz/Body";
 import Footer from "../../components/Quiz/Footer";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  usePostCorrectQuizMutation,
+  useViewCourseQuizQuery,
+} from "../../redux/FetchApi/GetCourseData";
 
 const Quiz = () => {
-  const [disable, setDisable] = useState(true);
-  const [useranswer, setUserAnswer] = useState("");
-  const [checkAnswer, setCheckedAnswer] = useState(null);
+  const [quizIndex, setQuizIndex] = useState(0);
+  const [storeQuiz, setStoreQuiz] = useState([]);
+  let param = useParams();
+  const navigation = useNavigate()
+  let { id } = param;
 
-  const handleClick = async () => {
-    // console.log("WOrkig")
-    try {
-      const resp = await fetch("http://localhost:3000/correctAnswer");
-      if (!resp.ok) {
-        throw new Error("Network response was not ok");
+  const { data, isLoading } = useViewCourseQuizQuery(id);
+  console.log(data)
+  const courseID = localStorage.getItem("courseID")
+  if (data == undefined) {
+    return navigation(`/CousrsePage/${courseID}`)
+  }
+  const [postCorrectQuiz] = usePostCorrectQuizMutation();
+
+  if (isLoading) {
+    return <h1>Loading ...</h1>;
+  }
+
+  let question = data.quiz.questions;
+  const getItem = localStorage.getItem("course")
+  console.log(getItem)
+
+  async function NextQuiz() {
+    if (quizIndex < question.length) {
+      setStoreQuiz([
+        ...storeQuiz,
+        {
+          questionId: question[quizIndex]._id,
+          selected_answer_index: quizIndex, // Use the selected answer, not quizIndex
+        },
+      ]);
+      setQuizIndex(quizIndex + 1);
+    } else {
+      const moduleId = question.moduleId;
+
+      let response = await postCorrectQuiz(storeQuiz, moduleId);
+
+      if (response.status === 200) {
+        // Handle success here
+        navigation(`/CousrsePage/${courseID}`)
+        console.log("Score:", response.score);
+      } else {
+        // Handle any errors or non-success status codes here
+        console.error("Error:", response.error);
       }
-      const data = await resp.json();
-      // Check if user's answer matches the correct answer
-      const isCorrect = useranswer === data.answer;
-      setCheckedAnswer(isCorrect);
-    //   console.log(checkAnswer)
-    } catch (error) {
-      console.log(error);
     }
-  };
+  }
 
-  const getAnswerByuser = (value) => {
-    setUserAnswer(value);
-    setDisable(false);
-  };
+  function PreviousQuiz() {
+    console.log("Main Back");
+    if (quizIndex >= 0) {
+      setQuizIndex(quizIndex - 1);
+    }
+  }
+
+  console.log(storeQuiz);
+
+  // console.log(data.quiz.questions.length)
 
   // const checking = answer == useranswer
   return (
     <section className="my-6 bg-[#F5F5F5]">
-      <Header />
-      <Body SendARequestAnser={getAnswerByuser} Correct={checkAnswer} />
-      <Footer disabled={disable} handleCLick={handleClick} Correct={checkAnswer} />
+      <Header TotalQuiz={question.length} currentQuiz={quizIndex} />
+      <Body
+        question={question[quizIndex]}
+        NextQuestion={NextQuiz}
+        BackQuestion={PreviousQuiz}
+        TotalQuiz={question.length}
+        CurrentQuiz={quizIndex}
+      />
+      {/* <Footer disabled={disable} handleCLick={handleClick} Correct={checkAnswer} /> */}
     </section>
   );
 };

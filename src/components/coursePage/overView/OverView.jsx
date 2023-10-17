@@ -2,7 +2,7 @@ import React from 'react';
 import { TextSlice } from './TextSlice';
 import Content_Table from './Content_Table';
 
-const OverView = ({des, lengthmodules, language, modules}) => {
+const OverView = ({des, lengthmodules, language, modules, totalRigistered}) => {
   return (
     <section className="md:ml-5 bg-white">
         <div className="my-4 py-5 border-b-2">
@@ -18,7 +18,7 @@ const OverView = ({des, lengthmodules, language, modules}) => {
         <div className="flex gap-6 my-5 py-4 border-b-2">
             <ul className="my-3 mx-3 flex flex-col gap-2 ">
               <li>Skill Level: <span>Beginner Level</span></li>
-              <li>Student: <span>29662</span></li>
+              <li>Student: <span>{totalRigistered}</span></li>
               <li>Language: <span>{language || "English"}</span></li>
             </ul>
             <ul className="flex flex-col gap-2 my-3">

@@ -1,61 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
+import { LuPlayCircle } from "react-icons/lu";
 
-const CourseContent = () => {
+const CourseContent = ({ modules, watchVideo, courseClick }) => {
+  const [videoProgress, setVideoProgress] = useState({});
   const [openCourseIndices, setOpenCourseIndices] = useState([]);
 
-  const courseContent = [
-    {
-      "Introduction to UI UX. A Introduction design": {
-        "why Learning UI/UX is a superPower 100%": "5:56",
-        "Lets learn the design principle": "7:00",
-        "Draw those frames and fix your margin": "3:56"
-      }
-    },
-    {
-      "Introduction to UI UX. A Introduction design": {
-        "why Learning UI/UX is a superPower 100%": "5:56",
-        "Lets learn the design principle": "7:00",
-        "Draw those frames and fix your margin": "3:56"
-      }
-    },
-    {
-      "Introduction to UI UX. A complete design": {
-        "why Learning UI/UX is a superPower 100%": "5:56",
-        "Lets learn the design principle": "7:00",
-        "Draw those frames and fix your margin": "3:56"
-      }
-    }
-  ];
+  useEffect(() => {
+    // Load video-watching progress from local storage
+    const progressData = {};
+    modules.forEach((module, mainIndex) => {
+      module.video.forEach((video) => {
+        const progressKey = `videoProgress_${mainIndex}_${video._id}`;
+        const progress = localStorage.getItem(progressKey);
+        if (progress === "watched") {
+          progressData[progressKey] = true;
+        }
+      });
+    });
+    setVideoProgress(progressData);
+  }, [modules]);
 
   const handleToggleCourseContent = (index) => {
+    // Use setOpenCourseIndices to toggle module open/close
     if (openCourseIndices.includes(index)) {
       setOpenCourseIndices(openCourseIndices.filter((i) => i !== index));
     } else {
       setOpenCourseIndices([...openCourseIndices, index]);
     }
+    console.log(index);
   };
+
+  function MakeCheck(index) {
+    return watchVideo.includes(index);
+  }
 
   return (
     <ul className="bg-white w-full">
-      {courseContent.map((item, mainIndex) => {
-        const courseTitle = Object.keys(item)[0];
-        const isCourseOpen = openCourseIndices.includes(mainIndex);
-
+      {modules.map((item, mainIndex) => {
         return (
           <li key={mainIndex}>
             <div>
               <div className="text-lg font-bold w-full items-center flex gap-2 justify-between border-2 p-4">
                 <div className="flex gap-2 font-bold items-center">
-                  <h3 className="text-base ">{mainIndex + 1.0}</h3>
-                  <h3 className="">{courseTitle}</h3>
+                  <h3 className="text-base">{mainIndex + 1.0}</h3>
+                  <h3>{item.module_title}</h3>
                 </div>
                 <button
                   type="button"
-                  onClick={() => {
-                    handleToggleCourseContent(mainIndex);
-                  }}
+                  onClick={() => handleToggleCourseContent(mainIndex)} // Call the toggle function
                 >
-                  {isCourseOpen ? (
+                  {openCourseIndices.includes(mainIndex) ? ( // Check if the module is open
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-6 w-6 inline-block"
@@ -88,26 +82,38 @@ const CourseContent = () => {
                   )}
                 </button>
               </div>
-              {isCourseOpen && (
-                <div>
-                  {Object.keys(item[courseTitle]).map((key, index) => (
-                    <div
-                      key={index}
-                      className={`flex justify-between p-4 ${
-                        index === Object.keys(item[courseTitle]).length - 1
-                          ? ''
-                          : 'border-b-2'
-                      }`}
+              <ul>
+                {item.video.map((video) => (
+                  <li
+                    key={video._id}
+                    className={`${
+                      openCourseIndices.includes(mainIndex) ? "hidden" : "flex"
+                    } flex-col p-5 gap-5 `}
+                  >
+                    <button
+                      type="button"
+                      className="flex flex-col items-center"
+                      onClick={() => courseClick(mainIndex)}
                     >
                       <div className="flex gap-2">
-                        <input type="checkbox" name="DOne" />
-                        <div>{index + 1}. {key}</div>
+                        <input
+                          type="checkbox"
+                          name="Done"
+                          checked={MakeCheck(mainIndex)}
+                          onChange={() =>
+                            markVideoAsWatched(mainIndex, video._id)
+                          }
+                        />
+                        <h2 className="text-sm">{video.originalname}</h2>
                       </div>
-                      <div className="text-[12px]">{item[courseTitle][key]}</div>
+                    </button>
+                    <div className="flex gap-2 items-center">
+                      <LuPlayCircle size={20} />
+                      <h2>Modules {mainIndex} Quiz</h2>
                     </div>
-                  ))}
-                </div>
-              )}
+                  </li>
+                ))}
+              </ul>
             </div>
           </li>
         );

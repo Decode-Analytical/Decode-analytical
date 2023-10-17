@@ -3,7 +3,6 @@ import { MdExpandMore ,MdExpandLess } from "react-icons/md";
 
 const Content_Table = (modules) => {
   const [dropDown, setDropDown] = useState(null);
-  console.log(modules.modules);
   let array = modules.modules;
   // for(let minNUm of )
   let Lectures = 0;
@@ -59,7 +58,6 @@ const Content_Table = (modules) => {
       </div>
       <ul className="my-2 flex flex-col">
         {array.map((modu, index) => (
-          <>
             <li
               key={index}
             >
@@ -79,12 +77,11 @@ const Content_Table = (modules) => {
               {dropDown !== null && dropDown == index && (
                 <ul className="flex flex-col">
                   {modu.video.map((videos, videoIndex) => (
-                    <li key={videoIndex} className="border-2 px-3 md:px-16 py-5 text-sm">{videos.originalname}</li>
+                    <li key={index} className="border-2 px-3 md:px-16 py-5 text-sm">{videos.originalname}</li>
                   ))}
                 </ul>
               )}
             </li>
-          </>
         ))}
       </ul>
     </section>

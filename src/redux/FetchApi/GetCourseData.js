@@ -6,12 +6,21 @@ export const courseData = createApi({
     baseUrl: "https://decode-mnjh.onrender.com/api",
     headers: {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFkMWMwMDQ1Y2NmNjEyMzY4NzRmNjEiLCJpYXQiOjE2OTcxMzc1NjgsImV4cCI6MTY5NzIyMzk2OH0.6YQtqx-ThsiTa8u8OF-4Ljl-0lrptN6XkN2nHVW7swQ",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFkMWMwMDQ1Y2NmNjEyMzY4NzRmNjEiLCJpYXQiOjE2OTc1NjA1NDcsImV4cCI6MTY5NzY0Njk0N30.O4HWr0OGNVZnUWwdiFiGWqBwlqbSGdQtx3feP6MM0S0",
+      
     },
   }),
   endpoints: (builder) => ({
-    getCourseData: builder.query({ query: () => "/student/studentViewCourse/65175354a420b21e3fa5cf75" })
+    getCourseData: builder.query({ query: (id) => `/student/studentViewCourse/${id}` }),
+    viewCourseQuiz: builder.query({query: (id) => `/quizes/${id}`}),
+    postCorrectQuiz: builder.mutation({
+      query: (data, id) => ({
+        url: `/quizs/${id}/submit`,
+        method: "POST",
+        body: data
+      })
+    })
   }),
 });
 
-export const { useGetCourseDataQuery } = courseData
+export const { useGetCourseDataQuery, useViewCourseQuizQuery, usePostCorrectQuizMutation } = courseData
