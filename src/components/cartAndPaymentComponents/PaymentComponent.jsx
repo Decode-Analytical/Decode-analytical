@@ -10,7 +10,7 @@ import visa from '../../assets/Images/visa.png'
 export default function PaymentComponent() {
   return (
     <>
-        <section className='max-w-[1000px] m-auto items-center'>
+        <section className='max-w-[1100px] m-auto items-center'>
             <div className=' mx-[5%] my-10 md:flex justify-between'>
                 <div className=" ">
                     <Link to = ''>
@@ -19,15 +19,19 @@ export default function PaymentComponent() {
                         </button>
                     </Link>
 
-                    <div className="">
+                    <div className=" flex items-center justify-between md:space-x-24">
                         <p className=" text-5xl font-extrabold mt-5">
                             Check Out
+                        </p>
+
+                        <p className=" bg-[#F7F3B2] text-[.7em] rounded-2xl mt-7 p-2 w-32">
+                            <span className=' font-bold'>2,452</span> already enrolled!
                         </p>
                     </div>
 
                     <div className=" md:w-[500px]">
                         <div className="">
-                            <p className=" text-xl font-bold mt-4">
+                            <p className=" text-xl md:text-3xl font-bold mt-4">
                                 Select a payment method
                             </p>
                         </div>
@@ -68,7 +72,7 @@ export default function PaymentComponent() {
 
                 {/* THE SUMMARY DIV */}
 
-                <div className=" space-y-4">
+                <div className=" space-y-4 mt-16">
                     <p className=" text-3xl mt-4 font-bold">
                         Summary 
                     </p>
@@ -102,7 +106,7 @@ export default function PaymentComponent() {
         {/* ==================================================== */}
         {/* THE ORDER DETAILS SECTION */}
 
-        <section className=" mx-[5%] py-10 ">
+        <section className=" mx-[5%] md:max-w-[1000px] md:m-auto py-10 ">
             <div className="">
                 <div className="">
                     <p className=" text-3xl font-bold">
@@ -115,20 +119,20 @@ export default function PaymentComponent() {
                 </div>
 
 
-                <div className=" md:flex justify-between lg:max-w-[50%] items-center">
+                <div className=" sm:flex justify-between lg:max-w-[60%] items-center border rounded-lg border-[#cfcfcf] p-3">
                     <div className="">
                         <img src={courseSelected} alt="" className=''/>
                     </div>
 
 
-                    <div className=" space-y-2 mx-2">
-                        <p className="">
+                    <div className=" space-y-2 mx-2 ">
+                        <p className=" text-xl font-bold">
                             Data Analytics 
                         </p>
 
                         <div className=" inline-flex items-center">
                             <img src={customersImage} alt="" />
-                            <p className=" ml-5">
+                            <p className=" ml-3 text-sm">
                                 By: Lionel Messi
                             </p>
                         </div>
