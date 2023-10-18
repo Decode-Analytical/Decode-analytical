@@ -63,6 +63,10 @@ export default function AllPages() {
             mycourses
         </Link> <br />
 
+        <Link to="/Courses">
+            Courses
+        </Link> <br />
+
         <Link to="/profile/*">
             profile/*
         </Link> <br />
