@@ -116,7 +116,7 @@ export default function Individual() {
             </a>
           </p>
         </div>
-        {error && <div className="error">{error}</div>}
+        {error && <div className="text-xs text-red-500">{error}</div>}
         <AuthFooter />
       </div>
     </div>

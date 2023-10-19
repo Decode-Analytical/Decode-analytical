@@ -2,8 +2,7 @@ import React from 'react'
 import { FaArrowRight } from 'react-icons/fa'
 import instructor from "../../assets/homepageImages/Ellipse 160.png";
 
-export default function 
-() {
+export default function BecomeTutor() {
   return (
     <section className="px-[10%] bg-white py-16">
     <div className="grid sm:grid-cols-2 gap-10 lg:gap-32 items-center">

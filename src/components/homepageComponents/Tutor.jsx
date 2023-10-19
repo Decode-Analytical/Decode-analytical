@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import picOne from "../../assets/homepageImages/pics1.png";
 import Star from "../../components/homepageComponents/Star";
 import { Link } from "react-router-dom";
-import { useAuthContext } from "../../hooks/authContext";
+
 
 export default function Tutor({ firstName, lastName, id, comments, picture}) {
-  console.log(picture);
+ 
   return (
     <>
      <Link to={`/tutor/${id}`}>

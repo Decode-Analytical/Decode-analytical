@@ -35,9 +35,7 @@ export default function Password() {
       setError(json.error);
     }
   };
-console.log(error);
-console.log(message);
-console.log(isLoading);
+
   return (
     <div className="bg-zinc-100 py-10 min-h-screen">
       <div className="bg-white p-10 rounded-3xl w-[80%] lg:w-[50%] center ">

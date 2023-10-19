@@ -1,7 +1,4 @@
-import "../../App.css";
 import { useLogout } from "../../hooks/useLogout";
-import { useAuthContext } from "../../hooks/authContext";
-import { useEffect, useState } from "react";
 import "../homepage/index.css";
 import BecomeTutor from "../../components/homepageComponents/BecomeTutor";
 import TutorComponent from "../../components/homepageComponents/TutorComponent";
