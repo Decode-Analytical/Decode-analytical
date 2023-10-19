@@ -19,6 +19,7 @@ import MyCourse from "./pages/MyCourse/MyCourse";
 import PurchasedPage from "./pages/purchsedPages/PurchasedPage";
 import AllPages from "./pages/AllPages";
 import InstrucructorProfile from "./pages/instructorProfile/InstrucructorProfile";
+import Courses from "./pages/courses/Courses";
 
 
 function App() {
@@ -45,7 +46,7 @@ function App() {
                 <Route path='/profile/*' element = {<Profile />} />
                 <Route path='/PurchasedPage' element = {<PurchasedPage />} />
                 <Route path='/InstrucructorProfile' element = {<InstrucructorProfile />} />
-                
+                <Route path='/Courses' element = {<Courses />} />
                 <Route path='/AllPages' element = {<AllPages />} /> {/* this will be removed, not part of the code. it is just so we can navigate all pages  */}
               </Routes>
             </div>
