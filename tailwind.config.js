@@ -16,7 +16,7 @@ export default {
       animation: {
         'open-menu': 'open-menu 0.5s ease-in-out forwards',
       },
-      colors: {
+      /*colors: {
        "gray": "rgb(150, 149, 149)",
        "grey": "#2f2f2f",
        "deepGrey": "#303030",
@@ -26,7 +26,7 @@ export default {
       },
       fontFamily: {
         montserrat: ['montserrat', 'sans'],
-      },
+      },*/
     },
   },
   plugins: [],
