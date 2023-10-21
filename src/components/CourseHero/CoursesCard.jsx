@@ -4,16 +4,8 @@ import {BsClockHistory} from "react-icons/bs";
 import {BsGraphUpArrow} from "react-icons/bs";
 import Ellipse from "../../assets/courses Images/Ellipse.png";
 
-interface Props {
-  title: string,
-  image: string,
-  level: string,
-  time: string,
-  priceBefore: string,
-  priceNow: string
-}
 
-export default function CoursesCard(props: Props) {
+export default function CoursesCard(props) {
   let stars = [
     <svg
       xmlns="http://www.w3.org/2000/svg"
