@@ -6,26 +6,26 @@ export default function CourseOverview() {
         <section className='max-w-[1000px] m-auto'>
             <div className=" px-[5%] md:w-[90%]">
                 <div className="">
-                    <p className=" text-3xl mt-5">
+                    <p className=" text-3xl mt-20 font-bold">
                         Course Overview 
                     </p>
 
-                    <p className=" text-xs md:text-sm">
+                    <p className=" text-xs md:text-sm mt-5">
                         This course will teach you the fundamentals of UI design and how to create visually appealing user interfaces. You will study the fundamental tools, layouts, mockups, and techniques that product designers use to create remarkable interfaces.
                     </p>
                 </div>
 
-                <div className=" mt-5 flex justify-between">
-                    <p className=" font-bold">
+                <div className=" mt-10 flex justify-between">
+                    <p className=" font-bold text-2xl">
                         14 Courses
                     </p>
 
-                    <p className=" hidden md:block font-bold">
+                    <p className=" hidden md:block font-bold text-2xl">
                         What you will cover in this course
                     </p>
                 </div>
 
-                <div className="">
+                <div className=" mt-10">
                     <div className=" mt-1 md:flex justify-between">
                         <p className="">
                             Introduction to UI/UX design
@@ -38,7 +38,7 @@ export default function CourseOverview() {
 
                     {/* THIS DOWN WILL BE DELETED WHEN WE HAVE ACCESS TO THE BACKEND WE WILL MAP THROUGH */}
 
-                    <div className=" mt-5 md:flex justify-between">
+                    <div className=" mt-10 md:flex justify-between">
                         <p className="">
                             Introduction to UI/UX design
                         </p>
@@ -48,7 +48,7 @@ export default function CourseOverview() {
                         </p>
                     </div>
 
-                    <div className=" mt-5 md:flex justify-between">
+                    <div className=" mt-10 md:flex justify-between">
                         <p className="">
                             Introduction to UI/UX design
                         </p>
@@ -58,7 +58,7 @@ export default function CourseOverview() {
                         </p>
                     </div>
 
-                    <div className=" mt-5 md:flex justify-between">
+                    <div className=" mt-10 md:flex justify-between">
                         <p className="">
                             Introduction to UI/UX design
                         </p>
@@ -68,7 +68,7 @@ export default function CourseOverview() {
                         </p>
                     </div>
 
-                    <div className=" mt-5 md:flex justify-between">
+                    <div className=" mt-10 md:flex justify-between">
                         <p className="">
                             Introduction to UI/UX design
                         </p>
