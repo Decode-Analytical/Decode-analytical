@@ -13,7 +13,12 @@ export default function Courses() {
 
   useEffect(() => {
     async function getData() {
-      const response = await fetch(url)
+      const response = await fetch(url,  {
+      method: 'GET',
+      headers: {
+          'Authorization': 'Bearer '
+      }
+    })
       const data = await response.json()
       setRes(data);
     }
