@@ -23,79 +23,64 @@ export default function Courses() {
   
   }, [])
   
-  const freeCourses = [
-  {
-    image: course1,
-    title: "Graphics Design",
-    level: "Beginner",
-    time: "2hrs 30m",
-  },
-  {
-    image: course2,
-    title: "Graphics Design",
-    level: "Beginner",
-    time: "2hrs 30m",
-  },
-  {
-    image: course3,
-    title: "Graphics Design",
-    level: "Beginner",
-    time: "2hrs 30m",
-  },
-]
-  const courseDetails = [
-    {
-      image: pattern,
-      title: "Graphics Design",
-      level: "Beginner",
-      time: "2hrs 30m",
-    },
-    {
-      image: pattern,
-      title: "Graphics Design",
-  level: "Beginner",
-  time: "2hrs 30m",
-  priceBefore: "45000",
-  priceNow: "15000"
-    }, {
-      image: pattern,
-      title: "Graphics Design",
-  level: "Beginner",
-  time: "2hrs 30m",
-  priceBefore: "45000",
-  priceNow: "15000"
-    },
-    {
-      image: pattern,
-      title: "Graphics Design",
-  level: "Beginner",
-  time: "2hrs 30m",
-  priceBefore: "45000",
-  priceNow: "15000"
-    },
-    {
-      image: pattern,
-      title: "Graphics Design",
-  level: "Beginner",
-  time: "2hrs 30m",
-  priceBefore: "45000",
-  priceNow: "15000"
-    },
-    {
-      image: pattern,
-      title: "Graphics Design",
-  level: "Beginner",
-  time: "2hrs 30m",
-  priceBefore: "45000",
-  priceNow: "15000"
-    }
-  ]
+  const courseDetails = {
+    courses: [
+      {
+        "modules": [],
+        "_id": "64d3968ea60416ae4ac31eda",
+        "userId": "64b56ef351e834c56b8e8509",
+        "title": "Flutter Development",
+        "description": "Building Mobile and Web Applications with Flutter",
+        "nameOfSubject": [],
+        "price": 90000,
+        "comments": [],
+        "likeAndDislikeUsers": [],
+        "comment_count": 0,
+        "like_count": 0,
+        "dislike_count": 0,
+        "createdAt": "2023-08-09T13:37:18.111Z",
+        "updatedAt": "2023-08-09T13:37:18.111Z"
+      },
+      {
+        "modules": [],
+        "_id": "64d3f4d3dc0f8df156fed343",
+        "userId": "64b56ef351e834c56b8e8509",
+        "title": "Data Engineerings",
+        "description": "Data",
+        "nameOfSubject": [],
+        "price": 20000,
+        "comments": [],
+        "likeAndDislikeUsers": [],
+        "comment_count": 0,
+        "like_count": 0,
+        "dislike_count": 0,
+        "createdAt": "2023-08-09T20:19:31.854Z",
+        "updatedAt": "2023-08-09T20:19:31.854Z"
+      },
+      {
+        "modules": [],
+        "_id": "64d3fcc224b3d0dc4b87047d",
+        "userId": "64b56ef351e834c56b8e8509",
+        "title": "Node Js",
+        "description": "This course allows you to get started with backend engineering",
+        "nameOfSubject": [],
+        "price": 20000,
+        "comments": [],
+        "likeAndDislikeUsers": [],
+        "comment_count": 0,
+        "like_count": 0,
+        "dislike_count": 0,
+        "createdAt": "2023-08-09T20:53:22.665Z",
+        "updatedAt": "2023-08-09T20:53:22.665Z"
+      }
+    ]
+  }
     return (
       <>
       <div className='mx-auto font-montserrat z-10'>
           <CourseHero />
           <section className="mx-auto items-center grid grid-cols-1 pt-20 pb-14 overflow-hidden md:grid-cols-2 lg:grid-cols-3 gap-10 place-content-center ml-11">
-          {courseDetails.map((details, index) => {
+          {courseDetails.courses.map((details, index) => {
             return <CoursesCard key={index + 1} {...details} />;
           })}
           <br />
@@ -110,12 +95,12 @@ export default function Courses() {
                     <p className="text-white text-4xl md:text-6xl">
                        Try Free Courses
                     </p>
-        <section className="mx-auto items-center grid grid-cols-1 pt-10 pb-14 overflow-hidden md:grid-cols-2 lg:grid-cols-3 gap-10 place-content-center ml-11">
+        {/* <section className="mx-auto items-center grid grid-cols-1 pt-10 pb-14 overflow-hidden md:grid-cols-2 lg:grid-cols-3 gap-10 place-content-center ml-11">
         <pre>{JSON.stringify(res, null, 2)}</pre>
         {freeCourses.map((details, index) => {
             return <FreeCourses key={index + 1} {...details} />;
           })}
-        </section>
+        </section> */}
         </section>
         </div>
       </>
