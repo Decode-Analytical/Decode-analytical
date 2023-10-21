@@ -13,24 +13,6 @@ import { NavLink } from 'react-router-dom'
 import MainSideBar from '../../components/mainSideBar'
 
 const Dashboard = () => {
-    const listCoursesTest = [
-        {
-          title: "Can coffee make you a better developer?",
-          progress: 36,
-        },
-        {
-          title: "No, I love café",
-          progress: 12,
-        },
-        {
-          title: "Course help me!",
-          progress: 99,
-        },
-        {
-          title: "Pouf !",
-          progress: 50,
-        }
-      ]
   const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTJmMTZmNWNhMTUzYTY0YWU4OTFkM2UiLCJpYXQiOjE2OTc4MzAzMDUsImV4cCI6MTY5NzkxNjcwNX0.Bm9kg8SGPja1olDSz0Mj4Nm0wmU_rWiN8xe_mn6TthM"
   const [loading, setLoading] = useState(true)
   const [name, setName] = useState('...')

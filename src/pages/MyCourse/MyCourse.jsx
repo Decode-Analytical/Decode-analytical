@@ -15,8 +15,6 @@ import MainSideBar from '../../components/mainSideBar'
 const MyCourse = () => {
   const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTJmMTZmNWNhMTUzYTY0YWU4OTFkM2UiLCJpYXQiOjE2OTc4MzAzMDUsImV4cCI6MTY5NzkxNjcwNX0.Bm9kg8SGPja1olDSz0Mj4Nm0wmU_rWiN8xe_mn6TthM"
   const [loading, setLoading] = useState(true)
-  const [name, setName] = useState('...')
-  const [imgUrl, setImgUrl] = useState('...')
   const [user, setUser] = useState({name:"...", imgUrl: ""})
 
   const fetchUserData = () => {
@@ -48,7 +46,7 @@ const MyCourse = () => {
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data.studentRegisteredCourses)
+      //console.log(data.studentRegisteredCourses)
       setListCourses(data.studentRegisteredCourses);
       setLoading(false);
     })
