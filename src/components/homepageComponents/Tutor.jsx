@@ -12,7 +12,7 @@ export default function Tutor({ firstName, lastName, id, comments, picture, emai
       <div className="border border-amber-500 text-center rounded-lg p-2 pt-6">
           <img src={picture ? picture.path : picOne} width={70} className="center" />
           <h6 className="font-extrabold py-2 text-purple-800">
-            {firstName} {lastName} {email}
+            {firstName} {lastName}
           </h6>
           <Star />
           <p className="text-sm mb-10">
