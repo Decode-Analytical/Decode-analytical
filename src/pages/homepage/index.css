@@ -25,9 +25,18 @@ background-size: 100%, 2%;
  box-shadow:  5px 5px 4px 5px rgb(240, 240, 243)
 }
 
+
 @media only screen and (min-width: 258px) {
   .btnCreator {
     margin-left: 15px;
+  
+  }
+  
+}
+
+@media only screen and (max-width: 350px) {
+  .icon {
+  display: none;
   
   }
   

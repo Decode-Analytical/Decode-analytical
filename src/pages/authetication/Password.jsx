@@ -14,7 +14,7 @@ export default function Password() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://decode-mnjh.onrender.com/api/user/forgetpassword", {
+      const response = await fetch("https://decode-mnjh.onrender.com/api/user/forgotpassword", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -68,13 +68,13 @@ export default function Password() {
               required
             />
 
-            <input type="submit" value="Send" />
+            <input type="submit" value="Send"  />
           </form>
           {error && (
           <p className="text-red-600 text-sm">{error}</p>
           )}
           {message && (
-          <p className="text-green-600 text-sm">{message}</p>
+          <p className="text-green-700 text-sm">{message}</p>
           )}
           <p className="font-medium text-zinc-500">
             New here?{" "}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import picOne from "../../assets/homepageImages/pics1.png";
 import {
@@ -10,9 +10,38 @@ import {
 } from "react-icons/fa";
 import CompletedCourses from "../../components/homepageComponents/CompletedCourses";
 import TextTruncate from "../../components/homepageComponents/TextTruncate";
+import { useAuthContext } from "../../hooks/authContext";
 
 export default function InstructorProfile() {
   const { id } = useParams();
+
+    const { user } = useAuthContext();
+  
+    const [tutor, setTutor] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+  
+    useEffect(() => {
+      const fetchTutor = async () => {
+        const response = await fetch(
+          `https://decode-mnjh.onrender.com/api/admin/ViewInstructorProfile/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
+        const json = await response.json();
+  
+        if (response.ok) {
+          setTutor(json);
+        }
+      };
+      if (user) {
+        fetchTutor();
+      }
+    }, [user, id]);
+    console.log(tutor);
 
   return (
     <main className="bg-zinc-300 text-[#5F5F5F] text-sm ">
@@ -34,26 +63,26 @@ export default function InstructorProfile() {
           </div>
         </div>
         <div className="flex flex-wrap justify-between shadow-inner mb-3 py-5  px-7">
-          <div>
+          <div className="mb-3">
             <p>Total Students</p>
             <p className="text-[#303030] text-base font-bold text-center">
               1,002,004
             </p>
           </div>
-          <div>
+          <div className="mb-3">
             <p>Total Courses Created</p>
             <p className="text-[#303030] text-base font-bold text-center">
               2,004
             </p>
           </div>
-          <div>
+          <div className="mb-3">
             <p>Total Reviews</p>
             <p className="text-[#303030] text-base font-bold text-center">
               1004
             </p>
           </div>
         </div>
-        <div className="px-7 py-5 borde shadow-inner  my-4">
+        <div className="px-7 py-3 borde shadow-inner  my-4">
           <p className="font-bold text-[#303030 text-base">About Victoria</p>
           <TextTruncate
             text=" Lorem ipsum dolor sit amet consectetur. Mauris facilisis aliquam

@@ -29,7 +29,7 @@ export default function TutorComponent() {
       fetchTutor();
     }
   }, [user]);
-
+  console.log(tutor);
 
   return (
     <section className=" text-center bg-slate-100 py-28 text-[20px]  px-[10%]">
@@ -48,9 +48,9 @@ export default function TutorComponent() {
             id={tutors._id}
             picture={tutors.picture}
             comment={tutors.comments}
+            email={tutors.email}
              />;
           })}
-        <Tutor />
       </div>
     </section>
   );

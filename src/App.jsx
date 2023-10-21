@@ -5,7 +5,7 @@ import NavBar from "./components/homeComponents/navbar/NavBar";
 import HomePage from "./pages/homepage/HomePage";
 import LoginSignUp from "./pages/login/LoginSignUp";
 import PasswordReset from "./components/loginComponents/PasswordReset";
-import FreeCourses from './pages/courseDetailPage/FreeCourses'
+
 import CartPage from "./pages/cartAndPaymentPage/CartPage";
 import PaymentPage from "./pages/cartAndPaymentPage/PaymentPage";
 import NotEnrolled from "./pages/forumPage/NotEnrolled";
@@ -22,6 +22,7 @@ import InstructorProfile from "./pages/homepage/InstructorProfile";
 import CourseInfo from "./pages/courseUpload/CourseInfo";
 import ResetPassword from "./pages/authetication/ResetPassword";
 import Nysc from "./pages/authetication/Nysc";
+import FreeCourses from "./pages/courseDetailPage/freeCourses";
 
 
 function App() {
