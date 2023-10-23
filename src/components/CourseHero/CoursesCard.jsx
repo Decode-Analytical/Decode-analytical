@@ -68,17 +68,17 @@ export default function CoursesCard(props) {
       />
     </svg>,
   ];
-    const { title, image, description, time, price, priceBefore } = props
+    const { course_title, course_image, course_description, time, price, priceBefore } = props
     return (
       <div className="w-full p-4">
-      <div className="max-w-[25rem] bg-white p-4 rounded-3xl overflow-hidden border-[2px] border-neutral-400 mx-auto h-[30rem]">
+      <div className="max-w-[25rem] max-h-[100%] bg-white p-4 rounded-3xl overflow-hidden border-[2px] border-neutral-400 mx-auto h-[30rem]">
         <div className='relative'>
-        <img className="w-full max-h-[19rem] object-cover rounded-xl rounded-b-none absolute -z-1" src={image} alt={title} />
+        <img className="w-full object-center rounded-xl rounded-b-none absolute -z-1" src={course_image[0].path} alt={course_title} />
         </div>
         <div className="flex flex-col items-start justify-end h-full relative z-10 ">
           <div className='bg-white w-full mb-[1rem]'>
-          <div className="font-bold text-xl mb-1 py-[10px]">{title}</div>
-          <div className="font-normal mb-1 py-[10px]">{description}</div>
+          <div className="font-bold text-xl mb-1 ">{course_title}</div>
+          <div className="font-normal mb-1 ">{course_description}</div>
           <div className='flex'>
                             <img src={Ellipse} alt="" />&nbsp; <span className='py-1 pr-2'>By: Mac Kinglsey</span>
                             </div>

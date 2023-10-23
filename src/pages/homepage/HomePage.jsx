@@ -17,7 +17,7 @@ import AbsoluteComponent from "../../components/homepageComponents/AbsoluteCompo
 export default function Homepage() {
   return (
     <>
-      <main>
+      <main className="font-montserrat">
         <section className="bg-white">
           <div className="pt-14 pb-2  hero text-center text-white relative">
             <h2 className="font-bold text-[61px] bigText text-center text-white py-3 px-[10%]">
@@ -30,10 +30,10 @@ export default function Homepage() {
               experience from us.
             </p>
             <div className="flex center text-sm mt-12 mb-32 px-[5%]">
-              <button className=" bg-yellow-400 p-1 px-2 rounded-sm mb-5 text-black hover:text-yellow-400 hover:bg-black">
+              <button className=" bg-yellow-400 p-3 font-bold rounded-md mb-5 text-black hover:text-yellow-400 hover:bg-black">
                 Start for free
               </button>
-              <button className="text-yellow-400 p-1 btnCreator  bg-transparent px-3 border hover:text-white hover:border-white border-yellow-400">
+              <button className="text-yellow-400 p-3 btnCreator font-bold bg-transparent rounded-md border hover:text-white hover:border-white border-yellow-400">
                 Become a creator
               </button>
             </div>
@@ -124,7 +124,7 @@ export default function Homepage() {
             <Coursecomponent />
             <Coursecomponent />
           </div>
-          <button className="text-sm hover:text-purple-600 hover:bg-zinc-200 bg-white border border-purple-950 mt-9 p-1">
+          <button className="text-sm p-3 rounded-md hover:text-purple-600 hover:bg-zinc-200 bg-white border border-purple-950 mt-9">
             View all courses
           </button>
         </section>
@@ -157,7 +157,7 @@ export default function Homepage() {
                 knowledge, earn income, and contribute to learners' growth in a
                 dynamic online community.
               </p>
-              <button className="bg-amber-400 p-1 font-bold px-3 text-sm border rounded mb-12">
+              <button className="bg-amber-400 p-3 font-bold px-3 text-sm rounded mb-12">
                 Start teaching today{" "}
                 <FaArrowRight className="inline-block ms-3" />
               </button>
