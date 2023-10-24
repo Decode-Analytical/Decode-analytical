@@ -23,16 +23,16 @@ export default function Courses() {
   setRes(data.courses);
   }
 
-  async function getCourses() {
-    const response = await fetch("https://decode-mnjh.onrender.com/api/course/viewAllCourses?isPaid_course=paid",  {
-    method: 'GET',
-    headers: {
-        'Authorization': `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`
-    }
-  })
-  const data = await response.json();
-  setRes(data.courses);
-  }
+  // async function getCourses() {
+  //   const response = await fetch("https://decode-mnjh.onrender.com/api/course/viewAllCourses?isPaid_course=paid",  {
+  //   method: 'GET',
+  //   headers: {
+  //       'Authorization': `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`
+  //   }
+  // })
+  // const data = await response.json();
+  // setRes(data.courses);
+  // }
 
   useEffect(() => {
     
@@ -50,7 +50,7 @@ export default function Courses() {
           <br />
           <br />
         </section>
-        <button onClick={() => getCourses()}>Get Free Courses</button>
+        {/* <button onClick={() => getCourses()}>Get Free Courses</button> */}
         <div className='text-center items-center p-3'>
         <button className='p-[1rem] rounded-md border-[2px] font-bold'>View More Courses</button>
         </div>
