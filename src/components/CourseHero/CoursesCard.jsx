@@ -1,9 +1,8 @@
-import React from 'react';
-import '../courseCard/card.css';
-import {BsClockHistory} from "react-icons/bs";
-import {BsGraphUpArrow} from "react-icons/bs";
+import React from "react";
+import "../courseCard/card.css";
+import { BsClockHistory } from "react-icons/bs";
+import { BsGraphUpArrow } from "react-icons/bs";
 import Ellipse from "../../assets/courses Images/Ellipse.png";
-
 
 export default function CoursesCard(props) {
   let stars = [
@@ -68,50 +67,70 @@ export default function CoursesCard(props) {
       />
     </svg>,
   ];
-    const { course_title, course_image, course_description, time, price, priceBefore } = props
-    return (
-      <div className="w-full p-4">
-      <div className="max-w-[25rem] max-h-[100%] bg-white p-4 rounded-3xl overflow-hidden border-[2px] border-neutral-400 mx-auto h-[30rem]">
-        <div className='relative'>
-        <img className="w-full object-center rounded-xl rounded-b-none absolute -z-1" src={course_image[0].path} alt={course_title} />
+  const {
+    course_title,
+    course_image,
+    course_description,
+    time,
+    isPrice_course,
+    isPaid_course,
+  } = props;
+  return (
+    <div className="w-full p-4">
+      <div className="max-w-[50rem] w-[25rem] max-h-[35rem] bg-white p-4 rounded-3xl overflow-hidden border-[2px] border-neutral-400 mx-auto h-[40rem]">
+        <div className="relative">
+          <img
+            className="w-full object-center rounded-xl rounded-b-none absolute -z-1"
+            src={course_image[0].path}
+            alt={course_title}
+          />
         </div>
         <div className="flex flex-col items-start justify-end h-full relative z-10 ">
-          <div className='bg-white w-full mb-[1rem]'>
-          <div className="font-bold text-xl mb-1 ">{course_title}</div>
-          <div className="font-normal mb-1 ">{course_description}</div>
-          <div className='flex'>
-                            <img src={Ellipse} alt="" />&nbsp; <span className='py-1 pr-2'>By: Mac Kinglsey</span>
-                            </div>
-                            <p className="flex pt-[1rem]">
-                                {/* STARS FOR RATINGS WILL BE HERE */}
-                                {stars.map((item, index) => (
-                                    <div key={index}>{item}</div>
-                                ))}
-                                <p>&nbsp;5.0</p>
-                            </p>
+          <div className="bg-white w-full mb-[1rem] p-2">
+            <div className="font-bold text-xl mb-3 ">{course_title}</div>
+            <div className="font-normal mb-1 ">{course_description}</div>
+            <div className="flex">
+              <img src={Ellipse} alt="" />
+              &nbsp; <span className="py-1 pr-2">By: Mac Kinglsey</span>
+            </div>
+            <p className="flex pt-[1rem]">
+              {/* STARS FOR RATINGS WILL BE HERE */}
+              {stars.map((item, index) => (
+                <div key={index}>{item}</div>
+              ))}
+              <p>&nbsp;5.0</p>
+            </p>
 
-                            <div className=" flex justify-between py-[1rem]">
-                                <p className=" flex items-center">
-                                    <BsClockHistory />&nbsp;2hrs 30m
-                                </p>
-                                <p className=" flex space-x-2 items-center">
-                                    <BsGraphUpArrow /> <span>beginner</span> 
-                                </p>
-                            </div>
-
-                            <div className=" flex justify-between">
-                                <button className=" border-[2px] border-black hover:bg-gray-400 px-5 mr-5 py-2 rounded-md">
-                                    {price}
-                                </button>
-                                <p className=" line-through px-5 mr-5 py-2">
-                                    100,000 NGN
-                                </p>
-                            </div>
-                        
-    
+            <div className=" flex justify-between py-[1rem]">
+              <p className=" flex items-center">
+                <BsClockHistory />
+                &nbsp;2hrs 30m
+              </p>
+              <p className=" flex space-x-2 items-center">
+                <BsGraphUpArrow /> <span>beginner</span>
+              </p>
+            </div>
+            {isPaid_course === "free" ? (
+              <div className=" flex justify-between">
+                <a
+                  href="#"
+                  className="text-blue-900 font-bold px-2 mr-5 py-2 rounded-md"
+                >
+                  View Course {">"}
+                </a>
+                <p className=" px-5 mr-5 py-2">FREE</p>
+              </div>
+            ) : (
+              <div className=" flex justify-between">
+                <button className=" border-[2px] border-black hover:bg-gray-400 px-5 mr-5 py-2 rounded-md">
+                  {isPrice_course}
+                </button>
+                <p className=" line-through px-5 mr-5 py-2">100,000 NGN</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
     </div>
-    )
+  );
 }

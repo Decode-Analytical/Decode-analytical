@@ -7,6 +7,8 @@ import course1 from '../../assets/courses Images/no_curve_analytics.jpeg';
 import course2 from '../../assets/courses Images/2.jpeg';
 import course3 from '../../assets/courses Images/3.jpeg';
 
+
+
 const url = "https://decode-mnjh.onrender.com/api/course/viewAllCourses"
 export default function Courses() {
   const [res, setRes] = useState([]);
@@ -14,7 +16,18 @@ export default function Courses() {
     const response = await fetch(url,  {
     method: 'GET',
     headers: {
-        'Authorization': "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTM0Y2Y1N2ZjNGFkZTY2NDUwN2IwYWMiLCJpYXQiOjE2OTgwNTY1NTMsImV4cCI6MTY5ODE0Mjk1M30.5iKusBIwW5vF50h0I5K0J9YGlZDubboL--YhUhE2noI"
+        'Authorization': `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`
+    }
+  })
+  const data = await response.json();
+  setRes(data.courses);
+  }
+
+  async function getCourses() {
+    const response = await fetch("https://decode-mnjh.onrender.com/api/course/viewAllCourses?isPaid_course=paid",  {
+    method: 'GET',
+    headers: {
+        'Authorization': `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`
     }
   })
   const data = await response.json();
@@ -22,8 +35,8 @@ export default function Courses() {
   }
 
   useEffect(() => {
-
-    getData()
+    
+    getData();
   
   }, [])
     return (
@@ -37,6 +50,7 @@ export default function Courses() {
           <br />
           <br />
         </section>
+        <button onClick={() => getCourses()}>Get Free Courses</button>
         <div className='text-center items-center p-3'>
         <button className='p-[1rem] rounded-md border-[2px] font-bold'>View More Courses</button>
         </div>
