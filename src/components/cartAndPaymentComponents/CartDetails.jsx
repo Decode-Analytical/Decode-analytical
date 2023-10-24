@@ -155,7 +155,9 @@ export default function CartDetails() {
                             </div>
                         </div>
                     </div>    
-<hr className="border mb-2"/>              <div className=" border-white border-[10px] rounded-lg">
+                    <hr className="border mb-2"/> 
+                                 
+                    <div className=" border-white border-[10px] rounded-lg">
                         <img src={pattern} alt="" className='w-full'/>    
 
                         <div className=" p-4 space-y-4">

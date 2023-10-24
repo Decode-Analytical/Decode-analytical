@@ -1,6 +1,7 @@
 import React from "react";
 
-import navBar from "../homeComponents/navbar/NavBar";
+
+
 import courseSelected from "../../assets/Images/courseSelected.png";
 import customersImage from "../../assets/Images/customersImage.png";
 import { BsCart3 } from "react-icons/bs";
