@@ -9,11 +9,12 @@ export default function AllPages() {
             HOME
         </Link> <br />
 
-        <Link to="/LoginSignUp">
+        <Link to="/login">
             LoginSignUp
         </Link> <br />
+        
 
-        <Link to="/PasswordReset">
+        <Link to="/resetpassword">
             PasswordReset
         </Link> <br />
 
@@ -77,6 +78,10 @@ export default function AllPages() {
 
         <Link to="/InstrucructorProfile">
             Instructor profile
+        </Link><br />
+
+         <Link to="/courseinfo">
+            course Upload
         </Link>
     </div>
   )
