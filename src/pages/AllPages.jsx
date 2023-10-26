@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import PaystackCard from '../components/PaystackCard';
 
 
 export default function AllPages() {
@@ -83,6 +84,10 @@ export default function AllPages() {
          <Link to="/courseinfo">
             course Upload
         </Link>
+
+        <div className='mt-6 mb-3'>
+            <PaystackCard />
+        </div>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink } from "react-router-dom";
 
-const MainSideBar = () => {
+const MainSideBar = ({name, imgURL}) => {
   const [menuOpened, openMenu] = useState(false)
     const listOptions = [
         {
@@ -55,11 +55,11 @@ const MainSideBar = () => {
               <path fill-rule="evenodd" clip-rule="evenodd" d="M0.292893 0.292893C0.683417 -0.0976311 1.31658 -0.0976311 1.70711 0.292893L6 4.58579L10.2929 0.292893C10.6834 -0.0976311 11.3166 -0.0976311 11.7071 0.292893C12.0976 0.683417 12.0976 1.31658 11.7071 1.70711L7.41421 6L11.7071 10.2929C12.0976 10.6834 12.0976 11.3166 11.7071 11.7071C11.3166 12.0976 10.6834 12.0976 10.2929 11.7071L6 7.41421L1.70711 11.7071C1.31658 12.0976 0.683417 12.0976 0.292893 11.7071C-0.0976311 11.3166 -0.0976311 10.6834 0.292893 10.2929L4.58579 6L0.292893 1.70711C-0.0976311 1.31658 -0.0976311 0.683417 0.292893 0.292893Z"/>
             </svg>
           </button>
-          <div className="flex flex-col items-center pt-4 profile-sidebar-heading">
-            <img src='https://cdn.vcgamers.com/news/wp-content/uploads/2022/01/paquito-ml-3.jpg' alt='profile' 
-              className={`my-2 rounded-full duration-500 ${menuOpened ? 'w-16 h-16': 'w-12 h-12'}`}  />
+          <div className="flex flex-col items-center pt-2 profile-sidebar-heading">
+            <img src={imgURL} alt={`profile ${name}`} 
+              className={`my-2 rounded-full duration-500 w-12 h-12`}  />
               <div className={`flex flex-col duration-500 ${!menuOpened ? 'w-0 opacity-0 overflow-hidden' : 'w-fit h-fit overflow-hidden'}`}>
-                <h2 className='font-bold'>Papaquito Vuenaos</h2>
+                <h2 className='font-bold'>{name}</h2>
                 <div className='text-sm my-1'>
                   Reg. Student
                 </div>
@@ -67,10 +67,10 @@ const MainSideBar = () => {
               </div>
           </div>
 
-          <ul className="flex flex-col gap-1 mt-9 profile-sidebar-options">
+          <ul className="flex flex-col gap-1 mt-2 profile-sidebar-options">
             {listOptions.map(el => {
               return (
-              <li className={`flex flex-row cursor-pointer duration-300 ${menuOpened && 'mx-6 px-2'} `}>
+              <li key={el.title} className={`flex flex-row cursor-pointer duration-300 ${menuOpened && 'mx-6 px-1'} `}>
                 <NavLink to={el.url} 
                   className={({isActive})=> `flex-1 duration-300 hover:bg-cyan-600 hover:font-semibold rounded-sm hover:text-cyan-950 hover:fill-cyan-950 ${menuOpened ? 'py-3 px-8' : 'mx-2 py-2'} ${!isActive && "fill-white"} ${isActive && "bg-cyan-600 text-cyan-950 fill-cyan-950 font-bold"}`}
                   >

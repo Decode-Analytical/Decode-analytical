@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import iconHeading from "../../assets/dashboardicon1.png"
 import rafiki from "../../assets/rafiki.png"
 import certification from "../../assets/certification.png"
@@ -13,30 +13,62 @@ import { NavLink } from 'react-router-dom'
 import MainSideBar from '../../components/mainSideBar'
 
 const Dashboard = () => {
-    const listCoursesTest = [
-        {
-          title: "Can coffee make you a better developer?",
-          progress: 36,
-        },
-        {
-          title: "No, I love café",
-          progress: 12,
-        },
-        {
-          title: "Course help me!",
-          progress: 99,
-        },
-        {
-          title: "Pouf !",
-          progress: 50,
-        }
-      ]
-    
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTJmMTZmNWNhMTUzYTY0YWU4OTFkM2UiLCJpYXQiOjE2OTc4MzAzMDUsImV4cCI6MTY5NzkxNjcwNX0.Bm9kg8SGPja1olDSz0Mj4Nm0wmU_rWiN8xe_mn6TthM"
+  const [loading, setLoading] = useState(true)
+  const [name, setName] = useState('...')
+  const [imgUrl, setImgUrl] = useState('...')
+  const [user, setUser] = useState({name:"...", imgUrl: ""})
+
+  const fetchUserData = () => {
+    fetch('https://decode-mnjh.onrender.com/api/user/viewProfile', {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log("data data:",data);
+      const name = (`${data.user.firstName} ${data.user.lastName}`)
+      setUser({name: name, imgUrl: 'https://cdn.vcgamers.com/news/wp-content/uploads/2022/01/paquito-ml-3.jpg'})
+      fetchEnrolledCourses()
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }
+
+  const [listCourses, setListCourses] = useState([]);
+  const fetchEnrolledCourses = () => {
+    fetch('https://decode-mnjh.onrender.com/api/student/studentGet', {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data.studentRegisteredCourses)
+      setListCourses(data.studentRegisteredCourses);
+      setLoading(false);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }
+
+
+  if (loading) {
+    fetchUserData()
+    return (
+      <div className='w-full h-full min-h-[500px] flex justify-center items-center'>Loading...</div>
+    )
+  }
   return (
     <>
-    <MainSideBar />
+    <MainSideBar name={user.name} imgUrl={user.imgUrl} />
 
-    <div className='flex flex-1 bg-white'>
+    <div className='flex flex-1 bg-bwhite'>
       <div className='flex justify-between flex-1 shadow-md px-3 md:px-20'>
           <h2 className='text-3xl font-extrabold flex items-center'>My Dashboard</h2>
           <img src={iconHeading} alt="" />
@@ -75,9 +107,9 @@ const Dashboard = () => {
         </li>
       </ul>
 
-        <EnrolledCourseCard title="On Going Courses (3)" course={listCoursesTest[0]} />
+        <EnrolledCourseCard title="On Going Courses (3)" course={listCourses[0]} />
 
-        <ListCourseCard title="Completed Courses" list={listCoursesTest} />
+        <ListCourseCard title="Completed Courses" list={listCourses} />
 
       {/* Claimed certificat */}
       <div>
@@ -94,11 +126,11 @@ const Dashboard = () => {
             </div>
         </div>
       </div>
-        <ListCourseCard title="Similar Courses" list={listCoursesTest} />
+        <ListCourseCard title="Similar Courses" list={listCourses} />
 
-        <ListCourseCard title="Recommanded Courses" list={listCoursesTest} />
+        <ListCourseCard title="Recommanded Courses" list={listCourses} />
 
-        <ListCourseCard title="Recently Viewed Courses" list={listCoursesTest} />
+        <ListCourseCard title="Recently Viewed Courses" list={listCourses} />
 
 
       <nav className='mt-6 mb-16 mx-6'>
@@ -110,14 +142,14 @@ const Dashboard = () => {
                     <img src={forumsImage} alt="" className='w-40 ml-4' />
             </NavLink>
             </li>
-            <li key="nav-dashboard" className='flex-1 bg-gray-100 min-w-[250px]'>
+            <li key="mycourses" className='flex-1 bg-gray-100 min-w-[250px]'>
             <NavLink end to="/mycourses" 
                 className={({isActive})=> `flex items-center flex-1 justify-evenly p-6 shadow-md text-gray-900`}>
                     <h3 className='font-bold'>Go to Courses</h3>
                     <img src={coursesImage} alt="" className='w-40 ml-4' />
             </NavLink>
             </li>
-            <li key="nav-dashboard" className='flex-1 bg-gray-100 min-w-[250px]'>
+            <li key="profile" className='flex-1 bg-gray-100 min-w-[250px]'>
             <NavLink end to="/profile/dashboard" 
                 className={({isActive})=> `flex items-center flex-1 justify-evenly p-6 shadow-md text-gray-900`}>
                     <h3 className='font-bold'>Go to Tools</h3>
