@@ -26,7 +26,11 @@ export default {
       },
       fontFamily: {
         montserrat: ['montserrat', 'sans'],
+
       },*/
+
+      }
+
     },
   },
   plugins: [],

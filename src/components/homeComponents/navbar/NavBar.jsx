@@ -6,7 +6,7 @@ export default function navBar() {
     <>
       <nav className=" bg-lightGrey text-blue-950 items-center flex justify-between sticky top-0 px-5">
 
-        <Link to="/LoginSignUp" className="place-self-end">
+        <Link to="/login" className="place-self-end">
           <button className="bg-[#040E53] text-white md:py-4 md:px-14 px-10 py-3 border text-lg rounded-md">
             Login
           </button>

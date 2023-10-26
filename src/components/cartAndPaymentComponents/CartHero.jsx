@@ -1,6 +1,7 @@
 import React from "react";
 
-import navBar from "../homeComponents/navbar/NavBar";
+
+
 import courseSelected from "../../assets/Images/courseSelected.png";
 import customersImage from "../../assets/Images/customersImage.png";
 import { BsCart3 } from "react-icons/bs";
@@ -94,7 +95,7 @@ export default function CartHero() {
                     <img
                       src={courseSelected}
                       alt=""
-                      className="rounded-lg md:rounded-s-lg lg:rounded-s-lg"
+                      className="roundednvm -lg md:rounded-s-lg lg:rounded-s-lg"
                     />
                     <div className="absolute top-0 bg-white left-0 m-2 text-black p-2 rounded-full text-[10px] font-bold">
                       2,500{" "}
