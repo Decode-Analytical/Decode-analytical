@@ -28,3 +28,16 @@
 body {
   font-family: Montserrat;
 }
+
+.activeCoursePageNav {
+  @apply text-[#000000] border-b-2 border-[#1F1F1F] px-[4px] pb-[11px] text-lg; 
+}
+
+.nonActiveCoursePage {
+  @apply font-bold text-lg text-[#6A6F73]
+}
+
+.NextIcon {
+  @apply md:text-2xl text-lg
+}
+

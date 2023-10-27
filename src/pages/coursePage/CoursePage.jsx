@@ -3,7 +3,8 @@ import {
   OverView,
   Video,
   CourseContent,
-  Comment,
+  Review,
+  CreateComment,
 } from "../../components/coursePage";
 import Menu from "./Menu.png";
 import Close from "./Close.png";
@@ -19,11 +20,24 @@ const CoursePage = () => {
   const param = useParams();
   const navigation = useNavigate();
   const { id } = param;
+  const [comments, SetAddComments] = useState({
+    comment: false,
+    message: "",
+  });
+
+  // Retrieve the stored course ID from localStorage
+  const storedCourseID = localStorage.getItem("courseID");
+  const isSameCourse = storedCourseID === id;
   const { isLoading, data } = useGetCourseDataQuery(id);
-  console.log(data)
-  const [trackVideo, setTrackVideo] = useState(localStorage.getItem("trackVideo") || 0);
-  // const [courseData, setCourseData] = useState(undefined);
-  // console.log(isLoading, data);
+  // console.log(data)
+
+  if (!isSameCourse) {
+    localStorage.removeItem("trackVideo");
+    localStorage.removeItem("courseID");
+  }
+  const [trackVideo, setTrackVideo] = useState(
+    localStorage.getItem("trackVideo") || 0
+  );
 
   const [fullScreen, setFullScreen] = useState(false);
   const [hiddenControl, setHiddenControl] = useState(false);
@@ -51,12 +65,12 @@ const CoursePage = () => {
       if (trackVideo === null) {
         setTrackVideo(0);
       }
-      localStorage.removeItem("trackVideo")
-      localStorage.removeItem("courseID")
+      localStorage.removeItem("trackVideo");
+      localStorage.removeItem("courseID");
       // console.log("Early",trackVideo)
       if (trackVideo <= modules.length) {
         setTrackVideo(trackVideo + 1);
-        console.log(trackVideo)
+        console.log(trackVideo);
         for (let tracker in modules) {
           // console.log(tracker)
           if (tracker == trackVideo) {
@@ -69,21 +83,31 @@ const CoursePage = () => {
     }
   }
 
+  function commentAddorNot(message) {
+    SetAddComments({
+      comment: true,
+      message,
+    });
+  }
+
   function Nextpplay(play) {
     if (play === true) {
       // Increment the trackVideo using the current value
       setTrackVideo((prevTrackVideo) => {
         const nextTrackVideo = prevTrackVideo + 1;
         // Store the updated value in localStorage
-        console.log(trackVideo)
+        console.log("NextTrackVideo", nextTrackVideo);
         localStorage.setItem("trackVideo", nextTrackVideo);
         return nextTrackVideo;
       });
-      localStorage.setItem("courseID", data.courseTitle._id);
-      navigation(`/Quiz/${modules[trackVideo]._id}`);
+      console.log("TrackVideo", trackVideo)
+      if (data.result[trackVideo].question) {
+        localStorage.setItem("courseID", data.result[trackVideo].courseId);
+        navigation(`/Quiz/${modules[trackVideo]._id}`);
+      }
     }
   }
-  
+
   if (isLoading) {
     return <h2>Loading ...</h2>;
   }
@@ -92,18 +116,24 @@ const CoursePage = () => {
   }
 
   function courseUpdate(index) {
-    setTrackVideo(index)
+    setTrackVideo(index);
   }
 
   return (
     <div className="bg-[#F5F5F5]">
+      {comments.comment && (
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-800 text-white px-4 py-2 rounded-md animate-popup">
+          {comments.message}
+        </div>
+      )}
       <div className={`md:mx-2 mt-3 ${fullScreen ? "" : "md:flex md:gap-3"}`}>
-        <div className={`${fullScreen ? "" : "md:flex-1"}`}>
+        <div className={`${fullScreen ? "" : "md:w-3/4"}`}>
           <Video
             fullScreen={fullScreen}
             handleFullScreen={handleFullScreen}
             Nextplay={Nextpplay}
-            modules={data.courseTitle.modules[trackVideo]}
+            // modules={data.courseTitle.modules[trackVideo]}
+            modules={data.result[trackVideo]}
           />
           <img
             alt=""
@@ -112,7 +142,7 @@ const CoursePage = () => {
             onClick={handleHiddenControl}
           />
           <ul
-            className={`md:p-5 md:flex md:gap-5 ${
+            className={`md:p-5 md:flex md:gap-[4.5rem] ${
               hiddenControl
                 ? " flex flex-col z-50 absolute left-5 gap-2 p-2 bg-[#808080ad] backdrop-blur-md"
                 : "hidden"
@@ -132,7 +162,7 @@ const CoursePage = () => {
             <li>
               <button
                 type="button"
-                className={`${showCourseContent == "OverView" && "underline"}`}
+                className={`${showCourseContent == "OverView" ? "activeCoursePageNav" : "nonActiveCoursePage"} `}
                 onClick={() => handleShowCourseContent("OverView")}
               >
                 Overview
@@ -141,7 +171,7 @@ const CoursePage = () => {
             <li>
               <button
                 type="button"
-                className={`${showCourseContent == "Comment" && "underline"}`}
+                className={`${showCourseContent == "Comment" ? "activeCoursePageNav" : "nonActiveCoursePage"}`}
                 onClick={() => handleShowCourseContent("Comment")}
               >
                 Comment
@@ -150,7 +180,7 @@ const CoursePage = () => {
             <li>
               <button
                 type="button"
-                className={`${showCourseContent == "Review" && "underline"}`}
+                className={`${showCourseContent == "Review" ? "activeCoursePageNav" : "nonActiveCoursePage"}`}
                 onClick={() => handleShowCourseContent("Review")}
               >
                 Review
@@ -159,7 +189,7 @@ const CoursePage = () => {
           </ul>
 
           {/* {showCourseContent === "Course Content" && <CourseContent />} */}
-          {showCourseContent === "OverView" && (
+          {/* {showCourseContent === "OverView" && (
             <OverView
               des={data.courseTitle.course_description}
               lengthmodules={data.courseTitle.modules.length}
@@ -167,12 +197,11 @@ const CoursePage = () => {
               modules={data.courseTitle.modules}
               totalRigistered={data.courseTitle.totalRegisteredByStudent}
             />
-          )}
-          {showCourseContent === "Comment" && (
-            <div>
-              <Comment />
-            </div>
-          )}
+          )} */}
+          {/* {showCourseContent === "Comment" && (
+            <CreateComment courseId={data.courseTitle._id} comment={commentAddorNot} />
+          )} */}
+          {/* {showCourseContent === "Review" && <Review/>} */}
           {showCourseContent === "Course Content" && (
             <div className="bg-white">
               <div className={`flex justify-between p-4`}>
@@ -188,7 +217,7 @@ const CoursePage = () => {
               </div>
               <div className={`${showCourseContent ? "flex" : "hidden"}`}>
                 <CourseContent
-                  modules={data.courseTitle.modules}
+                  modules={data.result}
                   watchVideo={Trackvideo}
                   courseClick={courseUpdate}
                 />
@@ -214,7 +243,7 @@ const CoursePage = () => {
           </div>
           <div className={`${showCourseContent ? "flex" : "hidden"}`}>
             <CourseContent
-              modules={data.courseTitle.modules}
+              modules={data.result}
               watchVideo={Trackvideo}
               courseClick={courseUpdate}
             />

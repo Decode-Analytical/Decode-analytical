@@ -85,7 +85,7 @@ const CourseContent = ({ modules, watchVideo, courseClick }) => {
               <ul>
                 {item.video.map((video) => (
                   <li
-                    key={video._id}
+                    key={mainIndex}
                     className={`${
                       openCourseIndices.includes(mainIndex) ? "hidden" : "flex"
                     } flex-col p-5 gap-5 ml-4`}
@@ -104,7 +104,7 @@ const CourseContent = ({ modules, watchVideo, courseClick }) => {
                             markVideoAsWatched(mainIndex, video._id)
                           }
                         />
-                        <h2 className="text-sm">{video.originalname}</h2>
+                        <h2 className="text-sm text-left">{video.originalname}</h2>
                       </div>
                     </button>
                     <div className="flex gap-2 items-center">

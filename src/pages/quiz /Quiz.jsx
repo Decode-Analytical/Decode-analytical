@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Header from "../../components/Quiz/Header";
 import Body from "../../components/Quiz/Body";
-import Footer from "../../components/Quiz/Footer";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   usePostCorrectQuizMutation,
@@ -11,15 +10,15 @@ import {
 const Quiz = () => {
   const [quizIndex, setQuizIndex] = useState(0);
   const [storeQuiz, setStoreQuiz] = useState([]);
-  let param = useParams();
-  const navigation = useNavigate()
-  let { id } = param;
+  // let param = useParams();
+  // const navigation = useNavigate()
+  // let { id } = param;
 
-  const { data, isLoading } = useViewCourseQuizQuery(id);
-  const courseID = localStorage.getItem("courseID")
-  if (data == undefined) {
-    return navigation(`/CousrsePage/${courseID}`)
-  }
+  // const { data, isLoading } = useViewCourseQuizQuery(id);
+  // const courseID = localStorage.getItem("courseID")
+  // if (data == undefined) {
+  //   return navigation(`/CousrsePage/${courseID}`)
+  // }
   const [postCorrectQuiz] = usePostCorrectQuizMutation();
 
   if (isLoading) {

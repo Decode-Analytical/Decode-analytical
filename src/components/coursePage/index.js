@@ -1,11 +1,13 @@
 import OverView from "./overView/OverView";
 import CourseContent from "./courseContent/CourseContent"
 import Video from "./videoPlay/Video"
-import Comment from "./comments/Comments";
+import Review from "./review/Review";
+import CreateComment from "./comments/CreateComment";
 
 export {
     OverView,
     CourseContent,
     Video,
-    Comment
+    Review,
+    CreateComment
 }

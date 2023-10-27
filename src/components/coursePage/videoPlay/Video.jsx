@@ -6,6 +6,9 @@ import setting from "./Setting.png";
 import reszing from "./Resizing.png";
 import Background from "./BackgroudScreen.png";
 import DefaultSize from "./DefaultSize.png";
+import { FcNext } from "react-icons/fc";
+import { IconContext } from "react-icons";
+import { MdNavigateNext } from "react-icons/md";
 
 const Video = ({
   fullScreen,
@@ -15,8 +18,6 @@ const Video = ({
   Nextplay,
   modules,
 }) => {
-  const [FetchData, setFetchData] = useState([]);
-  // useEffect(() => {}
   const videoRef = useRef(null);
   const [volume, setVolume] = useState(1);
   const [currentMinutes, setCurrentMinutes] = useState("0:00");
@@ -29,7 +30,7 @@ const Video = ({
     video: "",
     image: "",
   });
-
+  // console.log(modules)
   // if (currentMinutes === duration) {
   //   Nextplay(true);
   //   Nextplay(false)
@@ -81,7 +82,7 @@ const Video = ({
   };
 
   useEffect(() => {
-    const video = videoRef.current;
+    // const ty = videoRef.current;
     if (modules) {
       console.log(modules);
       setVideoImageTracker({
@@ -97,11 +98,22 @@ const Video = ({
     const video = videoRef.current;
     if (VideoImageTracker.video && video) {
       video.src = VideoImageTracker.video;
-      setIsPlaying(true)
+      setIsPlaying(true);
     }
   }, [VideoImageTracker]);
 
   const [isDragging, setIsDragging] = useState(false);
+  const [Opensetting, setSetting] = useState(false);
+  // const [FastForwad, setFastForawad] = useState("Normal")
+  const [playbackSpeed, setPlaybackSpeed] = useState("Normal");
+  // let fastforwad = ["2x", "1.5x", "Normal", "0.75x", "0.5x"];
+  const speedMapping = {
+    "2x": 2.0,
+    "1.5x": 1.5,
+    Normal: 1.0,
+    "0.75x": 0.75,
+    "0.5x": 0.5,
+  };
 
   const handlePlayandPause = () => {
     const video = videoRef.current;
@@ -148,9 +160,18 @@ const Video = ({
     video.currentTime = pos;
   };
 
+  function changePlaybackSpeed(speed) {
+    if (speed in speedMapping) {
+      const floatSpeed = speedMapping[speed];
+      videoRef.current.playbackRate = floatSpeed;
+      setPlaybackSpeed(speed);
+    }
+  }
+
   const HandleVolumnHidden = () => {
     setHiddenVolumn(!hiddenVolumn);
   };
+  let style = { color: "white", fontSize: "1.5em" };
   return (
     <div
       className="relative h-fit flex justify-center items-center"
@@ -162,6 +183,23 @@ const Video = ({
         className={`${isPlaying ? "hidden" : "absolute"} md:w-28 w-14 `}
         // onClick={handlePlayandPause}
       />
+      <button
+        type="button"
+        className={`${isPlaying ? "hidden" : "absolute"} right-9`}
+      >
+        <IconContext.Provider
+          value={{
+            color: "white",
+            style: { verticalAlign: "middle"},
+            size: 'auto'
+
+          }}
+        >
+          <div className="md:w-[4.4rem] md:h-[4.5rem] w-14 h-[3.4rem] bg-[#111111CC] border border-white">
+            <MdNavigateNext className="NextIcon" />
+          </div>
+        </IconContext.Provider>
+      </button>
       <video
         // src={VideoImageTracker.video}
         id="video"
@@ -232,8 +270,35 @@ const Video = ({
               <img src={cc} alt="cc" className="w-6 cursor-pointer" />
             </button>
           </li>
+          <li
+            className={`w-40 h-48 absolute right-[8px] bottom-[43px] border ${
+              Opensetting ? "block" : "hidden"
+            }`}
+          >
+            <ul className="z-10 bg-slate-400 flex flex-col">
+              {Object.keys(speedMapping).map((result, index) => (
+                <li
+                  className={`text-center p-2 hover:bg-orange-300 ${
+                    result == playbackSpeed && "bg-orange-600"
+                  }`}
+                  key={index}
+                  onClick={() => changePlaybackSpeed(result)}
+                >
+                  {result}
+                </li>
+              ))}
+              {/* <li className="text-center p-2 hover:bg-orange-300">1.5x</li>
+              <li className="text-center p-2 hover:bg-orange-300">Normal</li>
+              <li className="text-center p-2 hover:bg-orange-300">0.75x</li>
+              <li className="text-center p-2 hover:bg-orange-300">0.5x</li> */}
+            </ul>
+          </li>
           <li className="h-6">
-            <button type="button" className="md:w-5 w-3">
+            <button
+              type="button"
+              className="md:w-5 w-3"
+              onClick={() => setSetting(!Opensetting)}
+            >
               <img src={setting} alt="setting" className="cursor-pointer" />
             </button>
           </li>

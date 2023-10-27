@@ -10,7 +10,7 @@ export default {
       'md': '769px',
       'lg': '1024px',
       'xl': '1280px',
-      '2xl' : '1380'
+      '2xl' : '1380px'
     },
     extend: {
       keyframes:{
@@ -19,10 +19,29 @@ export default {
           '80%': { transform: 'scaleY(1.2)' },
           '100%': { transform: 'scaleY(1)' },
         },
+        "popup": {
+          "0%": {
+            opacity: 0,
+            transform: "translate(-50%, -70%)"
+          },
+          "10%": {
+            opacity: 1,
+            transform: "translate(-50%, -50%)"
+          },
+          "90%": {
+            opacity: 1,
+            transform: "translate(-50%, -50%)"
+          },
+          "100%": {
+            opacity: 0,
+            transform: "translate(-50%, -70%)"
+          }
+        }
       },
       animation: {
         'open-menu': 'open-menu 0.5s ease-in-out forwards',
-        'ping-short': 'ping 1s ease-in-out 1'
+        'ping-short': 'ping 1s ease-in-out 1',
+        "animate-popup": "popup 3s ease-in-out",
       },
       gridTemplateColumns: {
         'video-grid' : 'repeat(2 , minmax(70%,30%))'
