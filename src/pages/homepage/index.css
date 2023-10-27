@@ -1,7 +1,7 @@
 
 .hero {
   background-image: url(../src/assets/homepageImages/main.png);
-background-size: 100%, 2%;
+background-size: 100% 2%;
 }
 .bg {
   background-image: url(../src//assets/homepageImages/bg.png);
