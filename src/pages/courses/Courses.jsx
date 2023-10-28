@@ -1,11 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import CourseHero from '../../components/CourseHero/Coursehero';
 import CoursesCard from '../../components/CourseHero/CoursesCard';
-import pattern from '../../assets/courses Images/Courses.jpeg';
-import FreeCourses from '../../components/CourseHero/FreeCourses';
-import course1 from '../../assets/courses Images/no_curve_analytics.jpeg';
-import course2 from '../../assets/courses Images/2.jpeg';
-import course3 from '../../assets/courses Images/3.jpeg';
 
 
 
@@ -50,6 +45,7 @@ export default function Courses() {
           <br />
           <br />
         </section>
+        
         {/* <button onClick={() => getCourses()}>Get Free Courses</button> */}
         <div className='text-center items-center p-3'>
         <button className='p-[1rem] rounded-md border-[2px] font-bold'>View More Courses</button>
