@@ -78,7 +78,7 @@ export default function CoursesCard(props) {
   } = props;
   return (
     <div className="w-full p-4">
-      <div className="max-w-[50rem] w-[20rem] max-h-[35rem] md:w-[30rem] bg-white p-4 rounded-3xl overflow-hidden border-[2px] border-neutral-400 mx-auto h-[40rem]">
+      <div className="max-w-[50rem] w-[20rem] max-h-[35rem] md:w-[27rem] bg-white p-4 rounded-3xl overflow-hidden border-[2px] border-neutral-400 mx-auto h-[40rem]">
         <div className="relative">
           <img
             className="w-[100%] object-center rounded-xl rounded-b-none absolute -z-1"
@@ -114,7 +114,7 @@ export default function CoursesCard(props) {
             {isPaid_course === "free" ? (
               <div className=" flex justify-between">
                 <a
-                  href={`//${_id}`}
+                  href={`/PremiumCourses/${_id}`}
                   className="text-blue-900 font-bold px-2 mr-5 py-2 rounded-md"
                 >
                   View Course {">"}
@@ -124,7 +124,12 @@ export default function CoursesCard(props) {
             ) : (
               <div className=" flex justify-between">
                 <button className=" border-[2px] border-black hover:bg-gray-400 px-5 mr-5 py-2 rounded-md">
+                <a
+                  href={`/PremiumCourses/${_id}`}
+                  className="text-blue-900 font-bold px-2 mr-5 py-2 rounded-md"
+                >
                   {isPrice_course}
+                  </a>
                 </button>
                 <p className=" line-through px-5 mr-5 py-2">100,000 NGN</p>
               </div>

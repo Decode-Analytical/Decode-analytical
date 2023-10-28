@@ -1,42 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import Axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-export default function CourseOverview() {
-    const courseURL = 'https://decode-mnjh.onrender.com/api/course/viewAllCourses';
-    const apiKey = import.meta.env.VITE_API_KEY;
+
+
+export default function CourseOverview(_id) {
+    let { courseId } = useParams()
+    const courseURL = `https://decode-mnjh.onrender.com/api/course/viewAllCourses?_id=${_id}`;
+    const apiKey = import.meta.env.VITE_ACCESS_TOKEN;
     const token = apiKey;
+    console.log(useParams())
+    console.log(courseId)
 
-    // VIEW THE COURSES STATE
-    const [courses, setCourses] = useState([]);
-    const [showAllCourses, setShowAllCourses] = useState(false);
+
+    const [courseDetails, setCourseDetails] = useState([]);
+
 
     useEffect(() => {
-        const fetchCourses = async () => {
-            try {
-                const response = await Axios.get(courseURL, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-
-                if (response.data && response.data.courses) {
-                    setCourses(response.data.courses);
-                    console.log(response.data);
+        // Make an API request to fetch more information about the course using courseId
+        const fetchCourseDetails = async () => {
+          try {
+            const response = await fetch(courseURL, {
+                headers: {
+                    Authorization : `Bearer ${token}`
                 }
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
+            })
+            const data = await response.json();
+            console.log(data)
+            setCourseDetails(data.courses)
+
+          } catch (error) {
+            console.error('Error fetching course details:', error);
+            // console.log(_id)
+          }
         };
-
-        fetchCourses();
-    }, [token]);
-
-    const visibleCourses = showAllCourses ? courses : courses.slice(0, 3);
-    const buttonText = showAllCourses ? 'View Less' : 'View All';
+    
+        fetchCourseDetails();
+      }, []);
 
     return (
         <>
-            <section className='max-w-[1000px] m-auto'>
+            <section className='max-w-[1000px] m-auto font-montserrat'>
                 <div className="px-[5%] md:w-[90%]">
                     <div className="">
                         <p className="text-3xl mt-20 font-bold">
@@ -44,44 +47,21 @@ export default function CourseOverview() {
                         </p>
 
                         <p className="text-xs md:text-sm mt-5">
-                            This course will teach you the fundamentals of UI design and how to create visually appealing user interfaces. You will study the fundamental tools, layouts, mockups, and techniques that product designers use to create remarkable interfaces.
+                            This course will teach you the fundamentals of {/*UI design and how to create visually appealing user interfaces. You will study the fundamental tools, layouts, mockups, and techniques that product designers use to create remarkable interfaces.*/}
                         </p>
                     </div>
 
                     <div className="mt-10 flex justify-between">
                         <p className="font-bold text-2xl">
-                            {showAllCourses ? `${courses.length} Courses` : '3 Courses'}
+                            {/* {showAllCourses ? `${courses.length} Courses` : '3 Courses'} */}
+                            Module
                         </p>
 
                         <p className="hidden md:block font-bold text-2xl">
                             What you will cover in this course
                         </p>
                     </div>
-
-                    <div className="mt-10 space-y-5">
-                        {visibleCourses.map((course, index) => (
-                            <div className="mt-1 md:flex justify-between" key={course._id}>
-                                <p className="">
-                                    {course.course_title}
-                                </p>
-
-                                <p className="text-xs">
-                                    32:34 mins
-                                </p>
-                            </div>
-                        ))}
-
-                        {courses.length > 3 && (
-                            <div className="">
-                                <button
-                                    className='mt-5 w-28 border border-purple-700 text-purple-700 text-lg rounded-md hover:bg-purple-300'
-                                    onClick={() => setShowAllCourses(!showAllCourses)}
-                                >
-                                    {buttonText}
-                                </button>
-                            </div>
-                        )}
-                    </div>
+                   <p>{courseDetails[0]._id}</p>
                 </div>
             </section>
         </>

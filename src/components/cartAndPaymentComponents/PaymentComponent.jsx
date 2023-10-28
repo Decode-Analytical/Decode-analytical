@@ -38,8 +38,8 @@ export default function PaymentComponent() {
 
                         <div className=" ">
                             <div className=" sm:flex justify-between">
-                                <div className="  text-2xl font-bold mt-3 flex bg-gray-400 rounded-md py-2  items-center md:pr-5 ] ">
-                                    <div className=" mx-3">
+                                <div className="  text-sm space-x-5 font-bold mt-3 flex bg-gray-400 rounded-md py-2  items-center md:pr-5 ] ">
+                                    <div className=" flex mx-3">
                                         <input type="checkbox" name='masterVisa' className=' mr-1'/>
                                         <span className="">
                                             master/debit card

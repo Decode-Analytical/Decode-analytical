@@ -1,9 +1,5 @@
 import React from 'react'
-import pattern from '../../assets/courses Images/pattern.png'
 import Ellipse from '../../assets/courses Images/Ellipse.png'
-import coursebg from '../../assets/courses Images/no_curve_analytics.jpeg';
-import course2 from '../../assets/courses Images/2.jpeg'
-import course3 from '../../assets/courses Images/3.jpeg'
 import CoursesCard from './CoursesCard';
 import {BsClockHistory} from "react-icons/bs"
 import {BsGraphUpArrow} from "react-icons/bs"

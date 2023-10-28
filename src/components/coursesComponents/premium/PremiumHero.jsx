@@ -7,11 +7,11 @@ import {BsFillPeopleFill} from "react-icons/bs"
 import {BsAward} from "react-icons/bs"
 import {BsFillRssFill} from "react-icons/bs"
 
-export default function PremiumHero() {
+export default async function PremiumHero() {
   return (
     <>
         <section>
-            <div className=" bg-img bg-cover bg-no-repeat bg-center  md:h-[550px] mt-10 p-10"> {/*  BACKGROUND IMAGE IMPORTED FROM APP.CSS */}
+            <div className="bg-img bg-cover bg-no-repeat bg-center  md:h-[550px] mt-10 p-10"> {/*  BACKGROUND IMAGE IMPORTED FROM APP.CSS */}
                 <div className=" md:max-w-[95%] m-auto">
                     <Link to='/freeCourses'>
                         <button className=' bg-[#D9DBE5] rounded-xl px-6 md:mt-24'>
@@ -56,6 +56,7 @@ export default function PremiumHero() {
                     </div>
                 </div>
             </div>
+            <img src={"https://picsum.photos/200/300"}/>
         </section>
     </>
   )
