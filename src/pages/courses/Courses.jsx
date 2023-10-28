@@ -38,7 +38,7 @@ export default function Courses() {
       <>
       <div className='mx-auto font-montserrat z-10'>
           <CourseHero />
-          <section className="mx-auto items-center grid grid-cols-1 pt-20 pb-14 overflow-hidden md:grid-cols-2 lg:grid-cols-3 gap-10 place-content-center ml-11">
+          <section className="mx-auto items-center grid grid-cols-1 pt-20 pb-14 overflow-hidden md:grid-cols-2 lg:grid-cols-3 gap-10 place-content-center">
           {res.map((details, index) => {
               return <CoursesCard key={index + 1} {...details} />;
           })}

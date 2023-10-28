@@ -78,10 +78,10 @@ export default function CoursesCard(props) {
   } = props;
   return (
     <div className="w-full p-4">
-      <div className="max-w-[50rem] w-[25rem] max-h-[35rem] bg-white p-4 rounded-3xl overflow-hidden border-[2px] border-neutral-400 mx-auto h-[40rem]">
+      <div className="max-w-[50rem] w-[20rem] max-h-[35rem] md:w-[30rem] bg-white p-4 rounded-3xl overflow-hidden border-[2px] border-neutral-400 mx-auto h-[40rem]">
         <div className="relative">
           <img
-            className="w-full object-center rounded-xl rounded-b-none absolute -z-1"
+            className="w-[100%] object-center rounded-xl rounded-b-none absolute -z-1"
             src={course_image[0].path}
             alt={course_title}
           />
@@ -90,7 +90,7 @@ export default function CoursesCard(props) {
           <div className="bg-white w-full mb-[1rem] p-2">
             <div className="font-bold text-xl mb-3 ">{course_title}</div>
             <div className="font-normal mb-1 ">{course_description}</div>
-            <div className="flex">
+            <div className="flex py-3">
               <img src={Ellipse} alt="" />
               &nbsp; <span className="py-1 pr-2">By: Mac Kinglsey</span>
             </div>
