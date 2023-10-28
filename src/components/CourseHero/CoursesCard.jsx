@@ -1,9 +1,16 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+
+
 import '../courseCard/card.css';
 import {BsClockHistory} from "react-icons/bs";
 import {BsGraphUpArrow} from "react-icons/bs";
 import Ellipse from "../../assets/courses Images/Ellipse.png";
 
+const courseURL = 'https://decode-mnjh.onrender.com/api/course/viewAllCourses';
+const apiKey = import.meta.env.VITE_API_KEY;
+const token = apiKey;
 
 export default function CoursesCard(props) {
   let stars = [
@@ -68,17 +75,40 @@ export default function CoursesCard(props) {
       />
     </svg>,
   ];
-    const { title, image, description, time, price, priceBefore } = props
+    const { course_title, course_description, course_image, isPrice_course, _id} = props
+
+    const [courses, setCourses] = useState([]); 
+
+    useEffect(() => {
+      const fetchCourses = async () => {
+        try {
+          const response = await axios.get(courseURL, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+  
+          if (response.data && response.data.courses) {
+            setCourses(response.data.courses);
+            console.log(response.data);
+          }
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+  
+      fetchCourses();
+    }, [token]);
     return (
       <div className="w-full p-4">
         <div className="max-w-[25rem] bg-white p-4 rounded-3xl overflow-hidden border-[2px] border-neutral-400 mx-auto h-[30rem]">
           <div className='relative'>
-            <img className="w-full max-h-[19rem] object-cover rounded-xl rounded-b-none absolute -z-1" src={image} alt={title} />
+          <img className="w-full max-h-[19rem] object-cover rounded-xl rounded-b-none absolute -z-1" src={course_image[0].path} alt={course_title} />
           </div>
           <div className="flex flex-col items-start justify-end h-full relative z-10 ">
             <div className='bg-white w-full mb-[1rem]'>
-              <div className="font-bold text-xl mb-1 py-[10px]">{title}</div>
-                <div className="font-normal mb-1 py-[10px]">{description}</div>
+              <div className="font-bold text-xl mb-1 py-[10px]">{course_title}</div>
+                <div className="font-normal mb-1 py-[10px]">{course_description}</div>
                   <div className='flex'>
                     <img src={Ellipse} alt="" />&nbsp; <span className='py-1 pr-2'>By: Mac Kinglsey</span>
                   </div>
@@ -99,14 +129,17 @@ export default function CoursesCard(props) {
                     </p>
                   </div>
 
-                  <div className=" flex justify-between">
-                    <button className=" border-[2px] border-black hover:bg-gray-400 px-5 mr-5 py-2 rounded-md">
-                      {price}
-                    </button>
-                    <p className=" line-through px-5 mr-5 py-2">
-                      100,000 NGN
-                    </p>
-                  </div> 
+                  {isPrice_course === 0 ? (
+                    <Link to={`/premiumCourses/${_id}`} className="border-[2px] border-black hover:bg-gray-400 px-5 py-2 rounded-md">
+                      Free
+                  </Link>
+                  ) : (
+                    <div className=" flex justify-between">
+                      <button className="border-[2px] border-black hover:bg-gray-400 px-5 mr-5 py-2 rounded-md">
+                        Price: {isPrice_course} NGN
+                      </button>
+                    </div>
+                  )}
           </div>
         </div>
       </div>

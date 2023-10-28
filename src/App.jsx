@@ -28,6 +28,7 @@ import InstructorProfile from "./pages/homepage/InstructorProfile";
 import CourseInfo from "./pages/courseUpload/CourseInfo";
 import ResetPassword from "./pages/authetication/ResetPassword";
 import Nysc from "./pages/authetication/Nysc";
+import CourseOverview from "./components/coursesComponents/premium/CourseOverview";
 
 function App() {
   return (
@@ -41,7 +42,8 @@ function App() {
               <Route path="/LoginSignUp" element={<LoginSignUp />} />
               <Route path="/PasswordReset" element={<PasswordReset />} />
               <Route path="/FreeCourses" element={<FreeCourses />} />
-              <Route path="/PremiumCourses" element={<PremiumCourses />} />
+              {/* <Route path="/PremiumCourses" element={<PremiumCourses />} />
+              <Route path="/premiumCourses/:courseId" component={PremiumCourses} /> */}
               <Route path="/CartPage" element={<CartPage />} />
               <Route path="/PaymentPage" element={<PaymentPage />} />
               <Route path="/Dashboard" element={<Dashboard />} />
@@ -52,10 +54,7 @@ function App() {
               <Route path="/mycourses" element={<MyCourse />} />
               <Route path="/profile/*" element={<Profile />} />
               <Route path="/PurchasedPage" element={<PurchasedPage />} />
-              <Route
-                path="/InstrucructorProfile"
-                element={<InstrucructorProfile />}
-              />
+              <Route path="/InstrucructorProfile" element={<InstrucructorProfile />} />
               <Route path="/Courses" element={<Courses />} />
               <Route path="/nysc" element={<Nysc />} />
               <Route path="/login" element={<Signin />} />
@@ -65,8 +64,10 @@ function App() {
               <Route path="/tutor/:id" element={<InstructorProfile />} />
               <Route path="/courseinfo" element={<CourseInfo />} />
               <Route path="/resetpassword" element={<ResetPassword />} />
-              <Route path="/AllPages" element={<AllPages />} />{" "}
-              {/* this will be removed, not part of the code. it is just so we can navigate all pages  */}
+              <Route path="/premiumCourses" element={<PremiumCourses />}>
+                <Route path=":courseId" element={<CourseOverview />} />
+              </Route>
+              <Route path="/AllPages" element={<AllPages />} /> {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
             </Routes>
           </div>
         </div>
