@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
+
 export default function CourseHero() {
   let searchItem = "Graphics Design";
   return (
@@ -39,9 +41,17 @@ export default function CourseHero() {
           />
         </div>
         <div className="flex justify-start gap-3 py-[2rem] text-black">
-          <p className="p-[10px] px-[20px] rounded-full bg-white">Free</p>
-          <p className="p-[10px] px-[20px] rounded-full bg-white">Paid</p>
-          <p className="p-[10px] rounded-full bg-white">All Courses</p>
+          <Link to = '/freeCourses'>
+            <button className="p-[10px] px-[20px] rounded-full bg-white">Free</button>
+          </Link>
+
+          <Link to = '/premiumCourses'>
+            <button className="p-[10px] px-[20px] rounded-full bg-white">Premium</button>
+          </Link>
+          
+          <Link to=''>
+            <button className="p-[10px] rounded-full bg-white">All Courses</button>
+          </Link>
         </div>
       </section>
       <section className="course-items font-montserrat">

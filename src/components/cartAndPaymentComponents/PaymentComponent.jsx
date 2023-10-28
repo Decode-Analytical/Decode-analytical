@@ -20,7 +20,7 @@ export default function PaymentComponent() {
                     </Link>
 
                     <div className=" flex items-center justify-between md:space-x-24">
-                        <p className=" text-5xl font-extrabold mt-5">
+                        <p className=" text-3xl md:text-5xl font-extrabold mt-5">
                             Check Out
                         </p>
 

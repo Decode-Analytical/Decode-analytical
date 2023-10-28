@@ -1,6 +1,7 @@
 import React from "react";
 
-import navBar from "../homeComponents/navbar/NavBar";
+
+
 import courseSelected from "../../assets/Images/courseSelected.png";
 import customersImage from "../../assets/Images/customersImage.png";
 import { BsCart3 } from "react-icons/bs";
@@ -88,14 +89,14 @@ export default function CartHero() {
             <div className=" lg:flex justify-between ">
               {" "}
               {/* WRAPPER TO FLEX THE DESKTOP VIEW  */}
-              <div className="px-[20px]">
-                <div className=" md:flex justify-between items-center border space-x-10 p-3 rounded-2xl border-[#e7e7e7]">
+              <div className="px-[1.5em]">
+                <div className=" md:flex justify-between items-center border space-x-10  rounded-2xl border-[#e7e7e7]">
                   <div className="relative">
                     <img
                       src={courseSelected}
                       alt=""
-                      className="roundednvm -lg md:rounded-s-lg lg:rounded-s-lg"
-                    />
+                      className="roundednvm -lg md:rounded-s-lg lg:rounded-s-lg"/>
+
                     <div className="absolute top-0 bg-white left-0 m-2 text-black p-2 rounded-full text-[10px] font-bold">
                       2,500{" "}
                       <span className="font-normal">already enrolled!</span>
@@ -147,10 +148,9 @@ export default function CartHero() {
                     </div>
 
                     <div className=" inline-flex">
-                     
-                       <button className=" border-[2px] border-black hover:bg-gray-400 px-5 mr-5 py-2 rounded-md">
-                                    15,000
-                                </button>
+                       <button className=" border-[1px] border-black hover:bg-gray-400 px-5 mr-5 py-2 rounded-md">
+                          15,000
+                        </button>
 
                       <p className=" line-through px-4 py-2 font-bold ml-9">
                         45,000 NGN
@@ -158,6 +158,8 @@ export default function CartHero() {
                     </div>
                   </div>
                 </div>
+
+                
                 <div className=" space-x-10 mt-5 flex justify-start lg:justify-end md:justify-end">
                   <button className="border rounded-md font-semibold text-[15px] px-3 py-2 hover:bg-red-500 hover:border-red-500">
                     Remove
@@ -168,6 +170,9 @@ export default function CartHero() {
                   </button>
                 </div>
               </div>
+
+
+              
               {/* =========================================== */}
               {/* THE CART TOTAL AND CHECKOUT BUTTON */}
               <div className=" mt-10 md:mt-0">

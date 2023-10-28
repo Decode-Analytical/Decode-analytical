@@ -30,8 +30,10 @@
   background-image: url("../src/assets/Images/cartBG.png");
 }
 
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 body {
-  font-family: 'Montserrat', Montserrat;
+  font-family: 'Montserrat'
 }

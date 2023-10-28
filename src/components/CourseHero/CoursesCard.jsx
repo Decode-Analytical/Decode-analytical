@@ -74,6 +74,7 @@ export default function CoursesCard(props) {
     time,
     isPrice_course,
     isPaid_course,
+    _id
   } = props;
   return (
     <div className="w-full p-4">
@@ -113,7 +114,7 @@ export default function CoursesCard(props) {
             {isPaid_course === "free" ? (
               <div className=" flex justify-between">
                 <a
-                  href="#"
+                  href={`//${_id}`}
                   className="text-blue-900 font-bold px-2 mr-5 py-2 rounded-md"
                 >
                   View Course {">"}

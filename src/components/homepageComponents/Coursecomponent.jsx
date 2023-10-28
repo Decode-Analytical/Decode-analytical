@@ -6,7 +6,7 @@ import {  FaChartBar, FaClock } from "react-icons/fa";
 
 export default function Coursecomponent() {
   return (
-    <div className="bg-white border border-zinc-300 rounded-lg p-3 text-left my-5">
+    <div className="bg-white border border-zinc-300 rounded-lg shadow-lg p-3 text-left my-5">
     <img src={track} className="center w-[100%]" />
     <p className="font-bold py-4">Data Analysis</p>
     <div className="flex flex-wrap items-center">
@@ -15,16 +15,16 @@ export default function Coursecomponent() {
     </div>
     <div className="flex flex-wrap items-center">
       <Rating rate={5} />
-      <p className="text-sm mt-3 ms-3">4.50 (24)</p>
+      <p className="text-sm mt-3 ms-2">4.50 (24)</p>
     </div>
-    <div className="flex justify-between py-4 text-zinc-500 text-base">
+    <div className="flex justify-between py-4 text-zinc-500 text-sm">
       <div className="flex flex-wrap items-center">
         <FaClock className='icon' />
-        <p className="ms-3">2hrs 30mins</p>
+        <p className="ms-2">2hrs 30mins</p>
       </div>
       <div className="flex flex-wrap items-center">
         <FaChartBar className='icon' />
-        <p className="ms-3">Beginner</p>
+        <p className="ms-2">Beginner</p>
       </div>
     </div>
     <div className="flex flex-wrap justify-between py-4">

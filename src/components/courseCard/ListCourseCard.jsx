@@ -11,9 +11,9 @@ const ListCourseCard = (props) => {
             <h3 className='font-semibold text-lg'>{title}</h3>
             <p className='text-gray-400'>see all</p>
         </div>
-        <ul className='flex flex-wrap justify-evenly gap-4'>
+        <ul className='flex flex-wrap justify-between gap-4'>
             {list.map(el => (
-                <li className='w-72'>
+                <li className='w-64'>
                     <CourseCard data={el} />
                 </li>
             ))}
