@@ -6,7 +6,7 @@ const CourseCard = (props) => {
   const {data} = props
   console.log(data)
   const {
-    id,
+    _id: id,
     title,
     image
   } = data

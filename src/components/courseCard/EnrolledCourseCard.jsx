@@ -1,12 +1,13 @@
 import React from 'react'
 import './card.css'
+import { NavLink } from 'react-router-dom'
 
 
 const EnrolledCourseCard = (props) => {
     const {title, course} = props
     console.log("Test:", )
     const {
-        id,
+        _id: id,
         title: courseTitle,
         description,
         image,
