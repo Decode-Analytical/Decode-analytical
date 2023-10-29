@@ -1,91 +1,61 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
 
-export default function CourseOverview() {
-  return (
-    <>
-        <section className='max-w-[1000px] m-auto'>
-            <div className=" px-[5%] md:w-[90%]">
-                <div className="">
-                    <p className=" text-3xl mt-5">
-                        Course Overview 
-                    </p>
 
-                    <p className=" text-xs md:text-sm">
-                        This course will teach you the fundamentals of UI design and how to create visually appealing user interfaces. You will study the fundamental tools, layouts, mockups, and techniques that product designers use to create remarkable interfaces.
-                    </p>
-                </div>
+export default function CourseOverview({ _id }) {
+    const courseURL = `https://decode-mnjh.onrender.com/api/course/viewAllCourses/CourseOverView/${_id}`;
+    const apiKey = import.meta.env.VITE_API_KEY;
+    const token = apiKey;
 
-                <div className=" mt-5 flex justify-between">
-                    <p className=" font-bold">
-                        14 Courses
-                    </p>
 
-                    <p className=" hidden md:block font-bold">
-                        What you will cover in this course
-                    </p>
-                </div>
+    const [courseDetails, setCourseDetails] = useState({});
 
-                <div className="">
-                    <div className=" mt-1 md:flex justify-between">
-                        <p className="">
-                            Introduction to UI/UX design
-                        </p>
 
-                        <p className=" text-xs">
-                            32:34 mins
-                        </p>
-                    </div>
+    useEffect(() => {
+        // Make an API request to fetch more information about the course using courseId
+        const fetchCourseDetails = async () => {
+          try {
+            const response = await Axios.get(courseURL, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            setCourseDetails(response.data.courses);
+          } catch (error) {
+            console.error('Error fetching course details:', error);
+            console.log(_id)
+          }
+        };
+    
+        fetchCourseDetails();
+      }, [_id]);
 
-                    {/* THIS DOWN WILL BE DELETED WHEN WE HAVE ACCESS TO THE BACKEND WE WILL MAP THROUGH */}
-
-                    <div className=" mt-5 md:flex justify-between">
-                        <p className="">
-                            Introduction to UI/UX design
-                        </p>
-
-                        <p className=" text-xs">
-                            32:34 mins
-                        </p>
-                    </div>
-
-                    <div className=" mt-5 md:flex justify-between">
-                        <p className="">
-                            Introduction to UI/UX design
-                        </p>
-
-                        <p className=" text-xs">
-                            32:34 mins
-                        </p>
-                    </div>
-
-                    <div className=" mt-5 md:flex justify-between">
-                        <p className="">
-                            Introduction to UI/UX design
-                        </p>
-
-                        <p className=" text-xs">
-                            32:34 mins
-                        </p>
-                    </div>
-
-                    <div className=" mt-5 md:flex justify-between">
-                        <p className="">
-                            Introduction to UI/UX design
-                        </p>
-
-                        <p className=" text-xs">
-                            32:34 mins
-                        </p>
-                    </div>
-
+    return (
+        <>
+            <section className='max-w-[1000px] m-auto'>
+                <div className="px-[5%] md:w-[90%]">
                     <div className="">
-                        <button className=' mt-5 w-28 border border-purple-700 text-purple-700 text-lg rounded-md hover:bg-purple-300'>
-                            View All
-                        </button>
+                        <p className="text-3xl mt-20 font-bold">
+                            Course Overview 
+                        </p>
+
+                        <p className="text-xs md:text-sm mt-5">
+                            This course will teach you the fundamentals of {/*UI design and how to create visually appealing user interfaces. You will study the fundamental tools, layouts, mockups, and techniques that product designers use to create remarkable interfaces.*/}
+                        </p>
+                    </div>
+
+                    <div className="mt-10 flex justify-between">
+                        <p className="font-bold text-2xl">
+                            {/* {showAllCourses ? `${courses.length} Courses` : '3 Courses'} */}
+                            Module
+                        </p>
+
+                        <p className="hidden md:block font-bold text-2xl">
+                            What you will cover in this course
+                        </p>
                     </div>
                 </div>
-            </div>
-        </section>
-    </>
-  )
+            </section>
+        </>
+    );
 }

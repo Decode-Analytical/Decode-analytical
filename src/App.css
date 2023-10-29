@@ -3,6 +3,8 @@
 @font-face{
   font-family: Montserrat;
   src:url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap.woff2") format('woff2');
+  font-weight: normal;
+  font-style: normal;
 } 
 
 
@@ -28,6 +30,10 @@
   background-image: url("../src/assets/Images/cartBG.png");
 }
 
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 body {
-  font-family: 'Montserrat', Montserrat;
+  font-family: 'Montserrat'
 }
