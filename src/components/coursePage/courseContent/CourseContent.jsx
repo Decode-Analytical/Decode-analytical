@@ -67,10 +67,11 @@ const CourseContent = ({ modules, watchVideo, courseClick, markVideoAsWatched })
                       className="flex flex-col"
                       onClick={() => courseClick(mainIndex)}
                     >
-                      <div className="flex gap-2">
+                      <div className="flex gap-2 items-center">
                         <input
                           type="checkbox"
                           name="Done"
+                          className="w-6 h-3"
                           checked={MakeCheck(mainIndex)}
                           onChange={() =>
                             markVideoAsWatched(mainIndex, video._id)

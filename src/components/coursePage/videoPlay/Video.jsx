@@ -163,6 +163,7 @@ const Video = ({
       const floatSpeed = speedMapping[speed];
       videoRef.current.playbackRate = floatSpeed;
       setPlaybackSpeed(speed);
+      setSetting(false)
     }
   }
 
@@ -260,7 +261,7 @@ const Video = ({
               step="0.1"
               className={`${
                 hiddenVolumn ? "block" : "hidden"
-              } transform -rotate-90 origin-left absolute bottom-[14px] ml-3`}
+              } transform -rotate-90 origin-left absolute bottom-[14px] ml-3 h-4 w-40`}
             />
           </li>
           <li className="h-6">

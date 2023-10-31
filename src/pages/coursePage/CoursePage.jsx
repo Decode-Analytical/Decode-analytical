@@ -35,7 +35,6 @@ const CoursePage = () => {
   const storedCourseID = localStorage.getItem("courseID");
   const isSameCourse = storedCourseID === id;
   const { isLoading, data } = useGetCourseDataQuery(id);
-  console.log(data)
   const [hasWatch, setHasWatch] = useState([]);
   const [quizResult, setQuizResult] = useState();
   let totalComment = 0
@@ -143,17 +142,13 @@ const CoursePage = () => {
         // Check if data.result[trackVideo] is available
         if (data.result[trackVideo]) {
           markVideoAsWatched(trackVideo, data.result[trackVideo].video[0]);
-          console.log(trackVideo);
-          console.log(hasWatch);
 
           if (data.result[trackVideo].quizzes) {
-            console.log("Quiz in Database", data.result[trackVideo].quizzes);
 
             // Update ShowQuiz without converting it into an array
             let id = data.result[trackVideo].quizzes[1];
             totalComment = data.result[trackVideo].comment_count
             SeeQuiz(id);
-            console.log("Quiz need to show", ShowQuiz);
 
             // navigation(`/Quiz/${modules[trackVideo]._id}`);
           }
