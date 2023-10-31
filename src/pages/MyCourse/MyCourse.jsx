@@ -13,7 +13,7 @@ import { NavLink } from 'react-router-dom'
 import MainSideBar from '../../components/mainSideBar'
 
 const MyCourse = () => {
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTJmMTZmNWNhMTUzYTY0YWU4OTFkM2UiLCJpYXQiOjE2OTc4MzAzMDUsImV4cCI6MTY5NzkxNjcwNX0.Bm9kg8SGPja1olDSz0Mj4Nm0wmU_rWiN8xe_mn6TthM"
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTJmMTZmNWNhMTUzYTY0YWU4OTFkM2UiLCJpYXQiOjE2OTg1ODU3OTAsImV4cCI6MTY5ODY3MjE5MH0.No4TqHdCrnjrj9Pkb3GPkyh31_CxZGrUsvD9P7PYSu4"
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState({name:"...", imgUrl: ""})
 

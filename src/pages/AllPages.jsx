@@ -81,7 +81,7 @@ export default function AllPages() {
         </Link>
 
         <div className='mt-6 mb-3'>
-            <PaystackCard />
+            <PaystackCard price={100000} urlSuccess="/dashboard" />
         </div>
     </div>
   )
