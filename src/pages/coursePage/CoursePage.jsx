@@ -10,6 +10,8 @@ import Menu from "./Menu.png";
 import Close from "./Close.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetCourseDataQuery } from "../../redux/FetchApi/GetCourseData";
+import Quiz from "../quiz /Quiz";
+import { AiOutlineLoading3Quarters } from "react-icons/ai"
 
 // const token =
 //   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFkMWMwMDQ1Y2NmNjEyMzY4NzRmNjEiLCJpYXQiOjE2OTcxMzc1NjgsImV4cCI6MTY5NzIyMzk2OH0.6YQtqx-ThsiTa8u8OF-4Ljl-0lrptN6XkN2nHVW7swQ";
@@ -18,26 +20,35 @@ import { useGetCourseDataQuery } from "../../redux/FetchApi/GetCourseData";
 
 const CoursePage = () => {
   const param = useParams();
-  const navigation = useNavigate();
+  const [ShowQuiz, SetQuiz] = useState({
+    show: false,
+    id: "",
+  });
   const { id } = param;
   const [comments, SetAddComments] = useState({
     comment: false,
     message: "",
   });
-
+  
+  const [trackVideo, setTrackVideo] = useState(0);
   // Retrieve the stored course ID from localStorage
   const storedCourseID = localStorage.getItem("courseID");
   const isSameCourse = storedCourseID === id;
   const { isLoading, data } = useGetCourseDataQuery(id);
-  // console.log(data)
+  console.log(data)
+  const [hasWatch, setHasWatch] = useState([]);
+  const [quizResult, setQuizResult] = useState();
+  let totalComment = 0
+  // for (let i = 0; i < data.result.length; i++) {
+  //   const element = data.result[i];
+    
+  // }
+  // console.log(data);
 
   if (!isSameCourse) {
     localStorage.removeItem("trackVideo");
     localStorage.removeItem("courseID");
   }
-  const [trackVideo, setTrackVideo] = useState(
-    localStorage.getItem("trackVideo") || 0
-  );
 
   const [fullScreen, setFullScreen] = useState(false);
   const [hiddenControl, setHiddenControl] = useState(false);
@@ -52,6 +63,7 @@ const CoursePage = () => {
     setHiddenControl(false);
   };
 
+  // console.log(data)
   const handleHiddenControl = () => {
     setHiddenControl(!hiddenControl);
   };
@@ -61,16 +73,16 @@ const CoursePage = () => {
   }
 
   function NextVideoTraker() {
-    if (data && data.courseTitle) {
+    if (data && data.result) {
       if (trackVideo === null) {
         setTrackVideo(0);
       }
       localStorage.removeItem("trackVideo");
       localStorage.removeItem("courseID");
       // console.log("Early",trackVideo)
-      if (trackVideo <= modules.length) {
+      if (trackVideo <= data.result.length && quizResult <= 60) {
         setTrackVideo(trackVideo + 1);
-        console.log(trackVideo);
+        // console.log(trackVideo);
         for (let tracker in modules) {
           // console.log(tracker)
           if (tracker == trackVideo) {
@@ -83,6 +95,17 @@ const CoursePage = () => {
     }
   }
 
+  function markVideoAsWatched(mainIndex, videoId) {
+    // Update the watchVideo state when a video is marked as watched
+    setHasWatch((prevHasWatch) => {
+      return [...prevHasWatch, mainIndex];
+    });
+
+    // Update the local storage to track video progress
+    const progressKey = `videoProgress_${mainIndex}_${videoId}`;
+    localStorage.setItem(progressKey, "watched");
+  }
+
   function commentAddorNot(message) {
     SetAddComments({
       comment: true,
@@ -90,26 +113,57 @@ const CoursePage = () => {
     });
   }
 
+  function SeeQuiz(id) {
+    if (id) {
+      SetQuiz({ show: true, id });
+    } else {
+      SetQuiz({ show: false, id: "" });
+    }
+  }
+
+  function QuizResult(number, totalQuiz) {
+    let perQuiz = (number / totalQuiz) * 100;
+    setQuizResult(perQuiz);
+  }
+
   function Nextpplay(play) {
     if (play === true) {
       // Increment the trackVideo using the current value
+      NextVideoTraker()
       setTrackVideo((prevTrackVideo) => {
         const nextTrackVideo = prevTrackVideo + 1;
         // Store the updated value in localStorage
-        console.log("NextTrackVideo", nextTrackVideo);
+        // console.log("NextTrackVideo", nextTrackVideo);
         localStorage.setItem("trackVideo", nextTrackVideo);
         return nextTrackVideo;
       });
-      console.log("TrackVideo", trackVideo)
-      if (data.result[trackVideo].question) {
-        localStorage.setItem("courseID", data.result[trackVideo].courseId);
-        navigation(`/Quiz/${modules[trackVideo]._id}`);
+
+      // Check if data and data.result are available
+      if (data && data.result) {
+        // Check if data.result[trackVideo] is available
+        if (data.result[trackVideo]) {
+          markVideoAsWatched(trackVideo, data.result[trackVideo].video[0]);
+          console.log(trackVideo);
+          console.log(hasWatch);
+
+          if (data.result[trackVideo].quizzes) {
+            console.log("Quiz in Database", data.result[trackVideo].quizzes);
+
+            // Update ShowQuiz without converting it into an array
+            let id = data.result[trackVideo].quizzes[1];
+            totalComment = data.result[trackVideo].comment_count
+            SeeQuiz(id);
+            console.log("Quiz need to show", ShowQuiz);
+
+            // navigation(`/Quiz/${modules[trackVideo]._id}`);
+          }
+        }
       }
     }
   }
 
   if (isLoading) {
-    return <h2>Loading ...</h2>;
+    return <h1 className="w-full h-full flex justify-center items-center"><AiOutlineLoading3Quarters rotate={90} className="animate-spin w-16" /> </h1>;
   }
   if (data.courseTitle === null) {
     return <h2>Internal Server Error</h2>;
@@ -162,7 +216,11 @@ const CoursePage = () => {
             <li>
               <button
                 type="button"
-                className={`${showCourseContent == "OverView" ? "activeCoursePageNav" : "nonActiveCoursePage"} `}
+                className={`${
+                  showCourseContent == "OverView"
+                    ? "activeCoursePageNav"
+                    : "nonActiveCoursePage"
+                } `}
                 onClick={() => handleShowCourseContent("OverView")}
               >
                 Overview
@@ -171,7 +229,11 @@ const CoursePage = () => {
             <li>
               <button
                 type="button"
-                className={`${showCourseContent == "Comment" ? "activeCoursePageNav" : "nonActiveCoursePage"}`}
+                className={`${
+                  showCourseContent == "Comment"
+                    ? "activeCoursePageNav"
+                    : "nonActiveCoursePage"
+                }`}
                 onClick={() => handleShowCourseContent("Comment")}
               >
                 Comment
@@ -180,7 +242,11 @@ const CoursePage = () => {
             <li>
               <button
                 type="button"
-                className={`${showCourseContent == "Review" ? "activeCoursePageNav" : "nonActiveCoursePage"}`}
+                className={`${
+                  showCourseContent == "Review"
+                    ? "activeCoursePageNav"
+                    : "nonActiveCoursePage"
+                }`}
                 onClick={() => handleShowCourseContent("Review")}
               >
                 Review
@@ -192,15 +258,18 @@ const CoursePage = () => {
           {/* {showCourseContent === "OverView" && (
             <OverView
               des={data.courseTitle.course_description}
-              lengthmodules={data.courseTitle.modules.length}
+              lengthmodules={data.result.length}
               language={data.courseTitle.course_language}
               modules={data.courseTitle.modules}
               totalRigistered={data.courseTitle.totalRegisteredByStudent}
             />
           )} */}
-          {/* {showCourseContent === "Comment" && (
-            <CreateComment courseId={data.courseTitle._id} comment={commentAddorNot} />
-          )} */}
+          {showCourseContent === "Comment" && (
+            <CreateComment
+              courseId={data.result[0].moduleId}
+              comment={commentAddorNot}
+            />
+          )}
           {/* {showCourseContent === "Review" && <Review/>} */}
           {showCourseContent === "Course Content" && (
             <div className="bg-white">
@@ -218,7 +287,7 @@ const CoursePage = () => {
               <div className={`${showCourseContent ? "flex" : "hidden"}`}>
                 <CourseContent
                   modules={data.result}
-                  watchVideo={Trackvideo}
+                  watchVideo={hasWatch}
                   courseClick={courseUpdate}
                 />
               </div>
@@ -244,12 +313,23 @@ const CoursePage = () => {
           <div className={`${showCourseContent ? "flex" : "hidden"}`}>
             <CourseContent
               modules={data.result}
-              watchVideo={Trackvideo}
+              watchVideo={hasWatch}
               courseClick={courseUpdate}
             />
           </div>
         </div>
       </div>
+      {ShowQuiz.show && (
+        <section className="fixed top-0 left-0 w-full z-50 bg-gray-300 min-h-full h-screen overflow-auto">
+          <Quiz
+            id={ShowQuiz.id}
+            clossQuiz={SeeQuiz}
+            TrackModule={trackVideo}
+            Result={QuizResult}
+            Comment={totalComment}
+          />
+        </section>
+      )}
     </div>
   );
 };

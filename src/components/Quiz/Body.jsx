@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { GiCheckMark, GiCrossMark } from "react-icons/gi";
 import Footer from "./Footer";
 
-const Body = ({ question, NextQuestion, BackQuestion, TotalQuiz, CurrentQuiz }) => {
+const Body = ({ question, NextQuestion, BackQuestion, TotalQuiz, CurrentQuiz, End }) => {
   // const [quiz, setQuiz] = useState(null);
   // const [checkedAnswer, setCheckedAnswer] = useState({
   //   ans: "",
@@ -32,12 +32,13 @@ const Body = ({ question, NextQuestion, BackQuestion, TotalQuiz, CurrentQuiz }) 
   }  
   
   let check = TotalQuiz == CurrentQuiz ? true : false
+  check && End()
 
   console.log(question);
 
   return (
     // <div className={` ${Correct == null && "my-5"}  md:h-[81vh] h-full`}>
-    <div className={` ${CorrectAns == null && "my-5"}  md:h-[80vh] h-full bg-[#F5F5F5] mb-3`}>
+    <div className={` ${CorrectAns == null && "my-5"}  md:h-[80vh] bg-[#F5F5F5] mb-3`}>
       <ul
         className="w-full h-full flex flex-col justify-center items-center"
         key={Math.random()}

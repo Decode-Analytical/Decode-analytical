@@ -6,7 +6,6 @@ import setting from "./Setting.png";
 import reszing from "./Resizing.png";
 import Background from "./BackgroudScreen.png";
 import DefaultSize from "./DefaultSize.png";
-import { FcNext } from "react-icons/fc";
 import { IconContext } from "react-icons";
 import { MdNavigateNext } from "react-icons/md";
 
@@ -46,6 +45,7 @@ const Video = ({
   const handleTime = () => {
     const video = videoRef.current;
     if (!video) return;
+    console.log(Math.floor(video.duration/4))
 
     let currentminutes = Math.floor(video.currentTime / 60);
     let currentseconds = Math.floor(video.currentTime - currentminutes * 60);
@@ -69,8 +69,8 @@ const Video = ({
         // Video has ended, move to the next video.
         console.log("currectSecond", currentMinutes);
         console.log("duration", duration);
-        setCurrentMinutes("0:00");
-        setDuration("0:01");
+        // setCurrentMinutes("0:00");
+        // setDuration("0:01");
         // setVideoImageTracker({
         //   video: "",
         //   image: ""
@@ -84,7 +84,7 @@ const Video = ({
   useEffect(() => {
     // const ty = videoRef.current;
     if (modules) {
-      console.log(modules);
+      // console.log(modules[0].quizzez);
       setVideoImageTracker({
         video: modules.video[0].path,
         image: Background,
@@ -104,9 +104,7 @@ const Video = ({
 
   const [isDragging, setIsDragging] = useState(false);
   const [Opensetting, setSetting] = useState(false);
-  // const [FastForwad, setFastForawad] = useState("Normal")
   const [playbackSpeed, setPlaybackSpeed] = useState("Normal");
-  // let fastforwad = ["2x", "1.5x", "Normal", "0.75x", "0.5x"];
   const speedMapping = {
     "2x": 2.0,
     "1.5x": 1.5,
@@ -171,7 +169,6 @@ const Video = ({
   const HandleVolumnHidden = () => {
     setHiddenVolumn(!hiddenVolumn);
   };
-  let style = { color: "white", fontSize: "1.5em" };
   return (
     <div
       className="relative h-fit flex justify-center items-center"
@@ -186,6 +183,7 @@ const Video = ({
       <button
         type="button"
         className={`${isPlaying ? "hidden" : "absolute"} right-9`}
+        onClick={() => Nextplay(true)}
       >
         <IconContext.Provider
           value={{
@@ -195,7 +193,7 @@ const Video = ({
 
           }}
         >
-          <div className="md:w-[4.4rem] md:h-[4.5rem] w-14 h-[3.4rem] bg-[#111111CC] border border-white">
+          <div className="md:w-[4.2rem] md:h-[5.5rem] w-14 h-[3.4rem] bg-[#111111CC] border border-white flex items-center">
             <MdNavigateNext className="NextIcon" />
           </div>
         </IconContext.Provider>
@@ -226,7 +224,7 @@ const Video = ({
           } `}
         >
           <li>
-            <p className="text-[#ffff] text-[12px] w-16 xl:font-medium  max-sm:w-20">
+            <p className="text-[#ffff] text-[12px] w-20 xl:font-medium  max-sm:w-20">
               <span className="">{currentMinutes}</span> /{" "}
               <span className="">{duration}</span>
             </p>

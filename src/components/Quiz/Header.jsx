@@ -1,13 +1,13 @@
 import React from 'react'
 import { AiOutlineClose } from "react-icons/ai"
 
-const Header = ({TotalQuiz, currentQuiz, Currentmodule}) => {
+const Header = ({clossQuiz, TotalQuiz, currentQuiz, Currentmodule, TotalComment}) => {
   let quizPercenTage = (currentQuiz / TotalQuiz ) * 100
   console.log(quizPercenTage)
   return (
     <div className="w-full text-[#6B7F99] md:flex md:justify-around md:items-center py-5">
     <div className="flex gap-3 my-2 md:my-0">
-        <button type="button">
+        <button type="button" onClick={() => clossQuiz()}>
             <AiOutlineClose color="#6B7F99" />
         </button>
         <h5 className="text-center w-full">Module {Currentmodule} Quiz </h5>
@@ -24,7 +24,7 @@ const Header = ({TotalQuiz, currentQuiz, Currentmodule}) => {
         <p className='hidden md:flex'>{quizPercenTage}</p>
     </div>
     <div>
-        <p className="text-center w-full">112 Comments</p>
+        <p className="text-center w-full">{TotalComment} Comments</p>
     </div>
 </div>
   )

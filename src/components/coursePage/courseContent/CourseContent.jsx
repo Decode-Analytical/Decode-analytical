@@ -1,44 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { LuPlayCircle } from "react-icons/lu";
 
-const CourseContent = ({ modules, watchVideo, courseClick }) => {
-  const [videoProgress, setVideoProgress] = useState({});
+const CourseContent = ({ modules, watchVideo, courseClick, markVideoAsWatched }) => {
   const [openCourseIndices, setOpenCourseIndices] = useState([]);
 
-  useEffect(() => {
-    // Load video-watching progress from local storage
-    const progressData = {};
-    modules.forEach((module, mainIndex) => {
-      module.video.forEach((video) => {
-        const progressKey = `videoProgress_${mainIndex}_${video._id}`;
-        const progress = localStorage.getItem(progressKey);
-        if (progress === "watched") {
-          progressData[progressKey] = true;
-        }
-      });
-    });
-    setVideoProgress(progressData);
-  }, [modules]);
-
   const handleToggleCourseContent = (index) => {
-    // Use setOpenCourseIndices to toggle module open/close
     if (openCourseIndices.includes(index)) {
       setOpenCourseIndices(openCourseIndices.filter((i) => i !== index));
     } else {
       setOpenCourseIndices([...openCourseIndices, index]);
     }
-    console.log(index);
-  };
+  }
 
-  function MakeCheck(index) {
-    return watchVideo.includes(index);
+  function MakeCheck(mainIndex) {
+    return watchVideo && watchVideo.includes(mainIndex);
   }
 
   return (
     <ul className="bg-white w-full">
       {modules.map((item, mainIndex) => {
         return (
-          <li key={item._id}>
+          <li key={mainIndex}>
             <div>
               <div className="text-lg font-bold w-full items-center flex gap-2 justify-between border-2 p-4">
                 <div className="flex gap-2 font-bold items-center">
@@ -47,9 +29,9 @@ const CourseContent = ({ modules, watchVideo, courseClick }) => {
                 </div>
                 <button
                   type="button"
-                  onClick={() => handleToggleCourseContent(mainIndex)} // Call the toggle function
+                  onClick={() => handleToggleCourseContent(mainIndex)}
                 >
-                  {openCourseIndices.includes(mainIndex) ? ( // Check if the module is open
+                  {openCourseIndices.includes(mainIndex) ? (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-6 w-6 inline-block"
@@ -57,12 +39,7 @@ const CourseContent = ({ modules, watchVideo, courseClick }) => {
                       viewBox="0 0 24 24"
                       stroke="currentColor"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="1.5"
-                        d="M5 15l7-7 7 7"
-                      />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M5 15l7-7 7 7" />
                     </svg>
                   ) : (
                     <svg
@@ -72,20 +49,15 @@ const CourseContent = ({ modules, watchVideo, courseClick }) => {
                       viewBox="0 0 24 24"
                       stroke="currentColor"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="1.5"
-                        d="M19 9l-7 7-7-7"
-                      />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 9l-7 7-7-7" />
                     </svg>
                   )}
                 </button>
               </div>
               <ul>
-                {item.video.map((video) => (
+                {item.video.map((video, index) => (
                   <li
-                    key={mainIndex}
+                    key={index}
                     className={`${
                       openCourseIndices.includes(mainIndex) ? "hidden" : "flex"
                     } flex-col p-5 gap-5 ml-4`}

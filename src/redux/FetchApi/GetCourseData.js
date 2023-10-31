@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTJmMTZmNWNhMTUzYTY0YWU4OTFkM2UiLCJpYXQiOjE2OTgzODExNjEsImV4cCI6MTY5ODQ2NzU2MX0.8Vb8s0NC_ziEd68gfuD5rOEVenKK7vCXdEDdMNKgwTM"
+let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTJmMTZmNWNhMTUzYTY0YWU4OTFkM2UiLCJpYXQiOjE2OTg3NDkzODMsImV4cCI6MTY5ODgzNTc4M30.veebe9BhYpa6FtyeMM07X_hwxYHzqdnRVcOv0wcbZlw"
 
 export const courseData = createApi({
   reducerPath: "courseData",
@@ -18,7 +18,7 @@ export const courseData = createApi({
       providesTags: ["StreamVideo"],
     }),
     viewCourseQuiz: builder.query({
-      query: (id) => `/quizes/${id}`,
+      query: (id) => `/quizes/questionId/653fbaac3853d8d93f4973ae`,
       providesTags: ["Quiz"],
     }),
     postCorrectQuiz: builder.mutation({
