@@ -22,8 +22,8 @@ export const courseData = createApi({
       providesTags: ["Quiz"],
     }),
     postCorrectQuiz: builder.mutation({
-      query: (data, id) => ({
-        url: `/quizs/${id}/submit`,
+      query: ({data, id}) => ({
+        url: `/quizes/submitQuiz/${id}/submit`,
         method: "POST",
         body: data,
       }),

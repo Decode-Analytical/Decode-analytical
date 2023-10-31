@@ -13,7 +13,6 @@ const Quiz = ({ id, clossQuiz, TrackModule, Result, Comment }) => {
   console.log(id);
   const { data, isLoading } = useViewCourseQuizQuery(id);
   console.log("IsLoading QUiz", isLoading);
-  console.log("data Quiz", data);
   // const courseID = localStorage.getItem("courseID")
   // if (data == undefined) {
   //   return navigation(`/CousrsePage/${courseID}`)
@@ -27,6 +26,11 @@ const Quiz = ({ id, clossQuiz, TrackModule, Result, Comment }) => {
       </h1>
     );
   }
+
+  if (!isLoading) {
+    console.log("data Question", data.question);
+  }
+  console.log("data Question inside", data.questions);
 
   let question = data.questions.questions;
   console.log("Show the question", question);
@@ -66,7 +70,10 @@ const Quiz = ({ id, clossQuiz, TrackModule, Result, Comment }) => {
     }
   }
 
-  function EndQuiz() {
+  async function EndQuiz() {
+    console.log(storeQuiz);
+    // let response = await postCorrectQuiz({id: question.moduleId, storeQuiz})
+    // console.log(response)
     Result(5, question.length);
     clossQuiz();
   }

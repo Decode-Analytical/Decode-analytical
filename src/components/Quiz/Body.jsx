@@ -25,10 +25,11 @@ const Body = ({ question, NextQuestion, BackQuestion, TotalQuiz, CurrentQuiz, En
   function HandleAnswer() {
     console.log(Answer);
     if (Answer === question.correct_answer_index) {
-      return setCorrectAns(true);
+      setCorrectAns(true);
       // console.log(CorrectAns)
+    } else {
+      setCorrectAns(false);
     }
-    return setCorrectAns(false);
   }  
   
   let check = TotalQuiz == CurrentQuiz ? true : false
@@ -38,21 +39,20 @@ const Body = ({ question, NextQuestion, BackQuestion, TotalQuiz, CurrentQuiz, En
 
   return (
     // <div className={` ${Correct == null && "my-5"}  md:h-[81vh] h-full`}>
-    <div className={` ${CorrectAns == null && "my-5"}  md:h-[80vh] bg-[#F5F5F5] mb-3`}>
-      <ul
+    <section className={` ${CorrectAns == null && "my-5"}  md:h-[80vh] bg-[#F5F5F5] mb-3`}>
+      <div
         className="w-full h-full flex flex-col justify-center items-center"
         key={Math.random()}
       >
-        <li
+        <ul
           key={question._id}
           className="w-full md:w-[60%] flex flex-col gap-3"
         >
           <h3 className="text-lg my-6 font-bold">
-            {question.question_description || "Tell me the JavaScript library"}
+            {question.question_description}
           </h3>
 
           <h5 className="text-[#B1B4CA]">Select the answer</h5>
-          <ul>
             {question.options.map((option, index) => (
               <li
                 key={index}
@@ -76,7 +76,6 @@ const Body = ({ question, NextQuestion, BackQuestion, TotalQuiz, CurrentQuiz, En
                 </label>
               </li>
             ))}
-          </ul>
           {CorrectAns != null && (
             <li className="flex shadow-lg h-[7rem] justify-center items-center bg-white animate-ping-short">
               <h5
@@ -98,8 +97,8 @@ const Body = ({ question, NextQuestion, BackQuestion, TotalQuiz, CurrentQuiz, En
               </h5>
             </li>
           )}
-        </li>
-      </ul>
+        </ul>
+      </div>
       <Footer
         handleCLick={HandleAnswer}
         Correct={CorrectAns}
@@ -107,7 +106,7 @@ const Body = ({ question, NextQuestion, BackQuestion, TotalQuiz, CurrentQuiz, En
         handleNext={HandleNextQuestion}
         BackQuestion={GobackTothePrevious}
       />
-    </div>
+    </section>
   );
 };
 
