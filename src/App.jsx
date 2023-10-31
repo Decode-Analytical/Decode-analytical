@@ -42,8 +42,7 @@ function App() {
               <Route path="/LoginSignUp" element={<LoginSignUp />} />
               <Route path="/PasswordReset" element={<PasswordReset />} />
               <Route path="/FreeCourses" element={<FreeCourses />} />
-              {/* <Route path="/PremiumCourses" element={<PremiumCourses />} />
-              <Route path="/premiumCourses/:courseId" component={PremiumCourses} /> */}
+              <Route path="/premiumCourses/:_id" element={<PremiumCourses />} /> 
               <Route path="/CartPage" element={<CartPage />} />
               <Route path="/PaymentPage" element={<PaymentPage />} />
               <Route path="/Dashboard" element={<Dashboard />} />
@@ -64,9 +63,6 @@ function App() {
               <Route path="/tutor/:id" element={<InstructorProfile />} />
               <Route path="/courseinfo" element={<CourseInfo />} />
               <Route path="/resetpassword" element={<ResetPassword />} />
-              <Route path="/premiumCourses" element={<PremiumCourses />}>
-                <Route path=":courseId" element={<CourseOverview />} />
-              </Route>
               <Route path="/AllPages" element={<AllPages />} /> {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
             </Routes>
           </div>

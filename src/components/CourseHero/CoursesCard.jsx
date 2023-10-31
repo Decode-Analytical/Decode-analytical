@@ -130,13 +130,21 @@ export default function CoursesCard(props) {
                   </div>
 
                   {isPrice_course === 0 ? (
-                    <Link to={`/premiumCourses/${_id}`} className="border-[2px] border-black hover:bg-gray-400 px-5 py-2 rounded-md">
-                      Free
+                    <Link
+                    to={`/premiumCourses/${_id}`}
+                    state = {{
+                      course_title,
+                      course_description,
+                      course_image,
+                      // Include other properties as needed
+                    }}
+                    className="border-[2px] border-black hover.bg-gray-400 px-5 py-2 rounded-md">
+                    Free
                   </Link>
                   ) : (
                     <div className=" flex justify-between">
                       <button className="border-[2px] border-black hover:bg-gray-400 px-5 mr-5 py-2 rounded-md">
-                        Price: {isPrice_course} NGN
+                        Price: {courses.isPrice_course} NGN
                       </button>
                     </div>
                   )}

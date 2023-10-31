@@ -1,35 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import Axios from 'axios';
+import React from 'react';
 
 
-export default function CourseOverview({ _id }) {
-    const courseURL = `https://decode-mnjh.onrender.com/api/course/viewAllCourses/CourseOverView/${_id}`;
-    const apiKey = import.meta.env.VITE_API_KEY;
-    const token = apiKey;
-
-
-    const [courseDetails, setCourseDetails] = useState({});
-
-
-    useEffect(() => {
-        // Make an API request to fetch more information about the course using courseId
-        const fetchCourseDetails = async () => {
-          try {
-            const response = await Axios.get(courseURL, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            setCourseDetails(response.data.courses);
-          } catch (error) {
-            console.error('Error fetching course details:', error);
-            console.log(_id)
-          }
-        };
-    
-        fetchCourseDetails();
-      }, [_id]);
-
+export default function CourseOverview( props ) {
+    const { course_description } = props;
     return (
         <>
             <section className='max-w-[1000px] m-auto'>
@@ -40,13 +13,12 @@ export default function CourseOverview({ _id }) {
                         </p>
 
                         <p className="text-xs md:text-sm mt-5">
-                            This course will teach you the fundamentals of {/*UI design and how to create visually appealing user interfaces. You will study the fundamental tools, layouts, mockups, and techniques that product designers use to create remarkable interfaces.*/}
+                            {course_description}
                         </p>
                     </div>
 
                     <div className="mt-10 flex justify-between">
                         <p className="font-bold text-2xl">
-                            {/* {showAllCourses ? `${courses.length} Courses` : '3 Courses'} */}
                             Module
                         </p>
 

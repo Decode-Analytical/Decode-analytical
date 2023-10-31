@@ -23,11 +23,6 @@ export default function AllPages() {
             FreeCourses
         </Link> <br />
 
-        
-
-        <Link to="/PremiumCourses">
-            PremiumCourses
-        </Link> <br />
 
         <Link to="/CartPage">
             CartPage
