@@ -3,14 +3,14 @@ import { useParams } from 'react-router-dom';
 
 
 
-export default function CourseOverview(_id) {
+export default function CourseOverview() {
     let { courseId } = useParams()
-    const courseURL = `https://decode-mnjh.onrender.com/api/course/viewAllCourses?_id=${_id}`;
+    const courseURL = `https://decode-mnjh.onrender.com/api/course/viewAllCourses?_id=${courseId}`;
     const apiKey = import.meta.env.VITE_ACCESS_TOKEN;
     const token = apiKey;
     console.log(useParams())
     console.log(courseId)
-
+    
 
     const [courseDetails, setCourseDetails] = useState([]);
 
@@ -27,7 +27,8 @@ export default function CourseOverview(_id) {
             const data = await response.json();
             console.log(data)
             setCourseDetails(data.courses)
-
+            // const details = courseDetails.find(courseDetails._id === courseId)
+            console.log(courseDetails)
           } catch (error) {
             console.error('Error fetching course details:', error);
             // console.log(_id)
@@ -61,7 +62,7 @@ export default function CourseOverview(_id) {
                             What you will cover in this course
                         </p>
                     </div>
-                   <p>{courseDetails[0]._id}</p>
+                   
                 </div>
             </section>
         </>
