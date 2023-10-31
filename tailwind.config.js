@@ -43,9 +43,6 @@ export default {
         'ping-short': 'ping 1s ease-in-out 1',
         "animate-popup": "popup 3s ease-in-out",
       },
-      gridTemplateColumns: {
-        'video-grid' : 'repeat(2 , minmax(70%,30%))'
-      }
     },
   },
   plugins: [],
