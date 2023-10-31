@@ -16,7 +16,7 @@ export default {
       keyframes:{
         'open-menu' : {
           '0%': { transform: 'scaleY(0)' },
-          '80%': { transform: 'scaleY(1.2)' },
+          '80%': { transform: 'scaleY(1.5)' },
           '100%': { transform: 'scaleY(1)' },
         },
         "popup": {
@@ -43,7 +43,10 @@ export default {
         'ping-short': 'ping 1s ease-in-out 1',
         "animate-popup": "popup 3s ease-in-out",
       },
-    },
+      fontFamily: {
+        montserrat: ['montserrat', 'sans'],
+      },
+    }
   },
   plugins: [],
 }
