@@ -28,7 +28,7 @@ import InstructorProfile from "./pages/homepage/InstructorProfile";
 import CourseInfo from "./pages/courseUpload/CourseInfo";
 import ResetPassword from "./pages/authetication/ResetPassword";
 import Nysc from "./pages/authetication/Nysc";
-import CourseOverview from "./components/coursesComponents/premium/CourseOverview";
+import PaystackCard from "./components/cartAndPaymentComponents/PaystackCard";
 
 function App() {
   return (
@@ -63,6 +63,7 @@ function App() {
               <Route path="/tutor/:id" element={<InstructorProfile />} />
               <Route path="/courseinfo" element={<CourseInfo />} />
               <Route path="/resetpassword" element={<ResetPassword />} />
+              <Route path="/PaystackCard/:price" element={<PaystackCard />} />
               <Route path="/AllPages" element={<AllPages />} /> {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
             </Routes>
           </div>

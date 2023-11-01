@@ -9,17 +9,12 @@ import {BsFillRssFill} from "react-icons/bs"
 
 export default function PremiumHero(props) {
     const {course_title, course_image} = props;
-    console.log(course_image);
 
     const bgUrl = course_image[0].path;
-
-    // const heroBg = {
-    //     backgroundImage: `url(${course_image})`, // Set the background image URL
-    //   };
   return (
     <>
         <section>
-            <div style={{ backgroundImage: `url(${bgUrl})` }} className= ' bg-cover bg-no-repeat bg-center  md:h-[550px] mt-10 p-10' > {/*  BACKGROUND IMAGE IMPORTED FROM APP.CSS */}
+            <div style={{ backgroundImage: `url(${bgUrl})` }} className= ' bg-cover bg-no-repeat bg-center  md:h-[550px] mt-10 p-10' >
                 <div className=" md:max-w-[95%] m-auto">
                     <Link to='/freeCourses'>
                         <button className=' bg-[#D9DBE5] rounded-xl px-6 md:mt-24'>
