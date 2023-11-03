@@ -4,7 +4,7 @@ import { FaAngleLeft, FaGoogle, FaUser } from "react-icons/fa";
 import close from "../../assets/auth images/Vector.png";
 import AuthFooter from "./AuthFooter";
 import { useSignup } from "../../hooks/useSignup";
-import googleIcon from "../../assets/auth images/google.png"
+import googleIcon from "../../assets/auth images/google.png";
 
 export default function Individual() {
   const [firstName, setFirstName] = useState("");
@@ -42,7 +42,7 @@ export default function Individual() {
           INDIVIDUAL ACCOUNT
         </p>
         <div className="flex justify-center items-center border border-zinc-200 p-1 my-3">
-        <img src={googleIcon} alt="google-icon" width={20} />
+          <img src={googleIcon} alt="google-icon" width={20} />
           <p className="ms-3 text-[#010A09] text-sm">Sign Up Using Google</p>
         </div>
 
@@ -107,9 +107,10 @@ export default function Individual() {
               value={password}
             />
 
-            <input type="submit" value="Sign Up" />
+            <input type="submit" value={isLoading ? "Waiting..." : "Sign Up"} />
           </form>
-          <p className="font-medium text-zinc-500">
+          {isLoading && <Loader />}
+          <p className="text-sm text-zinc-500">
             Already have an account?{" "}
             <a href="/login" className="ms-3 text-[#5333AD]">
               Log In

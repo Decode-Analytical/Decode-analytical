@@ -19,10 +19,14 @@ import Password from "./pages/authetication/Password";
 import Auth from "./pages/authetication/Auth";
 import Individual from "./pages/authetication/Individual";
 import InstructorProfile from "./pages/homepage/InstructorProfile";
-import CourseInfo from "./pages/courseUpload/CourseInfo";
 import ResetPassword from "./pages/authetication/ResetPassword";
 import Nysc from "./pages/authetication/Nysc";
 import FreeCourses from "./pages/courseDetailPage/freeCourses";
+import AddModules from "./pages/courseUpload/AddModules";
+import CreateCourse from "./pages/courseUpload/CreateCourse";
+import NewModules from "./pages/courseUpload/NewModule";
+import NewCourse from "./pages/courseUpload/NewCourse";
+
 
 
 function App() {
@@ -52,8 +56,12 @@ function App() {
               <Route path="/auth" element={<Auth />} />
               <Route path="/individual" element={<Individual />} />
               <Route path="/tutor/:id" element={<InstructorProfile />} />
-              <Route path="/courseinfo" element={<CourseInfo />} />
+       
               <Route path="/resetpassword" element={<ResetPassword />} />
+              {/* <Route path="/createcourse" element={<CreateCourse />} />
+              <Route path="/addmodules" element={<AddModules />} /> */}
+              <Route path="/newmodule/:courseId" element={<NewModules />} />
+              <Route path="/newcourse" element={<NewCourse />} />
               </Routes>
             </div>
           </div>

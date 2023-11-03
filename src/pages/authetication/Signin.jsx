@@ -5,6 +5,7 @@ import close from "../../assets/auth images/Vector.png";
 import AuthFooter from "./AuthFooter";
 import { useLogin } from "../../hooks/useLogin";
 import { Link, useNavigate } from "react-router-dom";
+import Loader from "../../components/Loader";
 
 export default function Signin() {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ export default function Signin() {
   const handleClose = () => {
     navigate("/auth");
   };
- 
+
   return (
     <div className="bg-zinc-100 py-10 min-h-screen">
       <div className="bg-white p-10 rounded-3xl w-[80%] lg:w-[50%] center ">
@@ -34,7 +35,7 @@ export default function Signin() {
             onClick={handleClose}
           />
         </div>
-    
+
         <div className="center bg-[#000921] pe-10 p-3 w-8 rounded-md mb-10 ">
           <FaUser className="text-[#5333AD] text-3xl" />
         </div>
@@ -45,7 +46,9 @@ export default function Signin() {
 
         <div>
           <form>
-            <label htmlFor="email" className="font-bold text-sm">Email Address</label>
+            <label htmlFor="email" className="font-bold text-sm">
+              Email Address
+            </label>
 
             <input
               type="email"
@@ -55,9 +58,14 @@ export default function Signin() {
               className="p-1 mb-4"
             />
 
-            <label htmlFor="password" className="font-bold text-sm">Password</label>
+            <label htmlFor="password" className="font-bold text-sm">
+              Password
+            </label>
             <Link to="/forgetpassword">
-              <label htmlFor="" className="font-bold text-xs mt-2 float-right text-[#040E53]">
+              <label
+                htmlFor=""
+                className="font-bold text-xs mt-2 float-right text-[#040E53]"
+              >
                 Forget Password
               </label>
             </Link>
@@ -71,15 +79,18 @@ export default function Signin() {
 
             <input
               type="submit"
-              value="Log In"
+              value={isLoading ? "Waiting..." : "Log In"}
               onClick={handleSubmit}
               disabled={isLoading}
             />
-            {error && <div>
-              <p className="text-[#ff0000] text-sm text-center">{error}</p>
-              </div>}
+            {isLoading && <Loader />}
+            {error && (
+              <div>
+                <p className="text-[#ff0000] text-sm text-center">{error}</p>
+              </div>
+            )}
           </form>
-          <p className="font-medium text-zinc-500">
+          <p className="text-sm text-zinc-500">
             New here?{" "}
             <a href="/auth" className="ms-3 text-[#5333AD]">
               Sign Up
