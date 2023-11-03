@@ -70,10 +70,7 @@ function ModuleForm({ courseId }) {
     }
   };
 
-  const handleMediaFileChange = (e) => {
-    const file = e.target.files[0];
-    setModuleData({ ...moduleData, mediaFile: file });
-  };
+ 
 
   const handleAddQuestion = () => {
     const updatedQuestions = [...moduleData.questions];
@@ -91,7 +88,7 @@ function ModuleForm({ courseId }) {
     setModuleData({ ...moduleData, questions: updatedQuestions });
   };
 
-  console.log(moduleData);
+
   console.log(courseId);
 
   return (

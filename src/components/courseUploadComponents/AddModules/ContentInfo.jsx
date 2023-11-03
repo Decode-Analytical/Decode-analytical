@@ -2,7 +2,7 @@ import React from 'react';
 
 function ContentInfo({
   moduleData,
-  handleInput,
+  handleInputChange,
   handleMediaFileChange,
   error,
   isLoading
@@ -16,7 +16,7 @@ function ContentInfo({
           className="p-2"
           name="contentType"
           value={moduleData.contentType}
-          onChange={handleInput}
+          onChange={handleInputChange}
         >
           <option value="video">Video</option>
           <option value="audio">Audio</option>

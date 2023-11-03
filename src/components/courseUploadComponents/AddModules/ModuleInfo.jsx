@@ -6,7 +6,6 @@ function ModuleInfo({
   handleInputChange,
   error,
   isLoading,
-  handleInput,
   handleMediaFileChange,
   handleModuleAdd,
 }) {
@@ -38,8 +37,8 @@ function ModuleInfo({
       <ContentInfo
         error={error}
         isLoading={isLoading}
-        moduleData={moduleData}
-        handleInput={handleInput}
+        moduleData={moduleData}y
+        handleInputChange={handleInputChange}
         handleMediaFileChange={handleMediaFileChange}
         handleModuleAdd={handleModuleAdd}
       />
@@ -50,7 +49,7 @@ function ModuleInfo({
           value={moduleData.description}
           onChange={handleInputChange}
           placeholder="Module Description"
-          className="w-full h-28 bg-zinc-100" // Adjusted width
+          className="w-full h-28 bg-zinc-100" 
         />
       </label>
       <label className="font-bold text-sm">
@@ -58,7 +57,7 @@ function ModuleInfo({
         <input
           className="p-2"
           name="price"
-          type="number" // Added type="number"
+          type="number" 
           value={moduleData.price}
           onChange={handleInputChange}
           placeholder="Module Price"

@@ -58,8 +58,8 @@ function App() {
               <Route path="/tutor/:id" element={<InstructorProfile />} />
        
               <Route path="/resetpassword" element={<ResetPassword />} />
-              {/* <Route path="/createcourse" element={<CreateCourse />} />
-              <Route path="/addmodules" element={<AddModules />} /> */}
+              <Route path="/createcourse" element={<CreateCourse />} />
+              <Route path="/addmodules" element={<AddModules />} />
               <Route path="/newmodule/:courseId" element={<NewModules />} />
               <Route path="/newcourse" element={<NewCourse />} />
               </Routes>

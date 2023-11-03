@@ -64,11 +64,12 @@ function CourseForm({ navigate }) {
 
       if (response.ok) {
         const data = await response.json();
-        setCourseId(data.id);
+        setCourseId(data.courseId);
         setIsLoading(false);
         setError(null); // Clear any previous error
-       
-        navigate(`/newmodule/${courseId}`);
+
+        // Use a functional update to ensure you're using the latest courseId value
+        navigate((prevCourseId) => `/newmodule/${prevCourseId || data.id}`);
       } else {
         const errorData = await response.json();
         setError(errorData.message);
@@ -77,10 +78,10 @@ function CourseForm({ navigate }) {
     } catch (error) {
       setError("Network error occurred.");
       setIsLoading(false);
-      console.error("Network error:", error);
+    
     }
   };
-  console.log(courseId);
+
   return (
     <form
       onSubmit={handleSubmit}
