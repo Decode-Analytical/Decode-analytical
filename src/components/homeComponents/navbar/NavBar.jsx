@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AiOutlineMenu } from "react-icons/ai"
 
 export default function NavBar() {
   const [userLogin, setUser] = useState(false); // Define the user state variable
@@ -31,7 +32,9 @@ export default function NavBar() {
 
         {/* LINK TO ALL PAGES THAT WILL BE CLEARED....... THIS IS JUST FOR DEVELOPMENT PURPOSES */}
         <Link to="/AllPages">
-          <p className="">TO ALL THE PAGES</p>
+          <p className="">
+            <AiOutlineMenu size={35} />
+          </p>
         </Link>
       </nav>
     </>
