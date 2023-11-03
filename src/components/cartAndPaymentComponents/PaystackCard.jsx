@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { PaystackButton } from 'react-paystack'
+import { useParams } from 'react-router-dom'
 
-const PaystackCard = ({price, urlSuccess}) => {
+const PaystackCard = ({ urlSuccess}) => {
   const publicKey = "pk_test_9e4f4a1e69f30c6b3199072b2fc90366468ef2cb"
+  const { price } = useParams();
   const amount = price
   const [email, setEmail] = useState("")
   const [name, setName] = useState("")

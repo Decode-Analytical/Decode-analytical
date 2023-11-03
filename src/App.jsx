@@ -33,6 +33,7 @@ import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 import NoAuthPage from "./pages/NoAuth/noAuthPage";
 import AdminLogin from "./pages/AdminLogin/adminLogin";
 import AdminRouteGuard from "./components/AdminGuard/AdminRouteGuard";
+import PaystackCard from "./components/cartAndPaymentComponents/PaystackCard";
 
 function App() {
   let user = JSON.parse(localStorage.getItem("user")) || {
@@ -75,7 +76,6 @@ function App() {
               <Route path="/tutor/:id" element={<InstructorProfile />} />
               <Route path="/courseinfo" element={<CourseInfo />} />
               <Route path="/resetpassword" element={<ResetPassword />} />
-              <Route path="/AllPages" element={<AllPages />} />{" "}
               {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
               <Route path="/AdminLogin" element={<AdminLogin />} />
               <Route path="/noAuth" element={<NoAuthPage />} />
@@ -87,6 +87,8 @@ function App() {
                   </AdminRouteGuard>
                 }
               />
+              <Route path="/PaystackCard/:price" element={<PaystackCard />} />
+              <Route path="/AllPages" element={<AllPages />} /> {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
             </Routes>
           </div>
         </div>
