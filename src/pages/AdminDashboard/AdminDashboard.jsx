@@ -77,8 +77,6 @@ const AdminDashboard = () => {
             },
           },
         },
-      ],
-      responsive: [
         {
           breakpoint: 600,
           options: {
@@ -158,8 +156,6 @@ const AdminDashboard = () => {
             },
           },
         },
-      ],
-      responsive: [
         {
           breakpoint: 600,
           options: {

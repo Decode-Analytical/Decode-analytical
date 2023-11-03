@@ -1,14 +1,23 @@
-import React from "react";
-import { Navigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-function AdminRouteGuard({ children, isAdmin }) {
-  if (isAdmin) {
-    // User is an admin, allow access to the child components
-    return children;
-  } else {
-    // User is not an admin, navigate to another route (e.g., "/noAuth")
-    return <Navigate to="/noAuth" />;
-  }
+function AdminRouteGuard({ children, role }) {
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    if (role?.user?.roles == "admin") {
+      // You can navigate here
+      navigate("/AdminDashboard");
+    } else if (role?.user?.roles == "student") {
+      // You can navigate here
+      navigate("/");
+    } else {
+      // You can navigate here
+      navigate("/noAuth");
+    }
+  }, [role]); // Add role as a dependency to re-run the effect when it changes
+
+  return <>{children}</>;
 }
 
 export default AdminRouteGuard;

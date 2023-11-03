@@ -24,7 +24,7 @@ export const useLogin = () => {
           body: JSON.stringify({ email, password }),
         }
       );
-    } else {
+    } else if(role == "admin") {
         response = await fetch(
             "https://decode-mnjh.onrender.com/api/admin/adminSignIn",
             {

@@ -36,11 +36,8 @@ import AdminRouteGuard from "./components/AdminGuard/AdminRouteGuard";
 import PaystackCard from "./components/cartAndPaymentComponents/PaystackCard";
 
 function App() {
-  let user = JSON.parse(localStorage.getItem("user")) || {
-    user: { roles: "" },
-  };
-  let role = user.user.roles || "";
-  console.log(role)
+  const userString = localStorage.getItem("user");
+  const user = userString ? JSON.parse(userString) : null;
   return (
     <div className="App">
       <Router>
@@ -82,13 +79,14 @@ function App() {
               <Route
                 path="/AdminDashboard"
                 element={
-                  <AdminRouteGuard isAdmin={true}>
+                  <AdminRouteGuard role={user}>
                     <AdminDashboard />
                   </AdminRouteGuard>
                 }
               />
               <Route path="/PaystackCard/:price" element={<PaystackCard />} />
-              <Route path="/AllPages" element={<AllPages />} /> {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
+              <Route path="/AllPages" element={<AllPages />} />{" "}
+              {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
             </Routes>
           </div>
         </div>
