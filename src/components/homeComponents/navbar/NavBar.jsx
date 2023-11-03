@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function NavBar() {
-  const [user, setUser] = useState(null); // Define the user state variable
+  const [userLogin, setUser] = useState(false); // Define the user state variable
 
   useEffect(() => {
     // Get the user data from localStorage when the component mounts
@@ -18,7 +18,7 @@ export default function NavBar() {
     <>
       <nav className="bg-lightGrey text-blue-950 items-center flex justify-between sticky top-0 px-5">
         <Link to="/login" className="place-self-end">
-          {user === null ? (
+          {userLogin == false || userLogin == null ? (
             <button className="bg-[#040E53] text-white md:py-4 md:px-14 px-10 py-3 border text-lg rounded-md">
               Login
             </button>

@@ -32,12 +32,9 @@ import CourseOverview from "./components/coursesComponents/premium/CourseOvervie
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 import NoAuthPage from "./pages/NoAuth/noAuthPage";
 import AdminLogin from "./pages/AdminLogin/adminLogin";
-import AdminRouteGuard from "./components/AdminGuard/AdminRouteGuard";
 import PaystackCard from "./components/cartAndPaymentComponents/PaystackCard";
 
 function App() {
-  const userString = localStorage.getItem("user");
-  const user = userString ? JSON.parse(userString) : null;
   return (
     <div className="App">
       <Router>
@@ -76,14 +73,7 @@ function App() {
               {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
               <Route path="/AdminLogin" element={<AdminLogin />} />
               <Route path="/noAuth" element={<NoAuthPage />} />
-              <Route
-                path="/AdminDashboard"
-                element={
-                  <AdminRouteGuard role={user}>
-                    <AdminDashboard />
-                  </AdminRouteGuard>
-                }
-              />
+              <Route path="/AdminDashboard" element={<AdminDashboard />} />
               <Route path="/PaystackCard/:price" element={<PaystackCard />} />
               <Route path="/AllPages" element={<AllPages />} />{" "}
               {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}

@@ -41,7 +41,6 @@ export const useLogin = () => {
       setIsloading(false);
       setError(json.message);
     }
-    console.log(json.user.roles);
 
     if (response.ok) {
       // save the user to local storage
