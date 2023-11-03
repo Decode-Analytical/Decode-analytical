@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import "../authetication/auth.css";
 import { FaUser } from "react-icons/fa";
 import close from "../../assets/auth images/Vector.png";
-import AuthFooter from "./AuthFooter";
+import AuthFooter from "./adminFooter";
 import { useLogin } from "../../hooks/useLogin";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Signin() {
+export default function adminLogin() {
   const navigate = useNavigate();
 
   const { login, error, isLoading } = useLogin();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  let role = "student"
+  let role = "admin"
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +21,7 @@ export default function Signin() {
   };
 
   const handleClose = () => {
-    navigate("/auth");
+    navigate("/");
   };
  
   return (
@@ -41,7 +41,7 @@ export default function Signin() {
         </div>
         <h2 className="text-center text-xl font-extrabold">Welcome Back</h2>
         <p className="ms-3 my-5 text-xs text-center font-semibold">
-          Sign in your account
+          Sign in your Admin account
         </p>
 
         <div>
@@ -80,12 +80,6 @@ export default function Signin() {
               <p className="text-[#ff0000] text-sm text-center">{error}</p>
               </div>}
           </form>
-          <p className="font-medium text-zinc-500">
-            New here?{" "}
-            <a href="/auth" className="ms-3 text-[#5333AD]">
-              Sign Up
-            </a>
-          </p>
         </div>
         <AuthFooter />
       </div>

@@ -30,8 +30,16 @@ import ResetPassword from "./pages/authetication/ResetPassword";
 import Nysc from "./pages/authetication/Nysc";
 import CourseOverview from "./components/coursesComponents/premium/CourseOverview";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
+import NoAuthPage from "./pages/NoAuth/noAuthPage";
+import AdminLogin from "./pages/AdminLogin/adminLogin";
+import AdminRouteGuard from "./components/AdminGuard/AdminRouteGuard";
 
 function App() {
+  let user = JSON.parse(localStorage.getItem("user")) || {
+    user: { roles: "" },
+  };
+  let role = user.user.roles || "";
+  console.log(role)
   return (
     <div className="App">
       <Router>
@@ -43,7 +51,7 @@ function App() {
               <Route path="/LoginSignUp" element={<LoginSignUp />} />
               <Route path="/PasswordReset" element={<PasswordReset />} />
               <Route path="/FreeCourses" element={<FreeCourses />} />
-              <Route path="/premiumCourses/:_id" element={<PremiumCourses />} /> 
+              <Route path="/premiumCourses/:_id" element={<PremiumCourses />} />
               <Route path="/CartPage" element={<CartPage />} />
               <Route path="/PaymentPage" element={<PaymentPage />} />
               <Route path="/Dashboard" element={<Dashboard />} />
@@ -54,7 +62,10 @@ function App() {
               <Route path="/mycourses" element={<MyCourse />} />
               <Route path="/profile/*" element={<Profile />} />
               <Route path="/PurchasedPage" element={<PurchasedPage />} />
-              <Route path="/InstrucructorProfile" element={<InstrucructorProfile />} />
+              <Route
+                path="/InstrucructorProfile"
+                element={<InstrucructorProfile />}
+              />
               <Route path="/Courses" element={<Courses />} />
               <Route path="/nysc" element={<Nysc />} />
               <Route path="/login" element={<Signin />} />
@@ -64,8 +75,18 @@ function App() {
               <Route path="/tutor/:id" element={<InstructorProfile />} />
               <Route path="/courseinfo" element={<CourseInfo />} />
               <Route path="/resetpassword" element={<ResetPassword />} />
-              <Route path="/AllPages" element={<AllPages />} /> {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
-              <Route path="/AdminDashboard" element={<AdminDashboard />} />
+              <Route path="/AllPages" element={<AllPages />} />{" "}
+              {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
+              <Route path="/AdminLogin" element={<AdminLogin />} />
+              <Route path="/noAuth" element={<NoAuthPage />} />
+              <Route
+                path="/AdminDashboard"
+                element={
+                  <AdminRouteGuard isAdmin={true}>
+                    <AdminDashboard />
+                  </AdminRouteGuard>
+                }
+              />
             </Routes>
           </div>
         </div>
