@@ -1,31 +1,46 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { AiOutlineMenu } from "react-icons/ai"
+import { AiOutlineMenu } from "react-icons/ai";
+import { BiLogIn, BiLogOut } from "react-icons/bi";
+import { useLogout } from "../../../hooks/useLogout";
+
+// const handleLogout = (e) => {
+//
+// };
 
 export default function NavBar() {
   const [userLogin, setUser] = useState(false); // Define the user state variable
+  const { logout } = useLogout();
 
   useEffect(() => {
-    // Get the user data from localStorage when the component mounts
-    const userData = JSON.parse(localStorage.getItem("user")) || null;
-    setUser(userData); // Set the user state with the retrieved data
+    function userData() {
+      JSON.parse(localStorage.getItem("user")) || null;
+      setUser(true)
+    }
+    userData()
   }, []);
 
-  const logOut = () => {
-    localStorage.removeItem("user");
-  }
+  const logOut = (e) => {
+    e.preventDefault();
+    console.log("Delete")
+    setUser(false)
+    logout();
+  };
 
   return (
     <>
       <nav className="bg-lightGrey text-blue-950 items-center flex justify-between sticky top-0 px-5">
         <Link to="/login" className="place-self-end">
-          {userLogin == false || userLogin == null ? (
-            <button className="bg-[#040E53] text-white md:py-4 md:px-14 px-10 py-3 border text-lg rounded-md">
-              Login
+          {userLogin == true ? (
+            <button
+              className="py-3 border text-lg rounded-md"
+              onClick={(e) => logOut(e)}
+            >
+              <BiLogOut size={26} />
             </button>
           ) : (
-            <button className="bg-[#040E53] text-white md:py-4 md:px-14 px-10 py-3 border text-lg rounded-md" onClick={logOut}>
-              LogOut
+            <button className="py-3 border text-lg rounded-md">
+              <BiLogIn size={26} />
             </button>
           )}
         </Link>

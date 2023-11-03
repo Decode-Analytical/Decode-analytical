@@ -6,11 +6,15 @@ import PaystackCard from '../components/cartAndPaymentComponents/PaystackCard';
 export default function AllPages() {
     const[admin, setAdmin] =useState(false)
     useEffect(() => {
-        // Get the user data from localStorage when the component mounts
-        const userData = JSON.parse(localStorage.getItem("user")) || null;
-        if (userData.user != null && userData.user.roles == "adming" ) {
-            setAdmin(true)
+        function checkUser() {
+            let userLoginData = JSON.parse(localStorage.getItem("user"))
+            if (userLoginData?.user.role == "admin") {
+                setAdmin(true)
+            } else {
+                setAdmin(false)
+            }
         }
+        checkUser()
       }, []);
   return (
     <div className=' text-center'>
