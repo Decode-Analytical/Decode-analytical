@@ -9,18 +9,16 @@ function CourseForm({ navigate }) {
   const [error, setError] = useState(null);
 
   const [courseData, setCourseData] = useState({
-    name: "",
+    isPaid_course: "free",
     course_title: "",
     course_description: "",
-    price: "",
+    isPrice_course: "",
     skill: "Basic",
-    course_language: "",
+    course_language: "English",
     instructor: "",
-    coverImage: null,
+    course_image: null,
     category: "Programming",
   });
-
-  const [courseId, setCourseId] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -29,7 +27,7 @@ function CourseForm({ navigate }) {
 
   const handleCoverImageChange = (e) => {
     const file = e.target.files[0];
-    setCourseData({ ...courseData, coverImage: file });
+    setCourseData({ ...courseData, course_image: file });
   };
 
   const handleSubmit = async (e) => {
@@ -38,16 +36,16 @@ function CourseForm({ navigate }) {
     setIsLoading(true);
 
     const formData = new FormData();
-    formData.set("name", courseData.name);
+    formData.set("isPaid_course", courseData.isPaid_course);
     formData.set("course_title", courseData.course_title);
     formData.set("course_description", courseData.course_description);
-    formData.set("price", courseData.price);
+    formData.set("isPrice_course", courseData.isPrice_course);
     formData.set("skill", courseData.skill);
     formData.set("instructor", courseData.instructor);
     formData.set("course_language", courseData.course_language);
     formData.set("category", courseData.category);
-    if (courseData.coverImage) {
-      formData.set("coverImage", courseData.coverImage);
+    if (courseData.course_image) {
+      formData.set("course_image", courseData.course_image);
     }
 
     try {
@@ -64,12 +62,12 @@ function CourseForm({ navigate }) {
 
       if (response.ok) {
         const data = await response.json();
-        setCourseId(data.courseId);
+        const res = data.newCourse;
+        const id = res._id;
         setIsLoading(false);
         setError(null); // Clear any previous error
 
-        // Use a functional update to ensure you're using the latest courseId value
-        navigate((prevCourseId) => `/newmodule/${prevCourseId || data.id}`);
+        navigate(`/newmodule/${id}`);
       } else {
         const errorData = await response.json();
         setError(errorData.message);
@@ -78,10 +76,9 @@ function CourseForm({ navigate }) {
     } catch (error) {
       setError("Network error occurred.");
       setIsLoading(false);
-    
+      console.error("Network error:", error);
     }
   };
-
   return (
     <form
       onSubmit={handleSubmit}

@@ -38,7 +38,7 @@ function ContentInfo({
         </div>
       ) : null}
       {error && (
-        <p className="text-red-500 text-sm mt-2">{error}</p> // Conditionally render the error message
+        <p className="text-red-500 text-sm mt-2">{error}</p> 
       )}
     </div>
   );

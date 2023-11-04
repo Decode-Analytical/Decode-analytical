@@ -8,10 +8,11 @@ function ModuleForm({ courseId }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [moduleData, setModuleData] = useState({
-    title: "",
-    duration: "",
-    description: "",
+    module_title: "",
+    module_duration: "",
+    module_description: "",
     price: "",
+    paid: "paid",
     contentType: "video",
     mediaFile: null,
     questions: [],
@@ -22,13 +23,20 @@ function ModuleForm({ courseId }) {
     setModuleData({ ...moduleData, [name]: value });
   };
 
+
+  const handleMediaFileChange = (e) => {
+    const file = e.target.files[0];
+    setModuleData({ ...moduleData, mediaFile: file });
+  };
+
   const handleModuleAdd = async () => {
     setIsLoading(true);
     {
       const formData = new FormData();
-      formData.set("title", moduleData.title);
-      formData.set("duration", moduleData.duration);
-      formData.set("description", moduleData.description);
+      formData.set("module_title", moduleData.module_title);
+      formData.set("module_duration", moduleData.module_duration);
+      formData.set("module_description", moduleData.module_description);
+      formData.set("paid", moduleData.paid);
       formData.set("price", moduleData.price);
       formData.set("contentType", moduleData.contentType);
 
@@ -61,16 +69,13 @@ function ModuleForm({ courseId }) {
             setIsLoading(false);
             setError(json.message);
           }
-          // Handle errors or show an error message to the user.
+
         }
       } catch (error) {
         setError("An error occured");
-        // Handle network errors or other exceptions.
       }
     }
   };
-
- 
 
   const handleAddQuestion = () => {
     const updatedQuestions = [...moduleData.questions];
@@ -88,8 +93,8 @@ function ModuleForm({ courseId }) {
     setModuleData({ ...moduleData, questions: updatedQuestions });
   };
 
-
   console.log(courseId);
+  console.log(moduleData);
 
   return (
     <section>
@@ -98,6 +103,7 @@ function ModuleForm({ courseId }) {
           <ModuleInfo
             moduleData={moduleData}
             handleInputChange={handleInputChange}
+            handleMediaFileChange={handleMediaFileChange}
           />
         </div>
 
@@ -126,27 +132,25 @@ function ModuleForm({ courseId }) {
             </div>
 
             <div className="text-sm">
-            <p className="font-bold float-left">
-             Quiz
-            </p>
-            <br />
-            <div className="flex flex-wrap items-center ms-5 my-3  text-[#5F5F5F]">
-              <p className="w-[70%]">Assess Your Understanding: Take the Quiz</p>
-              <p className="bg-[#040E53] ms-3 p-1 rounded-full">
-                <FaArrowRight color="white" size={10} />
-              </p>
-            </div>
+              <p className="font-bold float-left">Quiz</p>
+              <br />
+              <div className="flex flex-wrap items-center ms-5 my-3  text-[#5F5F5F]">
+                <p className="w-[70%]">
+                  Assess Your Understanding: Take the Quiz
+                </p>
+                <p className="bg-[#040E53] ms-3 p-1 rounded-full">
+                  <FaArrowRight color="white" size={10} />
+                </p>
+              </div>
             </div>
           </div>
-          <div
-            onClick={handleModuleAdd}
-        className="mt-56 float-right"
-          >
-            <button  className="bg-[#040E53] p-3 px-5 rounded-md text-xs text-white my-3 ">{isLoading ? "loading..." : "Save & Continue "}</button>
+          <div onClick={handleModuleAdd} className="mt-56 float-right">
+            <button className="bg-[#040E53] p-3 px-5 rounded-md text-xs text-white my-3 ">
+              {isLoading ? "loading..." : "Save & Continue "}
+            </button>
 
             {error && <p className="text-xs text-red-700 font-bold">{error}</p>}
           </div>
-         
         </div>
       </div>
       <QuizQuestions
@@ -154,7 +158,6 @@ function ModuleForm({ courseId }) {
         handleAddQuestion={handleAddQuestion}
         handleQuestionChange={handleQuestionChange}
       />
-
     </section>
   );
 }

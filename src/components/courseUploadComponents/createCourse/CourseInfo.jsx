@@ -4,16 +4,7 @@ function CourseInfo({ courseData, handleInputChange }) {
   return (
     <div>
       <p className="text-sm font-extrabold py-3">Course Information</p>
-      <label className="font-bold text-sm">
-        Name:
-        <input
-          className="p-2"
-          type="text"
-          name="name"
-          value={courseData.name}
-          onChange={handleInputChange}
-        />
-      </label>
+    
       <label className="font-bold text-sm">
         Course Title:
         <input
@@ -44,8 +35,8 @@ function CourseInfo({ courseData, handleInputChange }) {
           <input
             className="p-1"
             type="number"
-            name="price"
-            value={courseData.price}
+            name="isPrice_course"
+            value={courseData.isPrice_course}
             onChange={handleInputChange}
           />
         </div>
@@ -89,6 +80,16 @@ function CourseInfo({ courseData, handleInputChange }) {
         <option value="Marketing">Marketing</option>
         <option value="Other">Other</option>
       </select>
+      <label className="font-bold text-sm">
+        Paid or Free:
+        <input
+          className="p-2"
+          type="text"
+          name="isPaid_course"
+          value={courseData.isPaid_course}
+          onChange={handleInputChange}
+        />
+      </label>
     </div>
   );
 }

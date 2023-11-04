@@ -17,8 +17,8 @@ function ModuleInfo({
         <input
           className="p-2"
           type="text"
-          name="title"
-          value={moduleData.title}
+          name="module_title"
+          value={moduleData.module_title}
           onChange={handleInputChange}
           placeholder="Module Title"
         />
@@ -27,9 +27,9 @@ function ModuleInfo({
         Duration (in hours):
         <input
           className="p-2"
-          type="number"
-          name="duration"
-          value={moduleData.duration}
+          type="text"
+          name="module_duration"
+          value={moduleData.module_duration}
           onChange={handleInputChange}
           placeholder="Module Duration"
         />
@@ -45,8 +45,8 @@ function ModuleInfo({
       <label className="font-bold text-sm">
         Description:
         <textarea
-          name="description"
-          value={moduleData.description}
+          name="module_description"
+          value={moduleData.module_description}
           onChange={handleInputChange}
           placeholder="Module Description"
           className="w-full h-28 bg-zinc-100" 
@@ -57,8 +57,19 @@ function ModuleInfo({
         <input
           className="p-2"
           name="price"
-          type="number" 
+          type="text" 
           value={moduleData.price}
+          onChange={handleInputChange}
+          placeholder="Module Price"
+        />
+      </label>
+      <label className="font-bold text-sm">
+        Paid:
+        <input
+          className="p-2"
+          name="paid"
+          type="text" 
+          value={moduleData.paid}
           onChange={handleInputChange}
           placeholder="Module Price"
         />
