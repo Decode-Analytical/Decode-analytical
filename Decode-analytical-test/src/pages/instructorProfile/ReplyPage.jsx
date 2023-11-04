@@ -16,13 +16,16 @@ export default function Rep() {
                 <MainSideBar />
             </div>
             <div className=" mx-[5%] sm:ml-[12%] px-[5%] bg-[#eeeeee]">
-                <div className=" w-full bg-black h-52">
-                    <p className=" text-white text-3xl text-center pt-20">DECODE ANALYTICS</p>
+            <div className=" w-full bg-black sm:h-40 lg:h-52">
+                    <p className=" text-white lg:text-3xl sm:text-2xl text-center sm:pt-20 lg:pt-20">
+                      DECODE ANALYTICS</p>
                 </div>
                 <div className=" w-full h-auto shadow-md p-5">
                     <figure >
                         
-                  <img src={profilePic} alt="" className=" w-52 h-52 bg-gray-400 border-2 rounded-full z-10 -mt-40" />
+                  <img src={profilePic} alt="" className=" lg:w-52 lg:h-52
+                  sm:w-32 sm:h-32 bg-gray-400 border-2 rounded-full z-10 lg:-mt-40 sm:-mt-32
+      " />
                   
                         <figcaption className=' flex justify-between'> 
                             
@@ -74,30 +77,31 @@ export default function Rep() {
                 </div>
                 <div className=" mb-24 border-y-8">
                 
-                <div className=" w-1/4 flex justify-between mt-3 text-gray-400 text-lg">
-                        <p className="">Your Posts</p>
-                        <p className=" text-black">Replies</p>
+                <div className=" lg:w-1/4 sm:w-full flex justify-between mt-3 text-gray-400 text-lg">
+                        <p className=" text-black">Your Posts</p>
+                        <p className="">Replies</p>
                         <p className="">Likes</p>
                     </div>
-                  <div className=" flex justify-between ml-10 mt-10">
-                <div className=" flex items-center">
-                            <img src={profilePic} alt="" className=' w-16 mr-6 h-16 rounded-full'/>
-                            <p className="text-lg text-[#303030] flex">
-                                Golden Ellen
-                                <span className=" pl-3 pr-3 border bg-gray-200 rounded-lg text-blue-600">
-                                    student</span>
-                                 <span className=" font-extralight">posted 30mins ago</span>
+                
+                    <div className=" lg:flex lg:justify-between sm:block ml-10 mt-10">
+                <div className=" lg:flex sm:block lg:items-center">
+                            <img src={profilePic} alt="" className=' lg:w-16 lg:mr-6 lg:h-16 sm:w-3/4 sm:mx-auto  rounded-full'/>
+                            <p className="text-lg text-[#303030] sm:block sm:text-center lg:flex font-bold">
+                                by Victoria Olayode 
+                                  <span className="pl-3 pr-3 border bg-gray-200 rounded-lg text-blue-600">
+                                   student</span>
+                                 <span className=" text-gray-400 font-extralight">posted 30mins ago</span>
                             </p>
                         </div>
-<div className=" mr-10">
+<div className=" lg:mr-10 sm:mr-0">
     <p className="">Graphic Designs <span className=""> (Week 2)</span> </p>
 </div>
 
                         </div>
                 <div className=" mt-10 ">
                     
-                    <p className=" pl-10">Post Description</p>
-                    <p className=" pl-10 pr-10">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus exercitationem ratione tempore fugiat cum et asperiores sunt laboriosam sapiente adipisci veritatis a, omnis, expedita porro pariatur. Iure repudiandae quam ipsam.
+                    <p className=" pl-10  text-2xl font-bold">Post Description</p>
+                    <p className=" p-10">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus exercitationem ratione tempore fugiat cum et asperiores sunt laboriosam sapiente adipisci veritatis a, omnis, expedita porro pariatur. Iure repudiandae quam ipsam.
                     Similique, commodi doloribus doloremque placeat necessitatibus
                      delectus at distinctio ex in natus excepturi enim obcaecati 
                      quaerat rem beatae reiciendis. Accusamus aut, facilis voluptas
