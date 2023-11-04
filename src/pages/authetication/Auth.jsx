@@ -95,7 +95,11 @@ export default function Auth() {
           <form>
             <input type="submit" value="Proceed" onClick={handleSubmit} />
           </form>
+<<<<<<< HEAD
           <p className="text-sm mt-3 text-zinc-500">
+=======
+          <p className="font-medium mt-3 text-zinc-500">
+>>>>>>> AdminHomePage
             Already have an account?
             <a href="/login" className="ms-3 text-[#5333AD]">
               Log in
