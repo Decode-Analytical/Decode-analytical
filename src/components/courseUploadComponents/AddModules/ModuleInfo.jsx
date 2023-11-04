@@ -8,6 +8,9 @@ function ModuleInfo({
   isLoading,
   handleMediaFileChange,
   handleModuleAdd,
+  handleAudio,
+  handleImage,
+  handleVideo
 }) {
   return (
     <div>
@@ -34,14 +37,14 @@ function ModuleInfo({
           placeholder="Module Duration"
         />
       </label>
-      <ContentInfo
+      {/* <ContentInfo
         error={error}
         isLoading={isLoading}
         moduleData={moduleData}y
         handleInputChange={handleInputChange}
         handleMediaFileChange={handleMediaFileChange}
         handleModuleAdd={handleModuleAdd}
-      />
+      /> */}
       <label className="font-bold text-sm">
         Description:
         <textarea
@@ -64,7 +67,7 @@ function ModuleInfo({
         />
       </label>
       <label className="font-bold text-sm">
-        Paid:
+        Paid or free:
         <input
           className="p-2"
           name="paid"
@@ -74,6 +77,35 @@ function ModuleInfo({
           placeholder="Module Price"
         />
       </label>
+      <label className="font-bold text-sm">
+        Upload Image:
+        <input
+          type="file"
+          name="image"
+          accept="image/*"
+          onChange={handleImage}
+        />
+      </label>
+      <label className="font-bold text-sm">
+        Upload Audio:
+        <input
+          type="file"
+          name="audio"
+          accept="audio/*"
+          onChange={handleAudio} 
+        />
+      </label>
+
+      <label className="font-bold text-sm">
+        Upload Video:
+        <input
+          type="file"
+          name="video"
+          accept="video/*"
+          onChange={handleVideo} 
+        />
+      </label>
+      
     </div>
   );
 }

@@ -79,6 +79,7 @@ function CourseForm({ navigate }) {
       console.error("Network error:", error);
     }
   };
+  console.log(courseData)
   return (
     <form
       onSubmit={handleSubmit}

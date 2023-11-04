@@ -6,6 +6,7 @@ import { FaArrowRight, FaInstagram, FaInstagramSquare } from "react-icons/fa";
 
 function ModuleForm({ courseId }) {
   const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState(false);
   const [error, setError] = useState(null);
   const [moduleData, setModuleData] = useState({
     module_title: "",
@@ -14,10 +15,38 @@ function ModuleForm({ courseId }) {
     price: "",
     paid: "paid",
     contentType: "video",
-    mediaFile: null,
+   mediaFile: null,
+   video: [],
+   audio: [],
+   image: [],
     questions: [],
   });
+  const handleImage = (e) => {
+    const file = e.target.files[0];
+    
+    if (file) {
+    
+      setModuleData({ ...moduleData, image: file });
+    }
+  };
 
+  const handleAudio = (e) => {
+    const file = e.target.files[0];
+    
+    if (file) {
+    
+      setModuleData({ ...moduleData, audio: file });
+    }
+  };
+
+  const handleVideo = (e) => {
+    const file = e.target.files[0];
+    
+    if (file) {
+    
+      setModuleData({ ...moduleData, video: file });
+    }
+  };
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setModuleData({ ...moduleData, [name]: value });
@@ -26,7 +55,7 @@ function ModuleForm({ courseId }) {
 
   const handleMediaFileChange = (e) => {
     const file = e.target.files[0];
-    setModuleData({ ...moduleData, mediaFile: file });
+    setModuleData({ ...moduleData,mediaFile: file });
   };
 
   const handleModuleAdd = async () => {
@@ -38,10 +67,13 @@ function ModuleForm({ courseId }) {
       formData.set("module_description", moduleData.module_description);
       formData.set("paid", moduleData.paid);
       formData.set("price", moduleData.price);
+      formData.set("audio", moduleData.audio);
+      formData.set("image", moduleData.image);
+      formData.set("video", moduleData.video);
       formData.set("contentType", moduleData.contentType);
 
       if (
-        moduleData.contentType === "video" ||
+        moduleData.contentType === "mediaFile" ||
         moduleData.contentType === "audio"
       ) {
         if (moduleData.mediaFile) {
@@ -62,6 +94,7 @@ function ModuleForm({ courseId }) {
         );
         const json = await response.json();
         if (response.ok) {
+          setMessage(json.message);
           // Module added to the course successfully. You can handle the response or update the component state.
           console.log("Fetched");
         } else {
@@ -72,6 +105,7 @@ function ModuleForm({ courseId }) {
 
         }
       } catch (error) {
+        setIsLoading(false);
         setError("An error occured");
       }
     }
@@ -104,6 +138,9 @@ function ModuleForm({ courseId }) {
             moduleData={moduleData}
             handleInputChange={handleInputChange}
             handleMediaFileChange={handleMediaFileChange}
+            handleAudio={handleAudio}
+            handleImage={handleImage}
+            handleVideo={handleVideo}
           />
         </div>
 
@@ -150,6 +187,7 @@ function ModuleForm({ courseId }) {
             </button>
 
             {error && <p className="text-xs text-red-700 font-bold">{error}</p>}
+            {message && <p className="text-xs text-green-700 font-bold">{message}</p>}
           </div>
         </div>
       </div>
