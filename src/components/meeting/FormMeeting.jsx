@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useAuthContext } from "../../hooks/authContext";
+import { useNewMeetingMutation } from "../../redux/Meeting/Meeting";
+import { AiOutlineLoading3Quarters } from "react-icons/ai"
 
 const FormMeeting = () => {
-  const { user } = useAuthContext();
-  //   console.log(user.token);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [newMeeting, { isLoading, isError }] = useNewMeetingMutation()
   const [schedule, setSchedule] = useState({
     email: "",
     description: "",
@@ -19,43 +18,8 @@ const FormMeeting = () => {
     setSchedule({ ...schedule, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log(schedule);
-    try {
-      const response = await fetch(
-        "https://decode-mnjh.onrender.com/api/admin/adminScheduleMeeting",
-        {
-          method: "POST",
-          body: JSON.stringify(schedule),
-        }
-      );
-      console.log(response);
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-        setIsLoading(false);
-        setError(null); // Clear any previous error
-      } else {
-        const errorData = await response.json();
-        setError(errorData.message);
-        setIsLoading(false);
-      }
-
-      // Reset the schedule state after handling the submit
-      setSchedule({
-        email: "",
-        description: "",
-        date: "",
-        time: "",
-        courseName: "",
-      });
-    } catch (error) {
-      setError("Network error occurred.");
-      setIsLoading(false);
-      console.error("Network error:", error);
-    }
+  const handleSubmit = () => {
+    newMeeting(schedule)
   };
 
   if (isLoading) {
@@ -113,7 +77,7 @@ const FormMeeting = () => {
       <p className="ms-3 my-5 text-xs text-center text-gray-400">
         By clicking Submit you agree on policy term and condition
       </p>
-      {error && <p className="text-red-500 text-xs">{error}</p>}
+      {isError && <p className="text-red-500 text-xs">{error}</p>}
       <button
         type="submit"
         className="bg-blue-400 w-full text-center h-12 hover:bg-blue-600 rounded-md"
