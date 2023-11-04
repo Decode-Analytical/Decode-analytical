@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import FirstCard from "./assets/card/FirstCard.png";
 import Second from "./assets/card/SecondCard.png";
 import ThirdCard from "./assets/card/ThirdCard.png";
@@ -6,9 +6,10 @@ import ForthCard from "./assets/card/ForthCard.png";
 import AdminCard from "../../components/AdminDashboard/AdminCard";
 import MainImage from "./assets/mainImage/MainImage.png";
 import Chart from "react-apexcharts";
-import backGround from "./assets/mainImage/MainBackground.png";
+import { useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
+  const { navigate } = useNavigate()
   let cardsData = [
     {
       id: 1,
@@ -195,6 +196,9 @@ const AdminDashboard = () => {
         <ul className="flex flex-wrap mt-6 justify-between items-center">
           <AdminCard card={cardsData} />
         </ul>
+        <button type="Button" onClick={() => navigate("/newcourse")}>
+          Create a Course
+        </button>
         <div className="flex w-full md:justify-center my-9">
           <Chart
             options={Graphstate.options}
