@@ -29,7 +29,11 @@ export default function TutorComponent() {
       fetchTutor();
     }
   }, [user]);
+<<<<<<< HEAD
   console.log(tutor);
+=======
+ 
+>>>>>>> AdminHomePage
 
   return (
     <section className=" text-center bg-slate-100 py-28 text-[20px]  px-[10%]">

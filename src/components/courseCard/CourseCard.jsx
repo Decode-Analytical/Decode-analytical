@@ -1,16 +1,28 @@
 import React from 'react'
+import { NavLink } from "react-router-dom";
 import './card.css'
 
 const CourseCard = (props) => {
   const {data} = props
-  const {title, progress} = data
+  console.log(data)
+  const {
+    _id: id,
+    title,
+    image
+  } = data
   const levelNumber = 0
+  const progress = 35
   return (
     <>
+    <NavLink
+      to={`/CousrsePage/${id}`}
+    >
+
     <div className="max-w-none w-full flex flex-wrap bg-white course-card">
       <div className="h-auto flex-1 m-2 bg-cover rounded text-center overflow-hidden img-container">
+        <img src={image[0].path} alt={`course ${title}`} className='img-container aspect-[6/5]'/>
       </div>
-      <div className="flex flex-col flex-1 min-w-[300px] justify-between leading-normal">
+      <div className="flex flex-col flex-1 min-w-[150px] justify-between leading-normal">
         <div className="mb-1 mt-6 mx-4 lg:mt-0 flex flex-col justify-between">
           <h3 className="text-gray-900 font-bold text-xl mb-2 ">{title}</h3>
           <div className='flex flex-row items-center gap-2'>
@@ -69,7 +81,7 @@ const CourseCard = (props) => {
               </div>
             </div>
 
-            <ul className='flex flex-wrap mt-4'>
+            <ul className='flex-wrap mt-4 hidden'>
               <li className='py-1 px-3 box rounded-2xl shadow-md text-sm'>Flexbox</li>
             </ul>
           </div>
@@ -77,6 +89,7 @@ const CourseCard = (props) => {
         </div>
       </div>
     </div>
+    </NavLink>;
     </>
   )
 }
