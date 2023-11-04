@@ -7,7 +7,7 @@ import LoginSignUp from "./pages/login/LoginSignUp";
 import PasswordReset from "./components/loginComponents/PasswordReset";
 
 import PremiumCourses from "./pages/courseDetailPage/PremiumCourses";
-import FreeCourses from "./pages/courseDetailPage/FreeCourses";
+// import FreeCourses from "./pages/courseDetailPage/FreeCourses";
 import CartPage from "./pages/cartAndPaymentPage/CartPage";
 import PaymentPage from "./pages/cartAndPaymentPage/PaymentPage";
 import NotEnrolled from "./pages/forumPage/NotEnrolled";
@@ -25,9 +25,10 @@ import Password from "./pages/authetication/Password";
 import Auth from "./pages/authetication/Auth";
 import Individual from "./pages/authetication/Individual";
 import InstructorProfile from "./pages/homepage/InstructorProfile";
-import ResetPassword from "./pages/authetication/ResetPassword";
-import Nysc from "./pages/authetication/Nysc";
-import FreeCourses from "./pages/courseDetailPage/freeCourses";
+// import ResetPassword from "./pages/authetication/ResetPassword";
+// import Nysc from "./pages/authetication/Nysc";
+import FreeCourses from "./pages/courseDetailPage/FreeCourses";
+// import FreeCourse
 
 import NewModules from "./pages/courseUpload/NewModule";
 import NewCourse from "./pages/courseUpload/NewCourse";
@@ -35,6 +36,7 @@ import NewCourse from "./pages/courseUpload/NewCourse";
 
 import CourseInfo from "./pages/courseUpload/CourseInfo";
 import ResetPassword from "./pages/authetication/ResetPassword";
+import Dashboard from "./pages/dashboard/Dashboard";
 import Nysc from "./pages/authetication/Nysc";
 import CourseOverview from "./components/coursesComponents/premium/CourseOverview";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";

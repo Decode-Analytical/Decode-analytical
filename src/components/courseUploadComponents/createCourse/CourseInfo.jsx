@@ -14,6 +14,8 @@ function CourseInfo({ courseData, handleInputChange }) {
           value={courseData.course_title}
           onChange={handleInputChange}
         />
+
+        {/* e.traget.name = "course_title"  */}
       </label>
       <div className="flex flex-wrap justify-between">
         <div className="w-[50%]">

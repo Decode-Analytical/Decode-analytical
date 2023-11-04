@@ -5,6 +5,7 @@ import CoverImage from "./CoverImage";
 
 function CourseForm({ navigate }) {
   const { user } = useAuthContext();
+  console.log(user)
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -22,6 +23,7 @@ function CourseForm({ navigate }) {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    // console.log(name)
     setCourseData({ ...courseData, [name]: value });
   };
 

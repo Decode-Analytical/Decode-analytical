@@ -1,7 +1,10 @@
 import React from "react";
-import forum from "../../assets/courseUploadImages/illustrations.png";
-import forum1 from "../../assets/courseUploadImages/illustrations1.png";
-import forum2 from "../../assets/courseUploadImages/illustrations2.png";
+// import forum from "../../assets/courseUploadImages/illustrations.png";
+import forum from "../../assets/courseUploadImages/Illustrations.png"
+// import forum1 from "../../assets/courseUploadImages/illustrations1.png";
+import forum1 from "../../assets/courseUploadImages/Illustrations1.png";
+import forum2 from "../../assets/courseUploadImages/Illustrations2.png"
+// import forum2 from "../../assets/courseUploadImages/Illustrations2.png";
 import { Link } from "react-router-dom";
 
 export default function () {

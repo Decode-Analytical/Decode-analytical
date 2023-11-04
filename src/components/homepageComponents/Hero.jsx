@@ -8,11 +8,7 @@ export default function Hero() {
     <section className="bg-white">
       <div className="pt-14 pb-2  hero text-center text-white  relative ">
         <h2 className="font-bold text-[40px] bigText text-center text-white py-3 px-[10%]">
-<<<<<<< HEAD
           Unlock Your Potential, Expand Your Horizons, and Excel in Tech
-=======
-          Unlock Your Potential, Expand Your Horizons, and Excel in Tech (test)
->>>>>>> AdminHomePage
         </h2>
         <p className="text-[20px] px-[20%] bigFont">
           Decode LMS is a learning management system that gives you all the

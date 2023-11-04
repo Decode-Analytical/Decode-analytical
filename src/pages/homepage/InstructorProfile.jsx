@@ -41,11 +41,7 @@ export default function InstructorProfile() {
         fetchTutor();
       }
     }, [user, id]);
-<<<<<<< HEAD
-    console.log(tutor);
-=======
-    console.log(tutor.firstName);
->>>>>>> AdminHomePage
+    // console.log(tutor.firstName);
 
   return (
     <main className="bg-zinc-300 text-[#5F5F5F] text-sm ">

@@ -20,13 +20,7 @@ export default function Course() {
     <Courses />
 
     {/* // This button links to coursepage */}
-<<<<<<< HEAD
-    <Link to=""><button className="text-sm hover:text-purple-600 hover:bg-zinc-200 bg-white border border-purple-950 mt-5 p-1">
-      View all courses
-    </button></Link>
-=======
     
->>>>>>> AdminHomePage
   </section>
   )
 }

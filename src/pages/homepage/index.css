@@ -1,11 +1,7 @@
 
 .hero {
   background-image: url(../src/assets/homepageImages/main.png);
-<<<<<<< HEAD
-background-size: 100%, 2%;
-=======
 background-size: 100% 2%;
->>>>>>> AdminHomePage
 }
 .bg {
   background-image: url(../src//assets/homepageImages/bg.png);
