@@ -86,9 +86,15 @@ export default function ResetPassword({match}) {
             <input type="submit" value="Reset Password" />
           </form>
           <p className="text-red-600 text-sm">{message}</p>
+<<<<<<< HEAD
           <p className="text-sm text-zinc-500">
             New here?{" "}
             <a href="/signup" className="ms-3 text-[#5333AD]">
+=======
+          <p className="font-medium text-zinc-500">
+            New here?{" "}
+            <a href="/auth" className="ms-3 text-[#5333AD]">
+>>>>>>> AdminHomePage
               Sign Up
             </a>
           </p>
