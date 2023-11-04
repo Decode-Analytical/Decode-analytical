@@ -9,7 +9,7 @@ import Chart from "react-apexcharts";
 import { useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
-  const { navigate } = useNavigate()
+  const  navigate  = useNavigate();
   let cardsData = [
     {
       id: 1,
@@ -196,10 +196,14 @@ const AdminDashboard = () => {
         <ul className="flex flex-wrap mt-6 justify-between items-center">
           <AdminCard card={cardsData} />
         </ul>
-        <button type="Button" onClick={() => navigate("/newcourse")}>
-          Create a Course
-        </button>
-        <div className="flex w-full md:justify-center my-9">
+        <div className="flex w-full md:justify-center my-9 flex-col items-center">
+          <button
+            type="Button"
+            className="bg-blue-400 w-48 h-16 text-lg my-4 "
+            onClick={() => navigate("/newcourse")}
+          >
+            Create a Course
+          </button>
           <Chart
             options={Graphstate.options}
             series={Graphstate.series}

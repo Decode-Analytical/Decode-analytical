@@ -33,7 +33,6 @@ import FreeCourses from "./pages/courseDetailPage/FreeCourses";
 import NewModules from "./pages/courseUpload/NewModule";
 import NewCourse from "./pages/courseUpload/NewCourse";
 
-
 import CourseInfo from "./pages/courseUpload/CourseInfo";
 import ResetPassword from "./pages/authetication/ResetPassword";
 import Dashboard from "./pages/dashboard/Dashboard";
@@ -43,6 +42,7 @@ import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 import NoAuthPage from "./pages/NoAuth/noAuthPage";
 import AdminLogin from "./pages/AdminLogin/adminLogin";
 import PaystackCard from "./components/cartAndPaymentComponents/PaystackCard";
+import ScheduleMeeting from "./pages/scheduleMeeting/ScheduleMeeting";
 
 function App() {
   return (
@@ -88,6 +88,7 @@ function App() {
               <Route path="/AdminDashboard" element={<AdminDashboard />} />
               <Route path="/PaystackCard/:price" element={<PaystackCard />} />
               <Route path="/AllPages" element={<AllPages />} />{" "}
+              <Route path="/schedulemeeting" element={<ScheduleMeeting />} />
               {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
             </Routes>
           </div>
