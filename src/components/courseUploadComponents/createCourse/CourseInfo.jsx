@@ -53,15 +53,6 @@ function CourseInfo({ courseData, handleInputChange }) {
         className="w-[100%] h-32 bg-zinc-100"
       />
 
-      <label className="font-bold text-sm">Instructor: </label>
-      <input
-        className="p-2"
-        type="text"
-        name="instructor"
-        value={courseData.instructor}
-        onChange={handleInputChange}
-      />
-
       <label className="font-bold text-sm">Launguage: </label>
       <input
         className="p-2"
