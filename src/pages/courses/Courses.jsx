@@ -21,7 +21,7 @@ export default function Courses() {
           }
         })
         const data = await response.json();
-        // console.log(data.courses)
+        console.log(data.courses)
 
 
         if (data.courses) {

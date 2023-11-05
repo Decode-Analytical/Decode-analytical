@@ -5,13 +5,8 @@ import NavBar from "./components/homeComponents/navbar/NavBar";
 import HomePage from "./pages/homepage/HomePage";
 import LoginSignUp from "./pages/login/LoginSignUp";
 import PasswordReset from "./components/loginComponents/PasswordReset";
-<<<<<<< HEAD
-import PremiumCourses from './pages/courseDetailPage/PremiumCourses'
-import FreeCourses from './pages/courseDetailPage/FreeCourses'
-=======
 import PremiumCourses from "./pages/courseDetailPage/PremiumCourses";
 import FreeCourses from "./pages/courseDetailPage/FreeCourses";
->>>>>>> 065a4d9ff2610b7742d9547aab1e4252c30811a3
 import CartPage from "./pages/cartAndPaymentPage/CartPage";
 import PaymentPage from "./pages/cartAndPaymentPage/PaymentPage";
 import NotEnrolled from "./pages/forumPage/NotEnrolled";

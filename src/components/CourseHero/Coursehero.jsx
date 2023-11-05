@@ -59,13 +59,13 @@ export default function CourseHero() {
               </a>
             </div>
           </div>
-          <form onSubmit={getCourse()}>
+          {/* <form onSubmit={getCourse()}> */}
           <input
             placeholder="Search All Courses"
             onChange={e => {setTerm(e.target.value);e.preventDefault()}}
             className="bg-white p-[20px] w-full outline-none rounded-e-md border-none"
           />
-          </form>
+          {/* </form> */}
         </div>
         <div className="flex justify-start gap-3 py-[2rem] text-black">
           <Link to = '/freeCourses'>
