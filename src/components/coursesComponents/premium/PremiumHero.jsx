@@ -7,11 +7,14 @@ import {BsFillPeopleFill} from "react-icons/bs"
 import {BsAward} from "react-icons/bs"
 import {BsFillRssFill} from "react-icons/bs"
 
-export default async function PremiumHero() {
+export default function PremiumHero(props) {
+    const {course_title, course_image} = props;
+
+    const bgUrl = course_image[0].path;
   return (
     <>
         <section>
-            <div className="bg-img bg-cover bg-no-repeat bg-center  md:h-[550px] mt-10 p-10"> {/*  BACKGROUND IMAGE IMPORTED FROM APP.CSS */}
+            <div style={{ backgroundImage: `url(${bgUrl})` }} className= ' bg-cover bg-no-repeat bg-center  md:h-[550px] mt-10 p-10' >
                 <div className=" md:max-w-[95%] m-auto">
                     <Link to='/freeCourses'>
                         <button className=' bg-[#D9DBE5] rounded-xl px-6 md:mt-24'>
@@ -20,13 +23,13 @@ export default async function PremiumHero() {
                     </Link>
 
                     <div className=" text-white text-3xl md:text-6xl font-bold mt-1">
-                        Data Analytics
+                        {course_title}
                     </div>
 
                     <div className=" text-white">
                         <div className=" mt-5 max-w-[485px] md:flex justify-between">
                             <p className=" flex items-center space-x-2">
-                                <BsStack /> <span>14 Courses</span>
+                                <BsStack /> <span>14 Modules</span>
                             </p>
 
                             <p className=" flex space-x-2 items-center">

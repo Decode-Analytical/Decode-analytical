@@ -1,9 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 
 export default function CourseHero() {
-  let searchItem = "Graphics Design";
+  let searchTerm = '';
+  const [searchItem, setTerm] = useState("")
+  const [items, setItem] = useState([])
+  const searchUrl = `https://decode-mnjh.onrender.com/api/course/search/${searchItem}`
+  const apiKey = import.meta.env.VITE_ACCESS_TOKEN;
+  const token = apiKey;
+      const getCourse = async (e) => {
+        try {
+          const response = await fetch(searchUrl, {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          })
+          const data = await response.json();
+          console.log(data.course)
+  
+          if (data.courses) {
+            console.log(data.courses)
+            setItem(data.courses)
+          }
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }
+  // getCourse()
   return (
     <>
       <section className="z-10 cart-bg p-[3rem] lg:p-[8rem] text-white bg-cover w-100% font-montserrat whitespace-break-spaces">
@@ -35,10 +59,13 @@ export default function CourseHero() {
               </a>
             </div>
           </div>
+          <form onSubmit={getCourse()}>
           <input
             placeholder="Search All Courses"
+            onChange={e => {setTerm(e.target.value);e.preventDefault()}}
             className="bg-white p-[20px] w-full outline-none rounded-e-md border-none"
           />
+          </form>
         </div>
         <div className="flex justify-start gap-3 py-[2rem] text-black">
           <Link to = '/freeCourses'>

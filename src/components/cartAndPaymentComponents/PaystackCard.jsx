@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { PaystackButton } from 'react-paystack'
+import { useParams } from 'react-router-dom'
 
-const PaystackCard = () => {
+const PaystackCard = ({ urlSuccess}) => {
   const publicKey = "pk_test_9e4f4a1e69f30c6b3199072b2fc90366468ef2cb"
-  const amount = 1000000 // Remember, set in kobo!
+  const { price } = useParams();
+  const amount = price
   const [email, setEmail] = useState("")
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
@@ -17,8 +19,10 @@ const PaystackCard = () => {
     },
     publicKey,
     text: "Pay Now",
-    onSuccess: () =>
-      alert("Thanks for doing business with us! Come back soon!!"),
+    onSuccess: () => {
+      window.location.href = urlSuccess;
+      alert("Thanks for doing business with us! Come back soon!!");
+    },
     onClose: () => alert("Wait! You need this oil, don't go!!!!"),
   }
   return (

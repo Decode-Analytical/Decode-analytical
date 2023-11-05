@@ -1,11 +1,13 @@
 import React from 'react'
 import './card.css'
+import { NavLink } from 'react-router-dom'
 
 
 const EnrolledCourseCard = (props) => {
     const {title, course} = props
     console.log("Test:", )
     const {
+        _id: id,
         title: courseTitle,
         description,
         image,
@@ -15,6 +17,9 @@ const EnrolledCourseCard = (props) => {
     const levelNumber = 0
   return (
     <>
+    <NavLink
+      to={`/CousrsePage/${id}`}
+    >
     <div className='flex flex-col mt-16 mx-6 border border-gray-300 rounded-2xl p-3'>
         <div className='flex justify-between pt-3 pb-2 border-b-2 mb-4'>
             <h3 className='font-semibold text-lg'>{title}</h3>
@@ -114,6 +119,7 @@ const EnrolledCourseCard = (props) => {
 
         )}
     </div>
+    </NavLink>
     </>
   )
 }

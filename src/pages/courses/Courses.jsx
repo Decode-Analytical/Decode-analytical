@@ -3,13 +3,14 @@ import Axios from 'axios';
 
 import CourseHero from '../../components/CourseHero/Coursehero';
 import CoursesCard from '../../components/CourseHero/CoursesCard';
-
+const searchTerm = '';
 const courseURL = 'https://decode-mnjh.onrender.com/api/course/viewAllCourses';
 const apiKey = import.meta.env.VITE_ACCESS_TOKEN;
 const token = apiKey;
 
 export default function Courses() {
   const [courses, setCourses] = useState([]); 
+  const [searchTerm, setTerm] = useState("")
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -20,7 +21,7 @@ export default function Courses() {
           }
         })
         const data = await response.json();
-        console.log(data.courses)
+        // console.log(data.courses)
 
 
         if (data.courses) {

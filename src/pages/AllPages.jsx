@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import PaystackCard from '../components/PaystackCard';
+import PaystackCard from '../components/cartAndPaymentComponents/PaystackCard';
 
 
 export default function AllPages() {
@@ -23,11 +23,6 @@ export default function AllPages() {
             FreeCourses
         </Link> <br />
 
-        
-
-        <Link to="/PremiumCourses">
-            PremiumCourses
-        </Link> <br />
 
         <Link to="/CartPage">
             CartPage
@@ -84,10 +79,6 @@ export default function AllPages() {
          <Link to="/courseinfo">
             course Upload
         </Link>
-
-        <div className='mt-6 mb-3'>
-            <PaystackCard />
-        </div>
     </div>
   )
 }

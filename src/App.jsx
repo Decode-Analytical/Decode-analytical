@@ -5,8 +5,13 @@ import NavBar from "./components/homeComponents/navbar/NavBar";
 import HomePage from "./pages/homepage/HomePage";
 import LoginSignUp from "./pages/login/LoginSignUp";
 import PasswordReset from "./components/loginComponents/PasswordReset";
+<<<<<<< HEAD
 import PremiumCourses from './pages/courseDetailPage/PremiumCourses'
 import FreeCourses from './pages/courseDetailPage/FreeCourses'
+=======
+import PremiumCourses from "./pages/courseDetailPage/PremiumCourses";
+import FreeCourses from "./pages/courseDetailPage/FreeCourses";
+>>>>>>> 065a4d9ff2610b7742d9547aab1e4252c30811a3
 import CartPage from "./pages/cartAndPaymentPage/CartPage";
 import PaymentPage from "./pages/cartAndPaymentPage/PaymentPage";
 import NotEnrolled from "./pages/forumPage/NotEnrolled";
@@ -28,7 +33,7 @@ import InstructorProfile from "./pages/homepage/InstructorProfile";
 import CourseInfo from "./pages/courseUpload/CourseInfo";
 import ResetPassword from "./pages/authetication/ResetPassword";
 import Nysc from "./pages/authetication/Nysc";
-import CourseOverview from "./components/coursesComponents/premium/CourseOverview";
+import PaystackCard from "./components/cartAndPaymentComponents/PaystackCard";
 
 function App() {
   return (
@@ -42,8 +47,7 @@ function App() {
               <Route path="/LoginSignUp" element={<LoginSignUp />} />
               <Route path="/PasswordReset" element={<PasswordReset />} />
               <Route path="/FreeCourses" element={<FreeCourses />} />
-              {/* <Route path="/PremiumCourses" element={<PremiumCourses />} />
-              <Route path="/premiumCourses/:courseId" component={PremiumCourses} /> */}
+              <Route path="/premiumCourses/:_id" element={<PremiumCourses />} /> 
               <Route path="/CartPage" element={<CartPage />} />
               <Route path="/PaymentPage" element={<PaymentPage />} />
               <Route path="/Dashboard" element={<Dashboard />} />
@@ -64,9 +68,7 @@ function App() {
               <Route path="/tutor/:id" element={<InstructorProfile />} />
               <Route path="/courseinfo" element={<CourseInfo />} />
               <Route path="/resetpassword" element={<ResetPassword />} />
-              <Route path="/premiumCourses" element={<PremiumCourses />}>
-                <Route path=":courseId" element={<CourseOverview />} />
-              </Route>
+              <Route path="/PaystackCard/:price" element={<PaystackCard />} />
               <Route path="/AllPages" element={<AllPages />} /> {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
             </Routes>
           </div>

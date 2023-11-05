@@ -1,10 +1,12 @@
 import React from 'react'
+import { NavLink } from "react-router-dom";
 import './card.css'
 
 const CourseCard = (props) => {
   const {data} = props
   console.log(data)
   const {
+    _id: id,
     title,
     image
   } = data
@@ -12,6 +14,10 @@ const CourseCard = (props) => {
   const progress = 35
   return (
     <>
+    <NavLink
+      to={`/CousrsePage/${id}`}
+    >
+
     <div className="max-w-none w-full flex flex-wrap bg-white course-card">
       <div className="h-auto flex-1 m-2 bg-cover rounded text-center overflow-hidden img-container">
         <img src={image[0].path} alt={`course ${title}`} className='img-container aspect-[6/5]'/>
@@ -83,6 +89,7 @@ const CourseCard = (props) => {
         </div>
       </div>
     </div>
+    </NavLink>;
     </>
   )
 }
