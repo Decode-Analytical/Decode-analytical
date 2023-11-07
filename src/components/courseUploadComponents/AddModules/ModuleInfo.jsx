@@ -56,28 +56,6 @@ function ModuleInfo({
         />
       </label>
       <label className="font-bold text-sm">
-        Price:
-        <input
-          className="p-2"
-          name="price"
-          type="text" 
-          value={moduleData.price}
-          onChange={handleInputChange}
-          placeholder="Module Price"
-        />
-      </label>
-      <label className="font-bold text-sm">
-        Paid or free:
-        <input
-          className="p-2"
-          name="paid"
-          type="text" 
-          value={moduleData.paid}
-          onChange={handleInputChange}
-          placeholder="Module Price"
-        />
-      </label>
-      <label className="font-bold text-sm">
         Upload Image:
         <input
           type="file"

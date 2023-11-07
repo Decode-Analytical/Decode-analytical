@@ -15,8 +15,6 @@ function ModuleForm({ courseId }) {
     module_title: "",
     module_duration: "",
     module_description: "",
-    // price: "",
-    // paid: "paid",
     contentType: "video",
     mediaFile: null,
     video: [],
@@ -93,6 +91,7 @@ function ModuleForm({ courseId }) {
       );
 
       if (response.status == 201 || 204) {
+        setIsLoading(false);
         setMessage(response.data.message);
       } else {
         setIsLoading(false);
