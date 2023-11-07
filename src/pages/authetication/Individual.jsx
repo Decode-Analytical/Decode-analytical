@@ -5,6 +5,7 @@ import close from "../../assets/auth images/Vector.png";
 import AuthFooter from "./AuthFooter";
 import { useSignup } from "../../hooks/useSignup";
 import googleIcon from "../../assets/auth images/google.png";
+import Loader from "../../components/Loader";
 
 export default function Individual() {
   const [firstName, setFirstName] = useState("");

@@ -2,48 +2,48 @@ import React, { useState } from "react";
 import ModuleInfo from "./ModuleInfo";
 import ContentInfo from "./ContentInfo";
 import QuizQuestions from "./QuizQuestions";
+import { useAuthContext } from "../../../hooks/authContext";
 import { FaArrowRight, FaInstagram, FaInstagramSquare } from "react-icons/fa";
+import axios from "axios";
 
 function ModuleForm({ courseId }) {
   const [isLoading, setIsLoading] = useState(false);
+  const { user } = useAuthContext();
   const [message, setMessage] = useState(false);
   const [error, setError] = useState(null);
   const [moduleData, setModuleData] = useState({
     module_title: "",
     module_duration: "",
     module_description: "",
-    price: "",
-    paid: "paid",
+    // price: "",
+    // paid: "paid",
     contentType: "video",
-   mediaFile: null,
-   video: [],
-   audio: [],
-   image: [],
+    mediaFile: null,
+    video: [],
+    audio: [],
+    image: [],
     questions: [],
   });
   const handleImage = (e) => {
     const file = e.target.files[0];
-    
+
     if (file) {
-    
       setModuleData({ ...moduleData, image: file });
     }
   };
 
   const handleAudio = (e) => {
     const file = e.target.files[0];
-    
+
     if (file) {
-    
       setModuleData({ ...moduleData, audio: file });
     }
   };
 
   const handleVideo = (e) => {
     const file = e.target.files[0];
-    
+
     if (file) {
-    
       setModuleData({ ...moduleData, video: file });
     }
   };
@@ -52,62 +52,56 @@ function ModuleForm({ courseId }) {
     setModuleData({ ...moduleData, [name]: value });
   };
 
-
   const handleMediaFileChange = (e) => {
     const file = e.target.files[0];
-    setModuleData({ ...moduleData,mediaFile: file });
+    setModuleData({ ...moduleData, mediaFile: file });
   };
 
   const handleModuleAdd = async () => {
     setIsLoading(true);
-    {
-      const formData = new FormData();
-      formData.set("module_title", moduleData.module_title);
-      formData.set("module_duration", moduleData.module_duration);
-      formData.set("module_description", moduleData.module_description);
-      formData.set("paid", moduleData.paid);
-      formData.set("price", moduleData.price);
-      formData.set("audio", moduleData.audio);
-      formData.set("image", moduleData.image);
-      formData.set("video", moduleData.video);
-      formData.set("contentType", moduleData.contentType);
 
-      if (
-        moduleData.contentType === "mediaFile" ||
-        moduleData.contentType === "audio"
-      ) {
-        if (moduleData.mediaFile) {
-          formData.set("mediaFile", moduleData.mediaFile);
-        }
+    const formData = new FormData();
+    formData.set("module_title", moduleData.module_title);
+    formData.set("module_duration", moduleData.module_duration);
+    formData.set("module_description", moduleData.module_description);
+    formData.set("audio", moduleData.audio);
+    formData.set("image", moduleData.image);
+    formData.set("video", moduleData.video);
+    formData.set("contentType", moduleData.contentType);
+
+    if (
+      moduleData.contentType === "mediaFile" ||
+      moduleData.contentType === "audio"
+    ) {
+      if (moduleData.mediaFile) {
+        formData.append("mediaFile", moduleData.mediaFile);
       }
+    }
 
-      // Handle quiz data, e.g., serialize quizQuestions and add to formData
-      formData.set("questions", JSON.stringify(moduleData.questions));
+    // Handle quiz data, e.g., serialize quizQuestions and add to formData
+    formData.append("questions", JSON.stringify(moduleData.questions));
+    const headers = {
+      Authorization: `Bearer ${user.token}`,
+      "Content-Type": "multipart/form-data", // Use 'multipart/form-data' for form data
+    };
 
-      try {
-        const response = await fetch(
-          `https://decode-mnjh.onrender.com/api/courses/createSubject/${courseId}`,
-          {
-            method: "POST",
-            body: formData,
-          }
-        );
-        const json = await response.json();
-        if (response.ok) {
-          setMessage(json.message);
-          // Module added to the course successfully. You can handle the response or update the component state.
-          console.log("Fetched");
-        } else {
-          if (!response.ok) {
-            setIsLoading(false);
-            setError(json.message);
-          }
+    try {
+      const response = await axios.post(
+        `https://decode-mnjh.onrender.com/api/course/createSubject/${courseId}`,
+        formData,
+        { headers: headers }
+      );
 
-        }
-      } catch (error) {
+      if (response.status == 201 || 204) {
+        setMessage(response.data.message);
+      } else {
         setIsLoading(false);
-        setError("An error occured");
+        setError(response.data.message);
       }
+    } catch (error) {
+      setIsLoading(false);
+      console.error(error);
+      setError("An error occurred.");
     }
   };
 
@@ -126,9 +120,6 @@ function ModuleForm({ courseId }) {
     updatedQuestions[questionIndex][field] = value;
     setModuleData({ ...moduleData, questions: updatedQuestions });
   };
-
-  console.log(courseId);
-  console.log(moduleData);
 
   return (
     <section>
@@ -187,7 +178,9 @@ function ModuleForm({ courseId }) {
             </button>
 
             {error && <p className="text-xs text-red-700 font-bold">{error}</p>}
-            {message && <p className="text-xs text-green-700 font-bold">{message}</p>}
+            {message && (
+              <p className="text-xs text-green-700 font-bold">{message}</p>
+            )}
           </div>
         </div>
       </div>

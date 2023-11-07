@@ -64,6 +64,7 @@ function CourseForm({ navigate }) {
 
       if (response.ok) {
         const data = await response.json();
+        console.log(data)
         const res = data.newCourse;
         const id = res._id;
         setIsLoading(false);

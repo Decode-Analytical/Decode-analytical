@@ -33,13 +33,13 @@ export default function NavBar() {
         <Link to="/login" className="place-self-end">
           {userLogin == true ? (
             <button
-              className="py-3 border text-lg rounded-md"
+              className="py-3 text-lg rounded-md"
               onClick={(e) => logOut(e)}
             >
               <BiLogOut size={26} />
             </button>
           ) : (
-            <button className="py-3 border text-lg rounded-md">
+            <button className="py-3 text-lg rounded-md">
               <BiLogIn size={26} />
             </button>
           )}
