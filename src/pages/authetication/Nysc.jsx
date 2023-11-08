@@ -107,17 +107,17 @@ export default function Nysc() {
               value={password}
             />
 
-            <input type="submit" value="Sign Up" />
+            <input type="submit" value={isLoading ? "Waiting..." : "Sign Up"} />
           </form>
-          {error && <div className="text-xs text-red-500">{error}</div>}
-          <p className="font-medium text-zinc-500">
+          {isLoading && <Loader />}
+          <p className="text-sm text-zinc-500">
             Already have an account?{" "}
             <a href="/login" className="ms-3 text-[#5333AD]">
               Log In
             </a>
           </p>
         </div>
-       
+        {error && <div className="text-xs text-red-500">{error}</div>}
         <AuthFooter />
       </div>
     </div>

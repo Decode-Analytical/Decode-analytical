@@ -76,9 +76,9 @@ export default function Password() {
           {message && (
           <p className="text-green-700 text-sm">{message}</p>
           )}
-          <p className="font-medium text-zinc-500">
+          <p className="text-sm text-zinc-500">
             New here?{" "}
-            <a href="/auth" className="ms-3 text-[#5333AD]">
+            <a href="/signup" className="ms-3 text-[#5333AD]">
               Sign Up
             </a>
           </p>
