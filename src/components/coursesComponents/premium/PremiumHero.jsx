@@ -53,12 +53,13 @@ export default function PremiumHero(props) {
                             </p>
 
                             <button className=' px-2 mt-3 bg-yellow-500 text-black'>
-                                Enrol Now
+                                Enroll Now
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
+
         </section>
     </>
   )

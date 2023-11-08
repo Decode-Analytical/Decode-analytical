@@ -3,26 +3,29 @@ import Axios from 'axios';
 
 import CourseHero from '../../components/CourseHero/Coursehero';
 import CoursesCard from '../../components/CourseHero/CoursesCard';
-
+const searchTerm = '';
 const courseURL = 'https://decode-mnjh.onrender.com/api/course/viewAllCourses';
-const apiKey = import.meta.env.VITE_API_KEY;
+const apiKey = import.meta.env.VITE_ACCESS_TOKEN;
 const token = apiKey;
 
 export default function Courses() {
   const [courses, setCourses] = useState([]); 
+  const [searchTerm, setTerm] = useState("")
 
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await Axios.get(courseURL, {
+        const response = await fetch(courseURL, {
           headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+            Authorization: `Bearer ${token}`
+          }
+        })
+        const data = await response.json();
+        console.log(data.courses)
 
-        if (response.data && response.data.courses) {
-          setCourses(response.data.courses);
-          console.log(response.data);
+
+        if (data.courses) {
+          setCourses(data.courses);
         }
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -36,7 +39,7 @@ export default function Courses() {
     <>
       <section className='mx-auto font-montserrat z-10'>
         <CourseHero />
-        <div className="mx-auto items-center grid grid-cols-1 pt-20 pb-14 overflow-hidden md:grid-cols-2 lg:grid-cols-3 gap-10 place-content-center ml-11">
+        <div className="mx-auto items-center grid grid-cols-1 pt-20 pb-14 overflow-hidden md:grid-cols-2 lg:grid-cols-3 gap-10 place-content-center">
           {courses.map((details, index) => { // Use the 'courses' state here
             return <CoursesCard key={index + 1} {...details} />;
           })}

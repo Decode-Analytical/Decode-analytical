@@ -8,7 +8,8 @@ import Course from "../../components/homepageComponents/Course";
 export default function Homepage() {
 
   return (
-    <main>
+    <main className="font-montserrat">
+      <button onClick={handleLogout}>LogOut</button>
       <Hero />
       <Course />
       <TutorComponent />
