@@ -9,7 +9,6 @@ export default function Homepage() {
 
   return (
     <main className="font-montserrat">
-      <button onClick={handleLogout}>LogOut</button>
       <Hero />
       <Course />
       <TutorComponent />
