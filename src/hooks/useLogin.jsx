@@ -9,6 +9,7 @@ export const useLogin = () => {
   // isloading is used on buton
   const [isLoading, setIsloading] = useState(false);
   const { dispatch } = useAuthContext();
+  const baseURL = import.meta.env.VITE_BASE_URL
 
   const login = async (email, password, role) => {
     setIsloading(true);
@@ -17,7 +18,7 @@ export const useLogin = () => {
 
     if (role == "student") {
       response = await fetch(
-        "https://decode-mnjh.onrender.com/api/user/login",
+        `${baseURL}user/login`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -26,7 +27,7 @@ export const useLogin = () => {
       );
     } else if(role == "admin") {
         response = await fetch(
-            "https://decode-mnjh.onrender.com/api/admin/adminSignIn",
+            `${baseURL}admin/adminSignIn`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },

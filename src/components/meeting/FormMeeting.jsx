@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { useAuthContext } from "../../hooks/authContext";
 import { useNewMeetingMutation } from "../../redux/Meeting/Meeting";
-import { AiOutlineLoading3Quarters } from "react-icons/ai"
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const FormMeeting = () => {
-  const [newMeeting, { isLoading, isError }] = useNewMeetingMutation()
+  const [newMeeting, { isLoading, isError, error }] = useNewMeetingMutation();
   const [schedule, setSchedule] = useState({
     email: "",
     description: "",
@@ -14,18 +13,16 @@ const FormMeeting = () => {
   });
   const handleChange = (e) => {
     let { value, name } = e.target;
-    console.log(name);
     setSchedule({ ...schedule, [name]: value });
   };
-
   const handleSubmit = () => {
-    newMeeting(schedule)
+    newMeeting(schedule);
   };
 
   if (isLoading) {
     return (
       <div className="w-full h-screen flex justify-center items-center">
-        <AiOutlineLoading3Quarters rotate={"90%"} size={50} />
+        <AiOutlineLoading3Quarters rotate={"90deg"} size={50} />
       </div>
     );
   }
@@ -77,7 +74,7 @@ const FormMeeting = () => {
       <p className="ms-3 my-5 text-xs text-center text-gray-400">
         By clicking Submit you agree on policy term and condition
       </p>
-      {isError && <p className="text-red-500 text-xs">{error}</p>}
+      {isError && <p className="text-red-500 text-xs my-2">{error.data.message}</p>}
       <button
         type="submit"
         className="bg-blue-400 w-full text-center h-12 hover:bg-blue-600 rounded-md"

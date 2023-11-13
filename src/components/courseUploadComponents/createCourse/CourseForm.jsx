@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { useAuthContext } from "../../../hooks/authContext";
 import CourseInfo from "./CourseInfo";
 import CoverImage from "./CoverImage";
+// import { useNewMeetingMutation } from "../../../redux/Meeting/Meeting";
 
 function CourseForm({ navigate }) {
   const { user } = useAuthContext();
-  console.log(user)
+  const baseURL = import.meta.env.VITE_BASE_URL
+  // console.log(user)
   const [isLoading, setIsLoading] = useState(false);
+  
   const [error, setError] = useState(null);
 
   const [courseData, setCourseData] = useState({
@@ -52,7 +55,7 @@ function CourseForm({ navigate }) {
 
     try {
       const response = await fetch(
-        "https://decode-mnjh.onrender.com/api/course/registeredCourse",
+        `${baseURL}course/registeredCourse`,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,

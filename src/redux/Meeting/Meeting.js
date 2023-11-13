@@ -1,9 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+
+const baseURL = import.meta.env.VITE_BASE_URL
 export const Meeting = createApi({
   reducerPath: "meeting",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://decode-mnjh.onrender.com/api/",
+    baseUrl: baseURL,
   }),
   endpoints: (builder) => ({
     newMeeting: builder.mutation({

@@ -9,6 +9,7 @@ import axios from "axios";
 function ModuleForm({ courseId }) {
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useAuthContext();
+  const baseURL = import.meta.env.VITE_BASE_URL
   const [message, setMessage] = useState(false);
   const [error, setError] = useState(null);
   const [moduleData, setModuleData] = useState({
@@ -85,7 +86,7 @@ function ModuleForm({ courseId }) {
 
     try {
       const response = await axios.post(
-        `https://decode-mnjh.onrender.com/api/course/createSubject/${courseId}`,
+        `${baseURL}course/createSubject/${courseId}`,
         formData,
         { headers: headers }
       );

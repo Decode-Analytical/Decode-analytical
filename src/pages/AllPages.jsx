@@ -41,6 +41,7 @@ export default function AllPages() {
       <Link to="/courseinfo">course Upload</Link> <br />
       <Link to="/AdminLogin">Admin Login</Link> <br />
       <Link to="/AdminDashboard">Admin Dashboard</Link> <br />
+      <Link to="/schedulemeeting">Schedule Meeting</Link> <br />
     </div>
   );
 }
