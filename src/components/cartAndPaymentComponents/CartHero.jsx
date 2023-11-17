@@ -76,7 +76,7 @@ export default function CartHero() {
       <section className=" mt-20 shadow-xl mx-[5%] font-montserrat py-10">
         <div className=" max-w-[1080px] m-auto">
           <div className="">
-            <div className="">
+            <div className="p-[2.5rem] md:p-0">
               <p className=" text-3xl md:text-4xl font-bold md:font-extrabold">
                 Shopping Cart
               </p>
@@ -89,8 +89,9 @@ export default function CartHero() {
             <div className=" lg:flex justify-between ">
               {" "}
               {/* WRAPPER TO FLEX THE DESKTOP VIEW  */}
-              <div className="px-[1.5em]">
-                <div className=" md:flex justify-between items-center border space-x-10  rounded-2xl border-[#e7e7e7]">
+              <div className="p-[1.5rem] text-left">
+                <div className="border p-[5px] rounded-lg border-zinc-900 md:border-none">
+                <div className=" md:flex justify-between w-full items-center space-x-10 p-[1.5rem] rounded-2xl md:border lg:border xl:border md:border-zinc-900 lg:md:border-zinc-900 xl:md:border-zinc-900">
                   <div className="relative">
                     <img
                       src={courseSelected}
@@ -103,7 +104,7 @@ export default function CartHero() {
                     </div>
                   </div>
 
-                  <div className=" space-y-5 mx-2">
+                  <div className=" space-y-0 md:space-y-5 lg:space-y-5 mx-2 pt-[1rem] md:p-0">
                     <p className="font-bold">Data Analytics</p>
 
                     <div className=" inline-flex items-center">
@@ -146,8 +147,8 @@ export default function CartHero() {
                         &nbsp;Beginner
                       </p>
                     </div>
-
-                    <div className=" inline-flex">
+                    
+                    <div className="inline-flex">
                        <button className=" border-[1px] border-black hover:bg-gray-400 px-5 mr-5 py-2 rounded-md">
                           15,000
                         </button>
@@ -160,7 +161,7 @@ export default function CartHero() {
                 </div>
 
                 
-                <div className=" space-x-10 mt-5 flex justify-start lg:justify-end md:justify-end">
+                <div className="p-[10px] md:p-0 space-x-10 mt-5 flex justify-start lg:justify-end md:justify-end">
                   <button className="border rounded-md font-semibold text-[15px] px-3 py-2 hover:bg-red-500 hover:border-red-500">
                     Remove
                   </button>
@@ -170,12 +171,13 @@ export default function CartHero() {
                   </button>
                 </div>
               </div>
+              </div>
 
 
               
               {/* =========================================== */}
               {/* THE CART TOTAL AND CHECKOUT BUTTON */}
-              <div className=" mt-10 md:mt-0">
+              <div className=" mt-10 md:mt-0 p-[2.5rem] md:p-0">
                 <div className=" ">
                   <p className=" font-semibold">Total:</p>
 

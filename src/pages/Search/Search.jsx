@@ -1,13 +1,34 @@
-import React, { useState, useEffect } from "react";
-import CoursesCard from "./CoursesCard";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import CoursesCard from "../../components/CourseHero/CoursesCard";
+import CourseHero from "../../components/CourseHero/Coursehero";
 
-export default function CourseHero() {
-  let [searchItem, setTerm] = useState("")
-    console.log(searchItem)
-  return (
-    <>
-      <section className="z-10 cart-bg p-[3rem] lg:p-[8rem] text-white bg-cover w-100% font-montserrat whitespace-break-spaces">
+export default function Search() {
+    let { term } = useParams();
+    console.log(term)
+    const [courses, setCourse] = useState([])
+    useEffect(() => {
+        const res = async () => {
+        try {
+            const response = await fetch(`https://decode-mnjh.onrender.com/api/course/search/${term}`, {
+                headers: {
+                    Authorization: `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`
+                }
+            })
+            let data = await response.json()
+            console.log("Courses: ", data)
+            if(data.course) {
+                setCourse(data.course)
+            }
+        } catch(e) {
+            console.error(e)
+        }
+    }
+    res()
+    }, []);
+    return (
+        <>
+        <section className="z-10 cart-bg p-[3rem] lg:p-[8rem] text-white bg-cover w-100% font-montserrat whitespace-break-spaces">
         <h1 className="font-extrabold text-6xl pb-11">Courses</h1>
         <p className="text-2xl">Empower Your Digital Journey With Us</p>
         <div className="flex text-center left-[20px] text-black mt-4 max-w-[50rem]">
@@ -58,17 +79,16 @@ export default function CourseHero() {
           </Link>
         </div>
       </section>
-      <section className="course-items font-montserrat">
-        <div className="mx-auto px-[2rem] pt-[2rem]">
-          <h2 className="font-extrabold text-5xl p-[2rem]">
-            Find Trending Courses
-          </h2>
-          <p className="font-normal px-[2rem]">
-            Break into tech with any of the courses we have specially created
-            for you
-          </p>
+      <h5 className="p-[2rem] text-right">
+          Showing results for: <span className="font-bold">{term}</span>
+        </h5>
+        <div className="mx-auto items-center grid grid-cols-1 pt-20 pb-14 overflow-hidden md:grid-cols-2 lg:grid-cols-3 gap-10 place-content-center">
+      {courses.map((details, index) => { // Use the 'courses' state here
+            return <CoursesCard key={index + 1} {...details} />;
+          })}
+          <br />
+          <br />
         </div>
-      </section>
-    </>
-  );
+        </>
+    )
 }

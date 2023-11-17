@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
+import CoursesCard from '../../components/CourseHero/CoursesCard';
 
 import CourseHero from '../../components/CourseHero/Coursehero';
-import CoursesCard from '../../components/CourseHero/CoursesCard';
 const searchTerm = '';
 const courseURL = 'https://decode-mnjh.onrender.com/api/course/viewAllCourses';
 const apiKey = import.meta.env.VITE_ACCESS_TOKEN;
@@ -10,7 +10,6 @@ const token = apiKey;
 
 export default function Courses() {
   const [courses, setCourses] = useState([]); 
-  const [searchTerm, setTerm] = useState("")
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -40,7 +39,7 @@ export default function Courses() {
       <section className='mx-auto font-montserrat z-10'>
         <CourseHero />
         <div className="mx-auto items-center grid grid-cols-1 pt-20 pb-14 overflow-hidden md:grid-cols-2 lg:grid-cols-3 gap-10 place-content-center">
-          {courses.map((details, index) => { // Use the 'courses' state here
+        {courses.map((details, index) => { // Use the 'courses' state here
             return <CoursesCard key={index + 1} {...details} />;
           })}
           <br />

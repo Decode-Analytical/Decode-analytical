@@ -29,10 +29,11 @@ import CourseInfo from "./pages/courseUpload/CourseInfo";
 import ResetPassword from "./pages/authetication/ResetPassword";
 import Nysc from "./pages/authetication/Nysc";
 import PaystackCard from "./components/cartAndPaymentComponents/PaystackCard";
+import Search from "./pages/Search/Search";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App font-montserrat">
       <Router>
         <div className=" flex justify-between relative">
           <div className="flex-1">
@@ -65,6 +66,7 @@ function App() {
               <Route path="/resetpassword" element={<ResetPassword />} />
               <Route path="/PaystackCard/:price" element={<PaystackCard />} />
               <Route path="/AllPages" element={<AllPages />} /> {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
+              <Route path="/Search/:term" element={<Search />} />
             </Routes>
           </div>
         </div>

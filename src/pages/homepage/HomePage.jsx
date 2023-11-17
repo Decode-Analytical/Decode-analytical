@@ -16,7 +16,7 @@ export default function Homepage() {
   };
 
   return (
-    <main className="font-montserrat">
+    <main className="">
       <button onClick={handleLogout}>LogOut</button>
       <Hero />
       <Course />
