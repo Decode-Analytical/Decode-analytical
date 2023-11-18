@@ -4,7 +4,10 @@ import { BsClockHistory } from "react-icons/bs";
 import { BsGraphUpArrow } from "react-icons/bs";
 import { Link } from 'react-router-dom'
 import Ellipse from "../../assets/courses Images/Ellipse.png";
-
+const searchTerm = '';
+const courseURL = 'https://decode-mnjh.onrender.com/api/course/viewAllCourses';
+const apiKey = import.meta.env.VITE_ACCESS_TOKEN;
+const token = apiKey;
 export default function CoursesCard(props) {
   let stars = [
     <svg
@@ -79,7 +82,7 @@ export default function CoursesCard(props) {
   } = props;
   return (
     <div className="w-full p-4">
-      <div className="max-w-[50rem] w-[20rem] max-h-[50rem] md:w-[27rem] bg-white p-4 rounded-3xl overflow-hidden border-[2px] border-neutral-400 mx-auto h-[35rem]">
+      <div className="max-w-[50rem] w-[20rem] max-h-[50rem] md:w-[25rem] lg:w-[27rem] bg-white p-4 rounded-3xl overflow-hidden border-[2px] border-neutral-400 mx-auto h-[35rem]">
         <div className="relative">
           <img
             className="w-[100%] object-center rounded-xl rounded-b-none absolute -z-1"

@@ -42,11 +42,12 @@ import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 import NoAuthPage from "./pages/NoAuth/noAuthPage";
 import AdminLogin from "./pages/AdminLogin/adminLogin";
 import PaystackCard from "./components/cartAndPaymentComponents/PaystackCard";
+import Search from "./pages/Search/Search";
 import ScheduleMeeting from "./pages/scheduleMeeting/ScheduleMeeting";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App font-montserrat">
       <Router>
         <div className=" flex justify-between relative">
           <div className="flex-1">
@@ -87,7 +88,8 @@ function App() {
               <Route path="/newcourse" element={<NewCourse />} />
               <Route path="/AdminDashboard" element={<AdminDashboard />} />
               <Route path="/PaystackCard/:price" element={<PaystackCard />} />
-              <Route path="/AllPages" element={<AllPages />} />{" "}
+              <Route path="/AllPages" element={<AllPages />} /> {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
+              <Route path="/Search/:term" element={<Search />} />
               <Route path="/schedulemeeting" element={<ScheduleMeeting />} />
               {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
             </Routes>
