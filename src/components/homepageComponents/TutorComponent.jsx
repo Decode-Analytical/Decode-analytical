@@ -30,7 +30,6 @@ export default function TutorComponent() {
     }
   }, [user]);
  
-
   return (
     <section className=" text-center bg-slate-100 py-28 text-[20px]  px-[10%]">
       <h6 className="font-bold text-base">Amazing Stories</h6>

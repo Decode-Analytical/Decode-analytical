@@ -5,6 +5,7 @@ import close from "../../assets/auth images/Vector.png";
 import AuthFooter from "./AuthFooter";
 import { useSignup } from "../../hooks/useSignup";
 import googleIcon from "../../assets/auth images/google.png";
+import Loader from "../../components/Loader";
 
 export default function Individual() {
   const [firstName, setFirstName] = useState("");
@@ -107,17 +108,17 @@ export default function Individual() {
               value={password}
             />
 
-            <input type="submit" value="Sign Up" />
+            <input type="submit" value={isLoading ? "Waiting..." : "Sign Up"} />
           </form>
-          {error && <div className="text-xs text-red-500">{error}</div>}
-          <p className="font-medium text-zinc-500">
+          {isLoading && <Loader />}
+          <p className="text-sm text-zinc-500">
             Already have an account?{" "}
             <a href="/login" className="ms-3 text-[#5333AD]">
               Log In
             </a>
           </p>
         </div>
-
+        {error && <div className="text-xs text-red-500">{error}</div>}
         <AuthFooter />
       </div>
     </div>

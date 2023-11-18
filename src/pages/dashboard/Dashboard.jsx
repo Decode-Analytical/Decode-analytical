@@ -13,7 +13,7 @@ import { NavLink } from 'react-router-dom'
 import MainSideBar from '../../components/mainSideBar'
 
 const Dashboard = () => {
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTJmMTZmNWNhMTUzYTY0YWU4OTFkM2UiLCJpYXQiOjE2OTg1ODU3OTAsImV4cCI6MTY5ODY3MjE5MH0.No4TqHdCrnjrj9Pkb3GPkyh31_CxZGrUsvD9P7PYSu4"
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTJmMTZmNWNhMTUzYTY0YWU4OTFkM2UiLCJpYXQiOjE2OTg4OTMyODksImV4cCI6MTY5ODk3OTY4OX0.YPTUsstIBp1gPITz2rEQW0eyrQ9FBawhXqTgui0af0A"
   const [loading, setLoading] = useState(true)
   const [name, setName] = useState('...')
   const [imgUrl, setImgUrl] = useState('...')

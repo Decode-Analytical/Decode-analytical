@@ -5,6 +5,7 @@ import close from "../../assets/auth images/Vector.png";
 import AuthFooter from "./AuthFooter";
 import { useLogin } from "../../hooks/useLogin";
 import { Link, useNavigate } from "react-router-dom";
+import Loader from "../../components/Loader";
 
 export default function Signin() {
   const navigate = useNavigate();
@@ -13,10 +14,11 @@ export default function Signin() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  let role = "student"
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(email, password);
+    await login(email, password, role);
   };
 
   const handleClose = () => {
@@ -71,15 +73,18 @@ export default function Signin() {
 
             <input
               type="submit"
-              value="Log In"
+              value={isLoading ? "Waiting..." : "Log In"}
               onClick={handleSubmit}
               disabled={isLoading}
             />
-            {error && <div>
-              <p className="text-[#ff0000] text-sm text-center">{error}</p>
-              </div>}
+            {isLoading && <Loader />}
+            {error && (
+              <div>
+                <p className="text-[#ff0000] text-sm text-center">{error}</p>
+              </div>
+            )}
           </form>
-          <p className="font-medium text-zinc-500">
+          <p className="text-sm text-zinc-500">
             New here?{" "}
             <a href="/auth" className="ms-3 text-[#5333AD]">
               Sign Up
