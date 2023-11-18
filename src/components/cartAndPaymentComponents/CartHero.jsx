@@ -73,7 +73,7 @@ export default function CartHero() {
   return (
     <>
       <navBar />
-      <section className=" mt-20 shadow-xl mx-[5%] font-montserrat py-10">
+      <section className=" mt-20 mx-[5%] shadow-xl font-montserrat py-10">
         <div className=" max-w-[1080px] m-auto">
           <div className="">
             <div className="p-[2.5rem] md:p-0">
@@ -82,21 +82,21 @@ export default function CartHero() {
               </p>
 
               <p className=" text-xl my-5">
-                {/* Number Of Courses Selected will be IN HERE */}1 Course
+                {/* Number Of Courses Selected will be IN HERE */}1 Course in Cart
               </p>
             </div>
 
-            <div className=" lg:flex justify-between ">
+            <div className=" lg:flex lg:justify-between md:flex md:justify-between">
               {" "}
               {/* WRAPPER TO FLEX THE DESKTOP VIEW  */}
-              <div className="p-[1.5rem] text-left">
-                <div className="border p-[5px] rounded-lg border-zinc-900 md:border-none">
-                <div className=" md:flex justify-between w-full items-center space-x-10 p-[1.5rem] rounded-2xl md:border lg:border xl:border md:border-zinc-900 lg:md:border-zinc-900 xl:md:border-zinc-900">
+              <div className="p-[1rem] text-left">
+                <div className="border rounded-lg border-zinc-900 md:border-none">
+                <div className=" md:flex justify-between w-full items-center space-x-10 p-[20px] md:p-[1.5rem] lg:p-[1.5rem] rounded-2xl md:border lg:border xl:border md:border-zinc-900 lg:md:border-zinc-900  xl:border-zinc-900">
                   <div className="relative">
                     <img
                       src={courseSelected}
                       alt=""
-                      className="roundednvm -lg md:rounded-s-lg lg:rounded-s-lg"/>
+                      className="rounded-md md:rounded-s-xl lg:rounded-s-xl "/>
 
                     <div className="absolute top-0 bg-white left-0 m-2 text-black p-2 rounded-full text-[10px] font-bold">
                       2,500{" "}
@@ -104,12 +104,12 @@ export default function CartHero() {
                     </div>
                   </div>
 
-                  <div className=" space-y-0 md:space-y-5 lg:space-y-5 mx-2 pt-[1rem] md:p-0">
-                    <p className="font-bold">Data Analytics</p>
+                  <div className=" space-y-0 md:space-y-5 lg:space-y-5 p-0 mx-auto pt-[1rem] md:p-0 lg:p-0">
+                    <p className="font-bold py-3 md:p-0 lg:p-0">Data Analytics</p>
 
-                    <div className=" inline-flex items-center">
+                    <div className="inline-flex items-center">
                       <img src={customersImage} alt="" />
-                      <p className=" ml-5">By: Lionel Messi</p>
+                      <p className="ml-5">By: Lionel Messi</p>
                     </div>
 
                     <p className="flex">
@@ -120,8 +120,8 @@ export default function CartHero() {
                       &nbsp;<span>5.0(25)</span>
                     </p>
 
-                    <div className=" flex justify-between font-[20px] text-sm font-400">
-                      <p className=" flex items-center">
+                    <div className=" flex justify-between py-3 pr-9 md:p-0 lg:pr-0 font-[20px] text-sm font-400">
+                      <p className=" flex">
                         <BsClockHistory />
                         &nbsp;2hrs 30m
                       </p>
@@ -149,7 +149,7 @@ export default function CartHero() {
                     </div>
                     
                     <div className="inline-flex">
-                       <button className=" border-[1px] border-black hover:bg-gray-400 px-5 mr-5 py-2 rounded-md">
+                       <button className=" border-[1px] border-black hover:bg-gray-400 px-5 mr-5 md:py-2 lg:py-2 rounded-md">
                           15,000
                         </button>
 
@@ -177,7 +177,7 @@ export default function CartHero() {
               
               {/* =========================================== */}
               {/* THE CART TOTAL AND CHECKOUT BUTTON */}
-              <div className=" mt-10 md:mt-0 p-[2.5rem] md:p-0">
+              <div className=" mt-10 md:mt-0 p-[2.5rem] md:px-[2.5rem]">
                 <div className=" ">
                   <p className=" font-semibold">Total:</p>
 

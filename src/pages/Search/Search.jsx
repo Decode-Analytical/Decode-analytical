@@ -79,9 +79,16 @@ export default function Search() {
           </Link>
         </div>
       </section>
+      {courses.length <= 0 ? (
+        <div className="text-center font-montserrat font-bold mt-[25vh] text-3xl h-[50vh]">
+          <h3>No Results Found</h3>
+        </div>
+      ):(
+        <div>
       <h5 className="p-[2rem] text-right">
           Showing results for: <span className="font-bold">{term}</span>
         </h5>
+        <h3 className="px-5 font-bold text-2xl">{`${courses.length} Course(s) Found`}</h3>
         <div className="mx-auto items-center grid grid-cols-1 pt-20 pb-14 overflow-hidden md:grid-cols-2 lg:grid-cols-3 gap-10 place-content-center">
       {courses.map((details, index) => { // Use the 'courses' state here
             return <CoursesCard key={index + 1} {...details} />;
@@ -89,6 +96,9 @@ export default function Search() {
           <br />
           <br />
         </div>
+        </div>
+      )}
         </>
+        
     )
-}
+        }

@@ -70,7 +70,7 @@ export default function CartDetails() {
   return (
     <>
         <section>
-            <div className=" px-[5%] pt-20 cart-bg h-64 my-20 font-montserrat"> {/*  BACKGROUND IMAGE IMPORTED FROM APP.CSS */}
+            <div className=" px-[5%] pt-20 cart-bg h-64 my-20 font-montserrat border mb-[2rem]"> {/*  BACKGROUND IMAGE IMPORTED FROM APP.CSS */}
                 <div className=" text-white">
                     <p className=" text-4xl md:text-6xl mb-10">
                         You may also be  <span className=" text-[#FFCD05]"> interested </span> in
