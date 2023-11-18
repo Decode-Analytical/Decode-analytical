@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import CoursesCard from "./CoursesCard";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function CourseHero() {
   let [searchItem, setTerm] = useState("")
     console.log(searchItem)
+    let location = useLocation()
+    let query = new URLSearchParams(location.search)
+    let q = query.get('q')
+    console.log(q)
   return (
     <>
       <section className="z-10 cart-bg p-[3rem] lg:p-[8rem] text-white bg-cover w-100% font-montserrat whitespace-break-spaces">
@@ -36,7 +40,7 @@ export default function CourseHero() {
               </a>
             </div>
           </div>
-          <form onSubmit={(e) => {e.preventDefault(); location.href = `/Search/${searchItem}`}} className="w-full">
+          <form onSubmit={(e) => {e.preventDefault(); window.location.href = `/Search?q=${searchItem}`}} className="w-full">
           <input
             placeholder="Search All Courses"
             onChange={e => {setTerm(e.target.value)}}
