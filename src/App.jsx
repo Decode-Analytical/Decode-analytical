@@ -42,11 +42,8 @@ import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 import NoAuthPage from "./pages/NoAuth/noAuthPage";
 import AdminLogin from "./pages/AdminLogin/adminLogin";
 import PaystackCard from "./components/cartAndPaymentComponents/PaystackCard";
-<<<<<<< HEAD
 import Search from "./pages/Search/Search";
-=======
 import ScheduleMeeting from "./pages/scheduleMeeting/ScheduleMeeting";
->>>>>>> b91f6bdb0f39cd54437b0538563629adfb6e5df4
 
 function App() {
   return (
@@ -91,14 +88,10 @@ function App() {
               <Route path="/newcourse" element={<NewCourse />} />
               <Route path="/AdminDashboard" element={<AdminDashboard />} />
               <Route path="/PaystackCard/:price" element={<PaystackCard />} />
-<<<<<<< HEAD
               <Route path="/AllPages" element={<AllPages />} /> {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
               <Route path="/Search/:term" element={<Search />} />
-=======
-              <Route path="/AllPages" element={<AllPages />} />{" "}
               <Route path="/schedulemeeting" element={<ScheduleMeeting />} />
               {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
->>>>>>> b91f6bdb0f39cd54437b0538563629adfb6e5df4
             </Routes>
           </div>
         </div>
