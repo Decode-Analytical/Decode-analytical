@@ -89,7 +89,7 @@ function App() {
               <Route path="/AdminDashboard" element={<AdminDashboard />} />
               <Route path="/PaystackCard/:price" element={<PaystackCard />} />
               <Route path="/AllPages" element={<AllPages />} /> {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
-              <Route path="/Search/:term" element={<Search />} />
+              <Route path="/Search" element={<Search />} />
               <Route path="/schedulemeeting" element={<ScheduleMeeting />} />
               {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
             </Routes>
