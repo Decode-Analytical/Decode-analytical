@@ -1,5 +1,7 @@
-import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
+import React, {useState, useEffect} from 'react'
+import { Link} from 'react-router-dom'
+
+import Axios  from 'axios'
 
 import mastercard from '../../assets/Images/mastercard.png'
 import paystack from '../../assets/Images/paystack.png'
@@ -9,6 +11,34 @@ import customersImage from '../../assets/Images/customersImage.png'
 
 export default function PaymentComponent() {
     const [selectedPayment, setSelectedPayment] = useState(null);
+
+    // ============================================
+    // const [initializedPaymentData, setInitializedPaymentData] = useState(null);
+
+    // useEffect(() => {
+    //     const initializePayment = async () => {
+    //       try {
+    //         // Replace this with your actual API endpoint
+    //         const response = await Axios.post('https://decode-mnjh.onrender.com/api/payment/initializedPayment');
+    //         setInitializedPaymentData(response.data);
+    //       } catch (error) {
+    //         console.error('Error initializing payment:', error);
+    //       }
+    //     };
+      
+    //     initializePayment();
+    //   }, []);
+      
+
+    //   const redirectToPaystackCheckout = () => {
+    //     if (initializedPaymentData && initializedPaymentData.paymentUrl) {
+    //       // Redirect to the Paystack checkout page with the dynamic payment URL
+    //       window.location.href =`/paystack/${initializedPaymentData.paymentUrl}`;
+    //     } else {
+    //       alert('Payment initialization failed. Please try again.');
+    //     }
+    //   };
+    // ========================================
 
     const handlePaymentChange = (paymentMethod) => {
       setSelectedPayment(paymentMethod);
@@ -158,7 +188,7 @@ export default function PaymentComponent() {
 
                         <div className=" inline-flex">
                             <Link to = "/paystackCard/15000">
-                                <button className=' border border-black px-2 hover:bg-gray-400 hover:font-extrabold'>
+                                <button  className=' border border-black px-2 hover:bg-gray-400 hover:font-extrabold'>
                                     15,000
                                 </button>
                             </Link>
@@ -174,3 +204,7 @@ export default function PaymentComponent() {
     </>
   )
 }
+
+// /paystackCard/15000
+
+// onClick={redirectToPaystackCheckout}

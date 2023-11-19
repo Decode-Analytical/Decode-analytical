@@ -8,7 +8,7 @@ import {BsAward} from "react-icons/bs"
 import {BsFillRssFill} from "react-icons/bs"
 
 export default function PremiumHero(props) {
-    const {course_title, course_image} = props;
+    const {course_title, course_image, isPaid_course, isPrice_course} = props;
 
     const bgUrl = course_image[0].path;
   return (
@@ -16,11 +16,9 @@ export default function PremiumHero(props) {
         <section>
             <div style={{ backgroundImage: `url(${bgUrl})` }} className= ' bg-cover bg-no-repeat bg-center  md:h-[550px] mt-10 p-10' >
                 <div className=" md:max-w-[95%] m-auto">
-                    <Link to='/freeCourses'>
-                        <button className=' bg-[#D9DBE5] rounded-xl px-6 md:mt-24'>
-                            Free
-                        </button>
-                    </Link>
+                    <p className=' bg-[#D9DBE5] rounded-xl px-6 md:mt-24 w-fit'>
+                        {isPaid_course}
+                    </p>
 
                     <div className=" text-white text-3xl md:text-6xl font-bold mt-1">
                         {course_title}
@@ -53,7 +51,7 @@ export default function PremiumHero(props) {
                             </p>
 
                             <button className=' px-2 mt-3 bg-yellow-500 text-black'>
-                                Enrol Now
+                                Enrol Now for {isPrice_course}
                             </button>
                         </div>
                     </div>

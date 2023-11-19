@@ -14,8 +14,18 @@ export default function premiumCourses() {
   const courseData = location.state;
   return (
     <>
-        <PremiumHero course_title={courseData.course_title} course_image={courseData.course_image}/>
-        <CourseOverview   course_description={courseData.course_description} />
+        <PremiumHero
+         course_title={courseData.course_title} 
+         course_image={courseData.course_image} 
+         isPaid_course={courseData.isPaid_course} 
+         isPrice_course={courseData.isPrice_course}
+         />
+         
+        <CourseOverview 
+          course_description={courseData.course_description} 
+          modules= {courseData.modules || []} 
+        />
+
         <WhatToLearn />
         <AlsoLike />
     </>

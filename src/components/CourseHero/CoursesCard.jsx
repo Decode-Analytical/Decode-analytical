@@ -75,7 +75,7 @@ export default function CoursesCard(props) {
       />
     </svg>,
   ];
-    const { course_title, course_description, course_image, isPrice_course, _id} = props
+    const { course_title, course_description, course_image, isPrice_course, isPaid_course, _id, modules} = props
 
     const [courses, setCourses] = useState([]); 
 
@@ -91,6 +91,7 @@ export default function CoursesCard(props) {
           if (response.data && response.data.courses) {
             setCourses(response.data.courses);
             console.log(response.data);
+            // console.log(modules);
           }
         } catch (error) {
           console.error('Error fetching data:', error);
@@ -129,25 +130,21 @@ export default function CoursesCard(props) {
                     </p>
                   </div>
 
-                  {isPrice_course === 0 ? (
-                    <Link
-                    to={`/premiumCourses/${_id}`}
-                    state = {{
-                      course_title,
-                      course_description,
-                      course_image,
-                      // Include other properties as needed
-                    }}
-                    className="border-[2px] border-black hover.bg-gray-400 px-5 py-2 rounded-md">
-                    Free
-                  </Link>
-                  ) : (
-                    <div className=" flex justify-between">
-                      <button className="border-[2px] border-black hover:bg-gray-400 px-5 mr-5 py-2 rounded-md">
-                        Price: {courses.isPrice_course} NGN
-                      </button>
-                    </div>
-                  )}
+
+            <Link
+              to={`/premiumCourses/${_id}`}
+              state={{
+                course_title,
+                course_description,
+                course_image,
+                isPrice_course,
+                isPaid_course,
+                modules,
+                // Include other properties as needed
+              }}
+              className="border-[2px] border-black hover.bg-gray-400 px-5 py-2 rounded-md">
+              {isPrice_course === 0 ? 'Free' : `Price: ${isPrice_course} NGN`}
+            </Link>
           </div>
         </div>
       </div>

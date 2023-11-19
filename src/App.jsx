@@ -6,7 +6,6 @@ import HomePage from "./pages/homepage/HomePage";
 import LoginSignUp from "./pages/login/LoginSignUp";
 import PasswordReset from "./components/loginComponents/PasswordReset";
 import PremiumCourses from "./pages/courseDetailPage/PremiumCourses";
-import FreeCourses from "./pages/courseDetailPage/FreeCourses";
 import CartPage from "./pages/cartAndPaymentPage/CartPage";
 import PaymentPage from "./pages/cartAndPaymentPage/PaymentPage";
 import NotEnrolled from "./pages/forumPage/NotEnrolled";
@@ -41,7 +40,6 @@ function App() {
               <Route path="/" exact element={<HomePage />} />
               <Route path="/LoginSignUp" element={<LoginSignUp />} />
               <Route path="/PasswordReset" element={<PasswordReset />} />
-              <Route path="/FreeCourses" element={<FreeCourses />} />
               <Route path="/premiumCourses/:_id" element={<PremiumCourses />} /> 
               <Route path="/CartPage" element={<CartPage />} />
               <Route path="/PaymentPage" element={<PaymentPage />} />
