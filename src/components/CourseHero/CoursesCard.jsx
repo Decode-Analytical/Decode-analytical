@@ -82,7 +82,7 @@ export default function CoursesCard(props) {
   } = props;
   return (
     <div className="w-full p-4">
-      <div className="max-w-[50rem] w-[20rem] max-h-[50rem] md:w-[25rem] lg:w-[27rem] bg-white p-4 rounded-3xl overflow-hidden border-[2px] border-neutral-400 mx-auto h-[35rem]">
+      <div className="max-w-[50rem] w-[20rem] max-h-[50rem] md:w-[20rem] lg:w-[25rem] bg-white p-4 rounded-3xl overflow-hidden border-[2px] border-neutral-400 mx-auto h-[35rem]">
         <div className="relative">
           <img
             className="w-[100%] object-center rounded-xl rounded-b-none absolute -z-1"
