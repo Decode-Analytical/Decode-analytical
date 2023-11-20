@@ -5,13 +5,10 @@ import CourseHero from "../../components/CourseHero/Coursehero";
 const user = localStorage.getItem('user')
 const userData = JSON.parse(user)
 const token = userData?.token
-console.log(token)
 export default function Search() {
-    let { term } = useParams();
     let location = useLocation()
     let query = new URLSearchParams(location.search)
     let q = query.get('q')
-    console.log(term)
     const [courses, setCourse] = useState([])
     useEffect(() => {
         const res = async () => {

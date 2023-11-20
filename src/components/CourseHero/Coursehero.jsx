@@ -4,11 +4,9 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function CourseHero() {
   let [searchItem, setTerm] = useState("")
-    console.log(searchItem)
     let location = useLocation()
     let query = new URLSearchParams(location.search)
     let q = query.get('q')
-    console.log(q)
   return (
     <>
       <section className="z-10 cart-bg p-[3rem] lg:p-[8rem] text-white bg-cover w-100% font-montserrat whitespace-break-spaces">
