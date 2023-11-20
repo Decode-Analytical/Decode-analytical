@@ -9,7 +9,6 @@ const apiKey = import.meta.env.VITE_ACCESS_TOKEN;
 const user = localStorage.getItem('user')
 const userData = JSON.parse(user)
 const token = userData?.token
-console.log(token)
 
 export default function Courses() {
   const [courses, setCourses] = useState([]); 
@@ -23,7 +22,6 @@ export default function Courses() {
           }
         })
         const data = await response.json();
-        console.log(data.courses)
 
 
         if (data.courses) {
