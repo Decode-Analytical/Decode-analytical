@@ -6,7 +6,10 @@ import CourseHero from '../../components/CourseHero/Coursehero';
 const searchTerm = '';
 const courseURL = 'https://decode-mnjh.onrender.com/api/course/viewAllCourses';
 const apiKey = import.meta.env.VITE_ACCESS_TOKEN;
-const token = apiKey;
+const user = localStorage.getItem('user')
+const userData = JSON.parse(user)
+const token = userData?.token
+console.log(token)
 
 export default function Courses() {
   const [courses, setCourses] = useState([]); 
