@@ -117,23 +117,23 @@ export default function CoursesCard(props) {
             </div>
             {isPaid_course === "free" ? (
               <div className=" flex justify-between">
-                <a
-                  href={`/premiumCourses/${_id}`}
-                  className="text-blue-900 font-bold px-2 mr-5 py-2 rounded-md"
+                <Link
+                  to={`/premiumCourses/${_id}`}
+                  className="text-blue-900 font-bold px-2 mr-5 py-2 rounded-md" state={{course_title, course_description, course_image, isPrice_course, isPaid_course}}
                 >
                   View Course {">"}
-                </a>
+                </Link>
                 <p className=" px-5 mr-5 py-2">FREE</p>
               </div>
             ) : (
               <div className=" flex justify-between">
                 <button className=" border-[2px] border-black hover:bg-gray-400 px-5 mr-5 py-2 rounded-md">
-                <a
-                  href={`/PremiumCourses/${_id}`}
+                <Link
+                  to={`/PremiumCourses/${_id}`}
                   className="text-blue-900 font-bold px-2 mr-5 py-2 rounded-md"
                 >
                   {isPrice_course}
-                  </a>
+                  </Link>
                 </button>
                 <p className=" line-through px-5 mr-5 py-2">100,000 NGN</p>
               </div>
