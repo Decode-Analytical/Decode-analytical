@@ -74,7 +74,6 @@ export default function PremiumHero(props) {
         <section>
             <div style={{ backgroundImage: `url(${bgUrl})`}} className= ' relative bg-cover bg-no-repeat bg-center  md:h-[550px] mt-10 p-10' >
 
-            {/* {ok && ( */}
                     {/* Message based on status code */}
                 {statusCode === 200 && ok && (
                     <div className=' bg-white w-4/5 md:w-[90%] rounded-md h-[70%] flex flex-col items-center justify-center border border-gray-300 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
@@ -86,7 +85,6 @@ export default function PremiumHero(props) {
                         {/* You can add more content to your success message */}
                     </div>
                 )}
-            {/* )} */}
 
                 
                 {statusCode === 409 && ok && (
