@@ -75,7 +75,15 @@ export default function CoursesCard(props) {
       />
     </svg>,
   ];
-    const { course_title, course_description, course_image, isPrice_course, isPaid_course, _id, modules} = props
+    const { 
+      course_title, 
+      course_description, 
+      course_image, 
+      isPrice_course, 
+      isPaid_course, 
+      _id, 
+      modules,
+    } = props
 
     const [courses, setCourses] = useState([]); 
 

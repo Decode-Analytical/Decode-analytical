@@ -27,21 +27,18 @@ export default function CourseOverview( props ) {
                         </p>
                     </div>
 
-                    <div className="">
+                    <div className=" ">
                         <div className="">
                             {modules && modules.length > 0 ? (
                                 modules.map((module, index) => (
-                                <p key={index} className=" mt-5">
-                                    {module.module_title}
-                                </p>
+                                <div key={index} className=" mt-5 flex justify-between">
+                                    <p>{module.module_title}</p>
+                                    <p>{module.module_duration}</p>
+                                </div>
                                 ))
                             ) : (
                                 <p>No modules available</p>
                             )}
-                        </div>
-
-                        <div className="">
-
                         </div>
                     </div>
                 </div>
