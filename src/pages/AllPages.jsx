@@ -31,8 +31,8 @@ export default function AllPages() {
             Dashboard
         </Link> <br />
 
-        <Link to="/NotEnrolled">
-            NotEnrolled
+        <Link to="/EnrolledCourses">
+            Enrolled Courses
         </Link> <br />
 
         <Link to="/ForumIntro">

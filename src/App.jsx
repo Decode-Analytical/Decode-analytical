@@ -8,7 +8,7 @@ import PasswordReset from "./components/loginComponents/PasswordReset";
 import PremiumCourses from "./pages/courseDetailPage/PremiumCourses";
 import CartPage from "./pages/cartAndPaymentPage/CartPage";
 import PaymentPage from "./pages/cartAndPaymentPage/PaymentPage";
-import NotEnrolled from "./pages/forumPage/NotEnrolled";
+import EnrolledCourses from "./pages/forumPage/EnrolledCourses";
 import ForumIntro from "./pages/forumPage/ForumIntro";
 import InForumReply from "./pages/forumPage/InForumReply";
 import WeeklyForumPage from "./pages/forumPage/WeeklyForumPage";
@@ -44,7 +44,7 @@ function App() {
               <Route path="/CartPage" element={<CartPage />} />
               <Route path="/PaymentPage" element={<PaymentPage />} />
               <Route path="/Dashboard" element={<Dashboard />} />
-              <Route path="/NotEnrolled" element={<NotEnrolled />} />
+              <Route path="/EnrolledCourses" element={<EnrolledCourses />} />
               <Route path="/ForumIntro" element={<ForumIntro />} />
               <Route path="/InForumReply" element={<InForumReply />} />
               <Route path="/WeeklyForumPage" element={<WeeklyForumPage />} />

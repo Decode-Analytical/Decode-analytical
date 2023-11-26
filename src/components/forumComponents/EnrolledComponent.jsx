@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import cuate from '../../assets/forum imgs/cuate.png'
 
-export default function NotEnrolledComponent() {
+export default function EnrolledComponent() {
   return (
     <>
         <section className=' mx-[5%] mb-20'>
