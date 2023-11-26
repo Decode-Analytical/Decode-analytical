@@ -75,6 +75,7 @@ export default function CoursesCard(props) {
       />
     </svg>,
   ];
+  // Dandy please do not touch.... ABEG!!!!!
     const { 
       course_title, 
       course_description, 
@@ -139,6 +140,7 @@ export default function CoursesCard(props) {
                   </div>
 
 
+                          {/* DO NOT TOUCH link also. You can style but leave the logic... NA BEG I DEY BEG */}
             <Link
               to={`/premiumCourses/${_id}`}
               state={{
