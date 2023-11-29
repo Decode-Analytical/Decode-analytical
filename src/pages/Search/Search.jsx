@@ -13,7 +13,7 @@ export default function Search() {
     useEffect(() => {
         const res = async () => {
         try {
-            const response = await fetch(`https://decode-mnjh.onrender.com/api/course/search/${q}`, {
+            const response = await fetch(`https://server-eight-beige.vercel.app/api/course/search/${q}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

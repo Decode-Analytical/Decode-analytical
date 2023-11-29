@@ -4,7 +4,7 @@ import CoursesCard from '../../components/CourseHero/CoursesCard';
 
 import CourseHero from '../../components/CourseHero/Coursehero';
 const searchTerm = '';
-const courseURL = 'https://decode-mnjh.onrender.com/api/course/viewAllCourses';
+const courseURL = 'https://server-eight-beige.vercel.app/api/course/viewAllCourses';
 const apiKey = import.meta.env.VITE_ACCESS_TOKEN;
 const user = localStorage.getItem('user')
 const userData = JSON.parse(user)

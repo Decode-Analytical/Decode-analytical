@@ -5,7 +5,7 @@ import { BsGraphUpArrow } from "react-icons/bs";
 import { Link } from 'react-router-dom'
 import Ellipse from "../../assets/courses Images/Ellipse.png";
 const searchTerm = '';
-const courseURL = 'https://decode-mnjh.onrender.com/api/course/viewAllCourses';
+const courseURL = 'https://server-eight-beige.vercel.app/api/course/viewAllCourses';
 const apiKey = import.meta.env.VITE_ACCESS_TOKEN;
 const token = apiKey;
 export default function CoursesCard(props) {
