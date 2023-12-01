@@ -13,14 +13,17 @@ import { NavLink } from 'react-router-dom'
 import MainSideBar from '../../components/mainSideBar'
 
 const Dashboard = () => {
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTJmMTZmNWNhMTUzYTY0YWU4OTFkM2UiLCJpYXQiOjE2OTg4OTMyODksImV4cCI6MTY5ODk3OTY4OX0.YPTUsstIBp1gPITz2rEQW0eyrQ9FBawhXqTgui0af0A"
+  const userData = localStorage.getItem('user')
+  const userJson = JSON.parse(userData)
+  const token = userJson?.token
+  console.log("Token: ", token)
   const [loading, setLoading] = useState(true)
   const [name, setName] = useState('...')
   const [imgUrl, setImgUrl] = useState('...')
   const [user, setUser] = useState({name:"...", imgUrl: ""})
 
   const fetchUserData = () => {
-    fetch('https://decode-mnjh.onrender.com/api/user/viewProfile', {
+    fetch('https://server-eight-beige.vercel.app/api/user/viewProfile', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -40,7 +43,7 @@ const Dashboard = () => {
 
   const [listCourses, setListCourses] = useState([]);
   const fetchEnrolledCourses = () => {
-    fetch('https://decode-mnjh.onrender.com/api/student/studentGet', {
+    fetch('https://server-eight-beige.vercel.app/api/student/studentGet', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`
