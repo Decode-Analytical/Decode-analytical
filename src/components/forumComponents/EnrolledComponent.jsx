@@ -1,9 +1,33 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
+
+import axios from 'axios';
 
 import cuate from '../../assets/forum imgs/cuate.png'
 
+const apiKey = import.meta.env.VITE_API_KEY;
+const token = apiKey;
+
 export default function EnrolledComponent() {
+    const [data, setData] = useState(null);
+    useEffect(() => {
+        const registeredCourses = 'https://decode-mnjh.onrender.com/api/student/studentGet';
+        console.log('Token:', token);
+    
+        axios.get(registeredCourses, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+            .then(response => {
+              setData(response.data);
+              console.log(response.data);
+            })
+            .catch(error => {
+              console.error('Error fetching data:', error);
+              console.log('Full error response:', error.response);
+            });
+        }, []);
   return (
     <>
         <section className=' mx-[5%] mb-20'>
@@ -36,3 +60,4 @@ export default function EnrolledComponent() {
     </>
   )
 }
+  
