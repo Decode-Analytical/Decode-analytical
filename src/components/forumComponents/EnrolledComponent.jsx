@@ -11,7 +11,7 @@ export default function EnrolledComponent() {
     const [data, setData] = useState(null);
     const { token } = useContext(AuthContext);
     useEffect(() => {
-        const registeredCourses = 'https://decode-mnjh.onrender.com/api/student/studentGet';
+        const registeredCourses = 'https://server-eight-beige.vercel.app/api/student/studentGet';
         console.log('Token:', token);
     
         axios.get(registeredCourses, {

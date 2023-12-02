@@ -10,7 +10,7 @@ import Ellipse from "../../assets/courses Images/Ellipse.png";
 
 import { AuthContext } from '../../context/AuthContext';
 
-const courseURL = 'https://decode-mnjh.onrender.com/api/course/viewAllCourses';
+const courseURL = 'https://server-eight-beige.vercel.app/api/course/viewAllCourses';
 
 export default function CoursesCard(props) {
   const { token } = useContext(AuthContext);

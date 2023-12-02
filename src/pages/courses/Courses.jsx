@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Axios from 'axios';
 
 import CourseHero from '../../components/CourseHero/Coursehero';
 import CoursesCard from '../../components/CourseHero/CoursesCard';
 
-const courseURL = 'https://decode-mnjh.onrender.com/api/course/viewAllCourses';
-const apiKey = import.meta.env.VITE_API_KEY;
-const token = apiKey;
+const courseURL = 'https://server-eight-beige.vercel.app/api/course/viewAllCourses';
+
+import { AuthContext } from '../../context/AuthContext';
+
 
 export default function Courses() {
+  const { token } = useContext(AuthContext);
+
   const [courses, setCourses] = useState([]); 
 
   useEffect(() => {
