@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -8,11 +8,12 @@ import {BsClockHistory} from "react-icons/bs";
 import {BsGraphUpArrow} from "react-icons/bs";
 import Ellipse from "../../assets/courses Images/Ellipse.png";
 
+import { AuthContext } from '../../context/AuthContext';
+
 const courseURL = 'https://decode-mnjh.onrender.com/api/course/viewAllCourses';
-const apiKey = import.meta.env.VITE_API_KEY;
-const token = apiKey;
 
 export default function CoursesCard(props) {
+  const { token } = useContext(AuthContext);
   let stars = [
     <svg
       xmlns="http://www.w3.org/2000/svg"

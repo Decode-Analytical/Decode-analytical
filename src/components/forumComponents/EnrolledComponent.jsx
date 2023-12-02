@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 
 import axios from 'axios';
 
 import cuate from '../../assets/forum imgs/cuate.png'
+import { AuthContext } from '../../context/AuthContext';
 
-const apiKey = import.meta.env.VITE_API_KEY;
-const token = apiKey;
 
 export default function EnrolledComponent() {
     const [data, setData] = useState(null);
+    const { token } = useContext(AuthContext);
     useEffect(() => {
         const registeredCourses = 'https://decode-mnjh.onrender.com/api/student/studentGet';
         console.log('Token:', token);
