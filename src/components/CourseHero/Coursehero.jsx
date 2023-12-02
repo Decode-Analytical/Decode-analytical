@@ -47,14 +47,6 @@ export default function CourseHero() {
           </form>
         </div>
         <div className="flex justify-start gap-3 py-[2rem] text-black">
-          <Link to = '/freeCourses'>
-            <button className="p-[10px] px-[20px] rounded-full bg-white">Free</button>
-          </Link>
-
-          <Link to = '/premiumCourses'>
-            <button className="p-[10px] px-[20px] rounded-full bg-white">Premium</button>
-          </Link>
-          
           <Link to=''>
             <button className="p-[10px] rounded-full bg-white">All Courses</button>
           </Link>

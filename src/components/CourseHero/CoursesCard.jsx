@@ -6,8 +6,10 @@ import { Link } from 'react-router-dom'
 import Ellipse from "../../assets/courses Images/Ellipse.png";
 const searchTerm = '';
 const courseURL = 'https://server-eight-beige.vercel.app/api/course/viewAllCourses';
-const apiKey = import.meta.env.VITE_ACCESS_TOKEN;
-const token = apiKey;
+const user = localStorage.getItem('user')
+const userData = JSON.parse(user)
+const token = userData?.token
+
 export default function CoursesCard(props) {
   let stars = [
     <svg
@@ -119,7 +121,7 @@ export default function CoursesCard(props) {
               <div className=" flex justify-between">
                 <Link
                   to={`/premiumCourses/${_id}`}
-                  className="text-blue-900 font-bold px-2 mr-5 py-2 rounded-md" state={{course_title, course_description, course_image, isPrice_course, isPaid_course}}
+                  className="text-blue-900 font-bold px-2 mr-5 py-2 rounded-md" state={{_id, course_title, course_description, course_image, isPrice_course, isPaid_course}}
                 >
                   View Course {">"}
                 </Link>
@@ -147,7 +149,7 @@ export default function CoursesCard(props) {
                     </p>
                   </div> */}
 
-                  {/* {isPrice_course === 0 ? (
+                  {isPrice_course === 0 ? (
                     <Link
                     to={`/premiumCourses/${_id}`}
                     state = {{
@@ -162,10 +164,10 @@ export default function CoursesCard(props) {
                   ) : (
                     <div className=" flex justify-between">
                       <button className="border-[2px] border-black hover:bg-gray-400 px-5 mr-5 py-2 rounded-md">
-                        Price: {isPrice_course} NGN
+                        Price: {courses.isPrice_course} NGN
                       </button>
                     </div>
-                  )} */}
+                  )}
           </div>
         </div>
       </div>

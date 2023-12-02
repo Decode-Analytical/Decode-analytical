@@ -2,7 +2,7 @@ import React from 'react';
 
 
 export default function CourseOverview( props ) {
-    const { course_description } = props;
+    const { course_description, modules } = props;
     return (
         <>
             <section className='max-w-[1000px] m-auto font-montserrat'>
@@ -26,7 +26,21 @@ export default function CourseOverview( props ) {
                             What you will cover in this course
                         </p>
                     </div>
-                   
+
+                    <div className=" ">
+                        <div className="">
+                            {modules && modules.length > 0 ? (
+                                modules.map((module, index) => (
+                                <div key={index} className=" mt-5 flex justify-between">
+                                    <p>{module.module_title}</p>
+                                    <p>{module.module_duration}</p>
+                                </div>
+                                ))
+                            ) : (
+                                <p>No modules available</p>
+                            )}
+                        </div>
+                    </div>
                 </div>
             </section>
         </>

@@ -10,7 +10,7 @@ import PremiumCourses from "./pages/courseDetailPage/PremiumCourses";
 // import FreeCourses from "./pages/courseDetailPage/FreeCourses";
 import CartPage from "./pages/cartAndPaymentPage/CartPage";
 import PaymentPage from "./pages/cartAndPaymentPage/PaymentPage";
-import NotEnrolled from "./pages/forumPage/NotEnrolled";
+import EnrolledCourses from "./pages/forumPage/EnrolledCourses";
 import ForumIntro from "./pages/forumPage/ForumIntro";
 import InForumReply from "./pages/forumPage/InForumReply";
 import WeeklyForumPage from "./pages/forumPage/WeeklyForumPage";
@@ -27,7 +27,7 @@ import Individual from "./pages/authetication/Individual";
 import InstructorProfile from "./pages/homepage/InstructorProfile";
 // import ResetPassword from "./pages/authetication/ResetPassword";
 // import Nysc from "./pages/authetication/Nysc";
-import FreeCourses from "./pages/courseDetailPage/FreeCourses";
+// import FreeCourses from "./pages/courseDetailPage/FreeCourses";
 // import FreeCourse
 
 import NewModules from "./pages/courseUpload/NewModule";
@@ -56,12 +56,12 @@ function App() {
               <Route path="/" exact element={<HomePage />} />
               <Route path="/LoginSignUp" element={<LoginSignUp />} />
               <Route path="/PasswordReset" element={<PasswordReset />} />
-              <Route path="/FreeCourses" element={<FreeCourses />} />
+              {/* <Route path="/FreeCourses" element={<FreeCourses />} /> */}
               <Route path="/premiumCourses/:_id" element={<PremiumCourses />} />
               <Route path="/CartPage" element={<CartPage />} />
               <Route path="/PaymentPage" element={<PaymentPage />} />
               <Route path="/Dashboard" element={<Dashboard />} />
-              <Route path="/NotEnrolled" element={<NotEnrolled />} />
+              <Route path="/EnrolledCourses" element={<EnrolledCourses />} />
               <Route path="/ForumIntro" element={<ForumIntro />} />
               <Route path="/InForumReply" element={<InForumReply />} />
               <Route path="/WeeklyForumPage" element={<WeeklyForumPage />} />
