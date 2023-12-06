@@ -43,6 +43,7 @@ import NoAuthPage from "./pages/NoAuth/noAuthPage";
 import AdminLogin from "./pages/AdminLogin/adminLogin";
 import PaystackCard from "./components/cartAndPaymentComponents/PaystackCard";
 import ScheduleMeeting from "./pages/scheduleMeeting/ScheduleMeeting";
+import Upload from "./pages/uploadCourses/Upload";
 
 function App() {
   return (
@@ -89,6 +90,7 @@ function App() {
               <Route path="/PaystackCard/:price" element={<PaystackCard />} />
               <Route path="/AllPages" element={<AllPages />} />{" "}
               <Route path="/schedulemeeting" element={<ScheduleMeeting />} />
+              <Route path="/CourseUpload" element={<Upload />} />
               {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
             </Routes>
           </div>
