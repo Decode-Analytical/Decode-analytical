@@ -33,9 +33,9 @@ const CourseUpload = () => {
   let skill = ["Basic", "Intermediate", "Advanced", "Professional"];
   let Category = ["Programming", "Design", "Marketing", "Other"];
   return (
-    <section>
-      <h2 className="text-2xl font-semibold">Course Information</h2>
-      <form className="container mx-6">
+    <section className="w-full p-9 shadow-xl border">
+      <h2 className="text-2xl font-semibold text-left">Course Information</h2>
+      <form className="flex flex-col gap-6">
         <Input
           name="Title"
           label="Title"
@@ -74,15 +74,6 @@ const CourseUpload = () => {
           value={form.price}
           onChange={onChange}
         />
-        {/* <div>
-          <label>Upload Cover Image</label>
-          <input
-            type="file"
-            className="text-sm text-stone-500
-   file:mr-5 file:py-1 file:px-3 file:border-[1px]
-   file:border-dotted"
-          />
-        </div> */}
         <FileUpload
           onDrop={onDrop}
           value={form.course_image}
@@ -92,13 +83,13 @@ const CourseUpload = () => {
         <div className="flex w-full justify-center gap-5">
           <button
             type="button"
-            className="w-64 h-24 border text-center text-[#040E53] border-[#040E53] hover:bg-blue-900 hover:text-white text-xl"
+            className="w-64 h-20 border text-center text-[#040E53] border-[#040E53] hover:bg-blue-900 hover:text-white text-2xl"
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="w-64 h-24 border text-center text-[#040E53] border-[#040E53] hover:bg-blue-900 hover:text-white text-2xl"
+            className="w-64 h-20 border text-center text-[#040E53] border-[#040E53] hover:bg-blue-900 hover:text-white text-2xl"
           >
             Save & continue
           </button>
