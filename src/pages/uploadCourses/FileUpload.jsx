@@ -1,62 +1,32 @@
-import { useEffect, useState } from "react";
+import React from "react";
+import { useDropzone } from "react-dropzone";
 
-const imageMimeType = /image\/(png|jpg|jpeg)/i;
+export default function FileUpload({ onDrop, className }) {
+  const { getRootProps, getInputProps, open, acceptedFiles } = useDropzone({
+    accept: { "image/*": [] },
+    maxFiles: 1, // Set maxFiles to 1 to accept only one file
+    onDrop,
+  });
 
-function FileUpload() {
-  const [file, setFile] = useState(null);
-  const [fileDataURL, setFileDataURL] = useState(null);
-
-  const changeHandler = (e) => {
-    const file = e.target.files[0];
-    if (!file.type.match(imageMimeType)) {
-      alert("Image mime type is not valid");
-      return;
-    }
-    setFile(file);
-  };
-  useEffect(() => {
-    let fileReader,
-      isCancel = false;
-    if (file) {
-      fileReader = new FileReader();
-      fileReader.onload = (e) => {
-        const { result } = e.target;
-        if (result && !isCancel) {
-          setFileDataURL(result);
-        }
-      };
-      fileReader.readAsDataURL(file);
-    }
-    return () => {
-      isCancel = true;
-      if (fileReader && fileReader.readyState === 1) {
-        fileReader.abort();
-      }
-    };
-  }, [file]);
+  console.log(acceptedFiles.length);
 
   return (
-    <>
-      <form>
-        <p>
-          <label htmlFor="image"> Browse images </label>
-          <input
-            type="file"
-            id="image"
-            accept=".png, .jpg, .jpeg"
-            onChange={changeHandler}
-          />
-        </p>
-        <p>
-          <input type="submit" label="Upload" />
-        </p>
-      </form>
-      {fileDataURL ? (
-        <p className="img-preview-wrapper">
-          {<img src={fileDataURL} alt="preview" />}
-        </p>
-      ) : null}
-    </>
+    <div {...getRootProps({ className: className })}>
+      <input {...getInputProps()} />
+      <div className="flex flex-col gap-2">
+        <button
+          type="button"
+          onClick={open}
+          className="w-32 h-12 rounded-md outline-dashed outline-gray-400"
+        >
+          Open File Dialog
+        </button>
+        <aside>
+          {acceptedFiles.length > 0 && (
+            <h4>Selected File: {acceptedFiles[0].name}</h4>
+          )}
+        </aside>
+      </div>
+    </div>
   );
 }
-export default FileUpload;

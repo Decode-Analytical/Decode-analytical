@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import Input from "./Input";
 import Textarea from "./Textarea";
 import Options from "./Option";
@@ -11,7 +11,20 @@ const CourseUpload = () => {
     Category: "",
     skill_level: "",
     price: "",
+    course_image: null,
   });
+  let image = new FormData();
+  const [imageError, setImageError] = useState({ err: false, mes: "" });
+  const onDrop = useCallback((acceptedFiles, rejectedFile) => {
+    // Do something with the files
+    if (rejectedFile) {
+      setImageError({ err: true, mess: "Please upload a Image" });
+    } else {
+      setForm({ ...from, course_image: acceptedFiles[0] });
+    }
+    // console.log(acceptedFiles[0]);
+    // console.log(rejectedFile)
+  }, []);
   const onChange = (e) => {
     let { name, value } = e.target;
     console.log("This is the value", value);
@@ -21,8 +34,8 @@ const CourseUpload = () => {
   let Category = ["Programming", "Design", "Marketing", "Other"];
   return (
     <section>
+      <h2 className="text-2xl font-semibold">Course Information</h2>
       <form className="container mx-6">
-        <h2 className="text-xl font-semibold">Course Information</h2>
         <Input
           name="Title"
           label="Title"
@@ -70,7 +83,26 @@ const CourseUpload = () => {
    file:border-dotted"
           />
         </div> */}
-        <FileUpload />
+        <FileUpload
+          onDrop={onDrop}
+          value={form.course_image}
+          error={imageError}
+          className="w-full h-72 border border-dotted border-black my-2 flex justify-center items-center"
+        />
+        <div className="flex w-full justify-center gap-5">
+          <button
+            type="button"
+            className="w-64 h-24 border text-center text-[#040E53] border-[#040E53] hover:bg-blue-900 hover:text-white text-xl"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="w-64 h-24 border text-center text-[#040E53] border-[#040E53] hover:bg-blue-900 hover:text-white text-2xl"
+          >
+            Save & continue
+          </button>
+        </div>
       </form>
     </section>
   );
