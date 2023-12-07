@@ -5,8 +5,24 @@
   src:url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap.woff2") format('woff2');
   font-weight: normal;
   font-style: normal;
-} 
+}
 
+.select:invalid {
+  @apply text-gray-400;
+}
+
+.select:valid {
+  @apply text-black
+}
+
+/* input[type='number'] {
+  -moz-appearance:number;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+} */
 
 #root {
   margin: 0;
