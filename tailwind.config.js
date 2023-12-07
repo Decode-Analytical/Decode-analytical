@@ -13,6 +13,9 @@ export default {
           '100%': { transform: 'scaleY(1)' },
         },
       },
+      backgroundImage: {
+        'header-Image' : "url(./src/assets/header/Union.png)"
+      },
       animation: {
         'open-menu': 'open-menu 0.5s ease-in-out forwards',
       },

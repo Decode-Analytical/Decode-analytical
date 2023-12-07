@@ -6,9 +6,9 @@ import Tracker from './Tracker'
 
 const Upload = () => {
   return (
-    <main className="flex flex-col justify-center mx-3 gap-6">
+    <main className="flex flex-col justify-center mx-7 gap-6">
         <Header />
-        <Tracker />
+        <Tracker selectedCourse={true} />
         <CourseUpload />
         <Footer />
     </main>
