@@ -4,6 +4,7 @@ import CourseUpload from "./CourseUpload";
 import Footer from "./Footer";
 import Tracker from "./Tracker";
 import ModuleUpload from "./ModuleUpload";
+import ALert from "./ALert";
 
 const Upload = () => {
   const [selectedCourse, setSelectedCourse] = useState({
@@ -23,6 +24,7 @@ const Upload = () => {
         <ModuleUpload id={selectedCourse.id} />
       )}
       <Footer />
+      <ALert />
     </main>
   );
 };

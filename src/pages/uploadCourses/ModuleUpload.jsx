@@ -45,7 +45,6 @@ const ModuleUpload = ({ id }) => {
   }, []);
   const onChange = (e) => {
     let { name, value } = e.target;
-    console.log("This is the value", name);
     setForm({ ...form, [name]: value });
   };
 
