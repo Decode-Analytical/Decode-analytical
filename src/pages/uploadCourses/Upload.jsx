@@ -13,19 +13,24 @@ const Upload = () => {
     id: "",
   });
   const [courseSuccess, setCourseSuccess] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const [moduleSuccess, setModuleSuccess] = useState({show: false, mess: ""})
   function updateCourse() {
     setSelectedCourse({...selectedCourse, select: false});
+    setIsOpen(false)
     setCourseSuccess(false)
   }
   function showAlert(id) {
     setSelectedCourse({...selectedCourse, id})
+    setIsOpen(true)
     setCourseSuccess(true)
   }
   function showModuleAlert(message) {
+    setIsOpen(true)
     setModuleSuccess({show: true, mess: message})
   }
   function onCLickModule() {
+    setIsOpen(false)
     setModuleSuccess({show: false, mess: ""})
   }
   return (
@@ -38,8 +43,8 @@ const Upload = () => {
         <ModuleUpload id={selectedCourse.id} Alert={showModuleAlert} />
       )}
       <Footer />
-      {courseSuccess &&  <ALert heading="SuccessFull" paragrapgh="Course has been created" CLick={updateCourse} /> }
-      {moduleSuccess.show && <ALert heading="SuccessFull" paragrapgh={moduleSuccess.mess} CLick={onCLickModule} />}
+      {courseSuccess &&  <ALert isOpen={isOpen} heading="SuccessFull" paragrapgh="Course has been created" CLick={updateCourse} /> }
+      {moduleSuccess.show && <ALert isOpen={isOpen} heading="SuccessFull" paragrapgh={moduleSuccess.mess} CLick={onCLickModule} />}
     </main>
   );
 };

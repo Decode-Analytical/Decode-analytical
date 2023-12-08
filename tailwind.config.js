@@ -12,12 +12,22 @@ export default {
           '80%': { transform: 'scaleY(1.5)' },
           '100%': { transform: 'scaleY(1)' },
         },
+        'fade': {
+          '0%': { backgroundColor: 'rgba(239, 68, 68, 0.75)' },
+          '100%': { backgroundColor: 'transparent' },
+        },
+        'fade-in': {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 },
+        },
       },
       backgroundImage: {
         'header-Image' : "url(./src/assets/header/Union.png)"
       },
       animation: {
         'open-menu': 'open-menu 0.5s ease-in-out forwards',
+        'fade-out': 'fade 0.5s ease-out',
+        'fade-in': 'fade-in 0.5s ease-in',
       },
       fontFamily: {
         montserrat: ['montserrat', 'sans'],

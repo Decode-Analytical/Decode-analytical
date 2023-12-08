@@ -98,7 +98,7 @@ const ModuleUpload = ({ id, Alert }) => {
     });
   }
   return (
-    <section className="w-full p-9 shadow-xl border">
+    <section className="w-full p-9 shadow-xl border animate-fade-in">
       <h2 className="text-2xl font-semibold text-left my-3">
         Course Module Information
       </h2>
