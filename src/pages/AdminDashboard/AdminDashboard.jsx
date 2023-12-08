@@ -200,7 +200,7 @@ const AdminDashboard = () => {
           <button
             type="Button"
             className="bg-blue-400 w-48 h-16 text-lg my-4 "
-            onClick={() => navigate("/newcourse")}
+            onClick={() => navigate("/CourseUpload")}
           >
             Create a Course
           </button>

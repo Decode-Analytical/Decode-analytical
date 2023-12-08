@@ -1,6 +1,7 @@
 import React from "react";
 
 const Options = ({ label, options, name, value, onChange, placeholder }) => {
+  console.log(options)
   return (
     <div className="flex gap-1 flex-col w-full">
       <label className="font-semibold text-2xl">{label}</label>

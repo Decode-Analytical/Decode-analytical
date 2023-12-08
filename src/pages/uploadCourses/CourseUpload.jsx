@@ -12,6 +12,7 @@ const CourseUpload = ({update}) => {
   const baseURL = import.meta.env.VITE_BASE_URL;
   // console.log(user)
   const [isLoading, setIsLoading] = useState(false);
+  const [isPaid, setIsPaid] = useState(false)
 
   const [error, setError] = useState(null);
   const [form, setForm] = useState({
@@ -19,7 +20,8 @@ const CourseUpload = ({update}) => {
     Description: "",
     Category: "",
     skill_level: "",
-    price: "",
+    price: 0,
+    ispaid: false,
     course_language: "",
     course_image: null,
   });
@@ -36,11 +38,19 @@ const CourseUpload = ({update}) => {
   }, []);
   const onChange = (e) => {
     let { name, value } = e.target;
-    console.log("This is the value", value);
+    // console.log("This is the value", value);
     setForm({ ...form, [name]: value });
+    if (name == "ispaid") {
+      if (value == "true") {
+        setIsPaid(true)
+      } else {
+        setIsPaid(false)
+      }
+    }
   };
   let skill = ["Basic", "Intermediate", "Advanced", "Professional"];
   let Category = ["Programming", "Design", "Marketing", "Other"];
+  let paidorNot = ["true", "false"]
   async function Submit(e) {
     e.preventDefault();
     setIsLoading(true)
@@ -50,6 +60,8 @@ const CourseUpload = ({update}) => {
     formData.set("skill", form.skill_level);
     formData.set("course_language", form.course_language);
     formData.set("category", form.Category);
+    formData.set("isPaid_course", form.ispaid)
+    formData.set("", form.price)
     if (form.course_image) {
       formData.set("course_image", form.course_image);
     }
@@ -65,7 +77,6 @@ const CourseUpload = ({update}) => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
         const res = data.newCourse;
         const id = res._id;
         setIsLoading(false);
@@ -130,15 +141,34 @@ const CourseUpload = ({update}) => {
             onChange={onChange}
             placeholder="Select Skill Level"
           />
-          <Input
+          {/* <Input
             name="price"
             label="Price"
             placeholder="Enter a price"
             type="number"
             value={form.price}
             onChange={onChange}
+          /> */}
+          <Options
+            label="isPaid"
+            options={paidorNot}
+            name="ispaid"
+            value={form.ispaid}
+            onChange={onChange}
+            placeholder="Select is it paid or not"
           />
         </div>
+        {isPaid && (
+          <Input
+            name="price"
+            label="Price"
+            disable={isPaid}
+            placeholder="Enter a price"
+            type="number"
+            value={form.price}
+            onChange={onChange}
+          />
+        )}
         <FileUpload
           onDrop={onDrop}
           value={form.course_image}
