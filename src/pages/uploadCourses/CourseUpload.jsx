@@ -5,7 +5,7 @@ import Options from "./Option";
 import FileUpload from "./FileUpload";
 import { useAuthContext } from "../../hooks/authContext";
 
-const CourseUpload = () => {
+const CourseUpload = ({update}) => {
   const { user } = useAuthContext();
   const baseURL = import.meta.env.VITE_BASE_URL;
   // console.log(user)
@@ -69,7 +69,8 @@ const CourseUpload = () => {
         setIsLoading(false);
         setError(null); // Clear any previous error
 
-        navigate(`/newmodule/${id}`);
+        // navigate(`/newmodule/${id}`);
+        update(id)
       } else {
         const errorData = await response.json();
         setError(errorData.message);
@@ -82,7 +83,7 @@ const CourseUpload = () => {
     }
   }
   return (
-    <section className="w-full p-9 shadow-xl border">
+    <section className="w-full p-9 sm:p-0 shadow-xl border">
       <h2 className="text-2xl font-semibold text-left">Course Information</h2>
       <form className="flex flex-col gap-6" onSubmit={Submit}>
         <Input
@@ -139,6 +140,7 @@ const CourseUpload = () => {
           onDrop={onDrop}
           value={form.course_image}
           error={imageError}
+          image="image/*"
           className="w-full h-72 border border-dotted border-black my-2 flex justify-center items-center"
         />
         <div className="flex w-full justify-center gap-5">

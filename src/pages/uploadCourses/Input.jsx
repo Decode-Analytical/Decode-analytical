@@ -8,7 +8,7 @@ const Input = ({ label, type, placeholder, name, value, onChange }) => {
         name={name}
         value={value}
         onChange={onChange}
-        className="border border-black p-3 text-[1.4rem] bg-transparent"
+        className="border border-black p-3 text-[1.4rem] rounded-2xl bg-transparent"
         type={type}
         placeholder={placeholder}
       />

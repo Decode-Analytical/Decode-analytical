@@ -3,12 +3,12 @@ import { useDropzone } from "react-dropzone";
 
 export default function FileUpload({ onDrop, className }) {
   const { getRootProps, getInputProps, open, acceptedFiles } = useDropzone({
-    accept: { "image/*": [] },
+    accept: { "video/*": [] },
     maxFiles: 1, // Set maxFiles to 1 to accept only one file
     onDrop,
   });
 
-  console.log(acceptedFiles.length);
+  console.log(acceptedFiles);
 
   return (
     <div {...getRootProps({ className: className })}>
@@ -17,9 +17,9 @@ export default function FileUpload({ onDrop, className }) {
         <button
           type="button"
           onClick={open}
-          className="w-32 h-12 rounded-md outline-dashed outline-gray-400"
+          className="w-44 h-12 rounded-md outline-dashed outline-gray-400"
         >
-          Open File Dialog
+          Browser or Drop an Image
         </button>
         <aside>
           {acceptedFiles.length > 0 && (

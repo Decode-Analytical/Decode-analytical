@@ -8,7 +8,7 @@ const Textarea = ({ label, placeholder, onChange, name }) => {
         name={name}
         onChange={onChange}
         placeholder={placeholder}
-        className="border border-black p-3 rounded-lg h-28 text-[1.45rem] bg-transparent"
+        className="border border-black p-3 rounded-2xl h-28 text-[1.45rem] bg-transparent"
       ></textarea>
     </div>
   );
