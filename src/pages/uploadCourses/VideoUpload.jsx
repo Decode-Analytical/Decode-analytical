@@ -3,7 +3,7 @@ import { useDropzone } from 'react-dropzone';
 
 const VideoUpload = ({ onDrop, className }) => {
     const { getRootProps, getInputProps, open, acceptedFiles } = useDropzone({
-        accept: { "image/*": [] },
+        accept: { "video/*": [] },
         maxFiles: 1, // Set maxFiles to 1 to accept only one file
         onDrop,
       });

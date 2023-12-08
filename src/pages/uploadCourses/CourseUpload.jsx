@@ -4,8 +4,10 @@ import Textarea from "./Textarea";
 import Options from "./Option";
 import FileUpload from "./FileUpload";
 import { useAuthContext } from "../../hooks/authContext";
+import { useNavigate } from "react-router-dom";
 
 const CourseUpload = ({update}) => {
+  let navigate = useNavigate()
   const { user } = useAuthContext();
   const baseURL = import.meta.env.VITE_BASE_URL;
   // console.log(user)
@@ -83,7 +85,7 @@ const CourseUpload = ({update}) => {
     }
   }
   return (
-    <section className="w-full p-9 sm:p-0 shadow-xl border">
+    <section className="w-full p-9 max-sm:p-0 shadow-xl border">
       <h2 className="text-2xl font-semibold text-left">Course Information</h2>
       <form className="flex flex-col gap-6" onSubmit={Submit}>
         <Input
@@ -97,6 +99,7 @@ const CourseUpload = ({update}) => {
         <Textarea
           name="Description"
           onChange={onChange}
+          value={form.Description}
           label="Description"
           placeholder="Enter Description"
         />
@@ -146,6 +149,7 @@ const CourseUpload = ({update}) => {
         <div className="flex w-full justify-center gap-5">
           <button
             type="button"
+            onClick={() => navigate("/AdminDashboard")}
             className="w-64 h-20 border text-center text-[#040E53] border-[#040E53] hover:bg-blue-900 hover:text-white text-2xl"
           >
             Cancel

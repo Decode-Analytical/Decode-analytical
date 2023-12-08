@@ -8,7 +8,7 @@ import axios from "axios";
 import Loading from "./Loading";
 import Loader from "../../components/Loader";
 
-const ModuleUpload = ({ id }) => {
+const ModuleUpload = ({ id, Alert }) => {
   const [form, setForm] = useState({
     Topic: "",
     Description: "",
@@ -18,7 +18,7 @@ const ModuleUpload = ({ id }) => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useAuthContext();
-  const baseURL = import.meta.env.VITE_BASE_URL
+  const baseURL = import.meta.env.VITE_BASE_URL;
   const [message, setMessage] = useState(false);
   const [error, setError] = useState(null);
   const [imageError, setImageError] = useState({ err: false, mes: "" });
@@ -55,39 +55,47 @@ const ModuleUpload = ({ id }) => {
     formdata.set("module_description", form.Description);
     formdata.set("video", form.upload_video);
     if (form.upload_image) {
-        formdata.set("image", form.upload_image);
+      formdata.set("image", form.upload_image);
     }
     if (form.upload_video) {
-        formdata.set("video", form.upload_video);
-      }
-      formdata.set("module_duration", form.module_duration)
+      formdata.set("video", form.upload_video);
+    }
+    formdata.set("module_duration", form.module_duration);
 
-      const headers = {
-        Authorization: `Bearer ${user.token}`,
-        "Content-Type": "multipart/form-data", // Use 'multipart/form-data' for form data
-      };
-  
-      try {
-        const response = await axios.post(
-          `${baseURL}course/createSubject/${id}`,
-          formdata,
-          { headers: headers }
-        );
+    const headers = {
+      Authorization: `Bearer ${user.token}`,
+      "Content-Type": "multipart/form-data", // Use 'multipart/form-data' for form data
+    };
 
-        console.log(response)
-  
-        if (response.status == 201 || 204) {
-          setIsLoading(false);
-          setMessage(response.data.message);
-        } else {
-          setIsLoading(false);
-          setError(response.data.message);
-        }
-      } catch (error) {
+    try {
+      const response = await axios.post(
+        `${baseURL}course/createSubject/${id}`,
+        formdata,
+        { headers: headers }
+      );
+
+      console.log(response);
+
+      if (response.status == 201 || 204) {
         setIsLoading(false);
-        console.error(error);
-        setError("An error occurred.");
+        setMessage(response.data.message);
+        Alert(response.data.message);
+      } else {
+        setIsLoading(false);
+        setError(response.data.message);
       }
+    } catch (error) {
+      setIsLoading(false);
+      console.error(error);
+      setError("An error occurred.");
+    }
+    setForm({
+      Topic: "",
+      Description: "",
+      upload_video: null,
+      upload_image: null,
+      module_duration: "",
+    });
   }
   return (
     <section className="w-full p-9 shadow-xl border">
@@ -106,6 +114,7 @@ const ModuleUpload = ({ id }) => {
         <Textarea
           name="Description"
           onChange={onChange}
+          value={form.Description}
           label="Description"
           placeholder="Enter Description"
         />
@@ -135,6 +144,7 @@ const ModuleUpload = ({ id }) => {
         <div className="flex w-full justify-center gap-5">
           <button
             type="button"
+            onClick={() => "/AdminDashboard"}
             className="w-64 h-20 border text-center text-[#040E53] border-[#040E53] hover:bg-blue-900 hover:text-white text-2xl"
           >
             Cancel
