@@ -21,7 +21,7 @@ const CourseUpload = ({update}) => {
     Category: "",
     skill_level: "",
     price: 0,
-    ispaid: false,
+    ispaid: "free",
     course_language: "",
     course_image: null,
   });
@@ -38,10 +38,11 @@ const CourseUpload = ({update}) => {
   }, []);
   const onChange = (e) => {
     let { name, value } = e.target;
-    // console.log("This is the value", value);
+    console.log("This is the value", value);
+    console.log("this is the name", name)
     setForm({ ...form, [name]: value });
     if (name == "ispaid") {
-      if (value == "true") {
+      if (value == "paid") {
         setIsPaid(true)
       } else {
         setIsPaid(false)
@@ -50,7 +51,7 @@ const CourseUpload = ({update}) => {
   };
   let skill = ["Basic", "Intermediate", "Advanced", "Professional"];
   let Category = ["Programming", "Design", "Marketing", "Other"];
-  let paidorNot = ["true", "false"]
+  let paidorNot = ["free", "paid"]
   async function Submit(e) {
     e.preventDefault();
     setIsLoading(true)
@@ -60,7 +61,7 @@ const CourseUpload = ({update}) => {
     formData.set("skill", form.skill_level);
     formData.set("course_language", form.course_language);
     formData.set("category", form.Category);
-    formData.set("isPaid_course", isPaid)
+    formData.set("isPaid_course", form.ispaid)
     formData.set("isPrice_course", form.price)
     if (form.course_image) {
       formData.set("course_image", form.course_image);
@@ -81,13 +82,15 @@ const CourseUpload = ({update}) => {
         const id = res._id;
         setIsLoading(false);
         setError(null); // Clear any previous error
-
+        let mess = "Course is created successfully"
         // navigate(`/newmodule/${id}`);
-        update(id)
+        update(id, mess)
       } else {
         const errorData = await response.json();
         setError(errorData.message);
         setIsLoading(false);
+        let id = ""
+        update(id, Error)
       }
     } catch (error) {
       setError("Network error occurred.");
