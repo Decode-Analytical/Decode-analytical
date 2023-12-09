@@ -38,8 +38,8 @@ const CourseUpload = ({update}) => {
   }, []);
   const onChange = (e) => {
     let { name, value } = e.target;
-    console.log("This is the value", value);
-    console.log("this is the name", name)
+    // console.log("This is the value", value);
+    // console.log("this is the name", name)
     setForm({ ...form, [name]: value });
     if (name == "ispaid") {
       if (value == "paid") {
