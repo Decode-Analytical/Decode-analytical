@@ -60,7 +60,7 @@ const CourseUpload = ({update}) => {
     formData.set("skill", form.skill_level);
     formData.set("course_language", form.course_language);
     formData.set("category", form.Category);
-    formData.set("isPaid_course", form.ispaid)
+    formData.set("isPaid_course", isPaid)
     formData.set("isPrice_course", form.price)
     if (form.course_image) {
       formData.set("course_image", form.course_image);
