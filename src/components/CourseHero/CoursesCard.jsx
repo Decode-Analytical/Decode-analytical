@@ -114,7 +114,7 @@ export default function CoursesCard(props) {
       <div className="w-full p-4">
         <div className="max-w-[25rem] bg-white p-4 rounded-3xl overflow-hidden border-[2px] border-neutral-400 mx-auto h-[30rem]">
           <div className='relative'>
-          <img className="w-full max-h-[19rem] object-cover rounded-xl rounded-b-none absolute -z-1" src={course_image[0].path} alt={course_title} />
+          <img className="w-full max-h-[19rem] object-cover rounded-xl rounded-b-none absolute -z-1" src={course_image[0]?.path} alt={course_title} />
           </div>
           <div className="flex flex-col items-start justify-end h-full relative z-10 ">
             <div className='bg-white w-full mb-[1rem]'>
