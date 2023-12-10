@@ -8,8 +8,6 @@ const VideoUpload = ({ onDrop, className }) => {
         onDrop,
       });
     
-      console.log(acceptedFiles.length);
-    
       return (
         <div {...getRootProps({ className: className })}>
           <input {...getInputProps()} />

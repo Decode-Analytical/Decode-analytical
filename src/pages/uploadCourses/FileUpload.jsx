@@ -8,8 +8,6 @@ export default function FileUpload({ onDrop, className }) {
     onDrop,
   });
 
-  console.log(acceptedFiles);
-
   return (
     <div {...getRootProps({ className: className })}>
       <input {...getInputProps()} required />

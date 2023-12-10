@@ -23,26 +23,38 @@ const ModuleUpload = ({ id, Alert }) => {
   const [error, setError] = useState(null);
   const [imageError, setImageError] = useState({ err: false, mes: "" });
   const [videoError, setVideoError] = useState({ err: false, mes: "" });
-  const onDrop = useCallback((acceptedFiles, rejectedFile) => {
-    // Do something with the files
-    if (rejectedFile) {
-      setImageError({ err: true, mess: "Please upload a Image" });
-    } else {
-      setForm({ ...from, upload_video: acceptedFiles[0] });
-    }
-    // console.log(acceptedFiles[0]);
-    // console.log(rejectedFile)
-  }, []);
-  const onDropImage = useCallback((acceptedFiles, rejectedFile) => {
-    // Do something with the files
-    if (rejectedFile) {
-      setVideoError({ err: true, mess: "Please upload a Image" });
-    } else {
-      setForm({ ...from, upload_image: acceptedFiles[0] });
-    }
-    // console.log(acceptedFiles[0]);
-    // console.log(rejectedFile)
-  }, []);
+  const onDrop = useCallback(
+    (acceptedFiles, rejectedFile) => {
+      // Do something with the files
+      if (rejectedFile == null) {
+        setVideoError({ err: true, mess: "Please upload an image" });
+      } else {
+        setForm({ ...form, upload_video: acceptedFiles[0] });
+        // Clear video error if a file is accepted
+        setVideoError({ err: false, mess: "" });
+      }
+      // console.log(acceptedFiles[0]);
+      // console.log(rejectedFile)
+    },
+    [form, setForm, setVideoError]
+  );
+
+  const onDropImage = useCallback(
+    (acceptedFiles, rejectedFile) => {
+      // Do something with the files
+      if (rejectedFile == null) {
+        setImageError({ err: true, mess: "Please upload an image" });
+      } else {
+        setForm({ ...form, upload_image: acceptedFiles[0] });
+        // Clear image error if a file is accepted
+        setImageError({ err: false, mess: "" });
+      }
+      // console.log(acceptedFiles[0]);
+      // console.log(rejectedFile)
+    },
+    [form, setForm, setImageError]
+  );
+
   const onChange = (e) => {
     let { name, value } = e.target;
     setForm({ ...form, [name]: value });
@@ -73,8 +85,6 @@ const ModuleUpload = ({ id, Alert }) => {
         formdata,
         { headers: headers }
       );
-
-      console.log(response);
 
       if (response.status == 201 || 204) {
         setIsLoading(false);
@@ -141,6 +151,9 @@ const ModuleUpload = ({ id, Alert }) => {
           />
         </div>
         {isLoading !== false && <Loader />}
+        {error !== null && <p className="text-sm text-red-400 font-semibold">{error}</p>}
+        {imageError.err && <p className="text-sm text-red-400 font-semibold">{imageError.mes}</p>}
+        {videoError.err && <p className="text-sm text-red-400 font-semibold">{videoError.mes}</p>}
         <div className="flex w-full justify-center gap-5">
           <button
             type="button"
