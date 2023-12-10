@@ -6,13 +6,13 @@ import FileUpload from "./FileUpload";
 import { useAuthContext } from "../../hooks/authContext";
 import { useNavigate } from "react-router-dom";
 
-const CourseUpload = ({update}) => {
-  let navigate = useNavigate()
+const CourseUpload = ({ update }) => {
+  let navigate = useNavigate();
   const { user } = useAuthContext();
   const baseURL = import.meta.env.VITE_BASE_URL;
   // console.log(user)
   const [isLoading, setIsLoading] = useState(false);
-  const [isPaid, setIsPaid] = useState(false)
+  const [isPaid, setIsPaid] = useState(false);
 
   const [error, setError] = useState(null);
   const [form, setForm] = useState({
@@ -26,43 +26,45 @@ const CourseUpload = ({update}) => {
     course_image: null,
   });
   const [imageError, setImageError] = useState({ err: false, mes: "" });
-  const onDrop = useCallback((acceptedFiles, rejectedFile) => {
-    // Do something with the files
-    if (rejectedFile) {
-      setImageError({ err: true, mess: "Please upload a Image" });
-    } else {
-      setForm({ ...from, course_image: acceptedFiles[0] });
-    }
-    // console.log(acceptedFiles[0]);
-    // console.log(rejectedFile)
-  }, []);
+  const onDrop = useCallback(
+    (acceptedFiles, rejectedFile) => {
+      // Do something with the files
+      if (rejectedFile == null) {
+        setImageError({ err: true, mess: "Please upload an image" });
+      } else {
+        setForm({ ...form, course_image: acceptedFiles[0] });
+      }
+      // console.log(acceptedFiles[0]);
+      // console.log(rejectedFile)
+    },
+    [form, setForm, setImageError]
+  );
+
   const onChange = (e) => {
     let { name, value } = e.target;
-    // console.log("This is the value", value);
-    // console.log("this is the name", name)
     setForm({ ...form, [name]: value });
     if (name == "ispaid") {
       if (value == "paid") {
-        setIsPaid(true)
+        setIsPaid(true);
       } else {
-        setIsPaid(false)
+        setIsPaid(false);
       }
     }
   };
   let skill = ["Basic", "Intermediate", "Advanced", "Professional"];
   let Category = ["Programming", "Design", "Marketing", "Other"];
-  let paidorNot = ["free", "paid"]
+  let paidorNot = ["free", "paid"];
   async function Submit(e) {
     e.preventDefault();
-    setIsLoading(true)
+    setIsLoading(true);
     const formData = new FormData();
     formData.set("course_title", form.Title);
     formData.set("course_description", form.Description);
     formData.set("skill", form.skill_level);
     formData.set("course_language", form.course_language);
     formData.set("category", form.Category);
-    formData.set("isPaid_course", form.ispaid)
-    formData.set("isPrice_course", form.price)
+    formData.set("isPaid_course", form.ispaid);
+    formData.set("isPrice_course", form.price);
     if (form.course_image) {
       formData.set("course_image", form.course_image);
     }
@@ -82,15 +84,15 @@ const CourseUpload = ({update}) => {
         const id = res._id;
         setIsLoading(false);
         setError(null); // Clear any previous error
-        let mess = "Course is created successfully"
+        let mess = "Course is created successfully";
         // navigate(`/newmodule/${id}`);
-        update(id, mess)
+        update(id, mess);
       } else {
         const errorData = await response.json();
         setError(errorData.message);
         setIsLoading(false);
-        let id = ""
-        update(id, Error)
+        let id = "";
+        update(id, Error);
       }
     } catch (error) {
       setError("Network error occurred.");
