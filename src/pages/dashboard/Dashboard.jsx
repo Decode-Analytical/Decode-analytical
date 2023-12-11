@@ -55,7 +55,7 @@ const Dashboard = () => {
     .catch(error => {
       console.error(error);
     });
-  }
+  } 
 
 
   if (loading) {
