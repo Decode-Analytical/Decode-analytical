@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 
@@ -8,10 +8,13 @@ import {BsFillPeopleFill} from "react-icons/bs"
 import {BsAward} from "react-icons/bs"
 import {BsFillRssFill} from "react-icons/bs"
 
-const apiKey = import.meta.env.VITE_API_KEY;
-const token = apiKey;
+// const apiKey = import.meta.env.VITE_API_KEY;
+// const token = apiKey;
+
+import { AuthContext } from '../../../context/AuthContext';
 
 export default function PremiumHero(props) {
+    const { token } = useContext(AuthContext);
     const {
         course_title, 
         course_image, 

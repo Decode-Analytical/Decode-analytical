@@ -15,7 +15,7 @@ export const useSignup = () => {
     setIsloading(true);
     setError(null);
 
-    const response = await fetch("https://decode-mnjh.onrender.com/api/user/signup", {
+    const response = await fetch("https://server-eight-beige.vercel.app/api/user/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({firstName, lastName, phoneNumber, email, password }),

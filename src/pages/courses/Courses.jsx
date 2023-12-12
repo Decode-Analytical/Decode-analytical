@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Axios from 'axios';
 import CoursesCard from '../../components/CourseHero/CoursesCard';
 
-import CourseHero from '../../components/CourseHero/Coursehero';
-const searchTerm = '';
 const courseURL = 'https://server-eight-beige.vercel.app/api/course/viewAllCourses';
-const apiKey = import.meta.env.VITE_ACCESS_TOKEN;
-const user = localStorage.getItem('user')
-const userData = JSON.parse(user)
-const token = userData?.token
+
+import { AuthContext } from '../../context/AuthContext';
+
 
 export default function Courses() {
+  const { token } = useContext(AuthContext);
+
   const [courses, setCourses] = useState([]); 
 
   useEffect(() => {
