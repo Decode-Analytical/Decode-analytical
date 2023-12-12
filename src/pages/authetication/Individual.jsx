@@ -154,8 +154,8 @@ export default function Individual() {
             {/* <input type="submit" value="Sign Up" /> */}
             <button  className="btn">Sign Up</button>
           </form>
-          {error && <div className="text-xs text-red-500">{error}</div>}
-          <p className="font-medium text-zinc-500">
+          {isLoading && <Loader />}
+          <p className="text-sm text-zinc-500">
             Already have an account?{" "}
             <a href="/login" className="ms-3 text-[#5333AD]">
               Log In

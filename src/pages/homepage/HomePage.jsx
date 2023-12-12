@@ -1,4 +1,3 @@
-import { useLogout } from "../../hooks/useLogout";
 import "../homepage/index.css";
 import BecomeTutor from "../../components/homepageComponents/BecomeTutor";
 import TutorComponent from "../../components/homepageComponents/TutorComponent";
@@ -7,17 +6,9 @@ import Course from "../../components/homepageComponents/Course";
 
 
 export default function Homepage() {
-  const { logout } = useLogout();
-
-
-  const handleLogout = (e) => {
-    e.preventDefault();
-    logout();
-  };
 
   return (
-    <main>
-      <button onClick={handleLogout}>LogOut</button>
+    <main className="font-montserrat">
       <Hero />
       <Course />
       <TutorComponent />
@@ -25,3 +16,4 @@ export default function Homepage() {
     </main>
   );
 }
+

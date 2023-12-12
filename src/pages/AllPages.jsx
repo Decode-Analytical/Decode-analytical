@@ -1,9 +1,21 @@
-import React from 'react'
+import React, {useEffect,useState} from 'react'
 import { Link } from "react-router-dom";
 // import PaystackCard from '../components/cartAndPaymentComponents/PaystackCard';
 
 
 export default function AllPages() {
+    const[admin, setAdmin] =useState(false)
+    useEffect(() => {
+        function checkUser() {
+            let userLoginData = JSON.parse(localStorage.getItem("user"))
+            if (userLoginData?.user.role == "admin") {
+                setAdmin(true)
+            } else {
+                setAdmin(false)
+            }
+        }
+        checkUser()
+      }, []);
   return (
     <div className=' text-center'>
         <Link to="/">
@@ -74,6 +86,11 @@ export default function AllPages() {
          <Link to="/courseinfo">
             course Upload
         </Link>
+        {admin && (
+            <Link to="/AdminDashboard">
+                Admin Dashboard
+            </Link>
+        )}
     </div>
   )
 }

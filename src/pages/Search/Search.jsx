@@ -2,20 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
 import CoursesCard from "../../components/CourseHero/CoursesCard";
 import CourseHero from "../../components/CourseHero/Coursehero";
-
+const user = localStorage.getItem('user')
+const userData = JSON.parse(user)
+const token = userData?.token
 export default function Search() {
-    let { term } = useParams();
     let location = useLocation()
     let query = new URLSearchParams(location.search)
     let q = query.get('q')
-    console.log(term)
     const [courses, setCourse] = useState([])
     useEffect(() => {
         const res = async () => {
         try {
-            const response = await fetch(`https://decode-mnjh.onrender.com/api/course/search/${q}`, {
+            const response = await fetch(`https://server-eight-beige.vercel.app/api/course/search/${q}`, {
                 headers: {
-                    Authorization: `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`
+                    Authorization: `Bearer ${token}`
                 }
             })
             let data = await response.json()
@@ -42,7 +42,7 @@ export default function Search() {
           Showing results for: <span className="font-bold">{q}</span>
         </h5>
         <h3 className="px-5 font-bold text-2xl">{`${courses.length} Course(s) Found`}</h3>
-        <div className="mx-auto items-center grid grid-cols-1 pt-20 pb-14 overflow-hidden md:grid-cols-2 lg:grid-cols-3 gap-10 place-content-center">
+        <div className="mx-auto items-center grid grid-cols-1 pt-20 pb-14 gap-10 overflow-hidden md:grid-cols-3 lg:grid-cols-4 place-content-center">
       {courses.map((details, index) => { // Use the 'courses' state here
             return <CoursesCard key={index + 1} {...details} />;
           })}

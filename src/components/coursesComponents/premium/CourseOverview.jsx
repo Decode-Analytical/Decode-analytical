@@ -5,7 +5,7 @@ export default function CourseOverview( props ) {
     const { course_description, modules } = props;
     return (
         <>
-            <section className='max-w-[1000px] m-auto'>
+            <section className='max-w-[1000px] m-auto font-montserrat'>
                 <div className="px-[5%] md:w-[90%]">
                     <div className="">
                         <p className="text-3xl mt-20 font-bold">

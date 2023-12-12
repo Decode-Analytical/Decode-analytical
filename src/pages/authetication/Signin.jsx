@@ -139,7 +139,7 @@ export default function Signin() {
 
             {/* <input
               type="submit"
-              value="Log In"
+              value={isLoading ? "Waiting..." : "Log In"}
               onClick={handleSubmit}
               disabled={isLoading}
             /> */}
@@ -148,7 +148,7 @@ export default function Signin() {
               <p className="text-[#ff0000] text-sm text-center">{error}</p>
               </div>} */}
           </form>
-          <p className="font-medium text-zinc-500">
+          <p className="text-sm text-zinc-500">
             New here?{" "}
             <a href="/auth" className="ms-3 text-[#5333AD]">
               Sign Up
