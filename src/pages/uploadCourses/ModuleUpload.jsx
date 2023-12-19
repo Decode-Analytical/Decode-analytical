@@ -63,11 +63,13 @@ const ModuleUpload = ({ id, Alert }) => {
   async function ModuleSubmit(e) {
     e.preventDefault();
     const formdata = new FormData();
+    setIsLoading(true)
     formdata.set("module_title", form.Topic);
     formdata.set("module_description", form.Description);
     formdata.set("video", form.upload_video);
     if (form.upload_image) {
       formdata.set("image", form.upload_image);
+      formdata.set("audio", form.upload_video)
     }
     if (form.upload_video) {
       formdata.set("video", form.upload_video);
@@ -79,26 +81,29 @@ const ModuleUpload = ({ id, Alert }) => {
       "Content-Type": "multipart/form-data", // Use 'multipart/form-data' for form data
     };
 
-    try {
-      const response = await axios.post(
-        `${baseURL}course/createSubject/${id}`,
-        formdata,
-        { headers: headers }
-      );
+    console.log(formdata)
+
+        const response = await axios.post(
+          `${baseURL}course/createSubject/${id}`,
+          formdata,
+          { headers: headers }
+        );
+        setMessage(response.data.message);
+  //   try {
+
 
       if (response.status == 201 || 204) {
         setIsLoading(false);
-        setMessage(response.data.message);
         Alert(response.data.message);
       } else {
         setIsLoading(false);
         setError(response.data.message);
       }
-    } catch (error) {
-      setIsLoading(false);
-      console.error(error);
-      setError("An error occurred.");
-    }
+  //   } catch (error) {
+  //     setIsLoading(false);
+  //     console.error(error);
+  //     setError("An error occurred.");
+  //   }
     setForm({
       Topic: "",
       Description: "",
@@ -150,7 +155,7 @@ const ModuleUpload = ({ id, Alert }) => {
             className="w-full h-72 border border-dotted border-black my-2 flex justify-center items-center rounded-lg"
           />
         </div>
-        {isLoading !== false && <Loader />}
+        {isLoading == true && <Loader />}
         {error !== null && <p className="text-sm text-red-400 font-semibold">{error}</p>}
         {imageError.err && <p className="text-sm text-red-400 font-semibold">{imageError.mes}</p>}
         {videoError.err && <p className="text-sm text-red-400 font-semibold">{videoError.mes}</p>}
