@@ -10,7 +10,7 @@ export default function FileUpload({ onDrop, className }) {
 
   return (
     <div {...getRootProps({ className: className })}>
-      <input {...getInputProps()} required />
+      <input {...getInputProps()} />
       <div className="flex flex-col gap-2">
         <button
           type="button"
