@@ -28,6 +28,9 @@ import CourseInfo from "./pages/courseUpload/CourseInfo";
 import ResetPassword from "./pages/authetication/ResetPassword";
 import Nysc from "./pages/authetication/Nysc";
 import PaystackCard from "./components/cartAndPaymentComponents/PaystackCard";
+import Quiz from "./pages/Quiz/Quiz";
+import FirstPage from "./pages/Quiz/CreateQuestion/FirstPage";
+import SecondPage from "./pages/Quiz/CreateQuestion/SecondPage";
 
 function App() {
   return (
@@ -49,6 +52,10 @@ function App() {
               <Route path="/InForumReply" element={<InForumReply />} />
               <Route path="/WeeklyForumPage" element={<WeeklyForumPage />} />
               <Route path="/mycourses" element={<MyCourse />} />
+              <Route path="dashboard/quiz" element={<Quiz/>}>
+                <Route path="" element={<FirstPage/>}/>
+                <Route path="secondpage" element={<SecondPage/>}/>
+              </Route> 
               <Route path="/profile/*" element={<Profile />} />
               <Route path="/PurchasedPage" element={<PurchasedPage />} />
               <Route path="/InstrucructorProfile" element={<InstrucructorProfile />} />
