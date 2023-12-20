@@ -81,29 +81,27 @@ const ModuleUpload = ({ id, Alert }) => {
       "Content-Type": "multipart/form-data", // Use 'multipart/form-data' for form data
     };
 
-    console.log(formdata)
-
-        const response = await axios.post(
-          `${baseURL}course/createSubject/${id}`,
-          formdata,
-          { headers: headers }
+    try {
+      const response = await axios.post(
+        `${baseURL}course/createSubject/${id}`,
+        formdata,
+        { headers: headers }
         );
+        
+        if (response.status == 201 || 204) {
         setMessage(response.data.message);
-  //   try {
-
-
-      if (response.status == 201 || 204) {
         setIsLoading(false);
         Alert(response.data.message);
       } else {
-        setIsLoading(false);
         setError(response.data.message);
       }
-  //   } catch (error) {
-  //     setIsLoading(false);
-  //     console.error(error);
-  //     setError("An error occurred.");
-  //   }
+      setIsLoading(false);
+      console.log(isLoading)
+        } catch (error) {
+      setIsLoading(false);
+      console.error(error);
+      setError("An error occurred.");
+    }
     setForm({
       Topic: "",
       Description: "",
