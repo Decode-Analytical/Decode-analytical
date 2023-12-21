@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import "../authetication/auth.css";
 import { FaUser } from "react-icons/fa";
 import close from "../../assets/auth images/Vector.png";
@@ -8,17 +8,24 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Signin.css"
 import axios from "../../api/axios";
 import { TailSpin } from 'react-loader-spinner'
-import {  AuthContext, AuthContextProvider } from "../../context/AuthContext";
+
+
+import { AuthContext } from "../../context/AuthContext";
+
 
 // https://decode-mnjh.onrender.com/api
-const LOGIN_URL = "/user/login"
+
+const LOGIN_URL = "https://server-eight-beige.vercel.app/api/user/login"
 export default function Signin() {
+  // const { setUser } = useContext(AuthContext);
+  const { updateUser } = useContext(AuthContext);
+  // const { updateUser } = useAuth()
   const navigate = useNavigate();
 
-  const {setAuth} = useContext(AuthContext)
+  // const {setAuth} = useAuth()
   const userRef = useRef();
   const errRef = useRef()
- const [user, setUser] = useState("");
+ const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
@@ -29,26 +36,35 @@ export default function Signin() {
 
   useEffect(() => {
     setErrMsg("")
-  }, [user, pwd])
+  }, [email, pwd])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSuccess(true)
+    console.log(email)
 
     try {
       const response = await axios.post(LOGIN_URL,
-        JSON.stringify({email: user, password: pwd}),
+        JSON.stringify({email, password: pwd}),
         {
           headers: {"content-type": "application/JSON"},
           withCridentials: true
         }
       );
       console.log(response.data)
-
+      console.log(JSON.stringify(response?.data))
       const accessToken = response?.data?.token
       const roles = response?.data?.roles
-      setAuth({user, pwd, roles, accessToken})
-      setUser("")
+      const firstName = response?.data?.user?.firstName
+      const lastName = response?.data?.user?.lastName
+      const mail = response?.data?.user?.email
+      const password = response?.data?.user?.password
+      const id = response?.data?.user?._id
+      const picture = response?.data?.user?.picture
+      const user = {mail, firstName, lastName, password, accessToken, picture}
+      console.log(user, "Hello")
+      updateUser(user)
+      setEmail("")
       setPwd("")
       setSuccess(false)
       if(response) {
@@ -116,8 +132,8 @@ export default function Signin() {
             <input
               type="email"
               ref={userRef}
-              onChange={(e) => setUser(e.target.value)}
-              value={user}
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
               placeholder="Enter your email address.."
               className="p-1 mb-4"
             />
@@ -143,7 +159,7 @@ export default function Signin() {
               onClick={handleSubmit}
               disabled={isLoading}
             /> */}
-            <button  className="btn">Sign Up</button>
+            <button  className="btn">Log In</button>
             {/* {error && <div>
               <p className="text-[#ff0000] text-sm text-center">{error}</p>
               </div>} */}

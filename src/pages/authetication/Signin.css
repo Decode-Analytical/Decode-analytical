@@ -1,6 +1,6 @@
 input{
   padding: 10px 0;
-  font-size: 18px;
+  font-size: 30px;
   outline: none;
     
 }
@@ -9,13 +9,13 @@ input{
     width: 100%;
     background-color: #FFCD05;
     color: white;
-    font-size: 25px;
-    padding: 7px 20px;
+    font-size: 22px;
+    padding:  10px;
     margin: 8px 0 16px 0;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    padding: 16px;
+    
 }
 
 .btn:hover{

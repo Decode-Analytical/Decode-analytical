@@ -29,6 +29,9 @@ import ResetPassword from "./pages/authetication/ResetPassword";
 import Nysc from "./pages/authetication/Nysc";
 import PaystackCard from "./components/cartAndPaymentComponents/PaystackCard";
 
+
+
+
 function App() {
   return (
     <div className="App">
@@ -43,7 +46,9 @@ function App() {
               <Route path="/premiumCourses/:_id" element={<PremiumCourses />} /> 
               <Route path="/CartPage" element={<CartPage />} />
               <Route path="/PaymentPage" element={<PaymentPage />} />
+              
               <Route path="/Dashboard" element={<Dashboard />} />
+              
               <Route path="/EnrolledCourses" element={<EnrolledCourses />} />
               <Route path="/ForumIntro" element={<ForumIntro />} />
               <Route path="/InForumReply" element={<InForumReply />} />
