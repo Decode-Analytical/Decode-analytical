@@ -32,6 +32,9 @@ import Quiz from "./pages/Quiz/Quiz";
 import FirstPage from "./pages/Quiz/CreateQuestion/FirstPage";
 import SecondPage from "./pages/Quiz/CreateQuestion/SecondPage";
 
+
+
+
 function App() {
   return (
     <div className="App">
@@ -46,7 +49,9 @@ function App() {
               <Route path="/premiumCourses/:_id" element={<PremiumCourses />} /> 
               <Route path="/CartPage" element={<CartPage />} />
               <Route path="/PaymentPage" element={<PaymentPage />} />
+              
               <Route path="/Dashboard" element={<Dashboard />} />
+              
               <Route path="/EnrolledCourses" element={<EnrolledCourses />} />
               <Route path="/ForumIntro" element={<ForumIntro />} />
               <Route path="/InForumReply" element={<InForumReply />} />

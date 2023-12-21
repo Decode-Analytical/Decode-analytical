@@ -1,7 +1,11 @@
-import { createContext, useReducer, useEffect, useState } from "react";
+import { createContext, useReducer, useEffect, useState, useContext } from "react";
 
 
 export const AuthContext = createContext()
+
+// export const useAuth = () => {
+//     return useContext(AuthContext)
+// }
 
 export const authReducer = (state, action) => {
     switch (action.type) {
@@ -15,7 +19,20 @@ export const authReducer = (state, action) => {
 }
 
 export const AuthContextProvider = ({ children }) => {
+    // const [user, setUser] = useState({})
+    // const {firstName,
+    //      lastName,
+    //      email,
+    //      phoneNumber,
+    //      password,
+    //      imageURL,
+    //     } = user
     const [auth, setAuth] = useState({})
+    const [user, setUser] = useState(null);
+     const updateUser = (userData) => {
+        setUser(userData);
+      };
+    
     // const [state, dispatch] = useReducer(authReducer, {
     //     user: null,
     //     token: null,
@@ -31,8 +48,10 @@ export const AuthContextProvider = ({ children }) => {
     // }, [])
    
     return(
-        <AuthContext.Provider value={{auth, setAuth}}> 
+        <AuthContext.Provider value={{auth, setAuth, user, setUser, updateUser}}> 
             { children }
         </AuthContext.Provider>
     )
 }
+
+
