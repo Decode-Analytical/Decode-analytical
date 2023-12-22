@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -8,11 +8,12 @@ import {BsClockHistory} from "react-icons/bs";
 import {BsGraphUpArrow} from "react-icons/bs";
 import Ellipse from "../../assets/courses Images/Ellipse.png";
 
-const courseURL = 'https://decode-mnjh.onrender.com/api/course/viewAllCourses';
-const apiKey = import.meta.env.VITE_API_KEY;
-const token = apiKey;
+import { AuthContext } from '../../context/AuthContext';
+
+const courseURL = 'https://server-eight-beige.vercel.app/api/course/viewAllCourses';
 
 export default function CoursesCard(props) {
+  const { token } = useContext(AuthContext);
   let stars = [
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +76,16 @@ export default function CoursesCard(props) {
       />
     </svg>,
   ];
-    const { course_title, course_description, course_image, isPrice_course, _id} = props
+  // Dandy please do not touch.... ABEG!!!!!
+    const { 
+      course_title, 
+      course_description, 
+      course_image, 
+      isPrice_course, 
+      isPaid_course, 
+      _id, 
+      modules,
+    } = props
 
     const [courses, setCourses] = useState([]); 
 
@@ -91,6 +101,7 @@ export default function CoursesCard(props) {
           if (response.data && response.data.courses) {
             setCourses(response.data.courses);
             console.log(response.data);
+            // console.log(modules);
           }
         } catch (error) {
           console.error('Error fetching data:', error);
@@ -103,7 +114,7 @@ export default function CoursesCard(props) {
       <div className="w-full p-4">
         <div className="max-w-[25rem] bg-white p-4 rounded-3xl overflow-hidden border-[2px] border-neutral-400 mx-auto h-[30rem]">
           <div className='relative'>
-          <img className="w-full max-h-[19rem] object-cover rounded-xl rounded-b-none absolute -z-1" src={course_image[0].path} alt={course_title} />
+          <img className="w-full max-h-[19rem] object-cover rounded-xl rounded-b-none absolute -z-1" src={course_image[0]?.path} alt={course_title} />
           </div>
           <div className="flex flex-col items-start justify-end h-full relative z-10 ">
             <div className='bg-white w-full mb-[1rem]'>
@@ -129,25 +140,22 @@ export default function CoursesCard(props) {
                     </p>
                   </div>
 
-                  {isPrice_course === 0 ? (
-                    <Link
-                    to={`/premiumCourses/${_id}`}
-                    state = {{
-                      course_title,
-                      course_description,
-                      course_image,
-                      // Include other properties as needed
-                    }}
-                    className="border-[2px] border-black hover.bg-gray-400 px-5 py-2 rounded-md">
-                    Free
-                  </Link>
-                  ) : (
-                    <div className=" flex justify-between">
-                      <button className="border-[2px] border-black hover:bg-gray-400 px-5 mr-5 py-2 rounded-md">
-                        Price: {courses.isPrice_course} NGN
-                      </button>
-                    </div>
-                  )}
+
+                          {/* DO NOT TOUCH link also. You can style but leave the logic... NA BEG I DEY BEG */}
+            <Link
+              to={`/premiumCourses/${_id}`}
+              state={{
+                course_title,
+                course_description,
+                course_image,
+                isPrice_course,
+                isPaid_course,
+                modules,
+                // Include other properties as needed
+              }}
+              className="border-[2px] border-black hover.bg-gray-400 px-5 py-2 rounded-md">
+              {isPrice_course === 0 ? 'Free' : `Price: ${isPrice_course} NGN`}
+            </Link>
           </div>
         </div>
       </div>

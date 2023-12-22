@@ -1,13 +1,48 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, {useState, useEffect} from 'react'
+import { Link} from 'react-router-dom'
+
+import Axios  from 'axios'
 
 import mastercard from '../../assets/Images/mastercard.png'
 import paystack from '../../assets/Images/paystack.png'
 import visa from '../../assets/Images/visa.png'
- import courseSelected from '../../assets/Images/courseSelected.png'
- import customersImage from '../../assets/Images/customersImage.png'
+import courseSelected from '../../assets/Images/courseSelected.png'
+import customersImage from '../../assets/Images/customersImage.png'
 
 export default function PaymentComponent() {
+    const [selectedPayment, setSelectedPayment] = useState(null);
+
+    // ============================================
+    // const [initializedPaymentData, setInitializedPaymentData] = useState(null);
+
+    // useEffect(() => {
+    //     const initializePayment = async () => {
+    //       try {
+    //         // Replace this with your actual API endpoint
+    //         const response = await Axios.post('https://decode-mnjh.onrender.com/api/payment/initializedPayment');
+    //         setInitializedPaymentData(response.data);
+    //       } catch (error) {
+    //         console.error('Error initializing payment:', error);
+    //       }
+    //     };
+      
+    //     initializePayment();
+    //   }, []);
+      
+
+    //   const redirectToPaystackCheckout = () => {
+    //     if (initializedPaymentData && initializedPaymentData.paymentUrl) {
+    //       // Redirect to the Paystack checkout page with the dynamic payment URL
+    //       window.location.href =`/paystack/${initializedPaymentData.paymentUrl}`;
+    //     } else {
+    //       alert('Payment initialization failed. Please try again.');
+    //     }
+    //   };
+    // ========================================
+
+    const handlePaymentChange = (paymentMethod) => {
+      setSelectedPayment(paymentMethod);
+    };
   return (
     <>
         <section className='max-w-[1100px] m-auto items-center'>
@@ -36,17 +71,17 @@ export default function PaymentComponent() {
                             </p>
                         </div>
 
-                        <div className=" ">
+                        <div className="">
                             <div className=" sm:flex justify-between">
-                                <div className="  text-sm space-x-5 font-bold mt-3 flex bg-gray-400 rounded-md py-2  items-center md:pr-5 ] ">
-                                    <div className=" flex mx-3">
-                                        <input type="checkbox" name='masterVisa' className=' mr-1'/>
-                                        <span className="">
+                                <div className={`flex bg-[#dddddd] rounded-md items-center mt-5 md:mt-3 w-fit ${selectedPayment === 'master' ? 'bg-blue-400' : ''}`}>
+                                    <div className=" text-sm inline-flex font-bold py-2 mx-3">
+                                        <input type="checkbox" name='master' checked={selectedPayment === 'master'} onChange={() => handlePaymentChange('master')} className=' mr-1' />
+                                        <span className=" min-w-max">
                                             master/debit card
                                         </span>
                                     </div>
 
-                                    <div className="">
+                                    <div className="flex pr-5">
                                         <img src={mastercard} alt="mastercard/visa" />
                                         <img src={visa} alt="" />
                                     </div>
@@ -54,15 +89,15 @@ export default function PaymentComponent() {
 
 
                                     {/* PAYSTACK CHECKBOX */}
-                                <div className=" flex bg-gray-400 rounded-md items-center mt-5 md:mt-3">
-                                    <div className=" text-2xl font-bold py-2 mx-3">
-                                        <input type="checkbox" name='paystack' className=' mr-1'/>
+                                <div className={`flex bg-[#dddddd]  rounded-md items-center mt-5 md:mt-3 w-fit ${selectedPayment === 'paystack' ? 'bg-blue-400' : ''}`}>
+                                    <div className=" text-sm flex font-bold py-2 mx-3">
+                                        <input type="checkbox" name='paystack' checked={selectedPayment === 'paystack'} onChange={() => handlePaymentChange('paystack')}className=' mr-1'/>
                                         <span className="">
                                             paystack
                                         </span>
                                     </div>
 
-                                    <img src={paystack} alt="paystack" className=' w-7 md:mr-5' />
+                                    <img src={paystack} alt="paystack" className=' w-10 md:mr-5 pr-5' />
                                 </div>
                             </div>
                         </div>
@@ -152,9 +187,11 @@ export default function PaymentComponent() {
                         </div>
 
                         <div className=" inline-flex">
-                            <button className=' border border-black px-2 hover:bg-gray-400 hover:font-extrabold'>
-                                15,000
-                            </button>
+                            <Link to = "/paystackCard/15000">
+                                <button  className=' border border-black px-2 hover:bg-gray-400 hover:font-extrabold'>
+                                    15,000
+                                </button>
+                            </Link>
 
                             <p className=" line-through ml-9">
                                 45,000
@@ -167,3 +204,7 @@ export default function PaymentComponent() {
     </>
   )
 }
+
+// /paystackCard/15000
+
+// onClick={redirectToPaystackCheckout}

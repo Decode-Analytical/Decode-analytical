@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import PaystackCard from '../components/PaystackCard';
+// import PaystackCard from '../components/cartAndPaymentComponents/PaystackCard';
 
 
 export default function AllPages() {
@@ -19,11 +19,6 @@ export default function AllPages() {
             PasswordReset
         </Link> <br />
 
-        <Link to="/FreeCourses">
-            FreeCourses
-        </Link> <br />
-
-
         <Link to="/CartPage">
             CartPage
         </Link><br />
@@ -36,8 +31,8 @@ export default function AllPages() {
             Dashboard
         </Link> <br />
 
-        <Link to="/NotEnrolled">
-            NotEnrolled
+        <Link to="/EnrolledCourses">
+            Enrolled Courses
         </Link> <br />
 
         <Link to="/ForumIntro">
@@ -79,10 +74,6 @@ export default function AllPages() {
          <Link to="/courseinfo">
             course Upload
         </Link>
-
-        <div className='mt-6 mb-3'>
-            <PaystackCard price={100000} urlSuccess="/dashboard" />
-        </div>
     </div>
   )
 }

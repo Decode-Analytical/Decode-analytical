@@ -6,10 +6,9 @@ import HomePage from "./pages/homepage/HomePage";
 import LoginSignUp from "./pages/login/LoginSignUp";
 import PasswordReset from "./components/loginComponents/PasswordReset";
 import PremiumCourses from "./pages/courseDetailPage/PremiumCourses";
-import FreeCourses from "./pages/courseDetailPage/FreeCourses";
 import CartPage from "./pages/cartAndPaymentPage/CartPage";
 import PaymentPage from "./pages/cartAndPaymentPage/PaymentPage";
-import NotEnrolled from "./pages/forumPage/NotEnrolled";
+import EnrolledCourses from "./pages/forumPage/EnrolledCourses";
 import ForumIntro from "./pages/forumPage/ForumIntro";
 import InForumReply from "./pages/forumPage/InForumReply";
 import WeeklyForumPage from "./pages/forumPage/WeeklyForumPage";
@@ -30,6 +29,13 @@ import ResetPassword from "./pages/authetication/ResetPassword";
 import Nysc from "./pages/authetication/Nysc";
 import CourseOverview from "./components/coursesComponents/premium/CourseOverview";
 import CoursePage from "./pages/coursePage/CoursePage";
+import PaystackCard from "./components/cartAndPaymentComponents/PaystackCard";
+import Quiz from "./pages/Quiz/Quiz";
+import FirstPage from "./pages/Quiz/CreateQuestion/FirstPage";
+import SecondPage from "./pages/Quiz/CreateQuestion/SecondPage";
+
+
+
 
 function App() {
   return (
@@ -42,16 +48,21 @@ function App() {
               <Route path="/" exact element={<HomePage />} />
               <Route path="/LoginSignUp" element={<LoginSignUp />} />
               <Route path="/PasswordReset" element={<PasswordReset />} />
-              <Route path="/FreeCourses" element={<FreeCourses />} />
               <Route path="/premiumCourses/:_id" element={<PremiumCourses />} /> 
               <Route path="/CartPage" element={<CartPage />} />
               <Route path="/PaymentPage" element={<PaymentPage />} />
+              
               <Route path="/Dashboard" element={<Dashboard />} />
-              <Route path="/NotEnrolled" element={<NotEnrolled />} />
+              
+              <Route path="/EnrolledCourses" element={<EnrolledCourses />} />
               <Route path="/ForumIntro" element={<ForumIntro />} />
               <Route path="/InForumReply" element={<InForumReply />} />
               <Route path="/WeeklyForumPage" element={<WeeklyForumPage />} />
               <Route path="/mycourses" element={<MyCourse />} />
+              <Route path="dashboard/quiz" element={<Quiz/>}>
+                <Route path="" element={<FirstPage/>}/>
+                <Route path="secondpage" element={<SecondPage/>}/>
+              </Route> 
               <Route path="/profile/*" element={<Profile />} />
               <Route path="/PurchasedPage" element={<PurchasedPage />} />
               <Route path="/InstrucructorProfile" element={<InstrucructorProfile />} />
@@ -64,6 +75,7 @@ function App() {
               <Route path="/tutor/:id" element={<InstructorProfile />} />
               <Route path="/courseinfo" element={<CourseInfo />} />
               <Route path="/resetpassword" element={<ResetPassword />} />
+              <Route path="/PaystackCard/:price" element={<PaystackCard />} />
               <Route path="/AllPages" element={<AllPages />} /> {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
               <Route path="/CousrsePage/:id" element = {<CoursePage />} />
             </Routes>

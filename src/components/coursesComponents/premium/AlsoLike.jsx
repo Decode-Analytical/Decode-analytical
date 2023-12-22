@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Axios from 'axios';
 import Ellipse from '../../../assets/courses Images/Ellipse.png';
 import { BsClockHistory } from 'react-icons/bs';
 
-export default function AlsoLike() {
-    const courseURL = 'https://decode-mnjh.onrender.com/api/course/viewAllCourses';
-    const apiKey = import.meta.env.VITE_API_KEY;
+import { AuthContext } from '../../../context/AuthContext';
 
-    const token = apiKey;
+
+export default function AlsoLike() {
+    const { token } = useContext(AuthContext);
+    const courseURL = 'https://server-eight-beige.vercel.app/api/course/viewAllCourses';
+    
+    
 
     // VIEW THE COURSES STATE
     const [courses, setCourses] = useState([]);

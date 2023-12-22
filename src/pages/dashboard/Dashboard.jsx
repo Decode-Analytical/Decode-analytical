@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import iconHeading from "../../assets/dashboardicon1.png"
 import rafiki from "../../assets/rafiki.png"
 import certification from "../../assets/certification.png"
@@ -11,62 +11,86 @@ import EnrolledCourseCard from '../../components/courseCard/EnrolledCourseCard'
 import ListCourseCard from '../../components/courseCard/ListCourseCard'
 import { NavLink } from 'react-router-dom'
 import MainSideBar from '../../components/mainSideBar'
+import { AuthContext  } from '../../context/AuthContext'
+
+import axios from '../../api/axios'
+
 
 const Dashboard = () => {
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTJmMTZmNWNhMTUzYTY0YWU4OTFkM2UiLCJpYXQiOjE2OTg1ODU3OTAsImV4cCI6MTY5ODY3MjE5MH0.No4TqHdCrnjrj9Pkb3GPkyh31_CxZGrUsvD9P7PYSu4"
+  // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTJmMTZmNWNhMTUzYTY0YWU4OTFkM2UiLCJpYXQiOjE2OTg1ODU3OTAsImV4cCI6MTY5ODY3MjE5MH0.No4TqHdCrnjrj9Pkb3GPkyh31_CxZGrUsvD9P7PYSu4"
+  const { user } = useContext(AuthContext);
+  
+  // const setAuth = useContext(AuthContext)
   const [loading, setLoading] = useState(true)
-  const [name, setName] = useState('...')
-  const [imgUrl, setImgUrl] = useState('...')
-  const [user, setUser] = useState({name:"...", imgUrl: ""})
+  // const [name, setName] = useState('')
+  // const [imgUrl, setImgUrl] = useState('')
+  // const [user, setUser] = useState({name:"", imgUrl: "", })
 
-  const fetchUserData = () => {
-    fetch('https://decode-mnjh.onrender.com/api/user/viewProfile', {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log("data data:",data);
-      const name = (`${data.user.firstName} ${data.user.lastName}`)
-      setUser({name: name, imgUrl: 'https://cdn.vcgamers.com/news/wp-content/uploads/2022/01/paquito-ml-3.jpg'})
-      fetchEnrolledCourses()
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }
-
+  // const fetchUserData = () => {
+  //   fetch('https://decode-mnjh.onrender.com/api/user/viewProfile', {
+  //     method: 'GET',
+  //     headers: {
+  //       'Authorization': `Bearer ${token}`
+  //     }
+  //   })
+  //   .then(response => response.json())
+  //   .then(data => {
+  //     console.log("data data:",data);
+  //     const name = (`${data.user.firstName} ${data.user.lastName}`)
+      
+  //     setUser({name: name, imgUrl: 'https://cdn.vcgamers.com/news/wp-content/uploads/2022/01/paquito-ml-3.jpg'})
+      
+  //     fetchEnrolledCourses()
+  //   })
+  //   .catch(error => {
+  //     console.error(error);
+  //   });
+  // }
+  // fetchEnrolledCourses()
+    console.log(user, "Hello")
   const [listCourses, setListCourses] = useState([]);
-  const fetchEnrolledCourses = () => {
-    fetch('https://decode-mnjh.onrender.com/api/student/studentGet', {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data.studentRegisteredCourses)
-      setListCourses(data.studentRegisteredCourses);
-      setLoading(false);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }
+  
+  useEffect(() => {
+    const fetchEnrolledCourses = () => {
+      fetch('https://decode-mnjh.onrender.com/api/student/studentGet', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${user.accessToken}`
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.studentRegisteredCourses, "How")
+        setListCourses(data.studentRegisteredCourses);
+        setLoading(false);
 
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    } 
+
+    fetchEnrolledCourses()
+  
+    
+  }, [])
+  
 
   if (loading) {
-    fetchUserData()
+    // fetchUserData()
     return (
-      <div className='w-full h-full min-h-[500px] flex justify-center items-center'>Loading...</div>
+      <div>
+        <div className='w-full h-full min-h-[500px] flex justify-center items-center'>Loading...</div>
+        
+      </div>
     )
   }
+  
   return (
+    
     <>
-    <MainSideBar name={user.name} imgUrl={user.imgUrl} />
+      
+    <MainSideBar name={user.firstName} imgUrl={user.picture.length > 0 ? user.picture[0].path : ""} />
 
     <div className='flex flex-1 bg-bwhite'>
       <div className='flex justify-between flex-1 shadow-md px-3 md:px-20'>
@@ -160,6 +184,7 @@ const Dashboard = () => {
       </nav>
     </div>
     </>
+    
   )
 }
 
