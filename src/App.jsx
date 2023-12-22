@@ -30,7 +30,7 @@ import Nysc from "./pages/authetication/Nysc";
 import CourseOverview from "./components/coursesComponents/premium/CourseOverview";
 import CoursePage from "./pages/coursePage/CoursePage";
 import PaystackCard from "./components/cartAndPaymentComponents/PaystackCard";
-import Quiz from "./pages/Quiz/Quiz";
+import Quiz from "./pages/quiz/Quiz";
 import FirstPage from "./pages/Quiz/CreateQuestion/FirstPage";
 import SecondPage from "./pages/Quiz/CreateQuestion/SecondPage";
 

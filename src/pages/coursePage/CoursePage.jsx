@@ -10,7 +10,7 @@ import Menu from "./Menu.png";
 import Close from "./Close.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetCourseDataQuery } from "../../redux/FetchApi/GetCourseData";
-import Quiz from "../quiz /Quiz";
+import Quiz from "../quiz/Quiz"
 import { AiOutlineLoading3Quarters } from "react-icons/ai"
 
 // const token =
