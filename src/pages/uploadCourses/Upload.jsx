@@ -43,7 +43,6 @@ const Upload = () => {
   }
   
   const ModuleAlertError =useCallback((message) => {
-    console.log(message)
     setModuleSuccess({ mess: message, err: true });
   },[moduleSuccess])
   
@@ -86,7 +85,7 @@ const Upload = () => {
       {moduleSuccess.err  && (
         <WarningAlert
           heading="Upload Failed"
-          paragrapgh={courseSuccess.mess}
+          paragrapgh={moduleSuccess.mess}
           CLick={CloseModuleAlertError}
         />
       )}
@@ -96,15 +95,11 @@ const Upload = () => {
         <ModuleUpload id={selectedCourse.id} Alert={showModuleAlert} ErrorM={ModuleAlertError} />
       )}
       <Footer />
-      {courseSuccess.show && (
+      {courseSuccess && (
         <ALert
           isOpen={isOpen}
-          heading={courseSuccess.err ? "Error" : "SuccessFull"}
-          paragrapgh={
-            courseSuccess.err
-              ? "Course has an error to upload"
-              : "Course is created successfully"
-          }
+          heading="SuccessFull"
+          paragrapgh="Course is created successfully"
           CLick={updateCourse}
         />
       )}

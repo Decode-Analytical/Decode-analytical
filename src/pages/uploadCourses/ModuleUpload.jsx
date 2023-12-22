@@ -20,7 +20,6 @@ const ModuleUpload = ({ id, Alert, ErrorM }) => {
   const { user } = useAuthContext();
   const baseURL = import.meta.env.VITE_BASE_URL;
   const [message, setMessage] = useState(false);
-  const [error, setError] = useState(null);
   const [imageError, setImageError] = useState({ err: false, mes: "" });
   const [videoError, setVideoError] = useState({ err: false, mes: "" });
   const onDrop = useCallback(
@@ -63,13 +62,13 @@ const ModuleUpload = ({ id, Alert, ErrorM }) => {
   async function ModuleSubmit(e) {
     e.preventDefault();
     const formdata = new FormData();
-    setIsLoading(true)
+    setIsLoading(true);
     formdata.set("module_title", form.Topic);
     formdata.set("module_description", form.Description);
     formdata.set("video", form.upload_video);
     if (form.upload_image) {
       formdata.set("image", form.upload_image);
-      formdata.set("audio", form.upload_video)
+      formdata.set("audio", form.upload_video);
     }
     if (form.upload_video) {
       formdata.set("video", form.upload_video);
@@ -78,45 +77,39 @@ const ModuleUpload = ({ id, Alert, ErrorM }) => {
 
     const headers = {
       Authorization: `Bearer ${user.token}`,
-      "Content-Type": "multipart/form-data", // Use 'multipart/form-data' for form data
     };
 
     try {
-      // const response = await axios.post(
-      //   `${baseURL}course/createSubject/${id}`,
-      //   formdata,
-      //   { headers: headers }
-      //   );
-
-      const response = await fetch(`${baseURL}course/createSubject/${id}`,{
+      const response = await fetch(`${baseURL}course/createSubject/${id}`, {
         headers: headers,
         method: "POST",
         body: formdata,
-      })
-        console.log(response)
+      });
+
+      if (response.ok) {
         const data = await response.json();
-        if (response.ok) {
         setMessage(data.message);
         setIsLoading(false);
         Alert(data.message);
+        setForm({
+          Topic: "",
+          Description: "",
+          upload_video: null,
+          upload_image: null,
+          module_duration: "",
+        });
       } else {
-        setError(data.message);
-        ErrorM(data.message)
+        // Handle non-JSON response here
+        const errorData = await response.text();
+        setIsLoading(false);
+        console.log(errorData.error)
+        const errorMessage = errorData.error || "Please fill the form";
+        ErrorM(errorMessage)
       }
-      setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
-      ErrorM(error)
-      // console.error(error);
-      setError("An error occurred.");
+      ErrorM(error || "An error occurred.");
     }
-    setForm({
-      Topic: "",
-      Description: "",
-      upload_video: null,
-      upload_image: null,
-      module_duration: "",
-    });
   }
   return (
     <section className="w-full p-9 shadow-xl border animate-fade-in">
@@ -162,9 +155,12 @@ const ModuleUpload = ({ id, Alert, ErrorM }) => {
           />
         </div>
         {isLoading == true && <Loader />}
-        {error !== null && <p className="text-sm text-red-400 font-semibold">{error}</p>}
-        {imageError.err && <p className="text-sm text-red-400 font-semibold">{imageError.mes}</p>}
-        {videoError.err && <p className="text-sm text-red-400 font-semibold">{videoError.mes}</p>}
+        {imageError.err && (
+          <p className="text-sm text-red-400 font-semibold">{imageError.mes}</p>
+        )}
+        {videoError.err && (
+          <p className="text-sm text-red-400 font-semibold">{videoError.mes}</p>
+        )}
         <div className="flex w-full justify-center gap-5">
           <button
             type="button"

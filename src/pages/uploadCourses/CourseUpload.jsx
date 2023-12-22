@@ -77,7 +77,7 @@ const CourseUpload = ({ update, ErrorC }) => {
         method: "POST",
         body: formData,
       });
-
+      console.log(response.ok)
       if (response.ok) {
         const data = await response.json();
         const res = data.newCourse;
@@ -86,6 +86,7 @@ const CourseUpload = ({ update, ErrorC }) => {
         setError(null); // Clear any previous error
         let mess = "Course is created successfully";
         // navigate(`/newmodule/${id}`);
+        console.log(mess)
         update(id, mess);
       } else {
         const errorData = await response.json();
