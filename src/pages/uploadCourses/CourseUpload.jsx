@@ -6,7 +6,7 @@ import FileUpload from "./FileUpload";
 import { useAuthContext } from "../../hooks/authContext";
 import { useNavigate } from "react-router-dom";
 
-const CourseUpload = ({ update }) => {
+const CourseUpload = ({ update, ErrorC }) => {
   let navigate = useNavigate();
   const { user } = useAuthContext();
   const baseURL = import.meta.env.VITE_BASE_URL;
@@ -90,16 +90,16 @@ const CourseUpload = ({ update }) => {
       } else {
         const errorData = await response.json();
         setError(errorData.message);
+        ErrorC(errorData.message);
         setIsLoading(false);
-        let id = "";
-        update(id, Error);
       }
     } catch (error) {
       setError("Network error occurred.");
       setIsLoading(false);
-      console.error("Network error:", error);
+      ErrorC(error);
     }
   }
+
   return (
     <section className="w-full p-9 max-sm:p-0 shadow-xl border">
       <h2 className="text-2xl font-semibold text-left">Course Information</h2>
@@ -167,9 +167,9 @@ const CourseUpload = ({ update }) => {
           <Input
             name="price"
             label="Price"
-            disable={isPaid}
             placeholder="Enter a price"
             type="number"
+            required={isPaid}
             value={form.price}
             onChange={onChange}
           />

@@ -8,7 +8,7 @@ import axios from "axios";
 import Loading from "./Loading";
 import Loader from "../../components/Loader";
 
-const ModuleUpload = ({ id, Alert }) => {
+const ModuleUpload = ({ id, Alert, ErrorM }) => {
   const [form, setForm] = useState({
     Topic: "",
     Description: "",
@@ -82,24 +82,32 @@ const ModuleUpload = ({ id, Alert }) => {
     };
 
     try {
-      const response = await axios.post(
-        `${baseURL}course/createSubject/${id}`,
-        formdata,
-        { headers: headers }
-        );
-        
-        if (response.status == 201 || 204) {
-        setMessage(response.data.message);
+      // const response = await axios.post(
+      //   `${baseURL}course/createSubject/${id}`,
+      //   formdata,
+      //   { headers: headers }
+      //   );
+
+      const response = await fetch(`${baseURL}course/createSubject/${id}`,{
+        headers: headers,
+        method: "POST",
+        body: formdata,
+      })
+        console.log(response)
+        const data = await response.json();
+        if (response.ok) {
+        setMessage(data.message);
         setIsLoading(false);
-        Alert(response.data.message);
+        Alert(data.message);
       } else {
-        setError(response.data.message);
+        setError(data.message);
+        ErrorM(data.message)
       }
       setIsLoading(false);
-      console.log(isLoading)
-        } catch (error) {
+    } catch (error) {
       setIsLoading(false);
-      console.error(error);
+      ErrorM(error)
+      // console.error(error);
       setError("An error occurred.");
     }
     setForm({

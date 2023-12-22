@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Header from "./Header";
 import CourseUpload from "./CourseUpload";
 import Footer from "./Footer";
 import Tracker from "./Tracker";
 import ModuleUpload from "./ModuleUpload";
 import ALert from "./ALert";
+import WarningAlert from "./WarningAlert";
 
 const Upload = () => {
   // let quickbook = "657214fae8826654aafa56ed"
@@ -12,48 +13,113 @@ const Upload = () => {
     select: true,
     id: "",
     err: false,
-    mess: ""
+    mess: "",
   });
-  const [courseSuccess, setCourseSuccess] = useState(false)
-  const [isOpen, setIsOpen] = useState(false)
-  const [moduleSuccess, setModuleSuccess] = useState({show: false, mess: "", err: false})
+  const [courseSuccess, setCourseSuccess] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [moduleSuccess, setModuleSuccess] = useState({
+    show: false,
+    mess: "",
+    err: false,
+    mess: "",
+  });
   function updateCourse() {
-    setSelectedCourse({...selectedCourse, select: false});
-    setIsOpen(false)
-    setCourseSuccess(false)
+    setSelectedCourse({ ...selectedCourse, select: false });
+    setIsOpen(false);
+    setCourseSuccess(false);
   }
   function showAlert(id, mess) {
-    setSelectedCourse({...selectedCourse, id, err: false, mess})
-    setIsOpen(true)
-    setCourseSuccess(true)
+    setSelectedCourse({ ...selectedCourse, id, err: false, mess });
+    setIsOpen(true);
+    setCourseSuccess(true);
   }
   function showModuleAlert(message) {
-    setIsOpen(true)
-    setModuleSuccess({show: true, mess: message})
+    setIsOpen(true);
+    setModuleSuccess({ show: true, mess: message });
   }
   function onCLickModule() {
-    setIsOpen(false)
-    setModuleSuccess({show: false, mess: ""})
+    setIsOpen(false);
+    setModuleSuccess({ show: false, mess: "" });
   }
+  
+  const ModuleAlertError =useCallback((message) => {
+    console.log(message)
+    setModuleSuccess({ mess: message, err: true });
+  },[moduleSuccess])
+  
+  const CloseModuleAlertError =useCallback(() => {
+    setModuleSuccess({ mess: "", err: false });
+  },[moduleSuccess])
 
-  function AlertError(message) {
-    setModuleSuccess({ show: true, mess: message, err: true})
-  }
-  function AlertCourseError(message) {
-    setModuleSuccess({ show: true, id: "", err: true, mess: message})
-  }
+  const AlertCourseError = useCallback(
+    (message) => {
+      console.log(message, "This the error of course ");
+      setCourseSuccess({ err: true, mess: message });
+    },
+    [selectedCourse]
+  );
+
+  const CloseAlertCourseError = useCallback(
+    () => {
+      console.log("CLose the alert");
+      setCourseSuccess({ show: false, mess: "", err: false, mess: "" });
+    },
+    [selectedCourse]
+  );
+
+  // function AlertCourseError(message) {
+  //   console.log(message, "This the error of course ")
+  //   setModuleSuccess({ show: true, id: "", err: true, mess: message });
+  // }
   return (
     <main className="flex flex-col justify-center mx-7 gap-6">
       <Header />
       <Tracker selectedCourse={selectedCourse.select} />
+      {courseSuccess.err && (
+        <WarningAlert
+          heading="Upload Failed"
+          // isOpen={true}
+          paragrapgh={courseSuccess.mess}
+          CLick={CloseAlertCourseError}
+        />
+      )}
+      {moduleSuccess.err  && (
+        <WarningAlert
+          heading="Upload Failed"
+          paragrapgh={courseSuccess.mess}
+          CLick={CloseModuleAlertError}
+        />
+      )}
       {selectedCourse.select ? (
-        <CourseUpload update={showAlert} />
+        <CourseUpload update={showAlert} ErrorC={AlertCourseError} />
       ) : (
-        <ModuleUpload id={selectedCourse.id} Alert={showModuleAlert} />
+        <ModuleUpload id={selectedCourse.id} Alert={showModuleAlert} ErrorM={ModuleAlertError} />
       )}
       <Footer />
-      {courseSuccess &&  <ALert isOpen={isOpen} heading={courseSuccess.err ? "Error" : "SuccessFull"} paragrapgh={courseSuccess.err ? "Course has an error to upload" : "Course is created successfully"} CLick={updateCourse} /> }
-      {moduleSuccess.show && <ALert isOpen={isOpen} heading={moduleSuccess.err ? "Error" : "SuccessFull"} paragrapgh={moduleSuccess.err ? "Module has an error to upload" : "Module is created successfully"} CLick={onCLickModule} />}
+      {courseSuccess.show && (
+        <ALert
+          isOpen={isOpen}
+          heading={courseSuccess.err ? "Error" : "SuccessFull"}
+          paragrapgh={
+            courseSuccess.err
+              ? "Course has an error to upload"
+              : "Course is created successfully"
+          }
+          CLick={updateCourse}
+        />
+      )}
+      {moduleSuccess.show && (
+        <ALert
+          isOpen={isOpen}
+          heading={moduleSuccess.err ? "Error" : "SuccessFull"}
+          paragrapgh={
+            moduleSuccess.err
+              ? "Module has an error to upload"
+              : "Module is created successfully"
+          }
+          CLick={onCLickModule}
+        />
+      )}
     </main>
   );
 };
