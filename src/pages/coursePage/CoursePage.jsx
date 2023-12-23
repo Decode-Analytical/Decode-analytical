@@ -35,6 +35,7 @@ const CoursePage = () => {
   const storedCourseID = localStorage.getItem("courseID");
   const isSameCourse = storedCourseID === id;
   const { isLoading, data } = useGetCourseDataQuery(id);
+  console.log(data)
   const [hasWatch, setHasWatch] = useState([]);
   const [quizResult, setQuizResult] = useState();
   let totalComment = 0

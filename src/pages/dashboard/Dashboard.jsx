@@ -47,7 +47,7 @@ const Dashboard = () => {
   //   });
   // }
   // fetchEnrolledCourses()
-    console.log(user, "Hello")
+    // console.log(user, "Hello")
   const [listCourses, setListCourses] = useState([]);
   
   useEffect(() => {
@@ -60,7 +60,7 @@ const Dashboard = () => {
       })
       .then(response => response.json())
       .then(data => {
-        console.log(data.studentRegisteredCourses, "How")
+        // console.log(data.studentRegisteredCourses, "How")
         setListCourses(data.studentRegisteredCourses);
         setLoading(false);
 

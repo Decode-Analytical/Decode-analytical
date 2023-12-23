@@ -23,6 +23,7 @@ export  const useLogin = () => {
         })
 
         const json = await response.json()
+        console.log(response.ok)
 
         if (!response.ok) {
             setIsloading(false)
@@ -31,6 +32,7 @@ export  const useLogin = () => {
 
         if (response.ok) {
             // save the user to local storage
+            console.log("This store in the local store")
 
             localStorage.setItem('user', JSON.stringify(json))
 

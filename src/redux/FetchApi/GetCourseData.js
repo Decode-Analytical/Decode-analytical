@@ -1,14 +1,18 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTJmMTZmNWNhMTUzYTY0YWU4OTFkM2UiLCJpYXQiOjE2OTg3NDkzODMsImV4cCI6MTY5ODgzNTc4M30.veebe9BhYpa6FtyeMM07X_hwxYHzqdnRVcOv0wcbZlw"
+const baseurl = import.meta.env.VITE_BASE_URL;
+
+// Retrieve the token from localStorage or provide a default value
+// const tokenL = localStorage.getItem("user") || { token: null };
+const tokenL = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGQyMDc3NjhlMTJjZDQ0MjYyNGU5YWIiLCJpYXQiOjE3MDMyNjgzNzgsImV4cCI6MTcwMzM1NDc3OH0.UVQR-4Am5p0sylPwDFKRAPVNciQUhl73vO8K1mxDM8I"
+console.log(tokenL)
 
 export const courseData = createApi({
   reducerPath: "courseData",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://decode-mnjh.onrender.com/api",
+    baseUrl: baseurl,
     headers: {
-      Authorization:
-        `Bearer ${token}`,
+      Authorization: `Bearer ${tokenL}`,
     },
   }),
   tagTypes: ["StreamVideo", "Quiz"],
@@ -22,7 +26,7 @@ export const courseData = createApi({
       providesTags: ["Quiz"],
     }),
     postCorrectQuiz: builder.mutation({
-      query: ({data, id}) => ({
+      query: ({ data, id }) => ({
         url: `/quizes/submitQuiz/${id}/submit`,
         method: "POST",
         body: data,
@@ -30,7 +34,7 @@ export const courseData = createApi({
       invalidatesTags: ["Quiz"],
     }),
     addComment: builder.mutation({
-      query: ({courseId, comment}) => ({
+      query: ({ courseId, comment }) => ({
         url: `/course/review/${courseId}`,
         method: "POST",
         body: comment,

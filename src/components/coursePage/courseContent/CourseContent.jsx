@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { LuPlayCircle } from "react-icons/lu";
 
-const CourseContent = ({ modules, watchVideo, courseClick, markVideoAsWatched }) => {
+const CourseContent = ({
+  modules,
+  watchVideo,
+  courseClick,
+  markVideoAsWatched,
+}) => {
   const [openCourseIndices, setOpenCourseIndices] = useState([]);
 
   const handleToggleCourseContent = (index) => {
@@ -10,7 +15,7 @@ const CourseContent = ({ modules, watchVideo, courseClick, markVideoAsWatched })
     } else {
       setOpenCourseIndices([...openCourseIndices, index]);
     }
-  }
+  };
 
   function MakeCheck(mainIndex) {
     return watchVideo && watchVideo.includes(mainIndex);
@@ -18,7 +23,7 @@ const CourseContent = ({ modules, watchVideo, courseClick, markVideoAsWatched })
 
   return (
     <ul className="bg-white w-full">
-      {modules.map((item, mainIndex) => {
+      {modules?.map((item, mainIndex) => {
         return (
           <li key={mainIndex}>
             <div>
@@ -39,7 +44,12 @@ const CourseContent = ({ modules, watchVideo, courseClick, markVideoAsWatched })
                       viewBox="0 0 24 24"
                       stroke="currentColor"
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M5 15l7-7 7 7" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1.5"
+                        d="M19 9l-7 7-7-7"
+                      />
                     </svg>
                   ) : (
                     <svg
@@ -49,7 +59,12 @@ const CourseContent = ({ modules, watchVideo, courseClick, markVideoAsWatched })
                       viewBox="0 0 24 24"
                       stroke="currentColor"
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 9l-7 7-7-7" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1.5"
+                        d="M5 15l7-7 7 7"
+                      />
                     </svg>
                   )}
                 </button>
@@ -77,7 +92,9 @@ const CourseContent = ({ modules, watchVideo, courseClick, markVideoAsWatched })
                             markVideoAsWatched(mainIndex, video._id)
                           }
                         />
-                        <h2 className="text-sm text-left">{video.originalname}</h2>
+                        <h2 className="text-sm text-left">
+                          {video.originalname}
+                        </h2>
                       </div>
                     </button>
                     <div className="flex gap-2 items-center">
