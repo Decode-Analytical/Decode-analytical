@@ -179,7 +179,7 @@ export default function Signin() {
               onClick={handleSubmit}
               disabled={isLoading}
             /> */}
-            <button className="btn">Sign In</button>
+            <button className="btn text-base text-black">Log In</button>
             {/* {error && <div>
               <p className="text-[#ff0000] text-sm text-center">{error}</p>
               </div>} */}

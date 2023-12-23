@@ -68,7 +68,7 @@ export default function Auth() {
               <h2 className="text-base font-extrabold">Individual</h2>
 
               <p className="text-sm ">
-                Select this is you are a new user and you have valid email
+                Select this is you are a new user and you have a valid email
                 address
               </p>
             </div>
@@ -87,13 +87,15 @@ export default function Auth() {
             <div className="w-[80%]">
               <h2 className="text-base font-extrabold">IT Students / NYSC</h2>
               <p className="text-sm ">
-                Select this if you are a student and you have valid
+                Select this if you are a student and you have a valid
                 matriculation number
               </p>
             </div>
           </div>
           <form>
-            <input type="submit" value="Proceed" onClick={handleSubmit} />
+            <button className="btn text-sm text-black" onClick={handleSubmit}>
+              Proceed
+            </button>
           </form>
           <p className="font-medium mt-3 text-zinc-500">
             Already have an account?
