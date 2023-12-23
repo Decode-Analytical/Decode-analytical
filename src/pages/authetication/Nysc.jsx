@@ -36,10 +36,10 @@ export default function Nysc() {
           <FaUser className="text-[#5333AD] text-3xl" />
         </div>
         <h2 className="text-center text-xl font-extrabold">
-          Create Enter your account
+          Create your account
         </h2>
         <p className="text-center text-[#030B42] font-bold my-3">
-          NYSC / IT STUDENT
+          IT STUDENT / NYSC
         </p>
         <div className="flex justify-center items-center border border-zinc-200 p-1 my-3">
           <img src={googleIcon} alt="google-icon" width={20} />
@@ -59,7 +59,7 @@ export default function Nysc() {
             <input
               className="p-1 mb-3"
               type="text"
-              placeholder="Enter your name.."
+              placeholder="Enter your name"
               onChange={(e) => setFirstName(e.target.value)}
               value={firstName}
             />
@@ -70,7 +70,7 @@ export default function Nysc() {
             <input
               className="p-1 mb-3"
               type="text"
-              placeholder="Enter your last name..."
+              placeholder="Enter your last name"
               onChange={(e) => setLastName(e.target.value)}
               value={lastName}
             />
@@ -81,7 +81,7 @@ export default function Nysc() {
             <input
               className="p-1 mb-3"
               type="number"
-              placeholder="Enter your phone number.."
+              placeholder="Enter your phone number"
               onChange={(e) => setPhoneNumber(e.target.value)}
               value={phoneNumber}
             />
@@ -92,7 +92,7 @@ export default function Nysc() {
             <input
               className="p-1 mb-3"
               name="email"
-              placeholder="Enter your email address.."
+              placeholder="Enter your email address"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
             />
@@ -107,7 +107,8 @@ export default function Nysc() {
               value={password}
             />
 
-            <input type="submit" value="Sign Up" />
+            {/* <input type="submit" value="Sign Up" /> */}
+            <button className="btn text-black text-base">Sign Up</button>
           </form>
           {error && <div className="text-xs text-red-500">{error}</div>}
           <p className="font-medium text-zinc-500">
@@ -117,7 +118,7 @@ export default function Nysc() {
             </a>
           </p>
         </div>
-       
+
         <AuthFooter />
       </div>
     </div>

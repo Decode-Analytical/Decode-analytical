@@ -4,7 +4,7 @@ import { FaAngleLeft, FaUser } from "react-icons/fa";
 import AuthFooter from "./AuthFooter";
 import { Link } from "react-router-dom";
 
-export default function ResetPassword({match}) {
+export default function ResetPassword({ match }) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -19,18 +19,20 @@ export default function ResetPassword({match}) {
     }
 
     useEffect(() => {
-
-        const resetToken = match.params.token;
+      const resetToken = match.params.token;
     }, [match.params.token]);
-    
+
     try {
-      const response = await fetch("https://decode-mnjh.onrender.com/api/user/resetpassword", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ password, token: match.params.token }),
-      });
+      const response = await fetch(
+        "https://decode-mnjh.onrender.com/api/user/resetpassword",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ password, token: match.params.token }),
+        }
+      );
 
       if (response.status === 200) {
         setMessage("Password successfully reset.");
@@ -45,7 +47,7 @@ export default function ResetPassword({match}) {
   return (
     <div className="bg-zinc-100 py-10 min-h-screen">
       <div className="bg-white p-10 rounded-3xl w-[80%] lg:w-[50%] center ">
-      <div className="flex flex-wrap justify-between">
+        <div className="flex flex-wrap justify-between">
           <div className="flex items-center">
             <FaAngleLeft />
 
@@ -58,7 +60,7 @@ export default function ResetPassword({match}) {
           <FaUser className="text-[#5333AD] text-3xl" />
         </div>
         <h2 className="text-center text-xl font-extrabold">Reset Password</h2>
-        <p className="ms-3 my-5 text-xs text-center font-semibold">
+        <p className="ms-3 my-5 text-l text-center font-semibold">
           Reset your password
         </p>
 
@@ -67,23 +69,22 @@ export default function ResetPassword({match}) {
             <label className="font-bold text-sm">New Password</label>
             <input
               type="password"
-              placeholder="Enter your password.."
+              placeholder="Enter your password"
               className="p-1 mb-4"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-             <label className="font-bold text-sm">Confirm New Password</label>
+            <label className="font-bold text-sm">Confirm New Password</label>
             <input
               type="password"
-              placeholder="Confirm your new password..."
+              placeholder="Confirm your new password"
               className="p-1 mb-4"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
-
-            <input type="submit" value="Reset Password" />
+            <button className="btn text-base text-black">Reset Password</button>
           </form>
           <p className="text-red-600 text-sm">{message}</p>
           <p className="font-medium text-zinc-500">
