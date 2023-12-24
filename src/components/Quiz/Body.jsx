@@ -17,7 +17,7 @@ const Body = ({ question, NextQuestion, BackQuestion, TotalQuiz, CurrentQuiz, En
     setCorrectAns(null)
   }
 
-  function GobackTothePrevious() {
+  function GobackToPrevious() {
     console.log("Back")
     BackQuestion()
   }
@@ -104,7 +104,7 @@ const Body = ({ question, NextQuestion, BackQuestion, TotalQuiz, CurrentQuiz, En
         Correct={CorrectAns}
         disabled={check}
         handleNext={HandleNextQuestion}
-        BackQuestion={GobackTothePrevious}
+        BackQuestion={GobackToPrevious}
       />
     </section>
   );

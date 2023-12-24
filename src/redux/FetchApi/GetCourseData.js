@@ -3,8 +3,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const baseurl = import.meta.env.VITE_BASE_URL;
 
 // Retrieve the token from localStorage or provide a default value
-// const tokenL = localStorage.getItem("user") || { token: null };
-const tokenL = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGQyMDc3NjhlMTJjZDQ0MjYyNGU5YWIiLCJpYXQiOjE3MDMyNjgzNzgsImV4cCI6MTcwMzM1NDc3OH0.UVQR-4Am5p0sylPwDFKRAPVNciQUhl73vO8K1mxDM8I"
+const tokenL = localStorage.getItem("token") || { token: null };
+// const tokenL = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGQyMDc3NjhlMTJjZDQ0MjYyNGU5YWIiLCJpYXQiOjE3MDMyNjgzNzgsImV4cCI6MTcwMzM1NDc3OH0.UVQR-4Am5p0sylPwDFKRAPVNciQUhl73vO8K1mxDM8I"
 console.log(tokenL)
 
 export const courseData = createApi({
