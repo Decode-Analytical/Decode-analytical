@@ -45,7 +45,6 @@ const Video = ({
   const handleTime = () => {
     const video = videoRef.current;
     if (!video) return;
-    console.log(Math.floor(video.duration/4))
 
     let currentminutes = Math.floor(video.currentTime / 60);
     let currentseconds = Math.floor(video.currentTime - currentminutes * 60);
@@ -66,16 +65,13 @@ const Video = ({
       );
 
       if (currentMinutes === duration) {
-        // Video has ended, move to the next video.
-        console.log("currectSecond", currentMinutes);
-        console.log("duration", duration);
         // setCurrentMinutes("0:00");
         // setDuration("0:01");
         // setVideoImageTracker({
         //   video: "",
         //   image: ""
         // })
-        Nextplay(true);
+        Nextplay();
         // alert("Video is complete");
       }
     }
@@ -286,10 +282,6 @@ const Video = ({
                   {result}
                 </li>
               ))}
-              {/* <li className="text-center p-2 hover:bg-orange-300">1.5x</li>
-              <li className="text-center p-2 hover:bg-orange-300">Normal</li>
-              <li className="text-center p-2 hover:bg-orange-300">0.75x</li>
-              <li className="text-center p-2 hover:bg-orange-300">0.5x</li> */}
             </ul>
           </li>
           <li className="h-6">

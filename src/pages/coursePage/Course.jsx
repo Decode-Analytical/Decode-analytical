@@ -5,6 +5,7 @@ import {
   CourseContent,
   Review,
   CreateComment,
+  Alert,
 } from "../../components/coursePage";
 import Menu from "./Menu.png";
 import Close from "./Close.png";
@@ -26,12 +27,14 @@ const Course = () => {
   const [fullScreen, setFullScreen] = useState(false);
   const [showQuiz, setShowQuiz] = useState({
     ShowQuiz: false,
-    ID: "657c27bcd1fa9d1c49838ddf",
+    ID: "",
+    alert: false,
   });
   console.log(data?.result[0]);
 
   // First we check that Quiz is available if so than it update the ShowQuiz useState that open the quiz
   function QuizCheck() {
+    console.log("Quiz Checker is running now")
     if (data?.result[0].module[trackVideo].quizzes.length > 0) {
       let quizID = data?.result[0].module[trackVideo].quizzes[0];
       setShowQuiz({
@@ -39,17 +42,27 @@ const Course = () => {
         ID: quizID,
       });
     } else {
-      NextVideo();
+      CloseAlert();
     }
   }
   function CLoseQuiz() {
     setShowQuiz({
       ShowQuiz: false,
       ID: "",
+      alert: false,
     });
   }
+  // This is use for closing the ALert
+  function CloseAlert() {
+    setShowQuiz({
+      ShowQuiz: false,
+      ID: "",
+      alert: false,
+    });
+    NextVideo();
+  }
 
-  //
+  // Start next Video
   function NextVideo() {
     setTrackVideo(trackVideo + 1);
   }
@@ -112,11 +125,20 @@ const Course = () => {
           </div>
         </div>
       )}
-      <div className="h-screen w-full z-50 fixed bg-white/50 top-0">
-        <Quiz id={showQuiz.ID} TrackModule={trackVideo} closeQuiz={CLoseQuiz} />
-      </div>
-      {/* {SQuiz.ShowQuiz && (
-      {/* //  */}
+      {showQuiz.ShowQuiz && (
+        <div className="h-screen w-full z-50 fixed bg-white/50 top-0">
+          <Quiz
+            id={showQuiz.ID}
+            TrackModule={trackVideo}
+            closeQuiz={CLoseQuiz}
+          />
+        </div>
+      )}
+      {showQuiz.alert && (
+        <div className="h-screen fixed top-0 z-50 w-full flex justify-center items-center">
+          <Alert Next={CloseAlert} />
+        </div>
+      )}
     </section>
   );
 };
