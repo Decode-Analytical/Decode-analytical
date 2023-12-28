@@ -77,7 +77,7 @@ function App() {
               <Route path="/courseinfo" element={<CourseInfo />} />
               <Route path="/resetpassword" element={<ResetPassword />} />
               <Route path="/PaystackCard/:price" element={<PaystackCard />} />
-              <Route path="/AllPages" element={<AllPages />} /> {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
+              {/* <Route path="/AllPages" element={<AllPages />} /> ===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
               <Route path="/CousrsePage/:id" element = {<Course />} />
             </Routes>
           </div>
