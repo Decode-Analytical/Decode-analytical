@@ -72,7 +72,6 @@ const Video = ({
         //   image: ""
         // })
         Nextplay();
-        // alert("Video is complete");
       }
     }
   };

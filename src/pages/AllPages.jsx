@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 
 export default function AllPages({ close }) {
   return (
-    <div className="text-center h-full z-40 bg-white flex w-full flex-col justify-center items-center">
+    <div className="text-center h-full bg-white flex w-full flex-col justify-center border-box
+    overflow-hidden items-center animate-slidesTop">
       <Link to="/">
         {" "}
         <button type="button" onClick={close}>

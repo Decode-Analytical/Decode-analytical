@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
   OverView,
   Video,
@@ -30,27 +30,37 @@ const Course = () => {
     ID: "",
     alert: false,
   });
-  console.log(data?.result[0]);
+  console.log(data?.result[0].module.length);
+  console.log(trackVideo)
+  // console.log(data?.result[0].module[trackVideo]);
 
   // First we check that Quiz is available if so than it update the ShowQuiz useState that open the quiz
-  function QuizCheck() {
-    console.log("Quiz Checker is running now")
-    if (data?.result[0].module[trackVideo].quizzes.length > 0) {
+  let QuizCheck = useCallback(() => {
+    console.log("Quiz Checker is running now");
+    if (data?.result[0].module.length == trackVideo) {
+      return console.log("Course is completed")
+    } else {
+    if (data?.result[0].module[trackVideo].quizzes.length <= 1) {
       let quizID = data?.result[0].module[trackVideo].quizzes[0];
       setShowQuiz({
         ShowQuiz: true,
         ID: quizID,
+        alert: false,
       });
     } else {
+      console.log("No Quiz");
       CloseAlert();
     }
   }
+  }, [data?.result[0].module[trackVideo].quizzes]);
+
   function CLoseQuiz() {
     setShowQuiz({
       ShowQuiz: false,
       ID: "",
-      alert: false,
+      alert: true,
     });
+    console.log(trackVideo);
   }
   // This is use for closing the ALert
   function CloseAlert() {
@@ -63,9 +73,12 @@ const Course = () => {
   }
 
   // Start next Video
-  function NextVideo() {
-    setTrackVideo(trackVideo + 1);
-  }
+  // let NextVideo = useCallback(() => {
+    // }, []);
+    function NextVideo() {
+        setTrackVideo(trackVideo + 1);
+  } 
+
   function handleFullScreen() {
     setFullScreen(!fullScreen);
   }
