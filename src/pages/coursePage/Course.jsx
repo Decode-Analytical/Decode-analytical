@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   OverView,
   Video,
@@ -30,9 +30,23 @@ const Course = () => {
     ID: "",
     alert: false,
   });
-  console.log(data?.result[0].module.length);
+  console.log(data?.result[0].module);
   console.log(trackVideo)
   // console.log(data?.result[0].module[trackVideo]);
+
+  function isComplete(index) {
+    return data?.result[0].module[index].isCompleted
+  }
+  useEffect(() => {
+    for(let i in data?.result[0].module){
+      if (isComplete(i)) {
+        setTrackVideo(i)
+        console.log(true)
+      }
+      // console.log(i)
+    }
+  }, [data])
+  
 
   // First we check that Quiz is available if so than it update the ShowQuiz useState that open the quiz
   let QuizCheck = useCallback(() => {
@@ -40,7 +54,7 @@ const Course = () => {
     if (data?.result[0].module.length == trackVideo) {
       return console.log("Course is completed")
     } else {
-    if (data?.result[0].module[trackVideo].quizzes.length <= 1) {
+    if (data?.result[0].module[trackVideo].quizzes.length !== 0) {
       let quizID = data?.result[0].module[trackVideo].quizzes[0];
       setShowQuiz({
         ShowQuiz: true,

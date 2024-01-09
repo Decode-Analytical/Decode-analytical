@@ -18,7 +18,7 @@ const CourseContent = ({
   };
 
   function MakeCheck(mainIndex) {
-    return watchVideo && watchVideo.includes(mainIndex);
+    return modules[mainIndex].isCompleted
   }
 
   return (
@@ -99,7 +99,7 @@ const CourseContent = ({
                     </button>
                     <div className="flex gap-2 items-center">
                       <LuPlayCircle size={20} />
-                      <h2>Modules {mainIndex} Quiz</h2>
+                      <h2>Modules {mainIndex + 1} Quiz</h2>
                     </div>
                   </li>
                 ))}

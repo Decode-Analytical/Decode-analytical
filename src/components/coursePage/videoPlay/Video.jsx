@@ -31,9 +31,10 @@ const Video = ({
   });
   // console.log(modules)
   // if (currentMinutes === duration) {
-  //   Nextplay(true);
-  //   Nextplay(false)
-  //   console.log(video)
+  //   Nextplay();
+  //   setCurrentMinutes("0:00");
+  //   setDuration("0:00");
+  //   setProgress("0%");
   // }
   // Nextplay(false)
   const handleVolume = (e) => {
@@ -64,22 +65,28 @@ const Video = ({
         ((video.currentTime / video.duration) * 100).toString() + "%"
       );
 
-      if (currentMinutes === duration) {
-        // setCurrentMinutes("0:00");
-        // setDuration("0:01");
-        // setVideoImageTracker({
-        //   video: "",
-        //   image: ""
-        // })
-        Nextplay();
-      }
+      // if (currentMinutes === duration) {
+      //   Nextplay();
+      //   setCurrentMinutes("0:00")
+      //   setDuration("0:00")
+      //   setProgress("0%")
+      // }
     }
   };
+  
+  useEffect(() => {
+    if (currentMinutes === duration & currentMinutes !== "0:00" & duration !== "0:00") {
+      Nextplay();
+      setCurrentMinutes("0:00")
+      setDuration("0:00")
+      setProgress("0%")
+    }
+  }, [currentMinutes, duration])
+  
 
   useEffect(() => {
     // const ty = videoRef.current;
     if (modules) {
-      // console.log(modules[0].quizzez);
       setVideoImageTracker({
         video: modules.video[0].path,
         image: Background,
@@ -158,7 +165,7 @@ const Video = ({
       const floatSpeed = speedMapping[speed];
       videoRef.current.playbackRate = floatSpeed;
       setPlaybackSpeed(speed);
-      setSetting(false)
+      setSetting(false);
     }
   }
 
@@ -184,9 +191,8 @@ const Video = ({
         <IconContext.Provider
           value={{
             color: "white",
-            style: { verticalAlign: "middle"},
-            size: 'auto'
-
+            style: { verticalAlign: "middle" },
+            size: "auto",
           }}
         >
           <div className="md:w-[4.2rem] md:h-[5.5rem] w-14 h-[3.4rem] bg-[#111111CC] border border-white flex items-center">
