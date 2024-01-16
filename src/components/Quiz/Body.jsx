@@ -24,7 +24,7 @@ const Body = ({ question, NextQuestion, BackQuestion, TotalQuiz, CurrentQuiz, En
 
   function HandleAnswer() {
     console.log(Answer);
-    if (Answer === question.correct_answer_index) {
+    if (Answer === question.correctAnswerIndexes) {
       setCorrectAns(true);
       // console.log(CorrectAns)
     } else {
@@ -53,7 +53,7 @@ const Body = ({ question, NextQuestion, BackQuestion, TotalQuiz, CurrentQuiz, En
           </h3>
 
           <h5 className="text-[#B1B4CA]">Select the answer</h5>
-            {question.options.map((option, index) => (
+            {question.answers.map((option, index) => (
               <li
                 key={index}
                 className={`flex gap-3 p-5 my-3 shadow-lg cursor-pointer ${

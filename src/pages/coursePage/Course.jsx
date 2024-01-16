@@ -25,49 +25,50 @@ const Course = () => {
   const [hasWatch, setHasWatch] = useState([]);
   const [trackVideo, setTrackVideo] = useState(0);
   const [fullScreen, setFullScreen] = useState(false);
+  const [completed, setCompleted] = useState(false);
   const [showQuiz, setShowQuiz] = useState({
     ShowQuiz: false,
     ID: "",
     alert: false,
   });
   console.log(data?.result[0].module);
-  console.log(trackVideo)
+  console.log(trackVideo);
   // console.log(data?.result[0].module[trackVideo]);
-
-  function isComplete(index) {
-    return data?.result[0].module[index].isCompleted
-  }
-  useEffect(() => {
-    for(let i in data?.result[0].module){
-      if (isComplete(i)) {
-        setTrackVideo(i)
-        console.log(true)
-      }
-      // console.log(i)
-    }
-  }, [data])
   
+  function isComplete(index) {
+    return data?.result[0].module[index].isCompleted;
+  }
+  // useEffect(() => {
+  //   for(let i in data?.result[0].module){
+  //     if (isComplete(i)) {
+  //       setTrackVideo(i)
+  //     }
+  //   }
+  // }, [data])
 
   // First we check that Quiz is available if so than it update the ShowQuiz useState that open the quiz
   let QuizCheck = useCallback(() => {
     console.log("Quiz Checker is running now");
     if (data?.result[0].module.length == trackVideo) {
-      return console.log("Course is completed")
+      return console.log("Course is completed");
     } else {
-    if (data?.result[0].module[trackVideo].quizzes.length !== 0) {
-      let quizID = data?.result[0].module[trackVideo].quizzes[0];
-      setShowQuiz({
-        ShowQuiz: true,
-        ID: quizID,
-        alert: false,
-      });
-    } else {
-      console.log("No Quiz");
-      CloseAlert();
+      if (data?.result[0].module[trackVideo].quizzes.length !== 0) {
+        let quizID = data?.result[0].module[0].quizzes[0];
+        setShowQuiz({
+          ShowQuiz: true,
+          ID: quizID,
+          alert: false,
+        });
+      } else {
+        console.log("No Quiz");
+        CloseAlert();
+      }
     }
-  }
   }, [data?.result[0].module[trackVideo].quizzes]);
-
+  
+  useEffect(() => {
+    console.log("This is Course Page", showQuiz);
+  }, [showQuiz])
   function CLoseQuiz() {
     setShowQuiz({
       ShowQuiz: false,
@@ -88,10 +89,16 @@ const Course = () => {
 
   // Start next Video
   // let NextVideo = useCallback(() => {
-    // }, []);
-    function NextVideo() {
-        setTrackVideo(trackVideo + 1);
-  } 
+  // }, []);
+  function NextVideo() {
+    if (trackVideo == data?.result[0].module.length - 1) {
+      setTrackVideo(trackVideo + 1);
+    } else {
+      setCompleted(true);
+    }
+  }
+
+  
 
   function handleFullScreen() {
     setFullScreen(!fullScreen);
@@ -124,6 +131,7 @@ const Course = () => {
                 modules={data?.result[0].module[trackVideo]}
                 fullScreen={fullScreen}
                 handleFullScreen={handleFullScreen}
+                complete={completed}
               />
             </div>
             <div className={`${fullScreen ? "w-full" : "md:w-2/6"}`}>

@@ -8,6 +8,7 @@ import Background from "./BackgroudScreen.png";
 import DefaultSize from "./DefaultSize.png";
 import { IconContext } from "react-icons";
 import { MdNavigateNext } from "react-icons/md";
+import image from "../../../assets/stopimage.png";
 
 const Video = ({
   fullScreen,
@@ -16,6 +17,7 @@ const Video = ({
   image,
   Nextplay,
   modules,
+  complete,
 }) => {
   const videoRef = useRef(null);
   const [volume, setVolume] = useState(1);
@@ -64,25 +66,21 @@ const Video = ({
       setProgress(
         ((video.currentTime / video.duration) * 100).toString() + "%"
       );
-
-      // if (currentMinutes === duration) {
-      //   Nextplay();
-      //   setCurrentMinutes("0:00")
-      //   setDuration("0:00")
-      //   setProgress("0%")
-      // }
     }
   };
-  
+
   useEffect(() => {
-    if (currentMinutes === duration & currentMinutes !== "0:00" & duration !== "0:00") {
+    if (
+      (currentMinutes === duration) &
+      (currentMinutes !== "0:00") &
+      (duration !== "0:00")
+    ) {
       Nextplay();
-      setCurrentMinutes("0:00")
-      setDuration("0:00")
-      setProgress("0%")
+      setCurrentMinutes("0:00");
+      setDuration("0:00");
+      setProgress("0%");
     }
-  }, [currentMinutes, duration])
-  
+  }, [currentMinutes, duration]);
 
   useEffect(() => {
     // const ty = videoRef.current;
@@ -91,8 +89,6 @@ const Video = ({
         video: modules.video[0].path,
         image: Background,
       });
-      // video.src = VideoImageTracker.video
-      // console.log("VideoImageTracker", duration)
     }
   }, [modules]);
 
@@ -178,39 +174,47 @@ const Video = ({
       onMouseOver={() => setHiddenControl(!hiddenControl)}
       onMouseOut={() => setHiddenControl(!hiddenControl)}
     >
-      <img
-        src={controlImage}
-        className={`${isPlaying ? "hidden" : "absolute"} md:w-28 w-14 `}
-        // onClick={handlePlayandPause}
-      />
-      <button
-        type="button"
-        className={`${isPlaying ? "hidden" : "absolute"} right-9`}
-        onClick={() => Nextplay(true)}
-      >
-        <IconContext.Provider
-          value={{
-            color: "white",
-            style: { verticalAlign: "middle" },
-            size: "auto",
-          }}
+      {/* <div className="flex justify-center items-center"> */}
+        <img
+          src={controlImage}
+          className={`${isPlaying ? "hidden" : "absolute"} md:w-28 w-14 `}
+          // onClick={handlePlayandPause}
+        />
+        <button
+          type="button"
+          className={`${
+            isPlaying || complete ? "hidden" : "absolute"
+          } right-9 md:w- `}
+          onClick={() => Nextplay(true)}
         >
-          <div className="md:w-[4.2rem] md:h-[5.5rem] w-14 h-[3.4rem] bg-[#111111CC] border border-white flex items-center">
-            <MdNavigateNext className="NextIcon" />
-          </div>
-        </IconContext.Provider>
-      </button>
-      <video
-        // src={VideoImageTracker.video}
-        id="video"
-        ref={videoRef}
-        onTimeUpdate={handleTime}
-        onClick={() => handlePlayandPause()}
-        autoPlay
-        preload="auto"
-        className={`w-full object-cover ${isPlaying ? "block" : "block"}`}
-        poster={VideoImageTracker.image}
-      />
+          <IconContext.Provider
+            value={{
+              color: "white",
+              style: { verticalAlign: "middle", height: "100%", width: "100%" },
+              size: "auto",
+            }}
+          >
+            <div className="max-sm:w-[2.2rem] max-sm:h-[2.2rem] w-14 h-[3.4rem] bg-[#111111CC] border border-white flex items-center">
+              <MdNavigateNext className="NextIcon" />
+            </div>
+          </IconContext.Provider>
+        </button>
+      {/* </div> */}
+      {complete != true ? (
+        <video
+          // src={VideoImageTracker.video}
+          id="video"
+          ref={videoRef}
+          onTimeUpdate={handleTime}
+          onClick={() => handlePlayandPause()}
+          autoPlay
+          preload="auto"
+          className={`w-full object-cover block`}
+          poster={image}
+        />
+      ) : (
+        <img src={image} className="w-full object-cover block h-[28rem]" />
+      )}
       {/* <img
         src={VideoImageTracker.image}
         className={`w-full object-cover ${isPlaying ? "hidden" : "block"}`}
