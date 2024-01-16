@@ -13,68 +13,75 @@ import { NavLink } from 'react-router-dom'
 import MainSideBar from '../../components/mainSideBar'
 import { AuthContext  } from '../../context/AuthContext'
 
-import axios from '../../api/axios'
+import axios from 'axios'
 
 
 const Dashboard = () => {
-  // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTJmMTZmNWNhMTUzYTY0YWU4OTFkM2UiLCJpYXQiOjE2OTg1ODU3OTAsImV4cCI6MTY5ODY3MjE5MH0.No4TqHdCrnjrj9Pkb3GPkyh31_CxZGrUsvD9P7PYSu4"
   const { user } = useContext(AuthContext);
   
-  // const setAuth = useContext(AuthContext)
   const [loading, setLoading] = useState(true)
-  // const [name, setName] = useState('')
-  // const [imgUrl, setImgUrl] = useState('')
-  // const [user, setUser] = useState({name:"", imgUrl: "", })
-
-  // const fetchUserData = () => {
-  //   fetch('https://decode-mnjh.onrender.com/api/user/viewProfile', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Authorization': `Bearer ${token}`
-  //     }
-  //   })
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     console.log("data data:",data);
-  //     const name = (`${data.user.firstName} ${data.user.lastName}`)
-      
-  //     setUser({name: name, imgUrl: 'https://cdn.vcgamers.com/news/wp-content/uploads/2022/01/paquito-ml-3.jpg'})
-      
-  //     fetchEnrolledCourses()
-  //   })
-  //   .catch(error => {
-  //     console.error(error);
-  //   });
-  // }
-  // fetchEnrolledCourses()
+  
     console.log(user, "Hello")
   const [listCourses, setListCourses] = useState([]);
-  
-  useEffect(() => {
-    const fetchEnrolledCourses = () => {
-      fetch('https://decode-mnjh.onrender.com/api/student/studentGet', {
-        method: 'GET',
+
+  const enrolledURL = 'https://server-eight-beige.vercel.app/api/student/studentGet';
+
+  const userDataURL = 'https://server-eight-beige.vercel.app/user/viewProfile'
+
+useEffect(() => {
+  const fetchEnrolledCourses = async () => {
+    try {
+      const response = await axios.get(enrolledURL, {
         headers: {
           'Authorization': `Bearer ${user.accessToken}`
         }
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data.studentRegisteredCourses, "How")
-        setListCourses(data.studentRegisteredCourses);
-        setLoading(false);
-
-      })
-      .catch(error => {
-        console.error(error);
       });
-    } 
+      console.log('Response:', response.data);
+      if (response.data && response.data.studentRegisteredCourses) {
+        setListCourses(response.data.studentRegisteredCourses);
+        setLoading(false);
+        console.log(user.accessToken, 'Token at Dashboard');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
-    fetchEnrolledCourses()
-  
-    
-  }, [])
-  
+  fetchEnrolledCourses();
+}, [user.accessToken]);
+
+
+// =========================================================================
+// <======== THIS URL IS NOT WORKING, (userDataURL) THE INFORMATION SHOULD BE PASSED TO THE BACKEND
+// const fetchUserData = async () => {
+//   try {
+//     const response = await axios.get(userDataURL, {
+//       headers: {
+//         'Authorization': `Bearer ${user.accessToken}`
+//       }
+//     });
+//     console.log('Response:', response.data);
+//     const data = response.data;
+//     console.log("data data:", data);
+
+//     const name = `${data.user.firstName} ${data.user.lastName}`;
+
+//     setUser({ name: name, imgUrl: 'https://cdn.vcgamers.com/news/wp-content/uploads/2022/01/paquito-ml-3.jpg' });
+
+//     fetchEnrolledCourses(); // Assuming fetchEnrolledCourses is a function you have defined
+//   } catch (error) {
+//     console.error('Error fetching user data:', error);
+//   }
+// };
+
+
+
+// // Use the useEffect hook to fetch user data when the component mounts or when the token changes
+// useEffect(() => {
+//   fetchUserData();
+// }, [user.accessToken]);
+
+// =======================================================================================
 
   if (loading) {
     // fetchUserData()

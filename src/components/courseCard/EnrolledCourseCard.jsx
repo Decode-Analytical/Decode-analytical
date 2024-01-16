@@ -5,7 +5,12 @@ import { NavLink } from 'react-router-dom'
 
 const EnrolledCourseCard = (props) => {
     const {title, course} = props
-    console.log("Test:", )
+    console.log("Testing: enrolled card", )
+    if (!course) {
+        return (
+            <p className="">Enrolled CourseCard data not available</p>
+        ); // or handle the case where course is undefined
+      }
     const {
         _id: id,
         title: courseTitle,
@@ -30,6 +35,10 @@ const EnrolledCourseCard = (props) => {
                 <div className="h-auto flex-1 m-2 bg-cover rounded text-center overflow-hidden img-container aspect-[6/5]">
                     <img src={image[0].path} alt={`course ${courseTitle}`} className='img-container aspect-[6/5] h-full'/>
                 </div>
+
+                        {/* DELETE AFTER PRODUCTION */}
+                <p className="">Testing Display...............</p>
+
 
                 <div className='flex flex-1 flex-col lg:flex-row min-w-[350px]'>
                     {/* Course content */}

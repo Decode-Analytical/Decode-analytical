@@ -9,14 +9,13 @@ import { AuthContext } from '../../context/AuthContext';
 
 export default function EnrolledComponent() {
     const [responseData, setResponseData] = useState(null);
-    const { token } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     useEffect(() => {
         const registeredCourses = 'https://server-eight-beige.vercel.app/api/student/studentGet';
-        console.log('Token:', token);
     
         axios.get(registeredCourses, {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${user.accessToken}`,
             },
           })
             .then(response => {

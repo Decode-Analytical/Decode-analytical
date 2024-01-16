@@ -10,7 +10,7 @@ import { AuthContext } from '../../context/AuthContext';
 
 
 export default function Courses() {
-  const { token } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const [courses, setCourses] = useState([]); 
 
@@ -19,13 +19,13 @@ export default function Courses() {
       try {
         const response = await Axios.get(courseURL, {
           headers: {
-            Authorization: `Bearer ${token}`,
+            'Authorization': `Bearer ${user.accessToken}`
           },
         });
 
         if (response.data && response.data.courses) {
           setCourses(response.data.courses);
-          console.log(response.data);
+          console.log('response:',response.data);
         }
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -33,7 +33,7 @@ export default function Courses() {
     };
 
     fetchCourses();
-  }, [token]);
+  }, [user.accessToken]);
 
   return (
     <>

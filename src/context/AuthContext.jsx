@@ -37,7 +37,7 @@ export const AuthContextProvider = ({ children }) => {
     //     user: null,
     //     token: null,
     // })
-// this is used to check if the local storage values exist,this run imediate the page load
+    //    // this is used to check if the local storage values exist,this run imediate the page load
     // useEffect(() => {
     //     const user = JSON.parse(localStorage.getItem('user'))
 

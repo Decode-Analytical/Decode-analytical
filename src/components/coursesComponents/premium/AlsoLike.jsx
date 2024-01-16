@@ -7,7 +7,7 @@ import { AuthContext } from '../../../context/AuthContext';
 
 
 export default function AlsoLike() {
-    const { token } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const courseURL = 'https://server-eight-beige.vercel.app/api/course/viewAllCourses';
     
     
@@ -31,7 +31,7 @@ export default function AlsoLike() {
             try {
                 const response = await Axios.get(courseURL, {
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        'Authorization': `Bearer ${user.accessToken}`
                     },
                 });
 
@@ -45,7 +45,7 @@ export default function AlsoLike() {
         };
 
         fetchCourses();
-    }, [token]);
+    }, [user.accessToken]);
 
     // Divide the courses into groups of 3, that is makin the CSS display maximum of 3 per row
     const coursesInGroups = [];

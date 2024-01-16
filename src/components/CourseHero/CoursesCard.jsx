@@ -13,7 +13,7 @@ import { AuthContext } from '../../context/AuthContext';
 const courseURL = 'https://server-eight-beige.vercel.app/api/course/viewAllCourses';
 
 export default function CoursesCard(props) {
-  const { token } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   let stars = [
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -94,14 +94,15 @@ export default function CoursesCard(props) {
         try {
           const response = await axios.get(courseURL, {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${user.accessToken}`,
             },
           });
   
           if (response.data && response.data.courses) {
             setCourses(response.data.courses);
-            console.log(response.data);
+            console.log('response:', response.data);
             // console.log(modules);
+            console.log(user.accessToken, 'Token at Courses Card');
           }
         } catch (error) {
           console.error('Error fetching data:', error);
@@ -109,7 +110,7 @@ export default function CoursesCard(props) {
       };
   
       fetchCourses();
-    }, [token]);
+    }, [user.accessToken]);
     return (
       <div className="w-full p-4">
         <div className="max-w-[25rem] bg-white p-4 rounded-3xl overflow-hidden border-[2px] border-neutral-400 mx-auto h-[30rem]">
