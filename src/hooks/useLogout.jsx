@@ -14,6 +14,7 @@ export const useLogout = () => {
         //dispatch logout action
         dispatch({type: 'LOGOUT'})
         navigate('/login')
+        console.log('"User logged out"');
     }
     return { logout}
 

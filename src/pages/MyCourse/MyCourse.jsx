@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import iconHeading from "../../assets/dashboardicon1.png"
 import rafiki from "../../assets/rafiki.png"
 import certification from "../../assets/certification.png"
@@ -12,23 +12,27 @@ import ListCourseCard from '../../components/courseCard/ListCourseCard'
 import { NavLink } from 'react-router-dom'
 import MainSideBar from '../../components/mainSideBar'
 
+import { AuthContext } from '../../context/AuthContext';
+
+
 const MyCourse = () => {
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTJmMTZmNWNhMTUzYTY0YWU4OTFkM2UiLCJpYXQiOjE2OTg1ODU3OTAsImV4cCI6MTY5ODY3MjE5MH0.No4TqHdCrnjrj9Pkb3GPkyh31_CxZGrUsvD9P7PYSu4"
+  const { user } = useContext(AuthContext);
+
   const [loading, setLoading] = useState(true)
-  const [user, setUser] = useState({name:"...", imgUrl: ""})
+  const [userP, setUserP] = useState({name:"...", imgUrl: ""})
 
   const fetchUserData = () => {
-    fetch('https://decode-mnjh.onrender.com/api/user/viewProfile', {
+    fetch('https://server-eight-beige.vercel.app/api/user/viewProfile', {
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${token}`
+        Authorization: `Bearer ${user.accessToken}`,
       }
     })
     .then(response => response.json())
     .then(data => {
       console.log("data data:",data);
       const name = (`${data.user.firstName} ${data.user.lastName}`)
-      setUser({name: name, imgUrl: 'https://cdn.vcgamers.com/news/wp-content/uploads/2022/01/paquito-ml-3.jpg'})
+      setUserP({name: name, imgUrl: 'https://cdn.vcgamers.com/news/wp-content/uploads/2022/01/paquito-ml-3.jpg'})
       fetchEnrolledCourses()
     })
     .catch(error => {
@@ -38,10 +42,10 @@ const MyCourse = () => {
 
   const [listCourses, setListCourses] = useState([]);
   const fetchEnrolledCourses = () => {
-    fetch('https://decode-mnjh.onrender.com/api/student/studentGet', {
+    fetch('https://server-eight-beige.vercel.app/api/student/studentGet', {
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${user.accessToken}`
       }
     })
     .then(response => response.json())
@@ -64,11 +68,11 @@ const MyCourse = () => {
   }
   return (
     <>
-    <MainSideBar name={user.name} imgUrl={user.imgUrl} />
+    <MainSideBar name={userP.name} imgUrl={userP.imgUrl} />
 
     <div className='flex flex-1 bg-bwhite'>
       <div className='flex justify-between flex-1 shadow-md px-3 md:px-20'>
-          <h2 className='text-3xl font-extrabold flex items-center'>My Dashboard</h2>
+          <h2 className='text-3xl font-extrabold flex items-center'>Your Courses</h2>
           <img src={iconHeading} alt="" />
       </div>
     </div>

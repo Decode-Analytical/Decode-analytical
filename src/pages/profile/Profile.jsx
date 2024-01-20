@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 
 import CourseCard from '../../components/courseCard/CourseCard';
 import ProfileSideBar from './ProfileSideBar';
 import { NavLink } from 'react-router-dom';
 import ListCourseCard from '../../components/courseCard/ListCourseCard';
 import EnrolledCourseCard from '../../components/courseCard/EnrolledCourseCard';
+
+import { AuthContext } from '../../context/AuthContext';
 
 
 const Profile = () => {
@@ -14,11 +16,16 @@ const Profile = () => {
     email: spacemars666@gmail.com
     pass:0000000000
   */
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTJmMTZmNWNhMTUzYTY0YWU4OTFkM2UiLCJpYXQiOjE2OTg1ODU3OTAsImV4cCI6MTY5ODY3MjE5MH0.No4TqHdCrnjrj9Pkb3GPkyh31_CxZGrUsvD9P7PYSu4"
+    const { user } = useContext(AuthContext);
+
   const [loading, setLoading] = useState(true)
   const [name, setName] = useState('...')
   const [imgUrl, setImgUrl] = useState('...')
-  const [user, setUser] = useState({name:"...", imgUrl: ""})
+  const [userP, setUserP] = useState({name:"...", imgUrl: ""});
+
+  const profileUrl = 'https://server-eight-beige.vercel.app/api/user/viewProfile';
+
+  const enrolledURL= 'https://server-eight-beige.vercel.app/api/student/studentGet'
 
   const listCoursesTest = [
     {
@@ -36,17 +43,17 @@ const Profile = () => {
   ]
 
   const fetchUserData = () => {
-    fetch('https://decode-mnjh.onrender.com/api/user/viewProfile', {
+    fetch(profileUrl, {
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${user.accessToken}`
       }
     })
     .then(response => response.json())
     .then(data => {
       console.log(data);
       const name = (`${data.user.firstName} ${data.user.lastName}`)
-      setUser({name: name, imgUrl: 'https://cdn.vcgamers.com/news/wp-content/uploads/2022/01/paquito-ml-3.jpg'})
+      setUserP({name: name, imgUrl: 'https://cdn.vcgamers.com/news/wp-content/uploads/2022/01/paquito-ml-3.jpg'})
       fetchEnrolledCourses()
     })
     .catch(error => {
@@ -57,10 +64,10 @@ const Profile = () => {
 
   const [listCourses, setListCourses] = useState([]);
   const fetchEnrolledCourses = () => {
-    fetch('https://decode-mnjh.onrender.com/api/student/studentGet', {
+    fetch(enrolledURL, {
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${user.accessToken}`
       }
     })
     .then(response => response.json())
@@ -84,7 +91,7 @@ const Profile = () => {
   return (
     <>
       <div className="flex flex-row">
-        <ProfileSideBar name={user.name} imgUrl={user.imgUrl}/>
+        <ProfileSideBar name={userP.name} imgUrl={user.imgUrl}/>
         <div className="flex flex-col lg:ml-[300px] flex-1">{/* column2 */}
             <header className='flex flex-col border-b-2 px-6 pt-4'>
               <h2 className='font-bold text-2xl'>Welcom to your dashboard</h2>

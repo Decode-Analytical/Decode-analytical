@@ -8,7 +8,10 @@ const EnrolledCourseCard = (props) => {
     console.log("Testing: enrolled card", )
     if (!course) {
         return (
-            <p className="">Enrolled CourseCard data not available</p>
+            // null
+            // ========THIS SHOULD RETUN NULL. THE P TAG IS JUST FOR PRODUCTION TO MAKE SURE ITS WORKING======
+            <p className="">Enrolled Courses will display HERE!!!</p>
+            
         ); // or handle the case where course is undefined
       }
     const {
@@ -35,9 +38,6 @@ const EnrolledCourseCard = (props) => {
                 <div className="h-auto flex-1 m-2 bg-cover rounded text-center overflow-hidden img-container aspect-[6/5]">
                     <img src={image[0].path} alt={`course ${courseTitle}`} className='img-container aspect-[6/5] h-full'/>
                 </div>
-
-                        {/* DELETE AFTER PRODUCTION */}
-                <p className="">Testing Display...............</p>
 
 
                 <div className='flex flex-1 flex-col lg:flex-row min-w-[350px]'>

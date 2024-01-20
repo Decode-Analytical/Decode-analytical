@@ -14,7 +14,7 @@ import {BsFillRssFill} from "react-icons/bs"
 import { AuthContext } from '../../../context/AuthContext';
 
 export default function PremiumHero(props) {
-    const { token } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const {
         course_title, 
         course_image, 
@@ -40,12 +40,12 @@ export default function PremiumHero(props) {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`, // Include the token in the headers
+            Authorization: `Bearer ${user.accessToken}`, // Include the token in the headers
           },
         };
     
         try {
-          const response = await fetch(`https://decode-mnjh.onrender.com/api/student/studentPost/${_id}`, requestOptions);
+          const response = await fetch(`https://server-eight-beige.vercel.app/api/student/studentPost/${_id}`, requestOptions);
     
           setStatusCode(response.status);
     
@@ -90,7 +90,7 @@ export default function PremiumHero(props) {
                 )}
 
                 
-                {statusCode === 409 && ok && (
+                {/* {statusCode === 409 && ok && (
                     <div className=' bg-white w-4/5 md:w-[90%] rounded-md h-[70%] flex flex-col items-center justify-center border border-gray-300 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
                         <p className=' text-center text-2xl'>
                             Already Enrolled.
@@ -98,6 +98,18 @@ export default function PremiumHero(props) {
 
                         <button onClick={handleOkClick} className=' bg-blue-600 text-white rounded-sm text-xl p-4 mt-5'>
                             OK
+                        </button>
+                        You can add more content or style this message
+                    </div>
+                )} */}
+                {((statusCode === 409 && ok) || statusCode === 400) && (
+                    <div className='bg-white w-4/5 md:w-[90%] rounded-md h-[70%] flex flex-col items-center justify-center border border-gray-300 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+                        <p className='text-center text-2xl'>
+                        {statusCode === 409 ? 'Already Enrolled.' : 'This course is not uploaded yet, please kindly wait for it.'}
+                        </p>
+
+                        <button onClick={handleOkClick} className='bg-blue-600 text-white rounded-sm text-xl p-4 mt-5'>
+                        OK
                         </button>
                         {/* You can add more content or style this message */}
                     </div>

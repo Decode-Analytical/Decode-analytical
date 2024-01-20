@@ -52,7 +52,6 @@ useEffect(() => {
 
 
 // =========================================================================
-// <======== THIS URL IS NOT WORKING, (userDataURL) THE INFORMATION SHOULD BE PASSED TO THE BACKEND
 // const fetchUserData = async () => {
 //   try {
 //     const response = await axios.get(userDataURL, {

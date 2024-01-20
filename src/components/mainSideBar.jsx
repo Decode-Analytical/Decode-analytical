@@ -18,7 +18,7 @@ const MainSideBar = ({name, imgURL}) => {
         },
         {
           title: "Forum",
-          url: "/dashboard/forum"
+          url: "/WeeklyForumPage"
         },
         {
           title: "Messages",
@@ -50,7 +50,7 @@ const MainSideBar = ({name, imgURL}) => {
         </svg>
       </button>
       <div onMouseEnter={()=> openMenu(true)} onMouseLeave={()=>openMenu(false)}
-      className={`flex flex-col fixed top-0 bottom-0 lg:left-0 border-r-2 text-center bg-cyan-950
+      className={`flex flex-col fixed top-0 bottom-0 lg:left-0 border-r-2 text-center
       bg-gray-900 text-white ${!menuOpened && 'left-[-80px]'} md:left-0 profile-sidebar 
       overflow-y-hidden duration-500 ${menuOpened ? "w-[300px]" : "w-[80px]"}`}>
           <button onClick={()=> openMenu(false)}
@@ -97,7 +97,7 @@ const MainSideBar = ({name, imgURL}) => {
                           </svg>
 
                         )}
-                        {el.url == "/dashboard/forum" && (
+                        {el.url == "/WeeklyForumPage" && (
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 18">
                             <path d="M0 6.64356C0 3.30576 2.7048 0.601562 6.042 0.601562H10.758C14.0958 0.601562 16.8 3.30636 16.8 6.64356C16.8 9.97956 14.0952 12.685 10.758 12.685H7.2V15.6016C7.2 15.6016 0 14.1436 0 6.64356Z"/>
                             <path d="M12.2862 13.7218C13.1855 14.5872 14.3855 15.0699 15.6336 15.0682H17.4V17.4016C17.4 17.4016 24 16.2352 24 10.2352C24 8.95332 23.4908 7.72396 22.5845 6.8175C21.6781 5.91104 20.4488 5.40172 19.167 5.40156H17.841C17.9448 5.79516 18 6.20856 18 6.63516C18 10.1116 15.552 13.0168 12.2862 13.7218Z"/>
