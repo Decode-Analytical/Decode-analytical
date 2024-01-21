@@ -4,6 +4,7 @@ import dashboardicon1 from '../../assets/dashboardicon1.png';
 import CoursesPurchased from '../../components/myPurchases/CoursesPurchased';
 import Points from '../../components/myPurchases/Points';
 import PurchasedHistory from '../../components/myPurchases/PurchasedHistory';
+import RecommendedCourses from '../../components/myPurchases/RecommendedCourses';
 
 export default function PurchasedPage() {
   const [activePage, setActivePage] = useState(1);
@@ -60,6 +61,10 @@ export default function PurchasedPage() {
 
         <div className={`${activePage === 3 ? 'block' : 'hidden'}`}>
           <PurchasedHistory />
+        </div>
+
+        <div className="">
+          <RecommendedCourses />
         </div>
       </section>
     </>
