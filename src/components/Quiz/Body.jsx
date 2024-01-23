@@ -11,35 +11,33 @@ const Body = ({ question, NextQuestion, BackQuestion, TotalQuiz, CurrentQuiz, En
   const [CorrectAns, setCorrectAns] = useState(null);
   const [Answer, setAnswer] = useState();
   function HandleNextQuestion() {
-    console.log("Next")
     NextQuestion()
     setAnswer()
     setCorrectAns(null)
   }
 
   function GobackToPrevious() {
-    console.log("Back")
     BackQuestion()
   }
 
-  function HandleAnswer() {
-    console.log(Answer);
-    if (Answer === question.correctAnswerIndexes) {
-      setCorrectAns(true);
-      // console.log(CorrectAns)
-    } else {
-      setCorrectAns(false);
-    }
-  }  
+  // function HandleAnswer() {
+  //   console.log(Answer);
+  //   if (Answer === question.correctAnswerIndexes) {
+  //     setCorrectAns(true);
+  //     // console.log(CorrectAns)
+  //   } else {
+  //     setCorrectAns(false);
+  //   }
+  // }  
   
   let check = TotalQuiz == CurrentQuiz ? true : false
-  check && End()
+  // check && End()
 
-  console.log(question);
+  // console.log(question);
 
   return (
     // <div className={` ${Correct == null && "my-5"}  md:h-[81vh] h-full`}>
-    <section className={` ${CorrectAns == null && "my-5"}  md:h-[80vh] bg-[#F5F5F5] mb-3`}>
+    <section className={`md:h-[80vh] bg-[#F5F5F5] mb-3`}>
       <div
         className="w-full h-full flex flex-col justify-center items-center"
         key={Math.random()}
@@ -76,31 +74,10 @@ const Body = ({ question, NextQuestion, BackQuestion, TotalQuiz, CurrentQuiz, En
                 </label>
               </li>
             ))}
-          {CorrectAns != null && (
-            <li className="flex shadow-lg h-[7rem] justify-center items-center bg-white animate-ping-short">
-              <h5
-                className={`${
-                  CorrectAns ? "text-green-600" : "text-red-600"
-                } text-4xl font-bold flex`}
-              >
-                {CorrectAns ? (
-                  <>
-                    <GiCheckMark />
-                    Correct!
-                  </>
-                ) : (
-                  <>
-                    <GiCrossMark />
-                    "Incorrect, Try Again"
-                  </>
-                )}
-              </h5>
-            </li>
-          )}
         </ul>
       </div>
       <Footer
-        handleCLick={HandleAnswer}
+        // handleCLick={HandleAnswer}
         Correct={CorrectAns}
         disabled={check}
         handleNext={HandleNextQuestion}

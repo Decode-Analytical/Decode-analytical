@@ -5,9 +5,7 @@ const Footer = ({ handleCLick, disabled, Correct, handleNext, BackQuestion }) =>
     <div className="border border-[#999999] text-white w-full flex justify-end md:justify-center">
       <div className="md:w-[61%] w-full flex md:justify-between mt-5 flex-col md:flex-row">
         <div
-          className={`flex gap-6 md:my-0 my-4 ${
-            Correct == null ? "invisible" : "visible"
-          }`}
+          className={`flex gap-6 md:my-0 my-4`}
         >
           <button
             type="button"
@@ -18,18 +16,13 @@ const Footer = ({ handleCLick, disabled, Correct, handleNext, BackQuestion }) =>
           </button>
           <button
             type="button"
-            disabled={disabled}
-            className={`w-36 h-14 border-2 text-[#040E53] hover:bg-blue-500 ${
-              Correct != null && Correct
-                ? "border-[#040E53] cursor-pointer"
-                : "border-[#B1B4CA] cursor-default"
-            } `}
+            className={`w-36 h-14 border-2 text-[#040E53] hover:bg-blue-500 border-[#040E53] cursor-pointer `}
             onClick={() => handleNext()}
           >
             Continue
           </button>
         </div>
-        <button
+        {/* <button
           type="button"
           disabled={disabled}
           onClick={() => handleCLick()}
@@ -38,7 +31,7 @@ const Footer = ({ handleCLick, disabled, Correct, handleNext, BackQuestion }) =>
           }`}
         >
           {Correct != null ? (Correct ? "Check" : "Try Again") : "Check"}
-        </button>
+        </button> */}
       </div>
     </div>
   );

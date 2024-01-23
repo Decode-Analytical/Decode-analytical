@@ -2,8 +2,8 @@ import React from 'react'
 import { AiOutlineClose } from "react-icons/ai"
 
 const Header = ({closeQuiz, TotalQuiz, currentQuiz, Currentmodule, TotalComment}) => {
-  let quizPercenTage = (currentQuiz + 1 / TotalQuiz ) * 100
-  console.log(quizPercenTage)
+  let quizPercenTage = (currentQuiz / TotalQuiz ) * 100
+  console.log(currentQuiz)
   return (
     <div className="w-full text-[#6B7F99] md:flex md:justify-around md:items-center py-5">
     <div className="flex gap-3 my-2 md:my-0">

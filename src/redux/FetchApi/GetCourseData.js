@@ -28,7 +28,7 @@ export const courseData = createApi({
     }),
     postCorrectQuiz: builder.mutation({
       query: ({ data, id }) => ({
-        url: `/quizes/submitQuiz/${id}/submit`,
+        url: `/quizes/submitAnswers/${id}`,
         method: "POST",
         body: data,
       }),

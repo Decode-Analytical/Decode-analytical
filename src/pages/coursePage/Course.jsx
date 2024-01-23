@@ -20,7 +20,7 @@ import Quiz from "../quiz /Quiz";
 const Course = () => {
   let param = useParams();
   let { id } = param;
-  const { isLoading, isError, data } = useGetCourseDataQuery(id);
+  const { isLoading, isError, data, error } = useGetCourseDataQuery(id);
   const [coursContactisOpen, setcoursContactisOpen] = useState(false);
   const [hasWatch, setHasWatch] = useState([]);
   const [trackVideo, setTrackVideo] = useState(0);
@@ -33,6 +33,7 @@ const Course = () => {
   });
   console.log(data?.result[0].module);
   console.log(trackVideo);
+  console.log(error)
   // console.log(data?.result[0].module[trackVideo]);
   
   function isComplete(index) {
@@ -93,8 +94,6 @@ const Course = () => {
   function NextVideo() {
     if (trackVideo == data?.result[0].module.length - 1) {
       setTrackVideo(trackVideo + 1);
-    } else {
-      setCompleted(true);
     }
   }
 
@@ -117,7 +116,8 @@ const Course = () => {
       ) : isError ? (
         <div className="h-screen w-full flex justify-center items-center">
           <h2 className="text-xl text-red-400 font-bold">
-            Please Sign In Again
+            {/* {JSON.stringify(error.data)} */}
+            {error.data.message}
           </h2>
         </div>
       ) : (

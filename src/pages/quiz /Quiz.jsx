@@ -9,28 +9,29 @@ import {
 import { TailSpin } from "react-loader-spinner";
 
 const Quiz = (props) => {
-  const { id, closeQuiz, TrackModule, Result, Comment } = props
+  const { id, closeQuiz, TrackModule, Result, Comment } = props;
   const [quizIndex, setQuizIndex] = useState(0);
   const [storeQuiz, setStoreQuiz] = useState([]);
-  console.log(id)
+  console.log(id);
   const { data, isLoading, isError, error } = useViewCourseQuizQuery(id);
-  // console.log("IsLoading QUiz", isLoading);
-  // console.log(data?.quiz.questions)
-  // console.log("This is the error", error)
+  const [
+    postCorrectQuiz,
+    {
+      isSuccess: QuizSuccess,
+      isError: QuizErrorCheck,
+      error: QuizError,
+      data: QuizData,
+    },
+  ] = usePostCorrectQuizMutation();
 
   let question = data?.quiz.questions;
-  console.log("This is the quiz", question)
-  // useEffect(() => {
-  //   if (question == null) {
-  //     closeQuiz()
-  //   }
-  // }, [question])
   
-
-  // console.log("Show the question", question);
-
   async function NextQuiz() {
-    if (quizIndex <= question.length) {
+    if (quizIndex +1 === question.length) {
+      // If quizIndex is already equal to the question length, it means the quiz is complete
+      console.log("Complete of Quiz");
+      closeQuiz();
+    } else {
       setStoreQuiz([
         ...storeQuiz,
         {
@@ -38,12 +39,15 @@ const Quiz = (props) => {
           selected_answer_index: quizIndex, // Use the selected answer, not quizIndex
         },
       ]);
+      console.log("Next Quiz");
       setQuizIndex(quizIndex + 1);
-    } else {
-      const moduleId = question.moduleId;
-      console.log("moduleID", moduleId);
-      console.log(storeQuiz);
-      Result(5, question.length);
-      // closeQuiz();
+    }
+  }
+  
+  useEffect(() => {
+    console.log(storeQuiz)
+  }, [storeQuiz])
 
-      // Now, you can make your API request 
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (question && question.le

@@ -3,6 +3,8 @@ import { useAuthContext } from "./authContext";
 import { useNavigate } from "react-router-dom";
 
 
+export let checkLogin = false
+
 export  const useLogin = () => {
     const navigate = useNavigate();
 
@@ -33,6 +35,7 @@ export  const useLogin = () => {
         if (response.ok) {
             // save the user to local storage
             console.log("This store in the local store")
+            checkLogin = true
 
             localStorage.setItem('user', JSON.stringify(json))
 
