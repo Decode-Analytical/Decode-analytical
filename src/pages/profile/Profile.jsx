@@ -7,6 +7,7 @@ import ListCourseCard from '../../components/courseCard/ListCourseCard';
 import EnrolledCourseCard from '../../components/courseCard/EnrolledCourseCard';
 
 import { AuthContext } from '../../context/AuthContext';
+import Loader from '../../components/Loader';
 
 
 const Profile = () => {
@@ -85,7 +86,9 @@ const Profile = () => {
   if (loading) {
     fetchUserData()
     return (
-      <div className='w-full h-full min-h-[500px] flex justify-center items-center'>Loading...</div>
+      <div className='w-full h-full min-h-[500px] flex justify-center items-center'>
+        <Loader />
+      </div>
     )
   }
   return (
