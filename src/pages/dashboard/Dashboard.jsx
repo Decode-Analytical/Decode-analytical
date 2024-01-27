@@ -9,6 +9,7 @@ import forumsImage from "../../assets/forums.png"
 import coursesImage from "../../assets/course.png"
 import EnrolledCourseCard from '../../components/courseCard/EnrolledCourseCard'
 import ListCourseCard from '../../components/courseCard/ListCourseCard'
+import Loader from '../../components/Loader'
 import { NavLink } from 'react-router-dom'
 import MainSideBar from '../../components/mainSideBar'
 import { AuthContext  } from '../../context/AuthContext'
@@ -86,7 +87,9 @@ useEffect(() => {
     // fetchUserData()
     return (
       <div>
-        <div className='w-full h-full min-h-[500px] flex justify-center items-center'>Loading...</div>
+        <div className='w-full h-full min-h-[500px] flex justify-center items-center'>
+          <Loader />
+        </div>
         
       </div>
     )

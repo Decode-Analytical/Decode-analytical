@@ -30,7 +30,7 @@ export default function EnrolledComponent() {
   return (
     <>
         <section className=' mx-[5%] mb-20'>
-            {responseData ? (
+            {responseData && responseData.studentRegisteredCourses && responseData.studentRegisteredCourses.length > 0 ?(
                 <div className=' md:flex flex-wrap gap-[90px] max-w-[1100px] m-auto'>
                     {responseData.studentRegisteredCourses.map(course => (
                     <div key={course._id} className='  basis-52 grow space-y-2 max-w-[450px] mt-10 md:mt-0 border border-gray-400 p-4 rounded-md'>
