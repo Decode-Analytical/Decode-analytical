@@ -1,19 +1,12 @@
 import React from "react";
 
-const Footer = ({ handleCLick, disabled, Correct, handleNext, BackQuestion }) => {
+const Footer = ({
+  handleNext
+}) => {
   return (
     <div className="border border-[#999999] text-white w-full flex justify-end md:justify-center">
       <div className="md:w-[61%] w-full flex md:justify-between mt-5 flex-col md:flex-row">
-        <div
-          className={`flex gap-6 md:my-0 my-4`}
-        >
-          <button
-            type="button"
-            className="w-36 h-14 border-2 border-[#040E53] text-[#040E53]"
-            onClick={() => BackQuestion()}
-          >
-            Back
-          </button>
+        <div className={`flex gap-6 md:my-0 my-4`}>
           <button
             type="button"
             className={`w-36 h-14 border-2 text-[#040E53] hover:bg-blue-500 border-[#040E53] cursor-pointer `}
@@ -22,16 +15,6 @@ const Footer = ({ handleCLick, disabled, Correct, handleNext, BackQuestion }) =>
             Continue
           </button>
         </div>
-        {/* <button
-          type="button"
-          disabled={disabled}
-          onClick={() => handleCLick()}
-          className={` w-40 h-16 p-5 ${
-            disabled ? "bg-[#B1B4CA]" : "bg-[#01051D] cursor-pointer"
-          }`}
-        >
-          {Correct != null ? (Correct ? "Check" : "Try Again") : "Check"}
-        </button> */}
       </div>
     </div>
   );

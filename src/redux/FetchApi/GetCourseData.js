@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const baseurl = import.meta.env.VITE_BASE_URL;
-console.log(baseurl)
+console.log(baseurl);
 
 // Retrieve the token from localStorage or provide a default value
 const tokenL = localStorage.getItem("token") || { token: null };
@@ -27,11 +27,14 @@ export const courseData = createApi({
       providesTags: ["Quiz"],
     }),
     postCorrectQuiz: builder.mutation({
-      query: ({ data, id }) => ({
-        url: `/quizes/submitAnswers/${id}`,
-        method: "POST",
-        body: data,
-      }),
+      query: (args) =>{
+        const { id, data } = args;
+        return {
+          url: `/quizes/submitAnswers/${id}`,
+          method: "POST",
+          body: data
+        }
+      } ,
       invalidatesTags: ["Quiz"],
     }),
     addComment: builder.mutation({
@@ -42,6 +45,16 @@ export const courseData = createApi({
       }),
       invalidatesTags: ["StreamVideo"],
     }),
+    updateCourse: builder.mutation({
+      query: (args) => {
+        const { CourseID, moduleID } = args;
+        return {
+          url: `/student/markcomplete/${CourseID}/${moduleID}`,
+          method: "PUT",
+        };
+      },
+      invalidatesTags: ["StreamVideo", "Quiz"],
+    }),
   }),
 });
 
@@ -50,4 +63,5 @@ export const {
   useViewCourseQuizQuery,
   usePostCorrectQuizMutation,
   useAddCommentMutation,
+  useUpdateCourseMutation,
 } = courseData;

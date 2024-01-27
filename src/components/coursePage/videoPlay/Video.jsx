@@ -207,7 +207,7 @@ const Video = ({
           ref={videoRef}
           onTimeUpdate={handleTime}
           onClick={() => handlePlayandPause()}
-          autoPlay
+          autoPlay={true}
           preload="auto"
           className={`w-full object-cover block`}
           poster={image}

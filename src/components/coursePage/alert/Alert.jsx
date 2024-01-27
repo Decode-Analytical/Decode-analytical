@@ -1,7 +1,7 @@
 import React from "react";
 import { TiTick } from "react-icons/ti";
 
-const Alert = ({Next}) => {
+const Alert = ({Next, Score}) => {
   return (
     <div className="w-[40%] h-64 bg-white p-6 shadow-2xl shadow-gray-700 flex flex-col justify-between items-center">
         <span className="p-3 rounded-full border border-black/60">
@@ -10,7 +10,7 @@ const Alert = ({Next}) => {
       <h2 className="text-2xl text-black/70">
         Congratulation!
       </h2>
-      <p className="text-sm text-gray-500 ">You have pass the module</p>
+      <p className="text-sm text-gray-500 ">{Score !== null ? `Score ${Score}` : "You have complete the module"}</p>
         <button
           type="button"
           className="p-4 border bg-blue-200 text-white rounded-md  hover:bg-blue-700 hover:text-white focus:bg-blue-700"

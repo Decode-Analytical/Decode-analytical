@@ -12,7 +12,7 @@ import Close from "./Close.png";
 import { useParams } from "react-router-dom";
 import {
   useGetCourseDataQuery,
-  useViewCourseQuizQuery,
+  useUpdateCourseMutation,
 } from "../../redux/FetchApi/GetCourseData";
 import { TailSpin } from "react-loader-spinner";
 import Quiz from "../quiz /Quiz";
@@ -30,12 +30,12 @@ const Course = () => {
     ShowQuiz: false,
     ID: "",
     alert: false,
+    pass: null,
   });
-  console.log(data?.result[0].module);
-  console.log(trackVideo);
-  console.log(error)
+  //  For send isComplete the course
+  const [updateCourse] = useUpdateCourseMutation();
   // console.log(data?.result[0].module[trackVideo]);
-  
+
   function isComplete(index) {
     return data?.result[0].module[index].isCompleted;
   }
@@ -49,7 +49,6 @@ const Course = () => {
 
   // First we check that Quiz is available if so than it update the ShowQuiz useState that open the quiz
   let QuizCheck = useCallback(() => {
-    console.log("Quiz Checker is running now");
     if (data?.result[0].module.length == trackVideo) {
       return console.log("Course is completed");
     } else {
@@ -59,32 +58,36 @@ const Course = () => {
           ShowQuiz: true,
           ID: quizID,
           alert: false,
+          pass: null,
         });
       } else {
-        console.log("No Quiz");
-        CloseAlert();
+        closeQuiz(null)
       }
     }
   }, [data?.result[0].module[trackVideo].quizzes]);
-  
-  useEffect(() => {
-    console.log("This is Course Page", showQuiz);
-  }, [showQuiz])
-  function CLoseQuiz() {
+
+  function CLoseQuiz(done) {
     setShowQuiz({
       ShowQuiz: false,
       ID: "",
       alert: true,
+      pass: done,
     });
-    console.log(trackVideo);
   }
   // This is use for closing the ALert
-  function CloseAlert() {
+  async function CloseAlert() {
+    let trackCurrentModule = data?.result[0].module[trackVideo]._id;
     setShowQuiz({
       ShowQuiz: false,
       ID: "",
       alert: false,
+      pass: null,
     });
+    let result = await updateCourse({
+      CourseID: id,
+      moduleID: trackCurrentModule,
+    });
+    console.log(result);
     NextVideo();
   }
 
@@ -96,8 +99,6 @@ const Course = () => {
       setTrackVideo(trackVideo + 1);
     }
   }
-
-  
 
   function handleFullScreen() {
     setFullScreen(!fullScreen);
@@ -171,7 +172,7 @@ const Course = () => {
       )}
       {showQuiz.alert && (
         <div className="h-screen fixed top-0 z-50 w-full flex justify-center items-center">
-          <Alert Next={CloseAlert} />
+          <Alert Next={CloseAlert} Score={showQuiz.pass} />
         </div>
       )}
     </section>
