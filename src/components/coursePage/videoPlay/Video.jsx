@@ -14,7 +14,6 @@ const Video = ({
   fullScreen,
   handleFullScreen,
   video,
-  image,
   Nextplay,
   modules,
   complete,
@@ -96,6 +95,7 @@ const Video = ({
     const video = videoRef.current;
     if (VideoImageTracker.video && video) {
       video.src = VideoImageTracker.video;
+      video.poster = VideoImageTracker.image
       setIsPlaying(true);
     }
   }, [VideoImageTracker]);
@@ -210,7 +210,7 @@ const Video = ({
           autoPlay={true}
           preload="auto"
           className={`w-full object-cover block`}
-          poster={image}
+          // poster={image}
         />
       ) : (
         <img src={image} className="w-full object-cover block h-[28rem]" />

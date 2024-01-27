@@ -49,8 +49,8 @@ const Course = () => {
 
   // First we check that Quiz is available if so than it update the ShowQuiz useState that open the quiz
   let QuizCheck = useCallback(() => {
-    if (data?.result[0].module.length == trackVideo) {
-      return console.log("Course is completed");
+    if (data?.result[0].module.length - 1 == trackVideo) {
+      return setCompleted(true);
     } else {
       if (data?.result[0].module[trackVideo].quizzes.length !== 0) {
         let quizID = data?.result[0].module[0].quizzes[0];
@@ -61,7 +61,7 @@ const Course = () => {
           pass: null,
         });
       } else {
-        closeQuiz(null)
+        CLoseQuiz(null)
       }
     }
   }, [data?.result[0].module[trackVideo].quizzes]);
@@ -87,7 +87,7 @@ const Course = () => {
       CourseID: id,
       moduleID: trackCurrentModule,
     });
-    console.log(result);
+    console.log(result)
     NextVideo();
   }
 
@@ -95,9 +95,9 @@ const Course = () => {
   // let NextVideo = useCallback(() => {
   // }, []);
   function NextVideo() {
-    if (trackVideo == data?.result[0].module.length - 1) {
+    // if (trackVideo == data?.result[0].module.length - 1) {
       setTrackVideo(trackVideo + 1);
-    }
+    // }
   }
 
   function handleFullScreen() {
