@@ -39,13 +39,13 @@ const Course = () => {
   function isComplete(index) {
     return data?.result[0].module[index].isCompleted;
   }
-  // useEffect(() => {
-  //   for(let i in data?.result[0].module){
-  //     if (isComplete(i)) {
-  //       setTrackVideo(i)
-  //     }
-  //   }
-  // }, [data])
+  useEffect(() => {
+    for(let i in data?.result[0].module){
+      if (isComplete(i)) {
+        setTrackVideo(i)
+      }
+    }
+  }, [data])
 
   // First we check that Quiz is available if so than it update the ShowQuiz useState that open the quiz
   let QuizCheck = useCallback(() => {
