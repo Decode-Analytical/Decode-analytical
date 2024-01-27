@@ -40,12 +40,12 @@ const Course = () => {
     return data?.result[0].module[index].isCompleted;
   }
   useEffect(() => {
-    for(let i in data?.result[0].module){
+    for (let i in data?.result[0].module) {
       if (isComplete(i)) {
-        setTrackVideo(i)
+        setTrackVideo(i);
       }
     }
-  }, [data])
+  }, [data]);
 
   // First we check that Quiz is available if so than it update the ShowQuiz useState that open the quiz
   let QuizCheck = useCallback(() => {
@@ -61,7 +61,7 @@ const Course = () => {
           pass: null,
         });
       } else {
-        CLoseQuiz(null)
+        CLoseQuiz(null);
       }
     }
   }, [data?.result[0].module[trackVideo].quizzes]);
@@ -87,17 +87,10 @@ const Course = () => {
       CourseID: id,
       moduleID: trackCurrentModule,
     });
-    console.log(result)
     NextVideo();
   }
-
-  // Start next Video
-  // let NextVideo = useCallback(() => {
-  // }, []);
   function NextVideo() {
-    // if (trackVideo == data?.result[0].module.length - 1) {
-      setTrackVideo(trackVideo + 1);
-    // }
+    setTrackVideo(trackVideo + 1);
   }
 
   function handleFullScreen() {
@@ -117,7 +110,6 @@ const Course = () => {
       ) : isError ? (
         <div className="h-screen w-full flex justify-center items-center">
           <h2 className="text-xl text-red-400 font-bold">
-            {/* {JSON.stringify(error.data)} */}
             {error.data.message}
           </h2>
         </div>
