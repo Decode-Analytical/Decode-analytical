@@ -28,13 +28,13 @@ const EnrolledCourseCard = (props) => {
     <NavLink
       to={`/CousrsePage/${id}`}
     >
-    <div className='flex flex-col mt-16 mx-6 border border-gray-300 rounded-2xl p-3'>
+    <div className=' enrolled flex flex-col mt-16 mx-6 border border-gray-300 rounded-2xl p-3'>
         <div className='flex justify-between pt-3 pb-2 border-b-2 mb-4'>
             <h3 className='font-semibold text-lg'>{title}</h3>
             <p className='text-gray-400'>see all ongoing courses</p>
         </div>
         {course && (
-            <div className="max-w-none w-full flex flex-wrap justify-center bg-white course-card">
+            <div className=" max-w-none w-full flex flex-wrap justify-center bg-white course-card">
                 <div className="h-auto flex-1 m-2 bg-cover rounded text-center overflow-hidden img-container aspect-[6/5]">
                     <img src={image[0].path} alt={`course ${courseTitle}`} className='img-container aspect-[6/5] h-full'/>
                 </div>

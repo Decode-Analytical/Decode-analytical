@@ -4,12 +4,21 @@ import './card.css'
 
 const CourseCard = (props) => {
   const {data} = props
-  console.log(data)
-  const {
+  console.log("Current", data)
+  let {
     _id: id,
     title,
     image
   } = data
+  console.log("Current", image)
+  if (!title) {
+    const {
+      course_title,
+      course_image,
+    } = data
+    title = course_title
+    image = course_image
+  }
   const levelNumber = 0
   const progress = 35
   return (

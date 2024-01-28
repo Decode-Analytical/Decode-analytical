@@ -15,6 +15,9 @@
 .course-card .img-container {
   aspect-ratio: 6/5;
   min-width: 230px;
-  max-width: 350px;
   min-height: 12rem;
+}
+
+.enrolled .course-card .img-container {
+  max-width: 350px;
 }

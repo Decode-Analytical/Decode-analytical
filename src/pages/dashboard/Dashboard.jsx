@@ -23,10 +23,14 @@ const Dashboard = () => {
   
     console.log(user, "Hello")
   const [listCourses, setListCourses] = useState([]);
+  const [listEnrolledCourses, setListEnrolledCourses] = useState([]);
+  const [listAllCourses, setListAllCourses] = useState([]);
 
   const enrolledURL = 'https://server-eight-beige.vercel.app/api/student/studentGet';
-
+  const allEnrolledCourseUrl = 'https://decode-mnjh.onrender.com/api/student/studentViewAllCourse'
+  const allCourseUrl = 'https://decode-mnjh.onrender.com/api/course/viewAllCourses'
   const userDataURL = 'https://server-eight-beige.vercel.app/user/viewProfile'
+
 
 useEffect(() => {
   const fetchEnrolledCourses = async () => {
@@ -46,8 +50,44 @@ useEffect(() => {
       console.error('Error fetching data:', error);
     }
   };
+  const fetchAllEnrolledCourses = async () => {
+    try {
+      const response = await axios.get(allEnrolledCourseUrl, {
+        headers: {
+          'Authorization': `Bearer ${user.accessToken}`
+        }
+      });
+      console.log('All Enrolled Response:', response.data);
+      if (response.data && response.data.courses) {
+        setListEnrolledCourses(response.data.courses);
+        setLoading(false);
+        console.log(user.accessToken, 'Token at Dashboard');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  const fetchAllCourses = async () => {
+    try {
+      const response = await axios.get(allCourseUrl, {
+        headers: {
+          'Authorization': `Bearer ${user.accessToken}`
+        }
+      });
+      console.log('All Courses Response:', response.data);
+      if (response.data && response.data.courses) {
+        setListAllCourses(response.data.courses);
+        setLoading(false);
+        console.log(user.accessToken, 'Token at Dashboard');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   fetchEnrolledCourses();
+  fetchAllEnrolledCourses()
+  fetchAllCourses()
 }, [user.accessToken]);
 
 
@@ -136,9 +176,10 @@ useEffect(() => {
             <img src={certification} alt="On going courses" />
         </li>
       </ul>
-
+      
         <EnrolledCourseCard title="On Going Courses (3)" course={listCourses[0]} />
 
+        <ListCourseCard title="Enrolled Courses" list={listEnrolledCourses} />
         <ListCourseCard title="Completed Courses" list={listCourses} />
 
       {/* Claimed certificat */}
@@ -156,11 +197,11 @@ useEffect(() => {
             </div>
         </div>
       </div>
-        <ListCourseCard title="Similar Courses" list={listCourses} />
+        <ListCourseCard title="Similar Courses" list={listAllCourses} />
 
-        <ListCourseCard title="Recommanded Courses" list={listCourses} />
+        <ListCourseCard title="Recommanded Courses" list={listAllCourses} />
 
-        <ListCourseCard title="Recently Viewed Courses" list={listCourses} />
+        <ListCourseCard title="Recently Viewed Courses" list={listAllCourses} />
 
 
       <nav className='mt-6 mb-16 mx-6'>
