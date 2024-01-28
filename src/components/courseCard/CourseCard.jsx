@@ -24,7 +24,7 @@ const CourseCard = (props) => {
   return (
     <>
     <NavLink
-      to={`/CousrsePage/${id}`}
+      to={`/CoursePage/${id}`}
     >
 
     <div className="max-w-none w-full flex flex-wrap bg-white course-card">

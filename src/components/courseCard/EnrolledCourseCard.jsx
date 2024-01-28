@@ -26,7 +26,7 @@ const EnrolledCourseCard = (props) => {
   return (
     <>
     <NavLink
-      to={`/CousrsePage/${id}`}
+      to={`/CoursePage/${id}`}
     >
     <div className=' enrolled flex flex-col mt-16 mx-6 border border-gray-300 rounded-2xl p-3'>
         <div className='flex justify-between pt-3 pb-2 border-b-2 mb-4'>
