@@ -183,6 +183,7 @@ export default function Signin() {
             {/* {error && <div>
               <p className="text-[#ff0000] text-sm text-center">{error}</p>
               </div>} */}
+              <p>Hi</p>
           </form>
           <p className="font-medium text-zinc-500">
             New here?
