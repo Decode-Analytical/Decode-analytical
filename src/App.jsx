@@ -31,9 +31,9 @@ import PaystackCard from "./components/cartAndPaymentComponents/PaystackCard";
 import Quiz from "./pages/Quiz/Quiz";
 import FirstPage from "./pages/Quiz/CreateQuestion/FirstPage";
 import SecondPage from "./pages/Quiz/CreateQuestion/SecondPage";
-
-
-
+import InstructorTools from "./pages/instructorProfile/instructorTools/InstructorTools";
+import SalesAndPerformance from "./pages/instructorProfile/instructorTools/SalesAndPerformance";
+import SalesHistory from "./pages/instructorProfile/instructorTools/SalesHistory";
 
 function App() {
   return (
@@ -46,24 +46,37 @@ function App() {
               <Route path="/" exact element={<HomePage />} />
               <Route path="/LoginSignUp" element={<LoginSignUp />} />
               <Route path="/PasswordReset" element={<PasswordReset />} />
-              <Route path="/premiumCourses/:_id" element={<PremiumCourses />} /> 
+              <Route path="/premiumCourses/:_id" element={<PremiumCourses />} />
               <Route path="/CartPage" element={<CartPage />} />
               <Route path="/PaymentPage" element={<PaymentPage />} />
-              
               <Route path="/Dashboard" element={<Dashboard />} />
-              
               <Route path="/EnrolledCourses" element={<EnrolledCourses />} />
               <Route path="/ForumIntro" element={<ForumIntro />} />
               <Route path="/InForumReply" element={<InForumReply />} />
               <Route path="/WeeklyForumPage" element={<WeeklyForumPage />} />
               <Route path="/mycourses" element={<MyCourse />} />
-              <Route path="dashboard/quiz" element={<Quiz/>}>
-                <Route path="" element={<FirstPage/>}/>
-                <Route path="secondpage" element={<SecondPage/>}/>
-              </Route> 
+              <Route path="dashboard/quiz" element={<Quiz />}>
+                <Route path="" element={<FirstPage />} />
+                <Route path="secondpage" element={<SecondPage />} />
+              </Route>
               <Route path="/profile/*" element={<Profile />} />
               <Route path="/PurchasedPage" element={<PurchasedPage />} />
-              <Route path="/InstrucructorProfile" element={<InstrucructorProfile />} />
+              <Route
+                path="/InstrucructorProfile"
+                element={<InstrucructorProfile />}
+              />
+              <Route
+                path="/InstrucructorProfile/tools"
+                element={<InstructorTools />}
+              />
+              <Route
+                path="/InstrucructorProfile/tools/sales"
+                element={<SalesAndPerformance />}
+              />
+              <Route
+                path="/InstrucructorProfile/tools/sales/sales-history"
+                element={<SalesHistory />}
+              />
               <Route path="/Courses" element={<Courses />} />
               <Route path="/nysc" element={<Nysc />} />
               <Route path="/login" element={<Signin />} />
@@ -74,7 +87,8 @@ function App() {
               <Route path="/courseinfo" element={<CourseInfo />} />
               <Route path="/resetpassword" element={<ResetPassword />} />
               <Route path="/PaystackCard/:price" element={<PaystackCard />} />
-              <Route path="/AllPages" element={<AllPages />} /> {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
+              <Route path="/AllPages" element={<AllPages />} />{" "}
+              {/*===========>>>>>> this will be removed, not part of the code. it is just so we can navigate all pages  */}
             </Routes>
           </div>
         </div>
