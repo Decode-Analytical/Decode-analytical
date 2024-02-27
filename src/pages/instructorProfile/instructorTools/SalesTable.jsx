@@ -1,8 +1,9 @@
 import React from "react";
 import DataTable from "react-data-table-component";
-import { customStyles } from "../../../utils/CustomTableStyles";
+// import { customStyles } from "../../../utils/table-actions/CustomTableStyles";
 // import { TableData } from "../../../utils/Constants";
 import stack from "../../../assets/instructorProfileImages/sales.svg";
+import { customStyles } from "../../../utils/table-actions/CustomTableStyles";
 
 const SalesTable = ({ data }) => {
   const columns = [

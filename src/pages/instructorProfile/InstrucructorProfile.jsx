@@ -3,23 +3,18 @@ import InstructorHero from "../../components/instructorProfileComponents/Instruc
 import MainSideBar from "../../components/mainSideBar";
 import AboutInstructor from "../../components/instructorProfileComponents/AboutInstructor";
 import CoursesCreated from "../../components/instructorProfileComponents/CoursesCreated";
-import Layout from "../../components/Layout";
+import ProfileLayout from "../../components/ProfileLayout";
 
 export default function InstrucructorProfile() {
   return (
     <>
-      {/* <div className=" bg-[#dddddd] min-h-screen"> */}
-      {/* <div>
-          <MainSideBar />
-        </div> */}
-      <Layout>
+      <ProfileLayout>
         <div className="sm:ml-[12%]  bg-[#eeeeee]">
           <InstructorHero />
           <AboutInstructor />
           <CoursesCreated />
         </div>
-      </Layout>
-      {/* </div> */}
+      </ProfileLayout>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../../../components/Layout";
+import ProfileLayout from "../../../components/ProfileLayout";
 import { ToolCardData } from "../../../utils/Constants";
 import { Link } from "react-router-dom";
 
@@ -15,21 +15,15 @@ const ToolCard = ({ icon, title, text, to }) => {
   );
 };
 
-const Tools = ({ data }) => {
-  return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-[90px] gap-x-[60px] place-items-center">
-      {data.map(({ icon, title, text, to }, index) => (
-        <ToolCard key={index} icon={icon} title={title} text={text} to={to} />
-      ))}
-    </div>
-  );
-};
-
 const InstructorTools = () => {
   return (
-    <Layout title={"Tools"}>
-      <Tools data={ToolCardData} />
-    </Layout>
+    <ProfileLayout title={"Tools"}>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-10 md:gap-y-[90px] gap-x-[60px] place-items-center">
+        {ToolCardData.map(({ icon, title, text, to }, index) => (
+          <ToolCard key={index} icon={icon} title={title} text={text} to={to} />
+        ))}
+      </div>
+    </ProfileLayout>
   );
 };
 

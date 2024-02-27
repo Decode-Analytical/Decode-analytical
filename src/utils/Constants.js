@@ -9,13 +9,13 @@ export const ToolCardData = [
     icon: sales,
     title: "Sales and Performance",
     text: "Get insights into how your courses are performing in the sales market to keep track of their progress",
-    to: "/InstrucructorProfile/tools/sales",
+    to: "/InstrucructorProfile/tools/sales-performance",
   },
   {
     icon: community,
     title: "Instructors Community",
     text: "Connect with skilled instructors, ask questions, explore discussions, and more",
-    to: "/InstrucructorProfile/tools/community",
+    to: "/InstrucructorProfile/tools/instructors-community",
   },
   {
     icon: insight,
@@ -268,5 +268,24 @@ export const Session = [
     price: "300",
     enrolled: "300",
     totalIncome: "90,000",
+  },
+];
+
+const DashStatsData = [
+  {
+    title: "Total Students",
+    count: "1,024",
+  },
+  {
+    title: "Total Students",
+    count: "1,024",
+  },
+  {
+    title: "Total Students",
+    count: "1,024",
+  },
+  {
+    title: "Total Students",
+    count: "1,024",
   },
 ];
