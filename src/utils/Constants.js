@@ -271,21 +271,29 @@ export const Session = [
   },
 ];
 
-const DashStatsData = [
+export const DashStatsData = [
   {
     title: "Total Students",
     count: "1,024",
   },
   {
-    title: "Total Students",
-    count: "1,024",
+    title: "Daily Course Visit",
+    count: "1,002",
   },
   {
-    title: "Total Students",
-    count: "1,024",
+    title: "Courses Created",
+    count: "15",
   },
   {
-    title: "Total Students",
+    title: "Reviews",
     count: "1,024",
   },
+];
+
+export const AnalyticsData = [
+  { course: "A", views: 16000, purchases: 12000, students: 24000 },
+  { course: "B", views: 15000, purchases: 5000, students: 2400 },
+  { course: "C", views: 10000, purchases: 20000, students: 2400 },
+  { course: "D", views: 4000, purchases: 24000, students: 2400 },
+  { course: "E", views: 17000, purchases: 20400, students: 2400 },
 ];

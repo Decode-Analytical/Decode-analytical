@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import iconHeading from "../../assets/dashboardicon1.png"
 import rafiki from "../../assets/rafiki.png"
 import certification from "../../assets/certification.png"
@@ -12,70 +12,98 @@ import ListCourseCard from '../../components/courseCard/ListCourseCard'
 import Loader from '../../components/Loader'
 import { NavLink } from 'react-router-dom'
 import MainSideBar from '../../components/mainSideBar'
+import { AuthContext  } from '../../context/AuthContext'
 
-import { AuthContext } from '../../context/AuthContext';
+import axios from 'axios'
 
 
-const MyCourse = () => {
+const Dashboard = () => {
   const { user } = useContext(AuthContext);
-
+  
   const [loading, setLoading] = useState(true)
-  const [userP, setUserP] = useState({name:"...", imgUrl: ""})
-
-  const fetchUserData = () => {
-    fetch('https://server-eight-beige.vercel.app/api/user/viewProfile', {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${user.accessToken}`,
-      }
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log("data data:",data);
-      const name = (`${data.user.firstName} ${data.user.lastName}`)
-      setUserP({name: name, imgUrl: 'https://cdn.vcgamers.com/news/wp-content/uploads/2022/01/paquito-ml-3.jpg'})
-      fetchEnrolledCourses()
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }
-
+  
+    console.log(user, "Hello")
   const [listCourses, setListCourses] = useState([]);
-  const fetchEnrolledCourses = () => {
-    fetch('https://server-eight-beige.vercel.app/api/student/studentGet', {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${user.accessToken}`
-      }
-    })
-    .then(response => response.json())
-    .then(data => {
-      //console.log(data.studentRegisteredCourses)
-      setListCourses(data.studentRegisteredCourses);
-      setLoading(false);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }
 
+  const enrolledURL = 'https://server-eight-beige.vercel.app/api/student/studentGet';
+
+  const userDataURL = 'https://server-eight-beige.vercel.app/user/viewProfile'
+
+useEffect(() => {
+  const fetchEnrolledCourses = async () => {
+    try {
+      const response = await axios.get(enrolledURL, {
+        headers: {
+          'Authorization': `Bearer ${user.accessToken}`
+        }
+      });
+      console.log('Response:', response.data);
+      if (response.data && response.data.studentRegisteredCourses) {
+        setListCourses(response.data.studentRegisteredCourses);
+        setLoading(false);
+        console.log(user.accessToken, 'Token at Dashboard');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  fetchEnrolledCourses();
+}, [user.accessToken]);
+
+
+// =========================================================================
+// const fetchUserData = async () => {
+//   try {
+//     const response = await axios.get(userDataURL, {
+//       headers: {
+//         'Authorization': `Bearer ${user.accessToken}`
+//       }
+//     });
+//     console.log('Response:', response.data);
+//     const data = response.data;
+//     console.log("data data:", data);
+
+//     const name = `${data.user.firstName} ${data.user.lastName}`;
+
+//     setUser({ name: name, imgUrl: 'https://cdn.vcgamers.com/news/wp-content/uploads/2022/01/paquito-ml-3.jpg' });
+
+//     fetchEnrolledCourses(); // Assuming fetchEnrolledCourses is a function you have defined
+//   } catch (error) {
+//     console.error('Error fetching user data:', error);
+//   }
+// };
+
+
+
+// // Use the useEffect hook to fetch user data when the component mounts or when the token changes
+// useEffect(() => {
+//   fetchUserData();
+// }, [user.accessToken]);
+
+// =======================================================================================
 
   if (loading) {
-    fetchUserData()
+    // fetchUserData()
     return (
-      <div className='w-full h-full min-h-[500px] flex justify-center items-center'>
-        <Loader />
+      <div>
+        <div className='w-full h-full min-h-[500px] flex justify-center items-center'>
+          <Loader />
+        </div>
+        
       </div>
     )
   }
+  
   return (
+    
     <>
-    <MainSideBar name={userP.name} imgUrl={userP.imgUrl} />
+      
+    <MainSideBar name={user.firstName} imgUrl={user.picture.length > 0 ? user.picture[0].path : ""} />
 
     <div className='flex flex-1 bg-bwhite'>
       <div className='flex justify-between flex-1 shadow-md px-3 md:px-20'>
-          <h2 className='text-3xl font-extrabold flex items-center'>Your Courses</h2>
+          <h2 className='text-3xl font-extrabold flex items-center'>My Dashboard</h2>
           <img src={iconHeading} alt="" />
       </div>
     </div>
@@ -116,6 +144,21 @@ const MyCourse = () => {
 
         <ListCourseCard title="Completed Courses" list={listCourses} />
 
+      {/* Claimed certificat */}
+      <div>
+        <div className='flex justify-between pt-3 pb-2 border-b-2 mb-4 mx-6 mt-6'>
+            <h3 className='font-semibold text-lg'>Claimed Certification (5)</h3>
+            <p className='text-gray-400'>see all</p>
+        </div>
+        <div className='flex flex-wrap justify-evenly gap-2'>
+            <div className='h-80 w-[40%] bg-pink-300 rounded min-w-[300px]'>
+                {/* certificate image here */}
+            </div>
+            <div className='h-80 w-[40%] bg-pink-300 rounded min-w-[300px]'>
+                {/* certificate image here */}
+            </div>
+        </div>
+      </div>
         <ListCourseCard title="Similar Courses" list={listCourses} />
 
         <ListCourseCard title="Recommanded Courses" list={listCourses} />
@@ -150,7 +193,8 @@ const MyCourse = () => {
       </nav>
     </div>
     </>
+    
   )
 }
 
-export default MyCourse
+export default Dashboard
