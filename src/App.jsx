@@ -70,11 +70,11 @@ function App() {
                 element={<InstructorTools />}
               />
               <Route
-                path="/InstrucructorProfile/tools/sales"
+                path="/InstrucructorProfile/tools/sales-performance"
                 element={<SalesAndPerformance />}
               />
               <Route
-                path="/InstrucructorProfile/tools/sales/sales-history"
+                path="/InstrucructorProfile/tools/sales-performance/sales-history"
                 element={<SalesHistory />}
               />
               <Route path="/Courses" element={<Courses />} />

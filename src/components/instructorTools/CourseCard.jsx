@@ -1,6 +1,5 @@
 import React from "react";
-import { MdOutlineArrowForward } from "react-icons/md";
-import { Link } from "react-router-dom";
+import DetailsCard from "./DetailsCard";
 
 const CourseTileGroup = ({ data, date }) => {
   return (
@@ -23,21 +22,7 @@ const CourseTileGroup = ({ data, date }) => {
 
 const CourseCard = ({ title, sub, to, courseData }) => {
   return (
-    <div className="bg-shadow rounded-md p-5 flex-1">
-      <div className="">
-        <div className="flex justify-between">
-          <h2 className="font-bold text-xl mb-1">{title}</h2>
-          <select
-            className="w-[110px] rounded-lg bg-white text-sm"
-            name=""
-            id=""
-          >
-            <option value="weekly">This Week</option>
-            <option value="monthly">This Month</option>
-          </select>
-        </div>
-        <p>{sub}</p>
-      </div>
+    <DetailsCard title={title} sub={sub} to={to} minW={"419"}>
       <div className="h-[250px] overflow-scroll my-4">
         <div className="">
           {courseData.map(({ date, data }, index) => (
@@ -45,12 +30,7 @@ const CourseCard = ({ title, sub, to, courseData }) => {
           ))}
         </div>
       </div>
-
-      <Link className="font-semibold flex items-center gap-3 mt-10" to={to}>
-        VIEW DETAILS
-        <MdOutlineArrowForward className="text-xl" />
-      </Link>
-    </div>
+    </DetailsCard>
   );
 };
 
