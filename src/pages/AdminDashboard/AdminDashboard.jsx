@@ -9,7 +9,7 @@ import Chart from "react-apexcharts";
 import { useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
-  const  navigate  = useNavigate();
+  const navigate = useNavigate();
   let cardsData = [
     {
       id: 1,

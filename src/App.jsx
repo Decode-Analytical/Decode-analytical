@@ -38,12 +38,22 @@ import ResetPassword from "./pages/authetication/ResetPassword";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Nysc from "./pages/authetication/Nysc";
 import CourseOverview from "./components/coursesComponents/premium/CourseOverview";
-import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
+// import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 import NoAuthPage from "./pages/NoAuth/noAuthPage";
 import AdminLogin from "./pages/AdminLogin/adminLogin";
 import PaystackCard from "./components/cartAndPaymentComponents/PaystackCard";
 import ScheduleMeeting from "./pages/scheduleMeeting/ScheduleMeeting";
 import Upload from "./pages/uploadCourses/Upload";
+import AdminDashboard from "./pages/AdminDashboard/Index";
+import AdminTools from "./pages/AdminDashboard/adminTools/Index";
+import AdminMessages from "./pages/AdminDashboard/AdminMessages";
+import AdminHelpCenter from "./pages/AdminDashboard/adminHelpCenter";
+import AdminLogout from "./pages/AdminDashboard/AdminLogout";
+import ProfileLayout from "./components/ProfileLayout";
+import AdminForum from "./pages/AdminDashboard/AdminForum";
+import SalesAndPerformance from "./pages/AdminDashboard/adminTools/SalesAndPerformance";
+import SalesHistory from "./pages/AdminDashboard/adminTools/SalesHistory";
+import AdminCourses from "./pages/AdminDashboard/AdminCourses";
 
 function App() {
   return (
@@ -86,7 +96,33 @@ function App() {
               <Route path="/noAuth" element={<NoAuthPage />} />
               <Route path="/newmodule/:courseId" element={<NewModules />} />
               <Route path="/newcourse" element={<NewCourse />} />
-              <Route path="/AdminDashboard" element={<AdminDashboard />} />
+              {/* <Route path="/dashboard" element={<ProfileLayout />}> */}
+              <Route path="/admin-dashboard" element={<AdminDashboard />} />
+              <Route
+                path="/admin-dashboard/courses"
+                element={<AdminCourses />}
+              />
+              <Route path="/admin-dashboard/tools" element={<AdminTools />} />
+              <Route
+                path="/admin-dashboard/tools/sales-performance"
+                element={<SalesAndPerformance />}
+              />
+              <Route
+                path="/admin-dashboard/tools/sales-performance/sales-history"
+                element={<SalesHistory />}
+              />
+              {/* <Route path="/admin-dashboard/tools" element={<AdminTools />} /> */}
+              <Route path="/admin-dashboard/forum" element={<AdminForum />} />
+              <Route
+                path="/admin-dashboard/messages"
+                element={<AdminMessages />}
+              />
+              <Route
+                path="/admin-dashboard/Help-center"
+                element={<AdminHelpCenter />}
+              />
+              <Route path="/admin-dashboard/logout" element={<AdminLogout />} />
+              {/* </Route> */}
               <Route path="/PaystackCard/:price" element={<PaystackCard />} />
               <Route path="/AllPages" element={<AllPages />} />{" "}
               <Route path="/schedulemeeting" element={<ScheduleMeeting />} />

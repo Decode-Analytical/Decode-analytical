@@ -9,7 +9,7 @@ export const useLogin = () => {
   // isloading is used on buton
   const [isLoading, setIsloading] = useState(false);
   const { dispatch } = useAuthContext();
-  const baseURL = import.meta.env.VITE_BASE_URL
+  const baseURL = import.meta.env.VITE_BASE_URL;
 
   const login = async (email, password, role) => {
     setIsloading(true);
@@ -17,23 +17,17 @@ export const useLogin = () => {
     let response;
 
     if (role == "student") {
-      response = await fetch(
-        `${baseURL}user/login`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password }),
-        }
-      );
-    } else if(role == "admin") {
-        response = await fetch(
-            `${baseURL}admin/adminSignIn`,
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ email, password }),
-            }
-          );
+      response = await fetch(`${baseURL}user/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+    } else if (role == "admin") {
+      response = await fetch(`${baseURL}admin/adminSignIn`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
     }
 
     const json = await response.json();
@@ -54,7 +48,7 @@ export const useLogin = () => {
       if (json.user.roles == "student") {
         navigate("/");
       } else {
-        navigate("/AdminDashboard");
+        navigate("/admin-dashboard");
       }
     }
   };
