@@ -1,10 +1,10 @@
 import React from "react";
-import ProfileLayout from "../../components/ProfileLayout";
-import Button from "../../utils/Button";
+import ProfileLayout from "../../../components/ProfileLayout";
+import Button from "../../../utils/Button";
 import { IoIosAdd } from "react-icons/io";
-import StatsCard from "../../components/AdminDashboard/StatsCard";
-import CourseBanner from "../../components/adminCourses/CourseBanner";
-import { CompletedCourses, OngoingCourses } from "../../utils/Constants";
+import StatsCard from "../../../components/AdminDashboard/StatsCard";
+import CourseBanner from "../../../components/adminCourses/CourseBanner";
+import { CompletedCourses, OngoingCourses } from "../../../utils/Constants";
 
 const AdminCourses = () => {
   return (

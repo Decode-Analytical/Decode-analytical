@@ -22,7 +22,7 @@ export default function adminLogin() {
   };
 
   const handleClose = () => {
-    navigate("/");
+    navigate("/dashboard");
   };
 
   if (isLoading) {

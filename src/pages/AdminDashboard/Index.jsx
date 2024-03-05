@@ -9,7 +9,7 @@ const AdminDashboard = () => {
 
   return (
     <ProfileLayout title={"Dashboard"}>
-      <h2 className="font-bold mb-20 text-2xl">
+      <h2 className="font-bold mb-14 text-2xl">
         Welcome back, {authUser.firstName}
       </h2>
 

@@ -1,5 +1,5 @@
 import React from "react";
-import ProfileLayout from "../../components/ProfileLayout";
+import ProfileLayout from "../../../components/ProfileLayout";
 
 const AdminMessages = () => {
   return <ProfileLayout title={"Messages"}>AdminMessages</ProfileLayout>;

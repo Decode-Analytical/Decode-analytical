@@ -46,14 +46,15 @@ import ScheduleMeeting from "./pages/scheduleMeeting/ScheduleMeeting";
 import Upload from "./pages/uploadCourses/Upload";
 import AdminDashboard from "./pages/AdminDashboard/Index";
 import AdminTools from "./pages/AdminDashboard/adminTools/Index";
-import AdminMessages from "./pages/AdminDashboard/AdminMessages";
-import AdminHelpCenter from "./pages/AdminDashboard/adminHelpCenter";
+import AdminMessages from "./pages/AdminDashboard/adminMessages/Index";
+import AdminHelpCenter from "./pages/AdminDashboard/adminHelpCenter/Index";
 import AdminLogout from "./pages/AdminDashboard/AdminLogout";
-import ProfileLayout from "./components/ProfileLayout";
-import AdminForum from "./pages/AdminDashboard/AdminForum";
+import AdminForum from "./pages/AdminDashboard/adminForum/Index";
 import SalesAndPerformance from "./pages/AdminDashboard/adminTools/SalesAndPerformance";
 import SalesHistory from "./pages/AdminDashboard/adminTools/SalesHistory";
-import AdminCourses from "./pages/AdminDashboard/AdminCourses";
+import AdminWallet from "./pages/AdminDashboard/adminWallet/Index";
+import AdminSettings from "./pages/AdminDashboard/adminSettings/Index";
+import AdminCourses from "./pages/AdminDashboard/AdminCourses/Index";
 
 function App() {
   return (
@@ -97,7 +98,10 @@ function App() {
               <Route path="/newmodule/:courseId" element={<NewModules />} />
               <Route path="/newcourse" element={<NewCourse />} />
               {/* <Route path="/dashboard" element={<ProfileLayout />}> */}
-              <Route path="/admin-dashboard" element={<AdminDashboard />} />
+              <Route
+                path="/admin-dashboard/dashboard"
+                element={<AdminDashboard />}
+              />
               <Route
                 path="/admin-dashboard/courses"
                 element={<AdminCourses />}
@@ -118,8 +122,13 @@ function App() {
                 element={<AdminMessages />}
               />
               <Route
-                path="/admin-dashboard/Help-center"
+                path="/admin-dashboard/help-center"
                 element={<AdminHelpCenter />}
+              />
+              <Route path="/admin-dashboard/wallet" element={<AdminWallet />} />
+              <Route
+                path="/admin-dashboard/settings"
+                element={<AdminSettings />}
               />
               <Route path="/admin-dashboard/logout" element={<AdminLogout />} />
               {/* </Route> */}
