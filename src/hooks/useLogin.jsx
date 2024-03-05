@@ -48,7 +48,7 @@ export const useLogin = () => {
       if (json.user.roles == "student") {
         navigate("/");
       } else {
-        navigate("/admin-dashboard");
+        navigate("/admin-dashboard/dashboard");
       }
     }
   };
