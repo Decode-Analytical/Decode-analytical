@@ -26,9 +26,17 @@ const SalesHistory = () => {
       <Heading title={"Sales History"} ml={"4"} />
       <Tab
         title1={"Original Course"}
-        child1={<SalesTable data={courses} isLoading={isLoading} />}
+        child1={
+          <SalesTable data={courses} isLoading={isLoading} error={error} />
+        }
         title2={"Live Session"}
-        child2={<SalesTable data={sessions} />}
+        child2={
+          <SalesTable
+            data={sessions}
+            isLoading={sessionLoading}
+            error={sessionError}
+          />
+        }
       />
     </ProfileLayout>
   );

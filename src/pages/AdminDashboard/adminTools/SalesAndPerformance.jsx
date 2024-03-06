@@ -6,7 +6,7 @@ import CourseCard from "../../../components/adminTools/CourseCard";
 import SalesStats from "../../../components/adminTools/SalesStats";
 import TopPerformances from "../../../components/adminTools/TopPerformances";
 import { useFetchAdminCourses } from "../../../hooks/useFetchAdminCourses";
-import { currencyFormatter } from "../../../utils/functs";
+import { currencyFormatter } from "../../../utils/functn";
 import { useFetchAdminSessions } from "../../../hooks/useFetchAdminSession";
 
 const SalesAndPerformance = () => {
@@ -71,6 +71,7 @@ const SalesAndPerformance = () => {
             to={"/admin-dashboard/tools/sales-performance/sales-history"}
             courseData={courses}
             isLoading={isLoading}
+            error={error}
           />
           <CourseCard
             heading={"Live Session Sales"}
@@ -78,6 +79,7 @@ const SalesAndPerformance = () => {
             to={"/admin-dashboard/tools/sales-performance/sales-history"}
             courseData={sessions}
             isLoading={sessionLoading}
+            error={sessionError}
           />
         </div>
         <div>

@@ -28,8 +28,8 @@ const AdminSidebar = () => {
     {
       name: "Dashboard",
       icon: <PiSquaresFourBold className="text-[32px]" />,
-      path: "dashboard",
-      link: "/admin-dashboard/dashboard",
+      path: "home",
+      link: "/admin-dashboard/home",
     },
     {
       name: "Courses",
@@ -109,7 +109,7 @@ const AdminSidebar = () => {
                 menuOpen ? "w-[215px]" : ""
               } transition-[width] duration-700 ease-in-out overflow-hidden`}
               style={{
-                ...(currentRoute.endsWith(item.path)
+                ...(currentRoute.includes(item.path)
                   ? {
                       backgroundColor: "#D9DBE5",
                       color: "#040E53",

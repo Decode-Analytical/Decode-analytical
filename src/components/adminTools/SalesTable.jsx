@@ -6,9 +6,9 @@ import stack from "../../assets/adminDashboardImages/sales.svg";
 import { customStyles } from "../../utils/table-actions/CustomTableStyles";
 import { format } from "date-fns";
 import Spinner from "../../utils/Spinner";
-import { currencyFormatter } from "../../utils/functs";
+import { currencyFormatter } from "../../utils/functn";
 
-const SalesTable = ({ isLoading, data }) => {
+const SalesTable = ({ isLoading, data, error }) => {
   const columns = [
     {
       cell: (row) => (
@@ -60,6 +60,8 @@ const SalesTable = ({ isLoading, data }) => {
     <>
       {isLoading ? (
         <Spinner />
+      ) : error ? (
+        <p className="mb-5 font-semibold text-sm">Error fetching data</p>
       ) : (
         <DataTable
           columns={columns}

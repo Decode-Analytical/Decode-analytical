@@ -98,7 +98,7 @@ function App() {
               <Route path="/newcourse" element={<NewCourse />} />
               {/* <Route path="/dashboard" element={<ProfileLayout />}> */}
               <Route
-                path="/admin-dashboard/dashboard"
+                path="/admin-dashboard/home"
                 element={<AdminDashboard />}
               />
               <Route
