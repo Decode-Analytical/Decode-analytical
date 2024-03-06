@@ -8,9 +8,12 @@ import { GrCircleQuestion } from "react-icons/gr";
 import { LuSettings } from "react-icons/lu";
 import { FiLogOut } from "react-icons/fi";
 import { BiWalletAlt } from "react-icons/bi";
+import { useLogout } from "../hooks/useLogout";
 
 const AdminSidebar = () => {
   const authUser = JSON.parse(localStorage.getItem("user")).user;
+
+  const { logout } = useLogout();
   const currentRoute = useLocation().pathname;
 
   const [menuOpen, setMenuopen] = useState(false);
@@ -63,11 +66,6 @@ const AdminSidebar = () => {
       icon: <LuSettings className="text-[30px]" />,
       path: "settings",
       link: "/admin-dashboard/settings",
-    },
-    {
-      name: "Logout",
-      icon: <FiLogOut className="text-[30px]" />,
-      link: "/admin-dashboard/logout",
     },
   ];
 
@@ -125,6 +123,23 @@ const AdminSidebar = () => {
             </NavLink>
           </div>
         ))}
+        <div className={`text-white flex gap-2`}>
+          <button
+            onClick={logout}
+            className={`flex gap-4 px-3 py-2 hover:bg-gray1 font-bold  hover:text-blue1 rounded-md cursor-pointer items-center duration-500  ${
+              menuOpen ? "w-[215px]" : ""
+            } transition-[width] duration-1000 ease-in-out overflow-hidden`}
+          >
+            <div>
+              <FiLogOut className="text-[30px]" />
+            </div>
+            {menuOpen && (
+              <div className="min-w-[160px] uppercase flex justify-start">
+                Logout
+              </div>
+            )}
+          </button>
+        </div>
       </div>
     </div>
   );

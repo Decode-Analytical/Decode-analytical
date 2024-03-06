@@ -48,7 +48,6 @@ import AdminDashboard from "./pages/AdminDashboard/Index";
 import AdminTools from "./pages/AdminDashboard/adminTools/Index";
 import AdminMessages from "./pages/AdminDashboard/adminMessages/Index";
 import AdminHelpCenter from "./pages/AdminDashboard/adminHelpCenter/Index";
-import AdminLogout from "./pages/AdminDashboard/AdminLogout";
 import AdminForum from "./pages/AdminDashboard/adminForum/Index";
 import SalesAndPerformance from "./pages/AdminDashboard/adminTools/SalesAndPerformance";
 import SalesHistory from "./pages/AdminDashboard/adminTools/SalesHistory";
@@ -130,7 +129,6 @@ function App() {
                 path="/admin-dashboard/settings"
                 element={<AdminSettings />}
               />
-              <Route path="/admin-dashboard/logout" element={<AdminLogout />} />
               {/* </Route> */}
               <Route path="/PaystackCard/:price" element={<PaystackCard />} />
               <Route path="/AllPages" element={<AllPages />} />{" "}
