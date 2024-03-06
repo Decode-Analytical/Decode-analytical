@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuthContext } from "./authContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const useLogin = () => {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ export const useLogin = () => {
 
     if (!response.ok) {
       setIsloading(false);
+      toast.error(json.message);
       setError(json.message);
     }
 
@@ -48,6 +50,7 @@ export const useLogin = () => {
       if (json.user.roles == "student") {
         navigate("/");
       } else {
+        toast.success("Login successful");
         navigate("/admin-dashboard/dashboard");
       }
     }

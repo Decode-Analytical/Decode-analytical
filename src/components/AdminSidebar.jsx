@@ -75,7 +75,7 @@ const AdminSidebar = () => {
       onMouseLeave={toggleCloseMenu}
       className={`flex flex-col 
       ${menuOpen ? "w-[250px]" : "w-[95px]"} 
-         h-screen text-white fixed left-0 bg-blue1 px-4 gap-10 z-50 transition-[width] duration-1000 ease-in-out uppercase`}
+         h-screen text-white fixed left-0 bg-blue1 px-4 gap-10 z-50 transition-[width] duration-700 ease-in-out uppercase`}
     >
       <div className={`flex items-start min-h-[65px] px-1 gap-4 mt-10`}>
         <img
@@ -85,7 +85,7 @@ const AdminSidebar = () => {
         <div
           className={`${
             menuOpen ? "block" : "hidden"
-          } transition-[display] duration-1000 ease-in-out  overflow-hidden`}
+          } transition-[display] duration-700 ease-in-out  overflow-hidden`}
         >
           {menuOpen && (
             <p className="text-xl min-w-[160px] font-medium">
@@ -107,7 +107,7 @@ const AdminSidebar = () => {
               to={item.link}
               className={`flex gap-4 px-3 py-2 hover:bg-gray1 font-bold  hover:text-blue1 rounded-md cursor-pointer items-center duration-500  ${
                 menuOpen ? "w-[215px]" : ""
-              } transition-[width] duration-1000 ease-in-out overflow-hidden`}
+              } transition-[width] duration-700 ease-in-out overflow-hidden`}
               style={{
                 ...(currentRoute.endsWith(item.path)
                   ? {
@@ -128,7 +128,7 @@ const AdminSidebar = () => {
             onClick={logout}
             className={`flex gap-4 px-3 py-2 hover:bg-gray1 font-bold  hover:text-blue1 rounded-md cursor-pointer items-center duration-500  ${
               menuOpen ? "w-[215px]" : ""
-            } transition-[width] duration-1000 ease-in-out overflow-hidden`}
+            } transition-[width] duration-700 ease-in-out overflow-hidden`}
           >
             <div>
               <FiLogOut className="text-[30px]" />
