@@ -21,7 +21,7 @@ const Upload = () => {
     show: false,
     mess: "",
     err: false,
-    mess: "",
+    // mess: "",
   });
   function updateCourse() {
     setSelectedCourse({ ...selectedCourse, select: false });
@@ -41,14 +41,17 @@ const Upload = () => {
     setIsOpen(false);
     setModuleSuccess({ show: false, mess: "" });
   }
-  
-  const ModuleAlertError =useCallback((message) => {
-    setModuleSuccess({ mess: message, err: true });
-  },[moduleSuccess])
-  
-  const CloseModuleAlertError =useCallback(() => {
+
+  const ModuleAlertError = useCallback(
+    (message) => {
+      setModuleSuccess({ mess: message, err: true });
+    },
+    [moduleSuccess]
+  );
+
+  const CloseModuleAlertError = useCallback(() => {
     setModuleSuccess({ mess: "", err: false });
-  },[moduleSuccess])
+  }, [moduleSuccess]);
 
   const AlertCourseError = useCallback(
     (message) => {
@@ -58,13 +61,15 @@ const Upload = () => {
     [selectedCourse]
   );
 
-  const CloseAlertCourseError = useCallback(
-    () => {
-      console.log("CLose the alert");
-      setCourseSuccess({ show: false, mess: "", err: false, mess: "" });
-    },
-    [selectedCourse]
-  );
+  const CloseAlertCourseError = useCallback(() => {
+    console.log("CLose the alert");
+    setCourseSuccess({
+      show: false,
+      mess: "",
+      err: false,
+      // mess: ""
+    });
+  }, [selectedCourse]);
 
   // function AlertCourseError(message) {
   //   console.log(message, "This the error of course ")
@@ -82,7 +87,7 @@ const Upload = () => {
           CLick={CloseAlertCourseError}
         />
       )}
-      {moduleSuccess.err  && (
+      {moduleSuccess.err && (
         <WarningAlert
           heading="Upload Failed"
           paragrapgh={moduleSuccess.mess}
@@ -92,7 +97,11 @@ const Upload = () => {
       {selectedCourse.select ? (
         <CourseUpload update={showAlert} ErrorC={AlertCourseError} />
       ) : (
-        <ModuleUpload id={selectedCourse.id} Alert={showModuleAlert} ErrorM={ModuleAlertError} />
+        <ModuleUpload
+          id={selectedCourse.id}
+          Alert={showModuleAlert}
+          ErrorM={ModuleAlertError}
+        />
       )}
       <Footer />
       {courseSuccess && (

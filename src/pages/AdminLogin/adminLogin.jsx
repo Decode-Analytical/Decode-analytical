@@ -5,7 +5,7 @@ import close from "../../assets/auth images/Vector.png";
 import AuthFooter from "./adminFooter";
 import { useLogin } from "../../hooks/useLogin";
 import { Link, useNavigate } from "react-router-dom";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import LoadingSpinner from "../../utils/LoadingSpinner";
 
 export default function adminLogin() {
   const navigate = useNavigate();
@@ -24,14 +24,6 @@ export default function adminLogin() {
   const handleClose = () => {
     navigate("/");
   };
-
-  if (isLoading) {
-    return (
-      <div className="w-full h-screen flex justify-center items-center">
-        <AiOutlineLoading3Quarters rotate={"90%"} size={50} />
-      </div>
-    );
-  }
 
   return (
     <div className="bg-zinc-100 py-10 min-h-screen">
@@ -52,7 +44,6 @@ export default function adminLogin() {
         <p className="ms-3 my-5 text-xs text-center font-semibold">
           Sign in your Admin account
         </p>
-
         <div>
           <form>
             <label htmlFor="email" className="font-bold text-sm">
@@ -75,7 +66,7 @@ export default function adminLogin() {
                 htmlFor=""
                 className="font-bold text-xs mt-2 float-right text-[#040E53]"
               >
-                Forget Password
+                Forgot Password
               </label>
             </Link>
             <input
@@ -88,10 +79,12 @@ export default function adminLogin() {
             <button
               type="submit"
               disabled={isLoading}
-              className="h-16 text-lg text-center w-full bg-[#FFCD05]"
+              className={`h-16 text-lg text-center w-full ${
+                isLoading ? "bg-[#f1d873]" : "bg-[#FFCD05]"
+              }`}
               onClick={handleSubmit}
             >
-              Log In
+              {isLoading ? <LoadingSpinner /> : "Log In"}
             </button>
             {error && (
               <div>
