@@ -38,22 +38,21 @@ import ResetPassword from "./pages/authetication/ResetPassword";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Nysc from "./pages/authetication/Nysc";
 import CourseOverview from "./components/coursesComponents/premium/CourseOverview";
-// import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 import NoAuthPage from "./pages/NoAuth/noAuthPage";
 import AdminLogin from "./pages/AdminLogin/adminLogin";
 import PaystackCard from "./components/cartAndPaymentComponents/PaystackCard";
 import ScheduleMeeting from "./pages/scheduleMeeting/ScheduleMeeting";
 import Upload from "./pages/uploadCourses/Upload";
 import AdminDashboard from "./pages/AdminDashboard/Index";
-import AdminTools from "./pages/AdminDashboard/adminTools/Index";
-import AdminMessages from "./pages/AdminDashboard/adminMessages/Index";
-import AdminHelpCenter from "./pages/AdminDashboard/adminHelpCenter/Index";
-import AdminForum from "./pages/AdminDashboard/adminForum/Index";
-import SalesAndPerformance from "./pages/AdminDashboard/adminTools/SalesAndPerformance";
-import SalesHistory from "./pages/AdminDashboard/adminTools/SalesHistory";
 import AdminWallet from "./pages/AdminDashboard/adminWallet/Index";
+import AdminHelpCenter from "./pages/AdminDashboard/adminHelpCenter/Index";
+import AdminMessages from "./pages/AdminDashboard/adminMessages/Index";
+import AdminForum from "./pages/AdminDashboard/adminForum/Index";
+import AdminCourses from "./pages/AdminDashboard/adminCourses/Index";
+import SalesAndPerformance from "./pages/AdminDashboard/adminTools/SalesAndPerformance";
 import AdminSettings from "./pages/AdminDashboard/adminSettings/Index";
-import AdminCourses from "./pages/AdminDashboard/AdminCourses/Index";
+import AdminTools from "./pages/AdminDashboard/adminTools/Index";
+import SalesHistory from "./pages/AdminDashboard/adminTools/SalesHistory";
 
 function App() {
   return (
@@ -96,7 +95,6 @@ function App() {
               <Route path="/noAuth" element={<NoAuthPage />} />
               <Route path="/newmodule/:courseId" element={<NewModules />} />
               <Route path="/newcourse" element={<NewCourse />} />
-              {/* <Route path="/dashboard" element={<ProfileLayout />}> */}
               <Route
                 path="/admin-dashboard/home"
                 element={<AdminDashboard />}
@@ -114,7 +112,6 @@ function App() {
                 path="/admin-dashboard/tools/sales-performance/sales-history"
                 element={<SalesHistory />}
               />
-              {/* <Route path="/admin-dashboard/tools" element={<AdminTools />} /> */}
               <Route path="/admin-dashboard/forum" element={<AdminForum />} />
               <Route
                 path="/admin-dashboard/messages"
