@@ -3,8 +3,8 @@ import DataTable from "react-data-table-component";
 import stack from "../../assets/adminDashboardImages/sales.svg";
 import { customStyles } from "../../utils/table-actions/CustomTableStyles";
 import { format } from "date-fns";
-import Spinner from "../../utils/Spinner";
 import { currencyFormatter } from "../../utils/functn";
+import Spinner from "../Spinner";
 
 const SalesTable = ({ isLoading, data, error }) => {
   const columns = [

@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import ProfileLayout from "../../../components/ProfileLayout";
-import { Heading } from "../../../utils/Heading";
-// import CourseCard from "../../../components/courseCard/CourseCard";
 import CourseCard from "../../../components/adminTools/CourseCard";
 import SalesStats from "../../../components/adminTools/SalesStats";
 import TopPerformances from "../../../components/adminTools/TopPerformances";
-import { useFetchAdminCourses } from "../../../hooks/useFetchAdminCourses";
 import { currencyFormatter } from "../../../utils/functn";
+import { Heading } from "../../../components/Heading";
+import { useFetchAdminCourses } from "../../../hooks/useFetchAdminCourses";
 import { useFetchAdminSessions } from "../../../hooks/useFetchAdminSession";
 
 const SalesAndPerformance = () => {

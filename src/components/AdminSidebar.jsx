@@ -9,6 +9,7 @@ import { LuSettings } from "react-icons/lu";
 import { FiLogOut } from "react-icons/fi";
 import { BiWalletAlt } from "react-icons/bi";
 import { useLogout } from "../hooks/useLogout";
+import { IoPerson } from "react-icons/io5";
 
 const AdminSidebar = () => {
   const authUser = JSON.parse(localStorage.getItem("user")).user;
@@ -78,10 +79,16 @@ const AdminSidebar = () => {
          h-screen text-white fixed left-0 bg-blue1 px-4 gap-10 z-50 transition-[width] duration-700 ease-in-out uppercase`}
     >
       <div className={`flex items-start min-h-[65px] px-1 gap-4 mt-10`}>
-        <img
-          className="max-w-[50px] mt-1 rounded-full"
-          src={authUser.picture[0].path}
-        />
+        {authUser?.picture[0]?.path ? (
+          <img
+            className="max-w-[50px] mt-1 rounded-full"
+            src={authUser?.picture[0]?.path}
+          />
+        ) : (
+          <div className="flex justify-center items-center min-w-[50px] h-[50px] bg-gray-400 mt-1 rounded-full">
+            <IoPerson className="text-[30px] text-white" />
+          </div>
+        )}
         <div
           className={`${
             menuOpen ? "block" : "hidden"
@@ -89,7 +96,7 @@ const AdminSidebar = () => {
         >
           {menuOpen && (
             <p className="text-xl min-w-[160px] font-medium">
-              {authUser.firstName}
+              {authUser?.firstName}
             </p>
           )}
           {menuOpen && (
@@ -109,7 +116,7 @@ const AdminSidebar = () => {
                 menuOpen ? "w-[215px]" : ""
               } transition-[width] duration-700 ease-in-out overflow-hidden`}
               style={{
-                ...(currentRoute.includes(item.path)
+                ...(currentRoute.includes(item?.path)
                   ? {
                       backgroundColor: "#D9DBE5",
                       color: "#040E53",
@@ -118,8 +125,8 @@ const AdminSidebar = () => {
                   : {}),
               }}
             >
-              <div>{item.icon}</div>
-              {menuOpen && <div className="min-w-[160px] ">{item.name}</div>}
+              <div>{item?.icon}</div>
+              {menuOpen && <div className="min-w-[160px] ">{item?.name}</div>}
             </NavLink>
           </div>
         ))}
