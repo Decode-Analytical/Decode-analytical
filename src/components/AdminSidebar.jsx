@@ -10,6 +10,7 @@ import { FiLogOut } from "react-icons/fi";
 import { BiWalletAlt } from "react-icons/bi";
 import { useLogout } from "../hooks/useLogout";
 import { IoPerson } from "react-icons/io5";
+import { LuWallet } from "react-icons/lu";
 
 const AdminSidebar = () => {
   const authUser = JSON.parse(localStorage.getItem("user")).user;
@@ -46,7 +47,7 @@ const AdminSidebar = () => {
     },
     {
       name: "Wallet",
-      icon: <BiWalletAlt className="text-[30px]" />,
+      icon: <LuWallet className="text-[30px]" />,
       path: "wallet",
       link: "/admin-dashboard/wallet",
     },
@@ -75,8 +76,8 @@ const AdminSidebar = () => {
       onMouseEnter={toggleOpenMenu}
       onMouseLeave={toggleCloseMenu}
       className={`flex flex-col 
-      ${menuOpen ? "w-[250px]" : "w-[95px]"} 
-         h-screen text-white fixed left-0 bg-blue1 px-4 gap-10 z-50 transition-[width] duration-700 ease-in-out uppercase`}
+      ${menuOpen ? "w-[250px]" : "w-[85px]"} 
+         h-screen text-gray3 fixed left-0 bg-white1 px-4 gap-10 z-50 transition-[width] duration-700 ease-in-out uppercase bg-shadow`}
     >
       <div className={`flex items-start min-h-[65px] px-1 gap-4 mt-10`}>
         {authUser?.picture[0]?.path ? (
@@ -86,7 +87,7 @@ const AdminSidebar = () => {
           />
         ) : (
           <div className="flex justify-center items-center min-w-[50px] h-[50px] bg-gray-400 mt-1 rounded-full">
-            <IoPerson className="text-[30px] text-white" />
+            <IoPerson className="text-[30px] text-white1" />
           </div>
         )}
         <div
@@ -100,7 +101,7 @@ const AdminSidebar = () => {
             </p>
           )}
           {menuOpen && (
-            <p className="font-semibold px-2 bg-[#005508] rounded-md text-sm w-fit">
+            <p className="font-semibold px-2 bg-[#005508] rounded-md text-sm text-white1 w-fit">
               INSTRUCTOR
             </p>
           )}
@@ -108,18 +109,18 @@ const AdminSidebar = () => {
       </div>
       <div className={`flex flex-col gap-4`}>
         {sideBarItems.map((item, index) => (
-          <div key={index} className={`text-white flex gap-2`}>
+          <div key={index} className={`text-gray3 flex gap-2`}>
             <NavLink
               onClick={toggleCloseMenu}
               to={item.link}
-              className={`flex gap-4 px-3 py-2 hover:bg-gray1 font-bold  hover:text-blue1 rounded-md cursor-pointer items-center duration-500  ${
+              className={`flex gap-4 px-3 py-2 hover:bg-gray1 font-bold  hover:text-gray3 rounded-md cursor-pointer items-center duration-500  ${
                 menuOpen ? "w-[215px]" : ""
               } transition-[width] duration-700 ease-in-out overflow-hidden`}
               style={{
                 ...(currentRoute.includes(item?.path)
                   ? {
                       backgroundColor: "#D9DBE5",
-                      color: "#040E53",
+                      color: "#303030",
                       fontWeight: 700,
                     }
                   : {}),
@@ -130,10 +131,10 @@ const AdminSidebar = () => {
             </NavLink>
           </div>
         ))}
-        <div className={`text-white flex gap-2`}>
+        <div className={`text-gray3 flex gap-2`}>
           <button
             onClick={logout}
-            className={`flex gap-4 px-3 py-2 hover:bg-gray1 font-bold  hover:text-blue1 rounded-md cursor-pointer items-center duration-500  ${
+            className={`flex gap-4 px-3 py-2 hover:bg-gray1 font-bold  hover:text-gray3 rounded-md cursor-pointer items-center duration-500  ${
               menuOpen ? "w-[215px]" : ""
             } transition-[width] duration-700 ease-in-out overflow-hidden`}
           >

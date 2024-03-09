@@ -30,8 +30,10 @@ export default {
         montserrat: ["montserrat", "sans"],
       },
       colors: {
+        white1: "#fff",
         gray1: "#D9DBE5",
         gray2: "#B1B4CA",
+        gray3: "#303030",
         gray6: "#1E1E1E",
         blue1: "#040E53",
         green1: "#067934",

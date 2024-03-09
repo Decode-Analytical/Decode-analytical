@@ -6,7 +6,7 @@ import ProfileHeader from "./ProfileHeader";
 const ProfileLayout = ({ title, px, children }) => {
   return (
     <div className="flex mb-6">
-      <div className="min-w-[98px]">
+      <div className="min-w-[85px]">
         <AdminSidebar />
         {/* <AdminSidebar2 /> */}
         <div className="md:w-[80px]" />
