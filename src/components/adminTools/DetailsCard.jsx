@@ -1,5 +1,5 @@
 import React from "react";
-import ViewDetailsLink from "../../utils/ViewDetails";
+import ViewDetailsLink from "../ViewDetails";
 
 const DetailsCard = ({ heading, sub, to, minW, children }) => {
   return (

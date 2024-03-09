@@ -1,5 +1,5 @@
 import React from "react";
-import CourseImg from "../../assets/adminDashboardImages/courseimg1.svg";
+// import CourseImg from "../../assets/adminDashboardImages/courseimg1.svg";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { LuSend } from "react-icons/lu";
 import { FiEdit } from "react-icons/fi";

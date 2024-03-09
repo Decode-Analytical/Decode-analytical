@@ -22,7 +22,7 @@ export const useFetchAdminSessions = () => {
       const data = await response.json();
 
       if (data.sessions) {
-        setSession(data.sessions);
+        setSessions(data.sessions);
       }
     } catch (error) {
       setError(data.message);

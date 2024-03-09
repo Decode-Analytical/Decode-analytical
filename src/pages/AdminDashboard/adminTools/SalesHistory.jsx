@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import ProfileLayout from "../../../components/ProfileLayout";
-import Tab from "../../../utils/Tab";
 import SalesTable from "../../../components/adminTools/SalesTable";
-import { Heading } from "../../../utils/Heading";
+import { Heading } from "../../../components/Heading";
+import Tab from "../../../components/Tab";
 import { useFetchAdminCourses } from "../../../hooks/useFetchAdminCourses";
 import { useFetchAdminSessions } from "../../../hooks/useFetchAdminSession";
 

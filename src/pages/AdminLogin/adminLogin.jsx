@@ -5,7 +5,7 @@ import close from "../../assets/auth images/Vector.png";
 import AuthFooter from "./adminFooter";
 import { useLogin } from "../../hooks/useLogin";
 import { Link, useNavigate } from "react-router-dom";
-import LoadingSpinner from "../../utils/LoadingSpinner";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 export default function adminLogin() {
   const navigate = useNavigate();

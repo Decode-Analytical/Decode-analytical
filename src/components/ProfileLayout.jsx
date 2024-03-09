@@ -1,7 +1,7 @@
 import React from "react";
-import ProfileHeader from "../utils/ProfileHeader";
 import AdminSidebar from "./AdminSidebar";
 import AdminSidebar2 from "./AdminSidebar2";
+import ProfileHeader from "./ProfileHeader";
 
 const ProfileLayout = ({ title, px, children }) => {
   return (
