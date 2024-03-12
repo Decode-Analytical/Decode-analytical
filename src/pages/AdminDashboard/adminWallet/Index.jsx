@@ -74,13 +74,11 @@ const AdminWallet = () => {
     fetchEarnings();
   }, []);
 
-  console.log(earnings, "earnings");
-
   const withdrawals = transfers.map((i) => i.amount).reduce((a, b) => a + b, 0);
 
   return (
     <ProfileLayout title={"Wallet"}>
-      <div className="px-0 md:px-14">
+      <div className="px-0 md:px-4 lg:px-14">
         <h2 className="font-bold mb-10 text-2xl">
           Welcome back, {authUser.firstName}
         </h2>

@@ -141,8 +141,6 @@ export const useFetchEarnings = () => {
   const fetchEarnings = async () => {
     setIsloading(true);
 
-    let response;
-
     try {
       const response = await fetch(urls.adminGetEarnings, {
         headers: {

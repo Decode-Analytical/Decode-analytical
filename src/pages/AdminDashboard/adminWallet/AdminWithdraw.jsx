@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import amazonpay from "../../../assets/adminDashboardImages/amazonpay.svg";
 import logo from "../../../assets/adminDashboardImages/logo.png";
 import mastercard from "../../../assets/adminDashboardImages/mastercard1.svg";
@@ -8,11 +8,19 @@ import paypal from "../../../assets/adminDashboardImages/paypal1.svg";
 import skrill from "../../../assets/adminDashboardImages/skrill1.svg";
 import visa from "../../../assets/adminDashboardImages/visa.svg";
 import wallet from "../../../assets/adminDashboardImages/wallet.webp";
-import urls from "../../../utils/Url";
-import Input from "../../../components/Input";
+import {
+  PasswordInput,
+  SelectInput,
+  TextInput,
+} from "../../../components/Input";
 import { withdrawalSchema } from "../../../schema/wallet";
+import { banks } from "../../../utils/bankCodes";
+import { toast } from "react-toastify";
+import urls from "../../../utils/Url";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
 const AdminWithdraw = () => {
+  const navigate = useNavigate();
   const authUser = JSON.parse(localStorage.getItem("user")).user;
   const [loading, setLoading] = useState(false);
 
@@ -40,7 +48,8 @@ const AdminWithdraw = () => {
       bankName: "",
       accountNumber: "",
       amount: "",
-      verificationCode: "",
+      reason: "",
+      pin: null,
     },
   });
 
@@ -51,28 +60,28 @@ const AdminWithdraw = () => {
   } = formHook;
 
   const onSubmit = async (data) => {
-    console.log(data);
-    //   try {
-    //     // Make your POST request here with the form data
-    //     const response = await fetch(urls.adminWithdraw, {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify(data),
-    //     });
+    setLoading(true);
+    const token = JSON.parse(localStorage.getItem("user")).token;
+    try {
+      const response = await fetch(urls.adminTransfer, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    //     // Handle the response accordingly
-    //     if (response.ok) {
-    //       console.log("Post request successful");
-    //       console.log(response);
-    //     } else {
-    //       console.error("Post request failed");
-    //     }
-    //   } catch (error) {
-    //     console.error("Error making POST request", error);
-    //   }
-    // };
+      // Handle the response accordingly
+      if (response.ok) {
+        toast.success(response.message);
+        navigate("/admin-dashboard/wallet/withdraw/success");
+      }
+    } catch (error) {
+      toast.error(response.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -126,32 +135,40 @@ const AdminWithdraw = () => {
           </div>
           <div>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <Input
+              <SelectInput
                 title={"Bank Name"}
                 placeholder={"Enter your bank name"}
                 register={register("bankName")}
                 errorMessage={errors?.bankName?.message}
                 required
+                options={banks}
               />
-              <Input
+              <TextInput
                 title={"Account Number"}
                 placeholder={"Enter your account number"}
                 register={register("accountNumber")}
                 errorMessage={errors?.accountNumber?.message}
                 required
               />
-              <Input
+              <TextInput
                 title={"Amount"}
                 placeholder={"min. $15"}
                 register={register("amount")}
                 errorMessage={errors?.amount?.message}
                 required
               />
-              <Input
-                title={"Verification code"}
-                placeholder={"Enter verification code"}
-                register={register("verificationCode")}
-                errorMessage={errors?.verificationCode?.message}
+              <TextInput
+                title={"Reason for withdrawal"}
+                placeholder={"Enter reason for withdrawal"}
+                register={register("reason")}
+                errorMessage={errors?.reason?.message}
+                required
+              />
+              <PasswordInput
+                title={"Pin"}
+                placeholder={"Enter pin"}
+                register={register("pin")}
+                errorMessage={errors?.pin?.message}
                 required
               />
 

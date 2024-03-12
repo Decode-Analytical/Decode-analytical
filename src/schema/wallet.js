@@ -1,25 +1,16 @@
 import * as yup from "yup";
 
-// export const withdrawalSchema = yup.object().shape({
-//   bankName: yup.string().trim().required("Name of bank is required!"),
-//   accountNumber: yup
-//     .string()
-//     .trim()
-//     .required("Enter account number of the bank!"),
-//   amount: yup.string().trim().required("Enter amount you want to withdraw!"),
-//   verificationCode: yup.string().trim().required("Enter verification code!"),
-// });
-
 export const withdrawalSchema = yup.object().shape({
-  bankName: yup.string().required("Bank Name is required"),
+  bankName: yup.string().required("Bank name is required"),
   accountNumber: yup
     .string()
-    .matches(/^\d+$/, "Account Number must be a number")
-    .required("Account Number is required"),
+    .required("Account number is required")
+    .matches(/^\d+$/, "Account number must be a valid number"),
   amount: yup
     .number()
-    .typeError("Amount must be a number")
-    .positive("Amount must be a positive number")
-    .required("Amount is required"),
-  verificationCode: yup.string().required("Verification Code is required"),
+    .required("Amount is required")
+    .positive("Amount must be a positive number"),
+  reason: yup.string().required("Reason is required"),
+  pin: yup.number().required("PIN is required"),
+  // .matches(/^\d{4}$/, "PIN must be a 4-digit number"),
 });
