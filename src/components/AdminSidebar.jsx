@@ -7,7 +7,6 @@ import { FaRegEnvelope } from "react-icons/fa6";
 import { GrCircleQuestion } from "react-icons/gr";
 import { LuSettings } from "react-icons/lu";
 import { FiLogOut } from "react-icons/fi";
-import { BiWalletAlt } from "react-icons/bi";
 import { useLogout } from "../hooks/useLogout";
 import { IoPerson } from "react-icons/io5";
 import { LuWallet } from "react-icons/lu";
@@ -113,18 +112,18 @@ const AdminSidebar = () => {
             <NavLink
               onClick={toggleCloseMenu}
               to={item.link}
-              className={`flex gap-4 px-3 py-2 hover:bg-gray1 font-bold  hover:text-gray3 rounded-md cursor-pointer items-center duration-500  ${
+              className={`flex gap-4 px-3 py-2  font-bold rounded-md cursor-pointer items-center duration-500  ${
                 menuOpen ? "w-[215px]" : ""
               } transition-[width] duration-700 ease-in-out overflow-hidden`}
-              style={{
-                ...(currentRoute.includes(item?.path)
-                  ? {
-                      backgroundColor: "#D9DBE5",
-                      color: "#303030",
-                      fontWeight: 700,
-                    }
-                  : {}),
-              }}
+              // style={{
+              //   ...(currentRoute.includes(item?.path)
+              //     ? {
+              //         backgroundColor: "#D9DBE5",
+              //         color: "#303030",
+              //         fontWeight: 700,
+              //       }
+              //     : {}),
+              // }}
             >
               <div>{item?.icon}</div>
               {menuOpen && <div className="min-w-[160px] ">{item?.name}</div>}

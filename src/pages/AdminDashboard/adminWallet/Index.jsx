@@ -74,8 +74,6 @@ const AdminWallet = () => {
     fetchEarnings();
   }, []);
 
-  console.log(earnings, "earnings");
-
   const withdrawals = transfers.map((i) => i.amount).reduce((a, b) => a + b, 0);
 
   return (
