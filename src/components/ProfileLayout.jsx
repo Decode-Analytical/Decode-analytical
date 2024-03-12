@@ -15,8 +15,8 @@ const ProfileLayout = ({ title, px, children }) => {
         <div className="md:w-[90vw]  mx-auto">
           <ProfileHeader title={title} />
           <div
-            className={`mt-[50px] bg-shadow rounded-lg  mx-auto place-items-center py-16 px-${
-              px || "8"
+            className={`mt-[50px] bg-shadow rounded-lg  mx-auto first:place-items-center py-16 ${
+              px || "px-8"
             }
             `}
           >

@@ -8,10 +8,10 @@ export const useLogout = () => {
   const { dispatch } = useAuthContext();
 
   const logout = () => {
-    // remove user from storage
+    // if (typeof localStorage !== "undefined") {
     localStorage.removeItem("user");
+    // }
 
-    //dispatch logout action
     dispatch({ type: "LOGOUT" });
     navigate("/AdminLogin");
     // toast.success("Logout successful");

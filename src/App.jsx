@@ -54,6 +54,7 @@ import AdminSettings from "./pages/AdminDashboard/adminSettings/Index";
 import AdminTools from "./pages/AdminDashboard/adminTools/Index";
 import SalesHistory from "./pages/AdminDashboard/adminTools/SalesHistory";
 import AdminWithdraw from "./pages/AdminDashboard/adminWallet/AdminWithdraw";
+import Success from "./pages/AdminDashboard/adminWallet/Success";
 
 function App() {
   return (
@@ -126,6 +127,10 @@ function App() {
               <Route
                 path="/admin-dashboard/wallet/withdraw"
                 element={<AdminWithdraw />}
+              />
+              <Route
+                path="/admin-dashboard/wallet/withdraw/success"
+                element={<Success />}
               />
               <Route
                 path="/admin-dashboard/settings"

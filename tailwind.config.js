@@ -38,6 +38,7 @@ export default {
         blue1: "#040E53",
         green1: "#067934",
         red1: "#BA1111",
+        red2: "#E51B00",
       },
     },
   },
