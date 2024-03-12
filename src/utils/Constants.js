@@ -314,3 +314,11 @@ export const CompletedCourses = [
     level: "Intermediate",
   },
 ];
+
+export const walletData = [
+  { course: "A", purchases: 12000, students: 24000 },
+  { course: "B", purchases: 5000, students: 2400 },
+  { course: "C", purchases: 20000, students: 2400 },
+  { course: "D", purchases: 24000, students: 2400 },
+  { course: "E", purchases: 20400, students: 2400 },
+];

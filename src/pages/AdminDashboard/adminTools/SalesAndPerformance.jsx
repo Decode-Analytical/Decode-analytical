@@ -5,8 +5,10 @@ import SalesStats from "../../../components/adminTools/SalesStats";
 import TopPerformances from "../../../components/adminTools/TopPerformances";
 import { currencyFormatter } from "../../../utils/functn";
 import { Heading } from "../../../components/Heading";
-import { useFetchAdminCourses } from "../../../hooks/useFetchAdminCourses";
-import { useFetchAdminSessions } from "../../../hooks/useFetchAdminSession";
+import {
+  useFetchAdminCourses,
+  useFetchAdminSessions,
+} from "../../../hooks/useFetchAdmin";
 
 const SalesAndPerformance = () => {
   const { fetchCourses, courses, isLoading, error } = useFetchAdminCourses();
@@ -24,7 +26,7 @@ const SalesAndPerformance = () => {
   }, []);
 
   const totalRevenue = courses
-    ?.map((item) => item.isPrice_course * item.totalRegisteredByStudent)
+    .map((item) => item.isPrice_course * item.totalRegisteredByStudent)
     .reduce((a, b) => a + b, 0);
 
   const purchases = courses

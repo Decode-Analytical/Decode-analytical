@@ -3,8 +3,10 @@ import ProfileLayout from "../../../components/ProfileLayout";
 import SalesTable from "../../../components/adminTools/SalesTable";
 import { Heading } from "../../../components/Heading";
 import Tab from "../../../components/Tab";
-import { useFetchAdminCourses } from "../../../hooks/useFetchAdminCourses";
-import { useFetchAdminSessions } from "../../../hooks/useFetchAdminSession";
+import {
+  useFetchAdminCourses,
+  useFetchAdminSessions,
+} from "../../../hooks/useFetchAdmin";
 
 const SalesHistory = () => {
   const { fetchCourses, courses, isLoading, error } = useFetchAdminCourses();
