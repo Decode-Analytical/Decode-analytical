@@ -161,3 +161,151 @@ export const useFetchEarnings = () => {
 
   return { fetchEarnings, earnings, isLoading, error };
 };
+
+export const useFetchAllRegStudents = () => {
+  const [error, setError] = useState(null);
+  const [isLoading, setIsloading] = useState(false);
+  const [allRegStudents, setAllRegStudents] = useState(0);
+
+  const token = JSON.parse(localStorage.getItem("user")).token;
+
+  const fetchAllRegStudents = async () => {
+    setIsloading(true);
+
+    try {
+      const response = await fetch(urls.adminGetAllRegStudents, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      
+      const data = await response.json();
+      
+      console.log(data, "data");
+
+      if (response.ok) {
+        
+        setAllRegStudents(data.totalStudents);
+      }
+    } catch (error) {
+      setError(data.message);
+    } finally {
+      setIsloading(false);
+    }
+  };
+
+  return { fetchAllRegStudents, allRegStudents, isLoading, error };
+};
+
+export const useFetchCourseVisit = () => {
+  const [error, setError] = useState(null);
+  const [isLoading, setIsloading] = useState(false);
+  const [courseVisit, setCourseVisit] = useState(0);
+
+  const token = JSON.parse(localStorage.getItem("user")).token;
+
+  const fetchCourseVisit = async () => {
+    setIsloading(true);
+
+    try {
+      const response = await fetch(urls.adminGetCourseVisit, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      
+      const data = await response.json();
+      
+      console.log(data);
+
+      if (response.ok) {
+        
+        setCourseVisit(data.visitCount);
+      }
+    } catch (error) {
+      // setError(data.message);
+    } finally {
+      setIsloading(false);
+    }
+  };
+
+  return { fetchCourseVisit, courseVisit, isLoading, error };
+};
+
+export const useFetchCoursesCreated = () => {
+  const [error, setError] = useState(null);
+  const [isLoading, setIsloading] = useState(false);
+  const [coursesCreated, setCoursesCreated] = useState(0);
+
+  const token = JSON.parse(localStorage.getItem("user")).token;
+
+  const fetchCoursesCreated = async () => {
+    setIsloading(true);
+
+    try {
+      const response = await fetch(urls.adminGetAllCoursesCreated, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      
+      const data = await response.json();
+      
+      console.log(data);
+      console.log(data.message, "Message");
+      console.log(data.courses.length, "Total");
+      const totalCourses = data?.courses.length
+
+
+      if (response.ok) {
+        
+        setCoursesCreated(totalCourses);
+      }
+    } catch (error) {
+      setError(data.message);
+    } finally {
+      setIsloading(false);
+    }
+  };
+
+  return { fetchCoursesCreated, coursesCreated, isLoading, error };
+};
+
+export const useFetchReviews = () => {
+  const [error, setError] = useState(null);
+  const [isLoading, setIsloading] = useState(false);
+  const [reviews, setReviews] = useState(0);
+
+  const token = JSON.parse(localStorage.getItem("user")).token;
+
+  const fetchReviews = async () => {
+    setIsloading(true);
+
+    try {
+      const response = await fetch(urls.adminGetAllReviews, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      
+      const data = await response.json();
+      
+      console.log(data);
+      console.log(data.message, "Message");
+      console.log(data.reviews.length, "Total");
+      const totalReviews = data?.reviews.length
+
+
+      if (response.ok) {
+        
+        setReviews(totalReviews);
+      }
+    } catch (error) {
+      setError(data.message);
+    } finally {
+      setIsloading(false);
+    }
+  };
+
+  return { fetchReviews, reviews, isLoading, error };
+};

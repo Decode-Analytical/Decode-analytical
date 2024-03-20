@@ -7,5 +7,9 @@ const urls = {
   adminTransfer: `${baseUrl}/wallet/transfer`,
   adminGetTransfers: `${baseUrl}/wallet/getTransactions`,
   adminGetEarnings: `${baseUrl}/admin/totalSales`,
+  adminGetAllRegStudents: `${baseUrl}/admin/adminViewTotalStudentRegistered`,
+  adminGetCourseVisit: `${baseUrl}/admin/adminDailyCourseVisitCount`,
+  adminGetAllCoursesCreated: `${baseUrl}/course/ViewCourse`,
+  adminGetAllReviews: `${baseUrl}/course/review`,
 };
 export default urls;
