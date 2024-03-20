@@ -178,13 +178,12 @@ export const useFetchAllRegStudents = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      
+
       const data = await response.json();
-      
-      console.log(data, "data");
+
+      // console.log(data, "data");
 
       if (response.ok) {
-        
         setAllRegStudents(data.totalStudents);
       }
     } catch (error) {
@@ -213,13 +212,12 @@ export const useFetchCourseVisit = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      
+
       const data = await response.json();
-      
-      console.log(data);
+
+      // console.log(data);
 
       if (response.ok) {
-        
         setCourseVisit(data.visitCount);
       }
     } catch (error) {
@@ -248,17 +246,15 @@ export const useFetchCoursesCreated = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      
+
       const data = await response.json();
-      
+
       console.log(data);
       console.log(data.message, "Message");
       console.log(data.courses.length, "Total");
-      const totalCourses = data?.courses.length
-
+      const totalCourses = data?.courses.length;
 
       if (response.ok) {
-        
         setCoursesCreated(totalCourses);
       }
     } catch (error) {
@@ -287,17 +283,15 @@ export const useFetchReviews = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      
+
       const data = await response.json();
-      
+
       console.log(data);
       console.log(data.message, "Message");
       console.log(data.reviews.length, "Total");
-      const totalReviews = data?.reviews.length
-
+      const totalReviews = data?.reviews.length;
 
       if (response.ok) {
-        
         setReviews(totalReviews);
       }
     } catch (error) {

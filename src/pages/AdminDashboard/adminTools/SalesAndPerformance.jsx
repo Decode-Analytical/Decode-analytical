@@ -37,35 +37,32 @@ const SalesAndPerformance = () => {
     <div>
       <ProfileLayout>
         <Heading title={"Sales And Performance"} />
-        <div className="flex flex-wrap items-center justify-between gap-6 w-full">
+        <div className="flex flex-col sm:flex-row flex-wrap items-stretch justify-between gap-6 w-full">
           <SalesStats
+            customClass={"min-w-[250px]"}
             heading={"Total Revenue"}
-            // title={title}
             sub={"See all earnings over time"}
             count={currencyFormatter(totalRevenue)}
             // earning={earning}
-            // to={to}
           />
 
           <SalesStats
+            customClass={"min-w-[250px]"}
             heading={"Sales"}
-            // title={title}
             sub={"See all periodical sales"}
             count={"₦234"}
             // earning={earning}
-            // to={to}
           />
 
           <SalesStats
+            customClass={"min-w-[250px]"}
             heading={"Purchases"}
-            // title={title}
             sub={"See numbers of purchases"}
             count={purchases}
             // earning={earning}
-            // to={to}
           />
         </div>
-        <div className="mt-20 flex flex-wrap justify-between gap-14">
+        <div className="mt-20 flex flex-col sm:flex-row flex-wrap justify-between gap-8 lg:gap-14">
           <CourseCard
             heading={"Original Course Sales"}
             sub={"See analysis for courses"}
@@ -73,6 +70,7 @@ const SalesAndPerformance = () => {
             courseData={courses}
             isLoading={isLoading}
             error={error}
+            viewDetails
           />
           <CourseCard
             heading={"Live Session Sales"}
@@ -81,6 +79,7 @@ const SalesAndPerformance = () => {
             courseData={sessions}
             isLoading={sessionLoading}
             error={sessionError}
+            viewDetails
           />
         </div>
         <div>

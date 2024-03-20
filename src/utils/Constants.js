@@ -1,35 +1,35 @@
-import sales from "../assets/adminDashboardImages/sales.svg";
-import community from "../assets/adminDashboardImages/community.svg";
-import insight from "../assets/adminDashboardImages/insight.svg";
-import support from "../assets/adminDashboardImages/support.svg";
+// import sales from "../assets/adminDashboardImages/sales.svg";
+// import community from "../assets/adminDashboardImages/community.svg";
+// import insight from "../assets/adminDashboardImages/insight.svg";
+// import support from "../assets/adminDashboardImages/support.svg";
 import courseImg from "../assets/adminDashboardImages/courseimg1.svg";
 
-export const ToolCardData = [
-  {
-    icon: sales,
-    title: "Sales and Performance",
-    text: "Get insights into how your courses are performing in the sales market to keep track of their progress",
-    to: "/admin-dashboard/tools/sales-performance",
-  },
-  {
-    icon: community,
-    title: "Instructors Community",
-    text: "Connect with skilled instructors, ask questions, explore discussions, and more",
-    to: "/admin-dashboard/tools/instructors-community",
-  },
-  {
-    icon: insight,
-    title: "Marketplace Insights",
-    text: "Check if your course topic is in demand using our marketplace.",
-    to: "/admin-dashboard/tools/marketplace-insights",
-  },
-  {
-    icon: support,
-    title: "Help and Support",
-    text: "You are welcome to take a look at our help center or reach out to our support team if you need any assistance.",
-    to: "/admin-dashboard/tools/help-support",
-  },
-];
+// export const ToolCardData = [
+//   {
+//     icon: sales,
+//     title: "Sales and Performance",
+//     text: "Get insights into how your courses are performing in the sales market to keep track of their progress",
+//     to: "/admin-dashboard/tools/sales-performance",
+//   },
+//   {
+//     icon: community,
+//     title: "Instructors Community",
+//     text: "Connect with skilled instructors, ask questions, explore discussions, and more",
+//     to: "/admin-dashboard/tools/instructors-community",
+//   },
+//   {
+//     icon: insight,
+//     title: "Marketplace Insights",
+//     text: "Check if your course topic is in demand using our marketplace.",
+//     to: "/admin-dashboard/tools/marketplace-insights",
+//   },
+//   {
+//     icon: support,
+//     title: "Help and Support",
+//     text: "You are welcome to take a look at our help center or reach out to our support team if you need any assistance.",
+//     to: "/admin-dashboard/tools/help-support",
+//   },
+// ];
 
 export const CourseCardData = [
   {
