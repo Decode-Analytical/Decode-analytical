@@ -115,15 +115,15 @@ const AdminSidebar = () => {
               className={`flex gap-4 px-3 py-2  font-bold rounded-md cursor-pointer items-center duration-500  ${
                 menuOpen ? "w-[215px]" : ""
               } transition-[width] duration-700 ease-in-out overflow-hidden`}
-              // style={{
-              //   ...(currentRoute.includes(item?.path)
-              //     ? {
-              //         backgroundColor: "#D9DBE5",
-              //         color: "#303030",
-              //         fontWeight: 700,
-              //       }
-              //     : {}),
-              // }}
+              style={{
+                ...(currentRoute.includes(item?.path)
+                  ? {
+                      backgroundColor: "#D9DBE5",
+                      color: "#303030",
+                      fontWeight: 700,
+                    }
+                  : {}),
+              }}
             >
               <div>{item?.icon}</div>
               {menuOpen && <div className="min-w-[160px] ">{item?.name}</div>}

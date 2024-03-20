@@ -101,7 +101,7 @@ export const useFetchBalance = () => {
 export const useFetchTransfers = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsloading] = useState(false);
-  const [transfers, setTransfers] = useState([]);
+  const [transfers, setTransfers] = useState(0);
 
   const token = JSON.parse(localStorage.getItem("user")).token;
 
@@ -119,7 +119,7 @@ export const useFetchTransfers = () => {
       const data = await response.json();
 
       if (response.ok) {
-        setTransfers(data.transactions);
+        setTransfers(data.totalWithdrawal);
       }
     } catch (error) {
       setError(data.message);

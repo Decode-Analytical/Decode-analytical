@@ -74,8 +74,6 @@ const AdminWallet = () => {
     fetchEarnings();
   }, []);
 
-  const withdrawals = transfers.map((i) => i.amount).reduce((a, b) => a + b, 0);
-
   return (
     <ProfileLayout title={"Wallet"}>
       <div className="px-0 md:px-4 lg:px-14">
@@ -86,7 +84,7 @@ const AdminWallet = () => {
           <WalletStats title={"Earnings"} amount={earnings} percentage={"12"} />
           <WalletStats
             title={"Withdrawals"}
-            amount={withdrawals}
+            amount={transfers}
             percentage={"8"}
           />
         </div>

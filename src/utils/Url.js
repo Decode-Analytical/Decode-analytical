@@ -5,7 +5,7 @@ const urls = {
   adminOwnedSession: `${baseUrl}/admin/getRoomId`,
   adminGetBalance: `${baseUrl}/wallet/getBalance`,
   adminTransfer: `${baseUrl}/wallet/transfer`,
-  adminGetTransfers: `${baseUrl}/wallet/getTransactions`,
+  adminGetTransfers: `${baseUrl}/wallet/getWithdrawal`,
   adminGetEarnings: `${baseUrl}/admin/totalSales`,
   adminGetAllRegStudents: `${baseUrl}/admin/adminViewTotalStudentRegistered`,
   adminGetCourseVisit: `${baseUrl}/admin/adminDailyCourseVisitCount`,
