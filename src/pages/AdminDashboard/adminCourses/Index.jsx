@@ -5,24 +5,31 @@ import StatsCard from "../../../components/AdminDashboard/StatsCard";
 import CourseBanner from "../../../components/adminCourses/CourseBanner";
 import { CompletedCourses, OngoingCourses } from "../../../utils/Constants";
 import Button from "../../../components/Button";
-import { useFetchCourseVisit, useFetchCoursesCreated } from "../../../hooks/useFetchAdmin";
+import {
+  useFetchCourseVisit,
+  useFetchCoursesCreated,
+} from "../../../hooks/useFetchAdmin";
 
 const AdminCourses = () => {
-  const { fetchCourseVisit, 
-    courseVisit, 
-    isLoading: courseVisitIsloading, 
-    error: courseVisitError } = useFetchCourseVisit();
+  const {
+    fetchCourseVisit,
+    courseVisit,
+    isLoading: courseVisitIsloading,
+    error: courseVisitError,
+  } = useFetchCourseVisit();
 
-    const { fetchCoursesCreated, 
-      coursesCreated, 
-      isLoading: courseCreatedIsloading, 
-      error: courseCreatedError } = useFetchCoursesCreated();
+  const {
+    fetchCoursesCreated,
+    coursesCreated,
+    isLoading: courseCreatedIsloading,
+    error: courseCreatedError,
+  } = useFetchCoursesCreated();
 
-    useEffect(() => {
-     fetchCourseVisit()
-     fetchCoursesCreated()
-    }, [])
-    
+  useEffect(() => {
+    fetchCourseVisit();
+    fetchCoursesCreated();
+  }, []);
+
   return (
     <ProfileLayout title={"Courses"}>
       <div className="flex justify-end">
@@ -30,7 +37,7 @@ const AdminCourses = () => {
           New Course
         </Button>
       </div>
-      <div className="flex gap-20 mt-[65px] ">
+      <div className="flex flex-col sm:flex-row gap-7 lg:gap-20 mt-[65px] ">
         <StatsCard title={"Courses Created"} count={coursesCreated} />
         <StatsCard title={"Daily Course Visit"} count={courseVisit} />
       </div>
