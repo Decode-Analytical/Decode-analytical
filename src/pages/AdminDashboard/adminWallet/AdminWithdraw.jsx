@@ -153,14 +153,14 @@ const AdminWithdraw = () => {
               />
               <TextInput
                 title={"Amount"}
-                placeholder={"min. $15"}
+                placeholder={"Amount"}
                 register={register("amount")}
                 errorMessage={errors?.amount?.message}
                 required
               />
               <TextInput
-                title={"Reason for withdrawal"}
-                placeholder={"Enter reason for withdrawal"}
+                title={"Remark"}
+                placeholder={"Enter remark"}
                 register={register("reason")}
                 errorMessage={errors?.reason?.message}
                 required

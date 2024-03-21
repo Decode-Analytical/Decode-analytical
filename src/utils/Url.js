@@ -9,7 +9,6 @@ const urls = {
   adminGetEarnings: `${baseUrl}/admin/totalSales`,
   adminGetAllRegStudents: `${baseUrl}/admin/adminViewTotalStudentRegistered`,
   adminGetCourseVisit: `${baseUrl}/admin/adminDailyCourseVisitCount`,
-  adminGetAllCoursesCreated: `${baseUrl}/course/ViewCourse`,
   adminGetAllReviews: `${baseUrl}/course/review`,
 };
 export default urls;

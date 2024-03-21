@@ -1,5 +1,6 @@
 import { useState } from "react";
 import urls from "../utils/Url";
+import axios from "axios";
 
 export const useFetchAdminCourses = () => {
   const [error, setError] = useState(null);
@@ -11,21 +12,18 @@ export const useFetchAdminCourses = () => {
   const fetchCourses = async () => {
     setIsloading(true);
 
-    let response;
-
     try {
-      const response = await fetch(urls.adminOwnedCourses, {
+      const response = await axios.get(urls.adminOwnedCourses, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      const data = await response.json();
 
-      if (data.courses) {
-        setCourses(data.courses);
+      if (response.data && response.data.courses) {
+        setCourses(response.data.courses);
       }
     } catch (error) {
-      setError(data.message);
+      setError(response.data.message);
     } finally {
       setIsloading(false);
     }
@@ -43,21 +41,18 @@ export const useFetchAdminSessions = () => {
   const fetchSessions = async () => {
     setIsloading(true);
 
-    let response;
-
     try {
-      const response = await fetch(urls.adminOwnedSession, {
+      const response = await axios.get(urls.adminOwnedSession, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      const data = await response.json();
 
-      if (data.sessions) {
-        setSessions(data.sessions);
+      if (response.data && response.data.sessions) {
+        setSessions(response.data.sessions);
       }
     } catch (error) {
-      setError(data.message);
+      setError(response.data.message);
     } finally {
       setIsloading(false);
     }
@@ -75,21 +70,17 @@ export const useFetchBalance = () => {
   const fetchBalance = async () => {
     setIsloading(true);
 
-    let response;
-
     try {
-      const response = await fetch(urls.adminGetBalance, {
+      const response = await axios.get(urls.adminGetBalance, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      const data = await response.json();
-
-      if (response.ok) {
-        setBalance(data.wallet);
+      if (response.data && response.data.wallet) {
+        setBalance(response.data.wallet);
       }
     } catch (error) {
-      setError(data.message);
+      setError(response.data.message);
     } finally {
       setIsloading(false);
     }
@@ -108,21 +99,18 @@ export const useFetchTransfers = () => {
   const fetchTransfers = async () => {
     setIsloading(true);
 
-    let response;
-
     try {
-      const response = await fetch(urls.adminGetTransfers, {
+      const response = await axios.get(urls.adminGetTransfers, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      const data = await response.json();
 
-      if (response.ok) {
-        setTransfers(data.totalWithdrawal);
+      if (response.data && response.data.totalWithdrawal) {
+        setTransfers(response.data.totalWithdrawal);
       }
     } catch (error) {
-      setError(data.message);
+      setError(response.data.message);
     } finally {
       setIsloading(false);
     }
@@ -142,18 +130,17 @@ export const useFetchEarnings = () => {
     setIsloading(true);
 
     try {
-      const response = await fetch(urls.adminGetEarnings, {
+      const response = await axios.get(urls.adminGetEarnings, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      const data = await response.json();
 
-      if (response.ok) {
-        setEarnings(data.totalSales);
+      if (response.data && response.data.totalSales) {
+        setEarnings(response.data.totalSales);
       }
     } catch (error) {
-      setError(data.message);
+      setError(response.data.message);
     } finally {
       setIsloading(false);
     }
@@ -173,21 +160,17 @@ export const useFetchAllRegStudents = () => {
     setIsloading(true);
 
     try {
-      const response = await fetch(urls.adminGetAllRegStudents, {
+      const response = await axios.get(urls.adminGetAllRegStudents, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      const data = await response.json();
-
-      // console.log(data, "data");
-
-      if (response.ok) {
-        setAllRegStudents(data.totalStudents);
+      if (response.data && response.data.totalStudents) {
+        setAllRegStudents(response.data.totalStudents);
       }
     } catch (error) {
-      setError(data.message);
+      setError(response.data.message);
     } finally {
       setIsloading(false);
     }
@@ -207,64 +190,23 @@ export const useFetchCourseVisit = () => {
     setIsloading(true);
 
     try {
-      const response = await fetch(urls.adminGetCourseVisit, {
+      const response = await axios.get(urls.adminGetCourseVisit, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      const data = await response.json();
-
-      // console.log(data);
-
-      if (response.ok) {
-        setCourseVisit(data.visitCount);
+      if (response.data && response.data.visitCount) {
+        setCourseVisit(response.data.visitCount);
       }
     } catch (error) {
-      // setError(data.message);
+      setError(response.data.message);
     } finally {
       setIsloading(false);
     }
   };
 
   return { fetchCourseVisit, courseVisit, isLoading, error };
-};
-
-export const useFetchCoursesCreated = () => {
-  const [error, setError] = useState(null);
-  const [isLoading, setIsloading] = useState(false);
-  const [coursesCreated, setCoursesCreated] = useState(0);
-
-  const token = JSON.parse(localStorage.getItem("user")).token;
-
-  const fetchCoursesCreated = async () => {
-    setIsloading(true);
-
-    try {
-      const response = await fetch(urls.adminGetAllCoursesCreated, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const data = await response.json();
-
-      console.log(data);
-      console.log(data.message, "Message");
-      console.log(data.courses.length, "Total");
-      const totalCourses = data?.courses.length;
-
-      if (response.ok) {
-        setCoursesCreated(totalCourses);
-      }
-    } catch (error) {
-      setError(data.message);
-    } finally {
-      setIsloading(false);
-    }
-  };
-
-  return { fetchCoursesCreated, coursesCreated, isLoading, error };
 };
 
 export const useFetchReviews = () => {
@@ -278,24 +220,19 @@ export const useFetchReviews = () => {
     setIsloading(true);
 
     try {
-      const response = await fetch(urls.adminGetAllReviews, {
+      const response = await axios.get(urls.adminGetAllReviews, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      const data = await response.json();
+      const totalReviews = response?.data?.reviews.length;
 
-      console.log(data);
-      console.log(data.message, "Message");
-      console.log(data.reviews.length, "Total");
-      const totalReviews = data?.reviews.length;
-
-      if (response.ok) {
+      if (response.data && response.data.reviews) {
         setReviews(totalReviews);
       }
     } catch (error) {
-      setError(data.message);
+      setError(response.data.message);
     } finally {
       setIsloading(false);
     }

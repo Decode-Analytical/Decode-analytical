@@ -45,20 +45,19 @@ const SalesAndPerformance = () => {
             count={currencyFormatter(totalRevenue)}
             // earning={earning}
           />
+          <SalesStats
+            customClass={"min-w-[250px]"}
+            heading={"Purchases"}
+            sub={"See numbers of purchases"}
+            count={purchases}
+            // earning={earning}
+          />
 
           <SalesStats
             customClass={"min-w-[250px]"}
             heading={"Sales"}
             sub={"See all periodical sales"}
             count={"₦234"}
-            // earning={earning}
-          />
-
-          <SalesStats
-            customClass={"min-w-[250px]"}
-            heading={"Purchases"}
-            sub={"See numbers of purchases"}
-            count={purchases}
             // earning={earning}
           />
         </div>

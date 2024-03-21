@@ -80,7 +80,7 @@ const AdminWallet = () => {
         <h2 className="font-bold mb-10 text-2xl">
           Welcome back, {authUser.firstName}
         </h2>
-        <div className="flex flex-1 gap-[60px] md:gap-[130px]">
+        <div className="flex flex-col md:flex-row flex-1 gap-8 md:gap-12">
           <WalletStats title={"Earnings"} amount={earnings} percentage={"12"} />
           <WalletStats
             title={"Withdrawals"}

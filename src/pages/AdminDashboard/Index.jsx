@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import StatsCard from "../../components/AdminDashboard/StatsCard";
 import AnalyticsBarchart from "../../components/AdminDashboard/AnalyticsBarchart";
 import ProfileLayout from "../../components/ProfileLayout";
-import { AnalyticsData, DashStatsData } from "../../utils/Constants";
+import { AnalyticsData } from "../../utils/Constants";
 import {
+  useFetchAdminCourses,
   useFetchAllRegStudents,
   useFetchCourseVisit,
-  useFetchCoursesCreated,
   useFetchReviews,
 } from "../../hooks/useFetchAdmin";
 
@@ -23,30 +23,30 @@ const AdminDashboard = ({ className }) => {
   } = useFetchCourseVisit();
 
   const {
-    fetchCoursesCreated,
-    coursesCreated,
-    isLoading: courseCreatedIsloading,
-    error: courseCreatedError,
-  } = useFetchCoursesCreated();
-
-  const {
     fetchReviews,
     reviews,
     isLoading: reviewsIsloading,
     error: reviewsError,
   } = useFetchReviews();
 
+  const {
+    fetchCourses,
+    courses,
+    isLoading: adminCoursesLoading,
+    error: adminCoursesError,
+  } = useFetchAdminCourses();
+
   useEffect(() => {
     fetchAllRegStudents();
     fetchCourseVisit();
-    fetchCoursesCreated();
+    fetchCourses();
     fetchReviews();
   }, []);
 
   return (
     <ProfileLayout title={"Dashboard"}>
       <h2 className="font-bold mb-14 text-2xl">
-        Welcome back, {authUser.firstName}
+        Welcome back, {authUser?.firstName}
       </h2>
 
       <div className="flex flex-1 flex-wrap gap-8">
@@ -66,13 +66,13 @@ const AdminDashboard = ({ className }) => {
           <StatsCard
             minW={"200"}
             title="Courses Created"
-            count={coursesCreated}
+            count={courses?.length}
           />
           <StatsCard minW={"200"} title="Reviews" count={reviews} />
         </div>
       </div>
       <div className="h-[800px] mt-16 bg-shadow rounded-md px-3 lg:px-[80px] py-10 overflow-x-auto">
-        <div className="w-[700px] py-11">
+        <div className="w-[700px] h-[700px] py-11">
           <AnalyticsBarchart
             data={AnalyticsData}
             title={"Sales Analytics"}

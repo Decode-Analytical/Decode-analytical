@@ -37,7 +37,11 @@ const CourseBanner = ({ ongoing, completed, level, title, progress, img }) => {
       <div className="">
         <div className="flex flex-col sm:flex-row items-center gap-[22px] my-5 sm:my-0 ">
           <div>
-            <img className="w-[150px]" src={img} alt="" />
+            <img
+              className="w-[150px] rounded-lg object-cover"
+              src={img}
+              alt={`${title} image`}
+            />
           </div>
           <div className="flex flex-1 flex-col gap-4 w-full px-0">
             <div className="flex justify-between">

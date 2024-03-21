@@ -23,8 +23,8 @@ const WalletTab = ({ title1, title2, child1, child2 }) => {
 
   return (
     <div className="w-full flex flex-col">
-      <div className="w-full flex mx-auto justify-between items-center">
-        <h2 className="font-bold text-2xl">Statistics</h2>
+      <div className="w-full flex-col md:flex-row flex mx-auto justify-between items-center">
+        <h2 className="font-bold text-2xl mb-4 md:mb-0">Statistics</h2>
         <div className="flex space-x-4 border-b-2 py-2 px-3 rounded-xl bg-shadow">
           <Option title={title1} tabNumber={1} />
           <Option title={title2} tabNumber={2} />

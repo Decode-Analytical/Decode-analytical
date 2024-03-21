@@ -4,10 +4,10 @@ import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
 
-const ProfileHeader = ({ title, toggleMenu }) => {
+const ProfileHeader = ({ title, toggleOpenMenu }) => {
   return (
     <div className="flex justify-between items-center mx-auto  w-[95%] md:w-full">
-      <button onClick={toggleMenu} className="md:hidden">
+      <button onClick={toggleOpenMenu} className="md:hidden">
         <RxHamburgerMenu className="text-4xl  " />
       </button>
       {title && (

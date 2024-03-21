@@ -10,21 +10,22 @@ import { FiLogOut } from "react-icons/fi";
 import { useLogout } from "../hooks/useLogout";
 import { IoPerson } from "react-icons/io5";
 import { LuWallet } from "react-icons/lu";
+import { CgCloseR } from "react-icons/cg";
 
-const AdminSidebar = () => {
+const AdminSidebar = ({ toggleOpenMenu, toggleCloseMenu, menuOpen }) => {
   const authUser = JSON.parse(localStorage.getItem("user")).user;
 
   const { logout } = useLogout();
   const currentRoute = useLocation().pathname;
 
-  const [menuOpen, setMenuopen] = useState(false);
+  // const [menuOpen, setMenuopen] = useState(false);
 
-  const toggleOpenMenu = () => {
-    setMenuopen(true);
-  };
-  const toggleCloseMenu = () => {
-    setMenuopen(false);
-  };
+  // const toggleOpenMenu = () => {
+  //   setMenuopen(true);
+  // };
+  // const toggleCloseMenu = () => {
+  //   setMenuopen(false);
+  // };
   const sideBarItems = [
     {
       name: "Dashboard",
@@ -78,6 +79,12 @@ const AdminSidebar = () => {
       ${menuOpen ? "w-[250px]" : "w-[85px]"} 
          h-screen text-gray3 fixed left-0 bg-white1 px-4 gap-10 z-50 transition-[width] duration-700 ease-in-out uppercase bg-shadow`}
     >
+      <span
+        onClick={toggleCloseMenu}
+        className="md:hidden absolute top-1 right-2"
+      >
+        <CgCloseR className="text-xl" />
+      </span>
       <div className={`flex items-start min-h-[65px] px-1 gap-4 mt-10`}>
         {authUser?.picture[0]?.path ? (
           <img
@@ -118,7 +125,7 @@ const AdminSidebar = () => {
               style={{
                 ...(currentRoute.includes(item?.path)
                   ? {
-                      backgroundColor: "#D9DBE5",
+                      backgroundColor: "#E6E7EE",
                       color: "#303030",
                       fontWeight: 700,
                     }

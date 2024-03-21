@@ -6,9 +6,10 @@ import CourseBanner from "../../../components/adminCourses/CourseBanner";
 import { CompletedCourses, OngoingCourses } from "../../../utils/Constants";
 import Button from "../../../components/Button";
 import {
+  useFetchAdminCourses,
   useFetchCourseVisit,
-  useFetchCoursesCreated,
 } from "../../../hooks/useFetchAdmin";
+import BannerSkeleton from "../../../components/adminCourses/BannerSkeleton";
 
 const AdminCourses = () => {
   const {
@@ -18,16 +19,11 @@ const AdminCourses = () => {
     error: courseVisitError,
   } = useFetchCourseVisit();
 
-  const {
-    fetchCoursesCreated,
-    coursesCreated,
-    isLoading: courseCreatedIsloading,
-    error: courseCreatedError,
-  } = useFetchCoursesCreated();
+  const { fetchCourses, courses, isLoading, error } = useFetchAdminCourses();
 
   useEffect(() => {
     fetchCourseVisit();
-    fetchCoursesCreated();
+    fetchCourses();
   }, []);
 
   return (
@@ -38,34 +34,58 @@ const AdminCourses = () => {
         </Button>
       </div>
       <div className="flex flex-col sm:flex-row gap-7 lg:gap-20 mt-[65px] ">
-        <StatsCard title={"Courses Created"} count={coursesCreated} />
+        <StatsCard title={"Courses Created"} count={courses?.length} />
         <StatsCard title={"Daily Course Visit"} count={courseVisit} />
       </div>
       <div className="my-[45px]">
         <h2 className="font-bold text-2xl">Ongoing</h2>
-        {OngoingCourses.map(({ id, courseImg, title, progress, level }) => (
-          <CourseBanner
-            title={title}
-            key={id}
-            img={courseImg}
-            progress={progress}
-            level={level}
-            ongoing
-          />
-        ))}
+        {isLoading ? (
+          <>
+            <BannerSkeleton />
+            <BannerSkeleton />
+            <BannerSkeleton />
+          </>
+        ) : (
+          <div>
+            {courses
+              .filter((item) => item.isUploadedCompleted === false)
+              .map((item, i) => (
+                <CourseBanner
+                  title={item?.course_title}
+                  key={item?._id}
+                  img={item?.course_image[0]?.path}
+                  progress={50}
+                  level={"Intermediate"}
+                  ongoing
+                />
+              ))}
+          </div>
+        )}
       </div>
       <div>
         <h2 className="font-bold text-2xl">Completed</h2>
-        {CompletedCourses.map(({ id, courseImg, title, progress, level }) => (
-          <CourseBanner
-            title={title}
-            key={id}
-            img={courseImg}
-            progress={progress}
-            level={level}
-            completed
-          />
-        ))}
+        {isLoading ? (
+          <>
+            <BannerSkeleton />
+            <BannerSkeleton />
+            <BannerSkeleton />
+          </>
+        ) : (
+          <div>
+            {courses
+              .filter((item) => item.isUploadedCompleted === true)
+              .map((item) => (
+                <CourseBanner
+                  title={item?.course_title}
+                  key={item?._id}
+                  img={item?.course_image[0]?.path}
+                  progress={100}
+                  level={"Intermediate"}
+                  completed
+                />
+              ))}
+          </div>
+        )}
       </div>
     </ProfileLayout>
   );
