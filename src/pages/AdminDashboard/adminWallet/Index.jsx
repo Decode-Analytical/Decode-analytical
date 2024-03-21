@@ -93,7 +93,7 @@ const AdminWallet = () => {
             title1={"Earnings"}
             child1={
               <div className="overflow-x-auto">
-                <div className="w-[700px]">
+                <div className="w-[700px] md:w-full">
                   <WalletChart data={walletData} />
                 </div>
               </div>
@@ -101,7 +101,7 @@ const AdminWallet = () => {
             title2={"Withdrawals"}
             child2={
               <div className="overflow-x-auto">
-                <div className="w-[700px]">
+                <div className="w-[700px] md:w-full">
                   <WalletChart data={walletData} />
                 </div>
               </div>
