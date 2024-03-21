@@ -10,6 +10,7 @@ import {
   useFetchCourseVisit,
 } from "../../../hooks/useFetchAdmin";
 import BannerSkeleton from "../../../components/adminCourses/BannerSkeleton";
+import { Link } from "react-router-dom";
 
 const AdminCourses = () => {
   const {
@@ -29,9 +30,15 @@ const AdminCourses = () => {
   return (
     <ProfileLayout title={"Courses"}>
       <div className="flex justify-end">
-        <Button leftIcon={<IoIosAdd className="font-extrabold text-xl" />}>
-          New Course
-        </Button>
+        <Link
+          className="flex items-center py-3 px-4 rounded-lg font-extrabold gap-2 bg-blue1 text-white"
+          to={"/admin-dashboard/courses/create-new-course"}
+        >
+          <div className="flex gap-2 items-center">
+            <IoIosAdd className="font-extrabold text-2xl" />
+            <p>New Course</p>
+          </div>
+        </Link>
       </div>
       <div className="flex flex-col sm:flex-row gap-7 lg:gap-20 mt-[65px] ">
         <StatsCard title={"Courses Created"} count={courses?.length} />
@@ -43,7 +50,7 @@ const AdminCourses = () => {
           <>
             <BannerSkeleton />
             <BannerSkeleton />
-            <BannerSkeleton />
+            {/* <BannerSkeleton /> */}
           </>
         ) : (
           <div>
@@ -55,7 +62,7 @@ const AdminCourses = () => {
                   key={item?._id}
                   img={item?.course_image[0]?.path}
                   progress={50}
-                  level={"Intermediate"}
+                  level={item?.course_level}
                   ongoing
                 />
               ))}
@@ -80,7 +87,7 @@ const AdminCourses = () => {
                   key={item?._id}
                   img={item?.course_image[0]?.path}
                   progress={100}
-                  level={"Intermediate"}
+                  level={item?.course_level}
                   completed
                 />
               ))}

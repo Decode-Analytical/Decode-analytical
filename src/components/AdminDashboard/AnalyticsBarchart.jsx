@@ -46,7 +46,7 @@ const AnalyticsBarchart = ({ data, title, sub, legend1, legend2 }) => {
           {/* <option value="monthly">This Month</option> */}
         </select>
       </div>
-
+      {/* <div className="px-4"> */}
       <ResponsiveContainer width="100%" height="60%">
         <BarChart
           width={500}
@@ -68,6 +68,7 @@ const AnalyticsBarchart = ({ data, title, sub, legend1, legend2 }) => {
           <Bar dataKey="views" stackId="a" fill="#D2D6F2" />
         </BarChart>
       </ResponsiveContainer>
+      {/* </div> */}
     </>
   );
 };

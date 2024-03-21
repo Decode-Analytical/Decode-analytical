@@ -24,9 +24,9 @@ const ProfileLayout = ({ title, children }) => {
         />
       </div>
       <div className="w-full">
-        <div className="md:w-[85vw]  mx-auto">
+        <div className="w-screen md:w-[85vw]  mx-auto">
           <ProfileHeader title={title} toggleOpenMenu={toggleOpenMenu} />
-          <div className="mt-[50px] bg-shadow rounded-lg  mx-auto first:place-items-center py-8 md:py-16 w-[95%] md:w-[100%] px-4 md:px-10">
+          <div className="mt-[50px] bg-shadow rounded-lg  mx-auto  py-8 md:py-16 w-[95%] md:w-[100%] px-4 md:px-10">
             {children}
           </div>
         </div>
@@ -36,3 +36,4 @@ const ProfileLayout = ({ title, children }) => {
 };
 
 export default ProfileLayout;
+// first:place-items-center

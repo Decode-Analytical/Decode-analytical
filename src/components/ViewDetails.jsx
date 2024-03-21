@@ -10,7 +10,7 @@ const ViewDetailsLink = ({ to, viewDetails }) => {
       }`}
       to={to}
     >
-      <p>VIEW DETAILS</p>
+      <p className="text-sm">VIEW DETAILS</p>
       <MdOutlineArrowForward className="text-xl arrow-icon " />
     </Link>
   );

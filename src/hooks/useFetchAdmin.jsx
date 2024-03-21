@@ -136,8 +136,8 @@ export const useFetchEarnings = () => {
         },
       });
 
-      if (response.data && response.data.totalSales) {
-        setEarnings(response.data.totalSales);
+      if (response.data && response.data.totalEarnings) {
+        setEarnings(response.data.totalEarnings);
       }
     } catch (error) {
       setError(response.data.message);

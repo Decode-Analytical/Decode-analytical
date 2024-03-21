@@ -91,9 +91,21 @@ const AdminWallet = () => {
         <div className="flex justify-between w-full mt-14">
           <WalletTab
             title1={"Earnings"}
-            child1={<WalletChart data={walletData} />}
+            child1={
+              <div className="overflow-x-auto">
+                <div className="w-[700px]">
+                  <WalletChart data={walletData} />
+                </div>
+              </div>
+            }
             title2={"Withdrawals"}
-            child2={<WalletChart data={walletData} />}
+            child2={
+              <div className="overflow-x-auto">
+                <div className="w-[700px]">
+                  <WalletChart data={walletData} />
+                </div>
+              </div>
+            }
           />
         </div>
         <Balance amount={balance} rate={"34"} />

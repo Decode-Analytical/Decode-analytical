@@ -267,11 +267,18 @@ export const DashStatsData = [
 ];
 
 export const AnalyticsData = [
-  { course: "A", views: 16000, purchases: 12000, students: 24000 },
-  { course: "B", views: 15000, purchases: 5000, students: 2400 },
-  { course: "C", views: 10000, purchases: 20000, students: 2400 },
-  { course: "D", views: 4000, purchases: 24000, students: 2400 },
-  { course: "E", views: 17000, purchases: 20400, students: 2400 },
+  { course: "Jan", views: 16000, purchases: 12000, students: 24000 },
+  { course: "Feb", views: 8000, purchases: 6000, students: 12000 },
+  { course: "Mar", views: 12000, purchases: 9000, students: 18000 },
+  { course: "Apr", views: 10000, purchases: 7000, students: 14000 },
+  { course: "May", views: 15000, purchases: 11000, students: 22000 },
+  { course: "Jun", views: 9000, purchases: 6000, students: 12000 },
+  { course: "Jul", views: 11000, purchases: 8000, students: 16000 },
+  { course: "Aug", views: 13000, purchases: 10000, students: 20000 },
+  { course: "Sep", views: 14000, purchases: 10000, students: 20000 },
+  { course: "Oct", views: 12000, purchases: 9000, students: 18000 },
+  { course: "Nov", views: 16000, purchases: 12000, students: 24000 },
+  { course: "Dec", views: 18000, purchases: 14000, students: 28000 },
 ];
 
 export const OngoingCourses = [
@@ -316,9 +323,16 @@ export const CompletedCourses = [
 ];
 
 export const walletData = [
-  { course: "A", purchases: 12000, students: 24000 },
-  { course: "B", purchases: 5000, students: 2400 },
-  { course: "C", purchases: 20000, students: 2400 },
-  { course: "D", purchases: 24000, students: 2400 },
-  { course: "E", purchases: 20400, students: 2400 },
+  { course: "Jan", purchases: 12000, students: 24000 },
+  { course: "Feb", purchases: 8000, students: 16000 },
+  { course: "Mar", purchases: 9000, students: 18000 },
+  { course: "Apr", purchases: 7000, students: 14000 },
+  { course: "May", purchases: 11000, students: 22000 },
+  { course: "Jun", purchases: 6000, students: 12000 },
+  { course: "Jul", purchases: 8000, students: 16000 },
+  { course: "Aug", purchases: 10000, students: 20000 },
+  { course: "Sep", purchases: 10000, students: 20000 },
+  { course: "Oct", purchases: 9000, students: 18000 },
+  { course: "Nov", purchases: 12000, students: 24000 },
+  { course: "Dec", purchases: 14000, students: 28000 },
 ];

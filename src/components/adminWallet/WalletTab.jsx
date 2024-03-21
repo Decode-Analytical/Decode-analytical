@@ -31,7 +31,7 @@ const WalletTab = ({ title1, title2, child1, child2 }) => {
         </div>
       </div>
 
-      <div className="h-[700px] mt-10 bg-shadow rounded-md px-[80px] py-10">
+      <div className="h-[600px] mt-10 bg-shadow rounded-md px-[10px] pt-10 pb-6">
         {activeTab === 1 && <div>{child1}</div>}
 
         {activeTab === 2 && <div>{child2}</div>}

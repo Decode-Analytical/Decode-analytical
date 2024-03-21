@@ -71,8 +71,8 @@ const AdminDashboard = ({ className }) => {
           <StatsCard minW={"200"} title="Reviews" count={reviews} />
         </div>
       </div>
-      <div className="h-[800px] mt-16 bg-shadow rounded-md px-3 lg:px-[80px] py-10 overflow-x-auto">
-        <div className="w-[700px] h-[700px] py-11">
+      <div className="h-[700px] mt-16 bg-shadow rounded-md px-3 lg:px-[80px] pt-10 overflow-x-auto">
+        <div className="w-[700px] mx-4 h-[600px] pt-11">
           <AnalyticsBarchart
             data={AnalyticsData}
             title={"Sales Analytics"}
