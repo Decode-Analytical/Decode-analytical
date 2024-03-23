@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import amazonpay from "../../../assets/adminDashboardImages/amazonpay.svg";
-import logo from "../../../assets/adminDashboardImages/logo.png";
+
 import mastercard from "../../../assets/adminDashboardImages/mastercard1.svg";
 import paypal from "../../../assets/adminDashboardImages/paypal1.svg";
 import skrill from "../../../assets/adminDashboardImages/skrill1.svg";
@@ -19,9 +19,11 @@ import { toast } from "react-toastify";
 import urls from "../../../utils/Url";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 
+import ProfileHeader2 from "../../../components/ProfileHeader2";
+
 const AdminWithdraw = () => {
   const navigate = useNavigate();
-  const authUser = JSON.parse(localStorage.getItem("user")).user;
+
   const [loading, setLoading] = useState(false);
 
   const formHook = useForm({
@@ -86,33 +88,8 @@ const AdminWithdraw = () => {
 
   return (
     <>
-      <div className="bg-shadow py-2">
-        <div className="w-[90%] mx-auto max-w-[1280px] ">
-          <div className="flex justify-between items-center  ">
-            <div>
-              {authUser?.picture[0]?.path ? (
-                <img
-                  className="max-w-[40px] mt-1 rounded-full"
-                  src={authUser?.picture[0]?.path}
-                />
-              ) : (
-                <div className="flex justify-center items-center min-w-[50px] h-[50px] bg-gray-400 mt-1 rounded-full">
-                  <IoPerson className="text-[30px] text-white1" />
-                </div>
-              )}
-            </div>
-            <Link to="/">
-              <img src={logo} alt="logo" className="w-[50px]" />
-            </Link>
-            <Link
-              className="border border-blue1 px-4 py-1 rounded-md text-blue1"
-              to="/admin-dashboard/wallet"
-            >
-              Exit
-            </Link>
-          </div>
-        </div>
-      </div>
+      <ProfileHeader2 to={"/admin-dashboard/wallet"} />
+
       <div className="flex justify-between items-center w-[97%] md:w-[90%] mx-auto max-w-[1280px] my-[60px] ">
         <div className="w-[90%] mx-auto lg:mx-0 lg:w-[45%]">
           <h2 className="font-bold text-2xl w-[70%] mb-[25px]">
@@ -152,14 +129,14 @@ const AdminWithdraw = () => {
               />
               <TextInput
                 title={"Amount"}
-                placeholder={"min. $15"}
+                placeholder={"Amount"}
                 register={register("amount")}
                 errorMessage={errors?.amount?.message}
                 required
               />
               <TextInput
-                title={"Reason for withdrawal"}
-                placeholder={"Enter reason for withdrawal"}
+                title={"Remark"}
+                placeholder={"Enter remark"}
                 register={register("reason")}
                 errorMessage={errors?.reason?.message}
                 required

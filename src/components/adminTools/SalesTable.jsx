@@ -61,12 +61,16 @@ const SalesTable = ({ isLoading, data, error }) => {
       ) : error ? (
         <p className="mb-5 font-semibold text-sm">Error fetching data</p>
       ) : (
-        <DataTable
-          columns={columns}
-          customStyles={customStyles}
-          data={data}
-          // pagination={false}
-        />
+        <div className="overflow-x-auto">
+          <div className="w-[800px]">
+            <DataTable
+              columns={columns}
+              customStyles={customStyles}
+              data={data}
+              // pagination={false}
+            />
+          </div>
+        </div>
       )}
     </>
   );

@@ -1,35 +1,35 @@
-import sales from "../assets/adminDashboardImages/sales.svg";
-import community from "../assets/adminDashboardImages/community.svg";
-import insight from "../assets/adminDashboardImages/insight.svg";
-import support from "../assets/adminDashboardImages/support.svg";
+// import sales from "../assets/adminDashboardImages/sales.svg";
+// import community from "../assets/adminDashboardImages/community.svg";
+// import insight from "../assets/adminDashboardImages/insight.svg";
+// import support from "../assets/adminDashboardImages/support.svg";
 import courseImg from "../assets/adminDashboardImages/courseimg1.svg";
 
-export const ToolCardData = [
-  {
-    icon: sales,
-    title: "Sales and Performance",
-    text: "Get insights into how your courses are performing in the sales market to keep track of their progress",
-    to: "/admin-dashboard/tools/sales-performance",
-  },
-  {
-    icon: community,
-    title: "Instructors Community",
-    text: "Connect with skilled instructors, ask questions, explore discussions, and more",
-    to: "/admin-dashboard/tools/instructors-community",
-  },
-  {
-    icon: insight,
-    title: "Marketplace Insights",
-    text: "Check if your course topic is in demand using our marketplace.",
-    to: "/admin-dashboard/tools/marketplace-insights",
-  },
-  {
-    icon: support,
-    title: "Help and Support",
-    text: "You are welcome to take a look at our help center or reach out to our support team if you need any assistance.",
-    to: "/admin-dashboard/tools/help-support",
-  },
-];
+// export const ToolCardData = [
+//   {
+//     icon: sales,
+//     title: "Sales and Performance",
+//     text: "Get insights into how your courses are performing in the sales market to keep track of their progress",
+//     to: "/admin-dashboard/tools/sales-performance",
+//   },
+//   {
+//     icon: community,
+//     title: "Instructors Community",
+//     text: "Connect with skilled instructors, ask questions, explore discussions, and more",
+//     to: "/admin-dashboard/tools/instructors-community",
+//   },
+//   {
+//     icon: insight,
+//     title: "Marketplace Insights",
+//     text: "Check if your course topic is in demand using our marketplace.",
+//     to: "/admin-dashboard/tools/marketplace-insights",
+//   },
+//   {
+//     icon: support,
+//     title: "Help and Support",
+//     text: "You are welcome to take a look at our help center or reach out to our support team if you need any assistance.",
+//     to: "/admin-dashboard/tools/help-support",
+//   },
+// ];
 
 export const CourseCardData = [
   {
@@ -267,11 +267,18 @@ export const DashStatsData = [
 ];
 
 export const AnalyticsData = [
-  { course: "A", views: 16000, purchases: 12000, students: 24000 },
-  { course: "B", views: 15000, purchases: 5000, students: 2400 },
-  { course: "C", views: 10000, purchases: 20000, students: 2400 },
-  { course: "D", views: 4000, purchases: 24000, students: 2400 },
-  { course: "E", views: 17000, purchases: 20400, students: 2400 },
+  { course: "Jan", views: 16000, purchases: 12000, students: 24000 },
+  { course: "Feb", views: 8000, purchases: 6000, students: 12000 },
+  { course: "Mar", views: 12000, purchases: 9000, students: 18000 },
+  { course: "Apr", views: 10000, purchases: 7000, students: 14000 },
+  { course: "May", views: 15000, purchases: 11000, students: 22000 },
+  { course: "Jun", views: 9000, purchases: 6000, students: 12000 },
+  { course: "Jul", views: 11000, purchases: 8000, students: 16000 },
+  { course: "Aug", views: 13000, purchases: 10000, students: 20000 },
+  { course: "Sep", views: 14000, purchases: 10000, students: 20000 },
+  { course: "Oct", views: 12000, purchases: 9000, students: 18000 },
+  { course: "Nov", views: 16000, purchases: 12000, students: 24000 },
+  { course: "Dec", views: 18000, purchases: 14000, students: 28000 },
 ];
 
 export const OngoingCourses = [
@@ -279,14 +286,14 @@ export const OngoingCourses = [
     id: 1,
     courseImg: courseImg,
     title: "UI/UX Design Essentials",
-    progress: 30,
+    progress: 50,
     level: "Beginner",
   },
   {
     id: 2,
     courseImg: courseImg,
     title: "UI/UX Design Essentials",
-    progress: 70,
+    progress: 50,
     level: "Intermediate",
   },
 ];
@@ -296,29 +303,36 @@ export const CompletedCourses = [
     id: 1,
     courseImg: courseImg,
     title: "Introduction to Excel",
-    progress: 70,
+    progress: 100,
     level: "Advanced",
   },
   {
     id: 2,
     courseImg: courseImg,
     title: "Introduction to Excel",
-    progress: 50,
+    progress: 100,
     level: "Beginner",
   },
   {
     id: 3,
     courseImg: courseImg,
     title: "Introduction to Excel",
-    progress: 10,
+    progress: 100,
     level: "Intermediate",
   },
 ];
 
 export const walletData = [
-  { course: "A", purchases: 12000, students: 24000 },
-  { course: "B", purchases: 5000, students: 2400 },
-  { course: "C", purchases: 20000, students: 2400 },
-  { course: "D", purchases: 24000, students: 2400 },
-  { course: "E", purchases: 20400, students: 2400 },
+  { course: "Jan", purchases: 12000, students: 24000 },
+  { course: "Feb", purchases: 8000, students: 16000 },
+  { course: "Mar", purchases: 9000, students: 18000 },
+  { course: "Apr", purchases: 7000, students: 14000 },
+  { course: "May", purchases: 11000, students: 22000 },
+  { course: "Jun", purchases: 6000, students: 12000 },
+  { course: "Jul", purchases: 8000, students: 16000 },
+  { course: "Aug", purchases: 10000, students: 20000 },
+  { course: "Sep", purchases: 10000, students: 20000 },
+  { course: "Oct", purchases: 9000, students: 18000 },
+  { course: "Nov", purchases: 12000, students: 24000 },
+  { course: "Dec", purchases: 14000, students: 28000 },
 ];

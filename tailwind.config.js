@@ -40,6 +40,10 @@ export default {
         red1: "#BA1111",
         red2: "#E51B00",
       },
+      screens: {
+        sm2: { min: "350px" },
+        // '2xl': {'min': '1536px'},
+      },
     },
   },
   plugins: [],

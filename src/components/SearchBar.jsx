@@ -3,7 +3,7 @@ import { FiSearch } from "react-icons/fi";
 
 const SearchBar = ({ placeholder }) => {
   return (
-    <div className="relative bg-shadow border-none bg-white rounded-lg">
+    <div className="relative bg-shadow border-none bg-white rounded-lg max-w-[188px]">
       <span className="absolute inset-y-0 left-0 flex items-center pl-3">
         <FiSearch className="text-black" />
       </span>

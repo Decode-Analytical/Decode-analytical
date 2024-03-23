@@ -55,6 +55,9 @@ import AdminTools from "./pages/AdminDashboard/adminTools/Index";
 import SalesHistory from "./pages/AdminDashboard/adminTools/SalesHistory";
 import AdminWithdraw from "./pages/AdminDashboard/adminWallet/AdminWithdraw";
 import Success from "./pages/AdminDashboard/adminWallet/Success";
+import CreateNewCourse from "./pages/AdminDashboard/adminCourses/CreateNewCourse";
+import CreateLive from "./pages/AdminDashboard/adminCourses/CreateLive";
+import CreateVideo from "./pages/AdminDashboard/adminCourses/CreateVideo";
 
 function App() {
   return (
@@ -104,6 +107,18 @@ function App() {
               <Route
                 path="/admin-dashboard/courses"
                 element={<AdminCourses />}
+              />
+              <Route
+                path="/admin-dashboard/courses/create-new-course"
+                element={<CreateNewCourse />}
+              />
+              <Route
+                path="/admin-dashboard/courses/create-new-course/create-live"
+                element={<CreateLive />}
+              />
+              <Route
+                path="/admin-dashboard/courses/create-new-course/create-video"
+                element={<CreateVideo />}
               />
               <Route path="/admin-dashboard/tools" element={<AdminTools />} />
               <Route

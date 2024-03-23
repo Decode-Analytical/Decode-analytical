@@ -74,28 +74,38 @@ const AdminWallet = () => {
     fetchEarnings();
   }, []);
 
-  const withdrawals = transfers.map((i) => i.amount).reduce((a, b) => a + b, 0);
-
   return (
     <ProfileLayout title={"Wallet"}>
       <div className="px-0 md:px-4 lg:px-14">
         <h2 className="font-bold mb-10 text-2xl">
           Welcome back, {authUser.firstName}
         </h2>
-        <div className="flex flex-1 gap-[60px] md:gap-[130px]">
+        <div className="flex flex-col md:flex-row flex-1 gap-8 md:gap-12">
           <WalletStats title={"Earnings"} amount={earnings} percentage={"12"} />
           <WalletStats
             title={"Withdrawals"}
-            amount={withdrawals}
+            amount={transfers}
             percentage={"8"}
           />
         </div>
         <div className="flex justify-between w-full mt-14">
           <WalletTab
             title1={"Earnings"}
-            child1={<WalletChart data={walletData} />}
+            child1={
+              <div className="overflow-x-auto">
+                <div className="w-[700px] md:w-full">
+                  <WalletChart data={walletData} />
+                </div>
+              </div>
+            }
             title2={"Withdrawals"}
-            child2={<WalletChart data={walletData} />}
+            child2={
+              <div className="overflow-x-auto">
+                <div className="w-[700px] md:w-full">
+                  <WalletChart data={walletData} />
+                </div>
+              </div>
+            }
           />
         </div>
         <Balance amount={balance} rate={"34"} />

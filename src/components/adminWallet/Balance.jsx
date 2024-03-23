@@ -24,7 +24,7 @@ const Balance = ({ amount, rate, isLoading }) => {
         {isLoading ? (
           <Skeleton />
         ) : (
-          <h1 className="font-semibold text-[50px]">
+          <h1 className="font-semibold text-[35px] md:text-[50px]">
             {currencyFormatter(amount)}
           </h1>
         )}
