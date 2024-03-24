@@ -82,7 +82,7 @@ const SalesAndPerformance = () => {
           />
         </div>
         <div>
-          <TopPerformances isLoading={isLoading} data={courses} />
+          <TopPerformances isLoading={isLoading} data={courses} error={error} />
         </div>
       </ProfileLayout>
     </div>

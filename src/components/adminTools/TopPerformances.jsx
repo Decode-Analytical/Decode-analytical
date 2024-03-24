@@ -1,8 +1,9 @@
 import React from "react";
 import CourseTile from "./CourseTile";
 import CourseLoader from "./CourseLoader";
+import DataErrMsg from "../DataErrMsg";
 
-const TopPerformances = ({ isLoading, data }) => {
+const TopPerformances = ({ isLoading, data, error }) => {
   return (
     <div className="bg-shadow mt-20 rounded-md p-5 flex-1">
       <h2 className="font-bold text-xl mb-1">Top Performances</h2>
@@ -11,6 +12,8 @@ const TopPerformances = ({ isLoading, data }) => {
         <div className=" flex flex-col gap-4">
           {isLoading ? (
             <CourseLoader />
+          ) : error ? (
+            <DataErrMsg />
           ) : data?.length === 0 ? (
             <p className="mb-5 font-semibold text-sm">No courses available</p>
           ) : (

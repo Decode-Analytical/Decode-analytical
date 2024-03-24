@@ -1,24 +1,19 @@
-import React, { useState, useEffect } from "react";
-import ProfileLayout from "../../../components/ProfileLayout";
+import React, { useEffect } from "react";
 import { IoIosAdd } from "react-icons/io";
+import { Link } from "react-router-dom";
 import StatsCard from "../../../components/AdminDashboard/StatsCard";
+import DataErrMsg from "../../../components/DataErrMsg";
+import NoDataMsg from "../../../components/NoDataMsg";
+import ProfileLayout from "../../../components/ProfileLayout";
+import BannerSkeleton from "../../../components/adminCourses/BannerSkeleton";
 import CourseBanner from "../../../components/adminCourses/CourseBanner";
-import { CompletedCourses, OngoingCourses } from "../../../utils/Constants";
-import Button from "../../../components/Button";
 import {
   useFetchAdminCourses,
   useFetchCourseVisit,
 } from "../../../hooks/useFetchAdmin";
-import BannerSkeleton from "../../../components/adminCourses/BannerSkeleton";
-import { Link } from "react-router-dom";
 
 const AdminCourses = () => {
-  const {
-    fetchCourseVisit,
-    courseVisit,
-    isLoading: courseVisitIsloading,
-    error: courseVisitError,
-  } = useFetchCourseVisit();
+  const { fetchCourseVisit, courseVisit } = useFetchCourseVisit();
 
   const { fetchCourses, courses, isLoading, error } = useFetchAdminCourses();
 
@@ -50,8 +45,11 @@ const AdminCourses = () => {
           <>
             <BannerSkeleton />
             <BannerSkeleton />
-            {/* <BannerSkeleton /> */}
           </>
+        ) : error ? (
+          <DataErrMsg />
+        ) : courses.length < 1 ? (
+          <NoDataMsg />
         ) : (
           <div>
             {courses
@@ -77,6 +75,8 @@ const AdminCourses = () => {
             <BannerSkeleton />
             <BannerSkeleton />
           </>
+        ) : error ? (
+          <DataErrMsg />
         ) : (
           <div>
             {courses
