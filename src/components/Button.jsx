@@ -1,14 +1,24 @@
 import React from "react";
 
-const Button = ({ onClick, leftIcon, rightIcon, className, children }) => {
+const Button = ({
+  onClick,
+  leftIcon,
+  rightIcon,
+  className,
+  children,
+  py,
+  px,
+}) => {
   return (
     <button
       onClick={onClick}
-      className={`flex items-center py-3 px-4 rounded-lg  gap-2 bg-blue1 text-white ${className}`}
+      className={`flex items-center ${py ?? "py-3"} ${
+        px ?? "px-4"
+      } rounded-lg  gap-2 bg-blue1 text-white justify-center ${className}`}
     >
-      <div>{leftIcon}</div>
+      {leftIcon && <div>{leftIcon}</div>}
       {children}
-      <div>{rightIcon}</div>
+      {rightIcon && <div>{rightIcon}</div>}
     </button>
   );
 };
