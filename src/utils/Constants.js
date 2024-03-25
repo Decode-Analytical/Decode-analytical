@@ -267,18 +267,18 @@ export const DashStatsData = [
 ];
 
 export const AnalyticsData = [
-  { course: "Jan", views: 16000, purchases: 12000, students: 24000 },
-  { course: "Feb", views: 8000, purchases: 6000, students: 12000 },
-  { course: "Mar", views: 12000, purchases: 9000, students: 18000 },
-  { course: "Apr", views: 10000, purchases: 7000, students: 14000 },
-  { course: "May", views: 15000, purchases: 11000, students: 22000 },
-  { course: "Jun", views: 9000, purchases: 6000, students: 12000 },
-  { course: "Jul", views: 11000, purchases: 8000, students: 16000 },
-  { course: "Aug", views: 13000, purchases: 10000, students: 20000 },
-  { course: "Sep", views: 14000, purchases: 10000, students: 20000 },
-  { course: "Oct", views: 12000, purchases: 9000, students: 18000 },
-  { course: "Nov", views: 16000, purchases: 12000, students: 24000 },
-  { course: "Dec", views: 18000, purchases: 14000, students: 28000 },
+  { date: "Jan", views: 16000, purchases: 12000 },
+  { date: "Feb", views: 8000, purchases: 6000 },
+  { date: "Mar", views: 12000, purchases: 9000 },
+  { date: "Apr", views: 10000, purchases: 7000 },
+  { date: "May", views: 15000, purchases: 11000 },
+  { date: "Jun", views: 9000, purchases: 6000 },
+  { date: "Jul", views: 11000, purchases: 8000 },
+  { date: "Aug", views: 13000, purchases: 10000 },
+  { date: "Sep", views: 14000, purchases: 10000 },
+  { date: "Oct", views: 12000, purchases: 9000 },
+  { date: "Nov", views: 16000, purchases: 12000 },
+  { date: "Dec", views: 18000, purchases: 14000 },
 ];
 
 export const OngoingCourses = [

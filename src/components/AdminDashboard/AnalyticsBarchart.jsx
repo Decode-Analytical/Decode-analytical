@@ -6,7 +6,7 @@ import {
   // Legend,
   // Rectangle,
   ResponsiveContainer,
-  // Tooltip,
+  Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
@@ -60,10 +60,10 @@ const AnalyticsBarchart = ({ data, title, sub, legend1, legend2 }) => {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="course" />
+          <XAxis dataKey="date" />
           <YAxis />
-          {/* <Tooltip />
-          <Legend /> */}
+          <Tooltip />
+          {/* <Legend /> */}
           <Bar dataKey="purchases" stackId="a" fill="#040E53" />
           <Bar dataKey="views" stackId="a" fill="#D2D6F2" />
         </BarChart>

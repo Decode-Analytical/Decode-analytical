@@ -35,7 +35,7 @@ const WalletStats = ({ title, amount, percentage, isLoading }) => {
       ) : (
         <h1 className="font-bold text-3xl">{currencyFormatter(amount)}</h1>
       )}
-      <div className="flex gap-2 items-center">
+      {/* <div className="flex gap-2 items-center">
         <span
           className={`${
             title === "Earnings" ? "bg-[#96FEBE59]" : "bg-[#FE969659]"
@@ -46,7 +46,7 @@ const WalletStats = ({ title, amount, percentage, isLoading }) => {
           />
         </span>
         <p>{percentage}%</p>
-      </div>
+      </div> */}
     </div>
   );
 };
@@ -78,14 +78,20 @@ const AdminWallet = () => {
     <ProfileLayout title={"Wallet"}>
       <div className="px-0 md:px-4 lg:px-14">
         <h2 className="font-bold mb-10 text-2xl">
-          Welcome back, {authUser.firstName}
+          Welcome back, {authUser?.firstName}
         </h2>
         <div className="flex flex-col md:flex-row flex-1 gap-8 md:gap-12">
-          <WalletStats title={"Earnings"} amount={earnings} percentage={"12"} />
+          <WalletStats
+            title={"Earnings"}
+            amount={earnings}
+            // percentage={"12"}
+            // isLoading={earningsIsLoading}
+          />
           <WalletStats
             title={"Withdrawals"}
             amount={transfers}
-            percentage={"8"}
+            // percentage={"8"}
+            // isLoading={transfersIsLoading}
           />
         </div>
         <div className="flex justify-between w-full mt-14">

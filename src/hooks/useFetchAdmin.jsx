@@ -1,6 +1,7 @@
 import { useState } from "react";
 import urls from "../utils/Url";
 import axios from "axios";
+import handleErrorResponse from "../utils/errorHandler";
 
 export const useFetchAdminCourses = () => {
   const [error, setError] = useState(null);
@@ -20,10 +21,11 @@ export const useFetchAdminCourses = () => {
       });
 
       if (response.data && response.data.courses) {
-        setCourses(response.data.courses);
+        setCourses(response?.data?.courses);
       }
     } catch (error) {
-      setError(response.data.message);
+      handleErrorResponse(error);
+      setError(error.response?.data?.message);
     } finally {
       setIsloading(false);
     }
@@ -49,10 +51,11 @@ export const useFetchAdminSessions = () => {
       });
 
       if (response.data && response.data.sessions) {
-        setSessions(response.data.sessions);
+        setSessions(response?.data?.sessions);
       }
     } catch (error) {
-      setError(response.data.message);
+      handleErrorResponse(error);
+      setError(error.response?.data?.message);
     } finally {
       setIsloading(false);
     }
@@ -77,10 +80,11 @@ export const useFetchBalance = () => {
         },
       });
       if (response.data && response.data.wallet) {
-        setBalance(response.data.wallet);
+        setBalance(response?.data?.wallet);
       }
     } catch (error) {
-      setError(response.data.message);
+      handleErrorResponse(error);
+      setError(error.response?.data?.message);
     } finally {
       setIsloading(false);
     }
@@ -107,10 +111,11 @@ export const useFetchTransfers = () => {
       });
 
       if (response.data && response.data.totalWithdrawal) {
-        setTransfers(response.data.totalWithdrawal);
+        setTransfers(response?.data?.totalWithdrawal);
       }
     } catch (error) {
-      setError(response.data.message);
+      handleErrorResponse(error);
+      setError(error.response?.data?.message);
     } finally {
       setIsloading(false);
     }
@@ -137,10 +142,11 @@ export const useFetchEarnings = () => {
       });
 
       if (response.data && response.data.totalEarnings) {
-        setEarnings(response.data.totalEarnings);
+        setEarnings(response?.data?.totalEarnings);
       }
     } catch (error) {
-      setError(response.data.message);
+      handleErrorResponse(error);
+      setError(error.response?.data?.message);
     } finally {
       setIsloading(false);
     }
@@ -167,10 +173,11 @@ export const useFetchAllRegStudents = () => {
       });
 
       if (response.data && response.data.totalStudents) {
-        setAllRegStudents(response.data.totalStudents);
+        setAllRegStudents(response?.data?.totalStudents);
       }
     } catch (error) {
-      setError(response.data.message);
+      handleErrorResponse(error);
+      setError(error.response?.data?.message);
     } finally {
       setIsloading(false);
     }
@@ -197,10 +204,11 @@ export const useFetchCourseVisit = () => {
       });
 
       if (response.data && response.data.visitCount) {
-        setCourseVisit(response.data.visitCount);
+        setCourseVisit(response?.data?.visitCount);
       }
     } catch (error) {
-      setError(response.data.message);
+      handleErrorResponse(error);
+      setError(error.response?.data?.message);
     } finally {
       setIsloading(false);
     }
@@ -232,7 +240,8 @@ export const useFetchReviews = () => {
         setReviews(totalReviews);
       }
     } catch (error) {
-      setError(response.data.message);
+      handleErrorResponse(error);
+      setError(error.response?.data?.message);
     } finally {
       setIsloading(false);
     }
