@@ -2,24 +2,19 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import amazonpay from "../../../assets/adminDashboardImages/amazonpay.svg";
-
 import mastercard from "../../../assets/adminDashboardImages/mastercard1.svg";
 import paypal from "../../../assets/adminDashboardImages/paypal1.svg";
 import skrill from "../../../assets/adminDashboardImages/skrill1.svg";
 import visa from "../../../assets/adminDashboardImages/visa.svg";
 import wallet from "../../../assets/adminDashboardImages/wallet.webp";
-import {
-  PasswordInput,
-  SelectInput,
-  TextInput,
-} from "../../../components/Input";
+import { BankSelectInput, Input } from "../../../components/InputField";
 import { withdrawalSchema } from "../../../schema/wallet";
 import { banks } from "../../../utils/bankCodes";
-import { toast } from "react-toastify";
 import urls from "../../../utils/Url";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 
 import ProfileHeader2 from "../../../components/ProfileHeader2";
+import { ErrorToast, SuccessToast } from "../../../utils/toast";
 
 const AdminWithdraw = () => {
   const navigate = useNavigate();
@@ -74,13 +69,12 @@ const AdminWithdraw = () => {
         body: JSON.stringify(data),
       });
 
-      // Handle the response accordingly
       if (response.ok) {
-        toast.success(response.message);
+        SuccessToast(response.message);
         navigate("/admin-dashboard/wallet/withdraw/success");
       }
     } catch (error) {
-      toast.error(response.message);
+      ErrorToast(response.message);
     } finally {
       setLoading(false);
     }
@@ -112,7 +106,7 @@ const AdminWithdraw = () => {
           </div>
           <div>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <SelectInput
+              <BankSelectInput
                 title={"Bank Name"}
                 placeholder={"Enter your bank name"}
                 register={register("bankName")}
@@ -120,28 +114,32 @@ const AdminWithdraw = () => {
                 required
                 options={banks}
               />
-              <TextInput
+              <Input
+                type={"text"}
                 title={"Account Number"}
                 placeholder={"Enter your account number"}
                 register={register("accountNumber")}
                 errorMessage={errors?.accountNumber?.message}
                 required
               />
-              <TextInput
+              <Input
+                type={"text"}
                 title={"Amount"}
                 placeholder={"Amount"}
                 register={register("amount")}
                 errorMessage={errors?.amount?.message}
                 required
               />
-              <TextInput
+              <Input
+                type={"text"}
                 title={"Remark"}
                 placeholder={"Enter remark"}
                 register={register("reason")}
                 errorMessage={errors?.reason?.message}
                 required
               />
-              <PasswordInput
+              <Input
+                type={"password"}
                 title={"Pin"}
                 placeholder={"Enter pin"}
                 register={register("pin")}
