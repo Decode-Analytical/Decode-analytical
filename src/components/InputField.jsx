@@ -133,6 +133,7 @@ export const Radio = ({
   register,
   checked,
   defaultChecked,
+  onClick,
 }) => {
   return (
     <div className="flex items-center gap-1">
@@ -148,6 +149,7 @@ export const Radio = ({
         id={value}
         checked={checked}
         defaultChecked={defaultChecked}
+        onClick={onClick}
       />
       <label htmlFor={value} className="font-light">
         {title}
@@ -171,14 +173,14 @@ export const SelectInput = ({
   customClass,
 }) => {
   return (
-    <div className="flex flex-1 flex-col gap-3 mt-8">
+    <div className="flex flex-1 flex-col mt-8">
       <label className="font-light">
         {title}
         <span className="text-red2 text-lg ml-1">*</span>
         <select
           name={name}
           id={name}
-          className={`${customClass} border border-gray-400 rounded-md p-4 bg-white1`}
+          className={`${customClass} border border-gray-400 rounded-md p-[17px] bg-white1`}
           onChange={onChange}
           value={value}
           disabled={disabled}

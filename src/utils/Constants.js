@@ -336,3 +336,46 @@ export const walletData = [
   { course: "Nov", purchases: 12000, students: 24000 },
   { course: "Dec", purchases: 14000, students: 28000 },
 ];
+
+export const durationOptions = [
+  {
+    label: "30 mins",
+    value: "30 mins",
+  },
+  {
+    label: "1 hr",
+    value: "1 hr",
+  },
+  {
+    label: "1 hr 30 mins ",
+    value: "1 hr 30 mins",
+  },
+  {
+    label: "2 hrs",
+    value: "2 hrs",
+  },
+  {
+    label: "2 hrs 30 mins",
+    value: "2 hrs 30 mins",
+  },
+  {
+    label: "3 hrs",
+    value: "3 hrs",
+  },
+  {
+    label: "3 hrs 30 mins",
+    value: "3 hrs 30 mins",
+  },
+  {
+    label: "4 hrs",
+    value: "4 hrs",
+  },
+  {
+    label: "4 hrs 30 mins",
+    value: "4 hrs 30 mins",
+  },
+  {
+    label: "5 hrs",
+    value: "5 hrs",
+  },
+];

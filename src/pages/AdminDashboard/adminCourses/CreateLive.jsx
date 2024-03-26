@@ -3,7 +3,7 @@ import { Heading } from "../../../components/Heading";
 import logo from "../../../assets/adminDashboardImages/logo.svg";
 import vector1 from "../../../assets/adminDashboardImages/vector1.svg";
 import vector2 from "../../../assets/adminDashboardImages/vector2.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Input,
   Radio,
@@ -12,120 +12,47 @@ import {
 } from "../../../components/InputField";
 import Button from "../../../components/Button";
 import { useForm } from "react-hook-form";
+import LoadingSpinner from "../../../components/LoadingSpinner";
+import { ErrorToast, SuccessToast } from "../../../utils/toast";
+import urls from "../../../utils/Url";
+import axios from "axios";
+import { liveSessionSchema } from "../../../schema/liveSession";
+import { durationOptions } from "../../../utils/Constants";
 
 const CreateLive = () => {
-  const timeZoneOptions = [
-    {
-      label: "West African Time",
-      value: "wat",
-    },
-    {
-      label: "Central European Time",
-      value: "cet",
-    },
-    {
-      label: "Eastern Standard Time",
-      value: "est",
-    },
-    {
-      label: "Pacific Standard Time",
-      value: "pst",
-    },
-    {
-      label: "Indian Standard Time",
-      value: "ist",
-    },
-
-    {
-      label: "Brasília Time",
-      value: "brt",
-    },
-    {
-      label: "Japan Standard Time",
-      value: "jst",
-    },
-    {
-      label: "Greenwich Mean Time",
-      value: "gmt",
-    },
-    {
-      label: "Mountain Standard Time",
-      value: "mst",
-    },
-  ];
-
-  const durationOptions = [
-    {
-      label: "0 hour",
-      value: "0",
-    },
-    {
-      label: "1 hour",
-      value: "1",
-    },
-    {
-      label: "2 hours",
-      value: "2",
-    },
-    {
-      label: "3 hours",
-      value: "3",
-    },
-    {
-      label: "4 hours",
-      value: "4",
-    },
-    {
-      label: "5 hours",
-      value: "5",
-    },
-    {
-      label: "6 hours",
-      value: "6",
-    },
-    {
-      label: "7 hours",
-      value: "7",
-    },
-    {
-      label: "8 hours",
-      value: "8",
-    },
-    {
-      label: "9 hours",
-      value: "9",
-    },
-  ];
+  const authUser = JSON.parse(localStorage.getItem("user")).user;
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
 
   const formHook = useForm({
-    // resolver: (data) => {
-    //   return withdrawalSchema.validate(data, { abortEarly: false }).then(
-    //     () => {
-    //       return { values: data, errors: {} };
-    //     },
-    //     (validationErrors) => {
-    //       return {
-    //         values: {},
-    //         errors: validationErrors.inner.reduce((acc, error) => {
-    //           acc[error.path] = {
-    //             message: error.message,
-    //             type: error.type,
-    //           };
-    //           return acc;
-    //         }, {}),
-    //       };
-    //     }
-    //   );
-    // },
+    resolver: (data) => {
+      return liveSessionSchema.validate(data, { abortEarly: false }).then(
+        () => {
+          return { values: data, errors: {} };
+        },
+        (validationErrors) => {
+          return {
+            values: {},
+            errors: validationErrors.inner.reduce((acc, error) => {
+              acc[error.path] = {
+                message: error.message,
+                type: error.type,
+              };
+              return acc;
+            }, {}),
+          };
+        }
+      );
+    },
     defaultValues: {
-      title: "",
+      email: authUser.email,
+      courseName: "",
       description: "",
-      startDate: "",
-      startTime: "",
-      duration: null,
-      timeZone: "",
+      date: "",
+      time: "",
+      isPaid: "",
+      amount: 0,
     },
   });
 
@@ -138,34 +65,28 @@ const CreateLive = () => {
   const onSubmit = async (data) => {
     setLoading(true);
     const token = JSON.parse(localStorage.getItem("user")).token;
+
     try {
-      const response = await fetch(urls.adminTransfer, {
-        method: "POST",
+      const response = await axios.post(urls.adminCreateLiveSession, data, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
       });
 
-      if (response.ok) {
-        SuccessToast(response.message);
-        navigate("/admin-dashboard/wallet/withdraw/success");
+      if (response.status === 200 || response.status === 201) {
+        console.log(response, "response");
+        SuccessToast(response?.data?.message);
+        navigate("/admin-dashboard/courses");
       }
     } catch (error) {
-      ErrorToast(response.message);
+      ErrorToast(error.response?.data?.message);
     } finally {
       setLoading(false);
     }
   };
 
-  const [selected, setSelected] = useState("Free");
-
-  const handleSelect = (e) => {
-    setSelected(e.target.value);
-  };
-
-  console.log(selected);
+  const [showAmount, setShowAmount] = useState(false);
 
   return (
     <div className="max-w-[1280px] gap-8 w-full flex items-center mx-auto">
@@ -176,43 +97,35 @@ const CreateLive = () => {
           </Link>
         </div>
         <Heading title={"Create your Live Lesson here."} />
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="w-full mb-7">
             <Input
               title={"Title"}
               placeholder={"Enter your course title"}
               type={"text"}
+              register={register("courseName")}
+              errorMessage={errors?.courseName?.message}
             />
             <TextArea
               title={"Description"}
               placeholder={"Enter your course description"}
+              register={register("description")}
+              errorMessage={errors?.description?.message}
             />
             <div className="flex gap-12 w-full">
               <Input
                 title={"Start Date"}
                 type={"date"}
-                onChange={handleSelect}
+                register={register("date")}
+                errorMessage={errors?.date?.message}
               />
-              <Input
-                title={"Start Time"}
-                type={"time"}
-                onChange={handleSelect}
-              />
-            </div>
-            <div className="flex gap-12">
               <SelectInput
                 title={"Duration"}
                 options={durationOptions}
                 valueKey={"value"}
                 labelKey={"label"}
-                // customClass={"flex-1"}
-              />
-              <SelectInput
-                title={"Time zone"}
-                options={timeZoneOptions}
-                valueKey={"value"}
-                labelKey={"label"}
-                // customClass={"flex-1"}
+                register={register("time")}
+                errorMessage={errors?.time?.message}
               />
             </div>
             <div className="mt-9">
@@ -220,24 +133,42 @@ const CreateLive = () => {
               <div className="flex gap-4">
                 <Radio
                   title={"Free"}
-                  name={"price"}
+                  name={"isPaid"}
                   value={"free"}
                   defaultChecked
-                  // checked={selected === "free"}
-                  onChange={handleSelect}
+                  register={register("isPaid")}
+                  errorMessage={errors?.isPaid?.message}
+                  onClick={() => setShowAmount(false)}
                 />
                 <Radio
                   title={"Paid"}
-                  name={"price"}
+                  name={"isPaid"}
                   value={"paid"}
-                  // checked={selected === "paid"}
-                  onChange={handleSelect}
+                  register={register("isPaid")}
+                  errorMessage={errors?.isPaid?.message}
+                  onClick={() => setShowAmount(true)}
                 />
               </div>
             </div>
+            {/* <div className="flex gap-12"> */}
+            {showAmount && (
+              <Input
+                title={"Amount"}
+                type={"text"}
+                placeholder={"Enter amount"}
+                register={register("amount")}
+                errorMessage={errors?.amount?.message}
+                required
+              />
+            )}
+            {/* </div> */}
           </div>
-          <Button className={"w-full text-lg"} py={"py-5"}>
-            Proceed to create lesson
+          <Button type={"submit"} className={"w-full text-lg"} py={"py-5"}>
+            {loading ? (
+              <LoadingSpinner color={"white"} />
+            ) : (
+              "Proceed to create lesson"
+            )}
           </Button>
         </form>
       </div>
