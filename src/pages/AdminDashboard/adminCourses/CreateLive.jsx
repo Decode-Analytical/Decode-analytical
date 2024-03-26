@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Heading } from "../../../components/Heading";
 import logo from "../../../assets/adminDashboardImages/logo.svg";
 import vector1 from "../../../assets/adminDashboardImages/vector1.svg";
@@ -18,12 +18,23 @@ import urls from "../../../utils/Url";
 import axios from "axios";
 import { liveSessionSchema } from "../../../schema/liveSession";
 import { durationOptions } from "../../../utils/Constants";
+import { useFetchAdminCourses } from "../../../hooks/useFetchAdmin";
+import Img from "../../../components/adminCourses/Image";
+import Image from "../../../components/adminCourses/Image";
 
 const CreateLive = () => {
   const authUser = JSON.parse(localStorage.getItem("user")).user;
   const navigate = useNavigate();
 
+  const { fetchCourses, courses, isLoading, error } = useFetchAdminCourses();
+
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    fetchCourses();
+  }, []);
+
+  const courseList = courses?.map((item) => item.course_title);
 
   const formHook = useForm({
     resolver: (data) => {
@@ -89,8 +100,8 @@ const CreateLive = () => {
   const [showAmount, setShowAmount] = useState(false);
 
   return (
-    <div className="max-w-[1280px] gap-8 w-full flex items-center mx-auto">
-      <div className="mx-auto w-[50%]">
+    <div className="max-w-[1280px] gap-8 w-[90%] flex items-center mx-auto ">
+      <div className="mx-auto w-full md:w-[45%]">
         <div className="mb-6">
           <Link to="/">
             <img src={logo} alt="logo" className="w-[90px]" />
@@ -99,10 +110,9 @@ const CreateLive = () => {
         <Heading title={"Create your Live Lesson here."} />
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="w-full mb-7">
-            <Input
+            <SelectInput
               title={"Title"}
-              placeholder={"Enter your course title"}
-              type={"text"}
+              options={courseList}
               register={register("courseName")}
               errorMessage={errors?.courseName?.message}
             />
@@ -112,7 +122,7 @@ const CreateLive = () => {
               register={register("description")}
               errorMessage={errors?.description?.message}
             />
-            <div className="flex gap-12 w-full">
+            <div className="flex flex-col md:flex-row gap-x-12 w-full">
               <Input
                 title={"Start Date"}
                 type={"date"}
@@ -172,9 +182,11 @@ const CreateLive = () => {
           </Button>
         </form>
       </div>
-      <div className="hidden md:flex w-[40%]">
-        <img src={vector1} className="w-[250px]" alt="vector1" />
-        <img src={vector2} className="w-[250px]" alt="vector2" />
+      <div className=" hidden md:flex w-[45%]">
+        <div className="hidden md:flex gap-2">
+          <Image src={vector1} alt="vector1" />
+          <Image src={vector2} alt="vector2" />
+        </div>
       </div>
     </div>
   );

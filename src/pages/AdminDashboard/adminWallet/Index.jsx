@@ -12,6 +12,7 @@ import {
   useFetchTransfers,
 } from "../../../hooks/useFetchAdmin";
 import { currencyFormatter } from "../../../utils/functn";
+import CountUp from "react-countup";
 
 const Skeleton = () => (
   <div className="flex items-start gap-x-3 my-2 animate-pulse">
@@ -21,7 +22,7 @@ const Skeleton = () => (
   </div>
 );
 
-const WalletStats = ({ title, amount, percentage, isLoading }) => {
+const WalletStats = ({ title, amount, isLoading }) => {
   return (
     <div className="flex flex-col w-full justify-between p-6 bg-shadow gap-4 relative">
       <div
@@ -33,7 +34,17 @@ const WalletStats = ({ title, amount, percentage, isLoading }) => {
       {isLoading ? (
         <Skeleton />
       ) : (
-        <h1 className="font-bold text-3xl">{currencyFormatter(amount)}</h1>
+        <h1 className="font-bold text-3xl">
+          {
+            <CountUp
+              start={0}
+              end={amount}
+              duration={2}
+              separator=","
+              formattingFn={currencyFormatter}
+            />
+          }
+        </h1>
       )}
       {/* <div className="flex gap-2 items-center">
         <span
@@ -57,15 +68,15 @@ const AdminWallet = () => {
   const {
     fetchTransfers,
     transfers,
-    isLoading: transfersIsLoading,
-    error: transfersError,
+    // isLoading: transfersIsLoading,
+    // error: transfersError,
   } = useFetchTransfers();
 
   const {
     fetchEarnings,
     earnings,
-    isLoading: earningsIsLoading,
-    error: earningsError,
+    // isLoading: earningsIsLoading,
+    // error: earningsError,
   } = useFetchEarnings();
 
   useEffect(() => {

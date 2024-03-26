@@ -9,6 +9,8 @@ import {
   useFetchAdminCourses,
   useFetchAdminSessions,
 } from "../../../hooks/useFetchAdmin";
+import SessionCard from "../../../components/adminTools/SessionCard";
+import CountUp from "react-countup";
 
 const SalesAndPerformance = () => {
   const { fetchCourses, courses, isLoading, error } = useFetchAdminCourses();
@@ -42,23 +44,31 @@ const SalesAndPerformance = () => {
             customClass={"min-w-[250px]"}
             heading={"Total Revenue"}
             sub={"See all earnings over time"}
-            count={currencyFormatter(totalRevenue)}
-            // earning={earning}
+            count={
+              <CountUp
+                start={0}
+                end={totalRevenue}
+                duration={2}
+                separator=","
+                formattingFn={currencyFormatter}
+              />
+            }
           />
+
           <SalesStats
             customClass={"min-w-[250px]"}
             heading={"Purchases"}
             sub={"See numbers of purchases"}
-            count={purchases}
-            // earning={earning}
+            count={
+              <CountUp start={0} end={purchases} duration={2} separator="," />
+            }
           />
 
           <SalesStats
             customClass={"min-w-[250px]"}
             heading={"Sales"}
             sub={"See all periodical sales"}
-            count={"₦234"}
-            // earning={earning}
+            count={<CountUp start={0} end={123} duration={2} separator="," />}
           />
         </div>
         <div className="mt-20 flex flex-col sm:flex-row flex-wrap justify-between gap-8 lg:gap-14">
@@ -71,7 +81,7 @@ const SalesAndPerformance = () => {
             error={error}
             viewDetails
           />
-          <CourseCard
+          <SessionCard
             heading={"Live Session Sales"}
             sub={"See analysis for live lessons"}
             to={"/admin-dashboard/tools/sales-performance/sales-history"}

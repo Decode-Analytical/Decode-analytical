@@ -5,8 +5,8 @@ import skrill from "../../assets/adminDashboardImages/skrill.svg";
 import zelle from "../../assets/adminDashboardImages/zelle.svg";
 import addmore from "../../assets/adminDashboardImages/addmore.svg";
 import { Link } from "react-router-dom";
-import { GoArrowUpRight } from "react-icons/go";
 import { currencyFormatter } from "../../utils/functn";
+import CountUp from "react-countup";
 
 const Skeleton = () => (
   <div className="flex items-start gap-x-3 my-2 animate-pulse">
@@ -16,7 +16,7 @@ const Skeleton = () => (
   </div>
 );
 
-const Balance = ({ amount, rate, isLoading }) => {
+const Balance = ({ amount, isLoading }) => {
   return (
     <div className="bg-shadow">
       <div className="flex mx-auto max-w-[400px] p-7 mt-11 flex-col items-center ">
@@ -25,19 +25,27 @@ const Balance = ({ amount, rate, isLoading }) => {
           <Skeleton />
         ) : (
           <h1 className="font-semibold text-[35px] md:text-[50px]">
-            {currencyFormatter(amount)}
+            {
+              <CountUp
+                start={0}
+                end={amount}
+                duration={2}
+                separator=","
+                formattingFn={currencyFormatter}
+              />
+            }
           </h1>
         )}
-        <div className="flex gap-2 mt-2 font-light items-center">
+        {/* <div className="flex gap-2 mt-2 font-light items-center">
           <span className="bg-[#96FEBE59] p-1 rounded-full">
             <GoArrowUpRight className="text-green1" />
           </span>
           <p className="text-lg">{rate}%</p>
-        </div>
+        </div> */}
         <Link
           to={"/admin-dashboard/wallet/withdraw"}
           className={
-            "flex items-center py-3 px-4 rounded-lg gap-2 bg-blue1 text-white w-full justify-center font-light mt-5"
+            "flex items-center py-3 px-4 rounded-lg gap-2 bg-blue1 text-white w-full justify-center font-light mt-8"
           }
         >
           Withdraw

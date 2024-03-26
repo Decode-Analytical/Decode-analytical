@@ -14,23 +14,24 @@ export const Input = ({
   notImportant,
 }) => {
   return (
-    <div className="flex flex-1 flex-col mt-8">
+    <div className="flex w-full flex-1 flex-col mt-8">
       <label className="font-light">
         {title}
         {notImportant ? "" : <span className="text-red2 text-lg ml-1">*</span>}
-        <input
-          type={type}
-          name={name}
-          id="amount"
-          placeholder={placeholder}
-          className="border border-gray-400 bg-white1 rounded-md p-4"
-          onChange={onChange}
-          value={value}
-          {...register}
-          disabled={disabled}
-          required={required}
-        />
       </label>
+      <input
+        type={type}
+        name={name}
+        id="amount"
+        placeholder={placeholder}
+        className="border border-gray-400 bg-white1 rounded-md p-4"
+        onChange={onChange}
+        value={value}
+        {...register}
+        disabled={disabled}
+        required={required}
+      />
+
       {errorMessage && (
         <div>
           <p className="text-red-500 text-xs italic">{errorMessage}</p>
@@ -189,8 +190,8 @@ export const SelectInput = ({
         >
           <option value="">Select {title}</option>
           {options.map((option, index) => (
-            <option key={index} value={option[valueKey]}>
-              {option[labelKey]}
+            <option key={index} value={valueKey ? option[valueKey] : option}>
+              {labelKey ? option[labelKey] : option}
             </option>
           ))}
         </select>

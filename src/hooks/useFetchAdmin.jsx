@@ -50,8 +50,8 @@ export const useFetchAdminSessions = () => {
         },
       });
 
-      if (response.data && response.data.sessions) {
-        setSessions(response?.data?.sessions);
+      if (response.data && response.data.meeting) {
+        setSessions(response?.data?.meeting);
       }
     } catch (error) {
       handleErrorResponse(error);
@@ -248,4 +248,35 @@ export const useFetchReviews = () => {
   };
 
   return { fetchReviews, reviews, isLoading, error };
+};
+
+export const useFetchCourseById = () => {
+  const [error, setError] = useState(null);
+  const [isLoading, setIsloading] = useState(false);
+  const [course, setCourse] = useState(0);
+
+  const token = JSON.parse(localStorage.getItem("user")).token;
+
+  const fetchCourse = async (id) => {
+    setIsloading(true);
+
+    try {
+      const response = await axios.get(urls.adminViewCourseById(id), {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.data && response.data.course) {
+        setCourse(response.data.course);
+      }
+    } catch (error) {
+      handleErrorResponse(error);
+      setError(error.response?.data?.message);
+    } finally {
+      setIsloading(false);
+    }
+  };
+
+  return { fetchCourse, course, isLoading, error };
 };
