@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import ProfileLayout from "../../../components/ProfileLayout";
-import SalesTable from "../../../components/adminTools/SalesTable";
+// import CourseSalesTable from "../../../components/adminTools/CourseSalesTable";
 import { Heading } from "../../../components/Heading";
 import Tab from "../../../components/Tab";
 import {
   useFetchAdminCourses,
   useFetchAdminSessions,
 } from "../../../hooks/useFetchAdmin";
+import LiveSalesTable from "../../../components/adminTools/LiveSalesTable";
+import CourseSalesTable from "../../../components/adminTools/CourseSalesTable";
 
 const SalesHistory = () => {
   const { fetchCourses, courses, isLoading, error } = useFetchAdminCourses();
@@ -29,15 +31,27 @@ const SalesHistory = () => {
       <Tab
         title1={"Original Course"}
         child1={
-          <SalesTable data={courses} isLoading={isLoading} error={error} />
+          <div className="overflow-x-auto">
+            <div className="w-[800px] md:w-full">
+              <CourseSalesTable
+                data={courses}
+                isLoading={isLoading}
+                error={error}
+              />
+            </div>
+          </div>
         }
         title2={"Live Session"}
         child2={
-          <SalesTable
-            data={sessions}
-            isLoading={sessionLoading}
-            error={sessionError}
-          />
+          <div className="overflow-x-auto">
+            <div className="w-[800px] md:w-full">
+              <LiveSalesTable
+                data={sessions}
+                isLoading={sessionLoading}
+                error={sessionError}
+              />
+            </div>
+          </div>
         }
       />
     </ProfileLayout>

@@ -6,7 +6,7 @@ import { format } from "date-fns";
 import { currencyFormatter } from "../../utils/functn";
 import Spinner from "../Spinner";
 
-const SalesTable = ({ isLoading, data, error }) => {
+const CourseSalesTable = ({ isLoading, data, error }) => {
   const columns = [
     {
       cell: (row) => (
@@ -51,6 +51,7 @@ const SalesTable = ({ isLoading, data, error }) => {
         </div>
       ),
       center: "true",
+      grow: "2",
     },
   ];
 
@@ -61,19 +62,15 @@ const SalesTable = ({ isLoading, data, error }) => {
       ) : error ? (
         <p className="mb-5 font-semibold text-sm">Error fetching data</p>
       ) : (
-        <div className="overflow-x-auto">
-          <div className="w-[800px]">
-            <DataTable
-              columns={columns}
-              customStyles={customStyles}
-              data={data}
-              // pagination={false}
-            />
-          </div>
-        </div>
+        <DataTable
+          columns={columns}
+          customStyles={customStyles}
+          data={data}
+          pagination
+        />
       )}
     </>
   );
 };
 
-export default SalesTable;
+export default CourseSalesTable;
