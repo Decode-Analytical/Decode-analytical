@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import StatsCard from "../../../components/AdminDashboard/StatsCard";
 import DataErrMsg from "../../../components/DataErrMsg";
 import NoDataMsg from "../../../components/NoDataMsg";
-import ProfileLayout from "../../../components/ProfileLayout";
+import ProfileLayout from "../../../components/layout/AdminProfileLayout";
 import BannerSkeleton from "../../../components/adminCourses/BannerSkeleton";
 import CourseBanner from "../../../components/adminCourses/CourseBanner";
 import {

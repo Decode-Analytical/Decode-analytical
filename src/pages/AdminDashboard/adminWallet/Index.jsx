@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { GoArrowUpRight } from "react-icons/go";
-import ProfileLayout from "../../../components/ProfileLayout";
 import WalletChart from "../../../components/adminWallet/WalletChart";
 import WalletTab from "../../../components/adminWallet/WalletTab";
+import ProfileLayout from "../../../components/layout/AdminProfileLayout";
 import { walletData } from "../../../utils/Constants";
 
+import CountUp from "react-countup";
 import Balance from "../../../components/adminWallet/Balance";
 import {
   useFetchBalance,
@@ -12,7 +12,6 @@ import {
   useFetchTransfers,
 } from "../../../hooks/useFetchAdmin";
 import { currencyFormatter } from "../../../utils/functn";
-import CountUp from "react-countup";
 
 const Skeleton = () => (
   <div className="flex items-start gap-x-3 my-2 animate-pulse">

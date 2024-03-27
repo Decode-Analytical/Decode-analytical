@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import StatsCard from "../../components/AdminDashboard/StatsCard";
 import AnalyticsBarchart from "../../components/AdminDashboard/AnalyticsBarchart";
-import ProfileLayout from "../../components/ProfileLayout";
+import ProfileLayout from "../../components/layout/AdminProfileLayout";
 import { AnalyticsData } from "../../utils/Constants";
 import {
   useFetchAdminCourses,

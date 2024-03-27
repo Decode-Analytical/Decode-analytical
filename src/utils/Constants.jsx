@@ -1,4 +1,53 @@
-import courseImg from "../assets/adminDashboardImages/courseimg1.svg";
+import { FaRegEnvelope } from "react-icons/fa6";
+import { FiBookOpen, FiTool } from "react-icons/fi";
+import { GrCircleQuestion } from "react-icons/gr";
+import { HiOutlineViewGrid } from "react-icons/hi";
+import { LuSettings, LuWallet } from "react-icons/lu";
+
+export const sideBarItems = [
+  {
+    name: "Dashboard",
+    icon: <HiOutlineViewGrid className="text-[32px]" />,
+    path: "home",
+    link: "/admin-dashboard/home",
+  },
+  {
+    name: "Courses",
+    icon: <FiBookOpen className="text-[30px]" />,
+    path: "courses",
+    link: "/admin-dashboard/courses",
+  },
+  {
+    name: "Messages",
+    icon: <FaRegEnvelope className="text-[30px]" />,
+    path: "messages",
+    link: "/admin-dashboard/messages",
+  },
+  {
+    name: "Wallet",
+    icon: <LuWallet className="text-[30px]" />,
+    path: "wallet",
+    link: "/admin-dashboard/wallet",
+  },
+  {
+    name: "Tools",
+    icon: <FiTool className="text-[30px]" />,
+    path: "tools",
+    link: "/admin-dashboard/tools",
+  },
+  {
+    name: "Help Center",
+    icon: <GrCircleQuestion className="text-[30px]" />,
+    path: "help-center",
+    link: "/admin-dashboard/help-center",
+  },
+  {
+    name: "Settings",
+    icon: <LuSettings className="text-[30px]" />,
+    path: "settings",
+    link: "/admin-dashboard/settings",
+  },
+];
 
 export const Course = [
   {

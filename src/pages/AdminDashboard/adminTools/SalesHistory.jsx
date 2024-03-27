@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import ProfileLayout from "../../../components/ProfileLayout";
+import ProfileLayout from "../../../components/layout/AdminProfileLayout";
 // import CourseSalesTable from "../../../components/adminTools/CourseSalesTable";
 import { Heading } from "../../../components/Heading";
 import Tab from "../../../components/Tab";
