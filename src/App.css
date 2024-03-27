@@ -158,3 +158,9 @@ input[type="radio"]:focus-visible {
   border-radius: 50%;
 
 } */
+
+.dash-grid {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}

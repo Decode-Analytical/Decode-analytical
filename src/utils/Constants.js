@@ -379,3 +379,94 @@ export const durationOptions = [
     value: "5 hrs",
   },
 ];
+
+export const footerLinks1 = [
+  {
+    title: "Decode Academy",
+    link: "/decode-academy",
+  },
+  {
+    title: "Teach on Decode Academy",
+    link: "/teach-on-decode-academy",
+  },
+  {
+    title: "Manage Cookie Preferences",
+    link: "/manage-cookie-preferences",
+  },
+  {
+    title: "Partners",
+    link: "/partners",
+  },
+  {
+    title: "Directory",
+    link: "/directory",
+  },
+  {
+    title: "About Decode Academy Course",
+    link: "/about-decode-academy-course",
+  },
+  {
+    title: "Contact us",
+    link: "/contact-us",
+  },
+];
+export const footerLinks2 = [
+  {
+    title: "Careers",
+    link: "/careers",
+  },
+  {
+    title: "Blog",
+    link: "/blog",
+  },
+  {
+    title: "Tech Blog",
+    link: "/tech-blog",
+  },
+  {
+    title: "Manage Cookie Preferences",
+    link: "/manage-cookie-preferences",
+  },
+  {
+    title: "Directory",
+    link: "/directory",
+  },
+  {
+    title: "Professional Certificates",
+    link: "/professional-certificates",
+  },
+  {
+    title: "Investors",
+    link: "/investors",
+  },
+];
+export const footerLinks3 = [
+  {
+    title: "Terms",
+    link: "/terms",
+  },
+  {
+    title: "Privacy policy",
+    link: "/privacy-policy",
+  },
+  {
+    title: "Social Impact",
+    link: "/social-impact",
+  },
+  {
+    title: "Accreditation",
+    link: "/accreditation",
+  },
+  {
+    title: "Cookie settings",
+    link: "/cookie-settings",
+  },
+  {
+    title: "Privacy",
+    link: "/privacy",
+  },
+  {
+    title: "Discover Careers",
+    link: "/discover-careers",
+  },
+];
