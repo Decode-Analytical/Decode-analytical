@@ -12,6 +12,8 @@ import {
   useFetchTransfers,
 } from "../../../hooks/useFetchAdmin";
 import { currencyFormatter } from "../../../utils/functn";
+import FilteredChart from "../../../components/adminWallet/FilteredCharts";
+import FilteredCharts from "../../../components/adminWallet/FilteredCharts";
 
 const Skeleton = () => (
   <div className="flex items-start gap-x-3 my-2 animate-pulse">
@@ -91,26 +93,16 @@ const AdminWallet = () => {
           Welcome back, {authUser?.firstName}
         </h2>
         <div className="flex flex-col md:flex-row flex-1 gap-8 md:gap-12">
-          <WalletStats
-            title={"Earnings"}
-            amount={earnings}
-            // percentage={"12"}
-            // isLoading={earningsIsLoading}
-          />
-          <WalletStats
-            title={"Withdrawals"}
-            amount={transfers}
-            // percentage={"8"}
-            // isLoading={transfersIsLoading}
-          />
+          <WalletStats title={"Earnings"} amount={earnings} />
+          <WalletStats title={"Withdrawals"} amount={transfers} />
         </div>
-        <div className="flex justify-between w-full mt-14">
+        <div className="flex justify-between w-full mt-14 ">
           <WalletTab
             title1={"Earnings"}
             child1={
               <div className="overflow-x-auto">
-                <div className="w-[700px] md:w-full">
-                  <WalletChart data={walletData} />
+                <div className="w-[700px] md:w-full ">
+                  <FilteredCharts walletData={walletData} />
                 </div>
               </div>
             }
@@ -118,7 +110,7 @@ const AdminWallet = () => {
             child2={
               <div className="overflow-x-auto">
                 <div className="w-[700px] md:w-full">
-                  <WalletChart data={walletData} />
+                  <FilteredCharts walletData={walletData} />
                 </div>
               </div>
             }
