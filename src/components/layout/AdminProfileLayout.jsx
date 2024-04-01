@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import AdminSidebar from "./AdminSidebar";
-import ProfileHeader from "./ProfileHeader";
+import AdminSidebar from "../sidebar/AdminSidebar";
+import ProfileHeader from "../ProfileHeader";
 
 const ProfileLayout = ({ title, children }) => {
   const [menuOpen, setMenuopen] = useState(false);
-  // const toggleMenu = () => {
-  //   setMenuopen(!menuOpen);
-  // };
 
   const toggleOpenMenu = () => {
     setMenuopen(true);
@@ -36,4 +33,3 @@ const ProfileLayout = ({ title, children }) => {
 };
 
 export default ProfileLayout;
-// first:place-items-center
