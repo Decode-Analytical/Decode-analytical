@@ -11,19 +11,27 @@ import LiveSalesTable from "../../../components/adminTools/LiveSalesTable";
 import CourseSalesTable from "../../../components/adminTools/CourseSalesTable";
 
 const SalesHistory = () => {
-  const { fetchCourses, courses, isLoading, error } = useFetchAdminCourses();
+  const {
+    fetchData: fetchCourses,
+    data: courses,
+    isLoading: coursesLoading,
+    error: coursesError,
+  } = useFetchAdminCourses();
 
   const {
-    fetchSessions,
-    sessions,
-    isLoading: sessionLoading,
-    error: sessionError,
+    fetchData: fetchSessions,
+    data: session,
+    isLoading: sessionsLoading,
+    error: sessionsError,
   } = useFetchAdminSessions();
 
   useEffect(() => {
     fetchCourses();
     fetchSessions();
   }, []);
+
+  const coursesData = courses?.courses;
+  const sessionsData = session?.meeting;
 
   return (
     <ProfileLayout px={"4"}>
@@ -34,9 +42,9 @@ const SalesHistory = () => {
           <div className="overflow-x-auto">
             <div className="w-[800px] md:w-full">
               <CourseSalesTable
-                data={courses}
-                isLoading={isLoading}
-                error={error}
+                data={coursesData}
+                isLoading={coursesLoading}
+                error={coursesError}
               />
             </div>
           </div>
@@ -46,9 +54,9 @@ const SalesHistory = () => {
           <div className="overflow-x-auto">
             <div className="w-[800px] md:w-full">
               <LiveSalesTable
-                data={sessions}
-                isLoading={sessionLoading}
-                error={sessionError}
+                data={sessionsData}
+                isLoading={sessionsLoading}
+                error={sessionsError}
               />
             </div>
           </div>

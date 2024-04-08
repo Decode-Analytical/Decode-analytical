@@ -13,13 +13,18 @@ import SessionCard from "../../../components/adminTools/SessionCard";
 import CountUp from "react-countup";
 
 const SalesAndPerformance = () => {
-  const { fetchCourses, courses, isLoading, error } = useFetchAdminCourses();
+  const {
+    fetchData: fetchCourses,
+    data: courses,
+    isLoading: coursesLoading,
+    error: coursesError,
+  } = useFetchAdminCourses();
 
   const {
-    fetchSessions,
-    sessions,
-    isLoading: sessionLoading,
-    error: sessionError,
+    fetchData: fetchSessions,
+    data: session,
+    isLoading: sessionsLoading,
+    error: sessionsError,
   } = useFetchAdminSessions();
 
   useEffect(() => {
@@ -27,12 +32,15 @@ const SalesAndPerformance = () => {
     fetchSessions();
   }, []);
 
-  const totalRevenue = courses
-    .map((item) => item.isPrice_course * item.totalRegisteredByStudent)
+  const coursesData = courses?.courses;
+  const sessionsData = session?.meeting;
+
+  const totalRevenue = coursesData
+    ?.map((item) => item.isPrice_course * item.totalRegisteredByStudent)
     .reduce((a, b) => a + b, 0);
 
-  const purchases = courses
-    .map((i) => i.totalRegisteredByStudent)
+  const purchases = coursesData
+    ?.map((i) => i.totalRegisteredByStudent)
     .reduce((a, b) => a + b, 0);
 
   return (
@@ -76,23 +84,27 @@ const SalesAndPerformance = () => {
             heading={"Original Course Sales"}
             sub={"See analysis for courses"}
             to={"/admin-dashboard/tools/sales-performance/sales-history"}
-            courseData={courses}
-            isLoading={isLoading}
-            error={error}
+            courseData={coursesData}
+            isLoading={coursesLoading}
+            error={coursesError}
             viewDetails
           />
           <SessionCard
             heading={"Live Session Sales"}
             sub={"See analysis for live lessons"}
             to={"/admin-dashboard/tools/sales-performance/sales-history"}
-            courseData={sessions}
-            isLoading={sessionLoading}
-            error={sessionError}
+            courseData={sessionsData}
+            isLoading={sessionsLoading}
+            error={sessionsError}
             viewDetails
           />
         </div>
         <div>
-          <TopPerformances isLoading={isLoading} data={courses} error={error} />
+          <TopPerformances
+            isLoading={coursesLoading}
+            data={coursesData}
+            error={coursesError}
+          />
         </div>
       </ProfileLayout>
     </div>

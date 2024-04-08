@@ -189,7 +189,7 @@ export const SelectInput = ({
           {...register}
         >
           <option value="">Select {title}</option>
-          {options.map((option, index) => (
+          {options?.map((option, index) => (
             <option key={index} value={valueKey ? option[valueKey] : option}>
               {labelKey ? option[labelKey] : option}
             </option>

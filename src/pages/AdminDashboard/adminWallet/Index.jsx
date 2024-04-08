@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import WalletChart from "../../../components/adminWallet/WalletChart";
+import React, { useEffect, useMemo } from "react";
 import WalletTab from "../../../components/adminWallet/WalletTab";
 import ProfileLayout from "../../../components/layout/AdminProfileLayout";
 import { walletData } from "../../../utils/Constants";
@@ -12,7 +11,7 @@ import {
   useFetchTransfers,
 } from "../../../hooks/useFetchAdmin";
 import { currencyFormatter } from "../../../utils/functn";
-import FilteredChart from "../../../components/adminWallet/FilteredCharts";
+
 import FilteredCharts from "../../../components/adminWallet/FilteredCharts";
 
 const Skeleton = () => (
@@ -47,44 +46,43 @@ const WalletStats = ({ title, amount, isLoading }) => {
           }
         </h1>
       )}
-      {/* <div className="flex gap-2 items-center">
-        <span
-          className={`${
-            title === "Earnings" ? "bg-[#96FEBE59]" : "bg-[#FE969659]"
-          }  p-1 rounded-full`}
-        >
-          <GoArrowUpRight
-            className={`${title === "Earnings" ? "text-green1" : "text-red1"}`}
-          />
-        </span>
-        <p>{percentage}%</p>
-      </div> */}
     </div>
   );
 };
 
 const AdminWallet = () => {
-  const authUser = JSON.parse(localStorage.getItem("user")).user;
-  const { fetchBalance, balance, isLoading, error } = useFetchBalance();
-  const {
-    fetchTransfers,
-    transfers,
-    // isLoading: transfersIsLoading,
-    // error: transfersError,
-  } = useFetchTransfers();
+  const authUser = useMemo(() => {
+    return JSON.parse(localStorage.getItem("user")).user;
+  }, []);
 
   const {
-    fetchEarnings,
-    earnings,
-    // isLoading: earningsIsLoading,
+    fetchData: fetchEarnings,
+    data: earnings,
+    // isLoading: earningsLoading,
     // error: earningsError,
   } = useFetchEarnings();
+  const {
+    fetchData: fetchBalance,
+    data: balance,
+    // isLoading: balanceLoading,
+    // error: balanceError,
+  } = useFetchBalance();
+  const {
+    fetchData: fetchTransfers,
+    data: transfers,
+    // isLoading: transfersLoading,
+    // error: transfersError,
+  } = useFetchTransfers();
 
   useEffect(() => {
     fetchBalance();
     fetchTransfers();
     fetchEarnings();
   }, []);
+
+  const earningData = earnings?.totalEarnings;
+  const transfersData = transfers?.totalWithdrawal;
+  const balanceData = balance?.wallet;
 
   return (
     <ProfileLayout title={"Wallet"}>
@@ -93,8 +91,8 @@ const AdminWallet = () => {
           Welcome back, {authUser?.firstName}
         </h2>
         <div className="flex flex-col md:flex-row flex-1 gap-8 md:gap-12">
-          <WalletStats title={"Earnings"} amount={earnings} />
-          <WalletStats title={"Withdrawals"} amount={transfers} />
+          <WalletStats title={"Earnings"} amount={earningData} />
+          <WalletStats title={"Withdrawals"} amount={transfersData} />
         </div>
         <div className="flex justify-between w-full mt-14 ">
           <WalletTab
@@ -116,7 +114,7 @@ const AdminWallet = () => {
             }
           />
         </div>
-        <Balance amount={balance} rate={"34"} />
+        <Balance amount={balanceData} rate={"34"} />
       </div>
     </ProfileLayout>
   );
