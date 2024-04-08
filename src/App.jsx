@@ -58,6 +58,7 @@ import Success from "./pages/AdminDashboard/adminWallet/Success";
 import CreateNewCourse from "./pages/AdminDashboard/adminCourses/CreateNewCourse";
 import CreateLive from "./pages/AdminDashboard/adminCourses/CreateLive";
 import CreateVideo from "./pages/AdminDashboard/adminCourses/CreateVideo";
+import EditCourse from "./pages/AdminDashboard/adminCourses/EditCourse";
 
 function App() {
   return (
@@ -107,6 +108,10 @@ function App() {
               <Route
                 path="/admin-dashboard/courses"
                 element={<AdminCourses />}
+              />
+              <Route
+                path="/admin-dashboard/courses/:id"
+                element={<EditCourse />}
               />
               <Route
                 path="/admin-dashboard/courses/create-new-course"

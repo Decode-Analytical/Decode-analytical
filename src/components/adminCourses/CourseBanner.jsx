@@ -3,6 +3,7 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import { LuSend } from "react-icons/lu";
 import { FiEdit } from "react-icons/fi";
 import { TbCellSignal5 } from "react-icons/tb";
+import { useNavigate } from "react-router-dom";
 
 const Button = ({ Icon, text, danger, onClick }) => {
   return (
@@ -31,7 +32,17 @@ const ProgressBar = ({ progress }) => {
   );
 };
 
-const CourseBanner = ({ ongoing, completed, level, title, progress, img }) => {
+const CourseBanner = ({
+  ongoing,
+  completed,
+  level,
+  title,
+  progress,
+  img,
+  id,
+}) => {
+  const navigate = useNavigate();
+
   return (
     <div className="bg-shadow rounded-md mt-[45px] pb-[18px] px-[18px] pt-[13px] relative">
       <div className="">
@@ -68,9 +79,13 @@ const CourseBanner = ({ ongoing, completed, level, title, progress, img }) => {
             <ProgressBar progress={progress} />
             <div className="flex gap-3">
               {ongoing ? (
-                <Button Icon={LuSend} text={"Publish"} />
+                <Button Icon={LuSend} text={"Publish"} id={id} />
               ) : completed ? (
-                <Button Icon={FiEdit} text={"Manage/Edit"} />
+                <Button
+                  Icon={FiEdit}
+                  text={"Manage/Edit"}
+                  onClick={() => navigate(`/admin-dashboard/courses/${id}`)}
+                />
               ) : null}
               <Button danger Icon={RiDeleteBinLine} text={"Remove"} />
             </div>

@@ -100,6 +100,7 @@ const AdminCourses = () => {
                   img={item?.course_image[0]?.path}
                   progress={100}
                   level={item?.course_level}
+                  id={item?._id}
                   completed
                 />
               ))}

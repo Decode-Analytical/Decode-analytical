@@ -66,6 +66,6 @@ export const useFetchReviews = () => {
   return useFetchData(urls.adminGetAllReviews, 0);
 };
 
-// export const useFetchCourseById = (id, initialData) => {
-//   return useFetchData(urls.adminViewCourseById(id), initialData);
-// };
+export const useFetchCourseById = (id) => {
+  return useFetchData(urls.adminViewCourseById(id), {});
+};
