@@ -53,6 +53,12 @@ export const useFetchTransfers = () => {
 export const useFetchEarnings = () => {
   return useFetchData(urls.adminGetEarnings, 0);
 };
+export const useFetchEarningsChart = () => {
+  return useFetchData(urls.adminEarningsChart, {});
+};
+export const useFetchWithdrawalsChart = () => {
+  return useFetchData(urls.adminWithdrawalsChart, {});
+};
 
 export const useFetchAllRegStudents = () => {
   return useFetchData(urls.adminGetAllRegStudents, 0);
@@ -69,3 +75,34 @@ export const useFetchReviews = () => {
 export const useFetchCourseById = (id) => {
   return useFetchData(urls.adminViewCourseById(id), {});
 };
+
+// const useDeleteData = (url, id) => {
+//   const [error, setError] = useState(null);
+//   const [isLoading, setIsLoading] = useState(false);
+//   // const [data, setData] = useState(initialData);
+
+//   const token = useMemo(() => {
+//     return JSON.parse(localStorage.getItem("user")).token;
+//   }, []);
+
+//   const fetchData = async () => {
+//     setIsLoading(true);
+
+//     try {
+//       const response = await axios.get(url, {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//       });
+//       if (response.status === 200 || response.status === 201)
+//         setData(response?.data);
+//     } catch (error) {
+//       handleErrorResponse(error);
+//       setError(error.response?.data?.message);
+//     } finally {
+//       setIsLoading(false);
+//     }
+//   };
+
+//   return { fetchData, data, isLoading, error };
+// };

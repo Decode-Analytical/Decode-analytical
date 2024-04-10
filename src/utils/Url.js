@@ -1,4 +1,5 @@
 export const baseURL = "https://decode-mnjh.onrender.com/api";
+// export const baseURL = "https://server-eight-beige.vercel.app/api";
 
 const urls = {
   studentLogin: `${baseURL}/user/login`,
@@ -13,7 +14,11 @@ const urls = {
   adminGetCourseVisit: `${baseURL}/admin/adminDailyCourseVisitCount`,
   adminGetAllReviews: `${baseURL}/course/review`,
   adminCreateLiveSession: `${baseURL}/admin/adminScheduleMeeting`,
+  adminEarningsChart: `${baseURL}/admin/adminWeeklyMonthlyAndYearlyEarnings`,
+  adminWithdrawalsChart: `${baseURL}/admin/adminWeeklyMonthlyAndYearlyWithdrawals`,
   adminViewCourseById: (requestId) =>
     `${baseURL}/course/getViewCourseById/${requestId}`,
+  adminDeleteCourseById: (requestId) =>
+    `${baseURL}/course/deleteCourse/${requestId}`,
 };
 export default urls;

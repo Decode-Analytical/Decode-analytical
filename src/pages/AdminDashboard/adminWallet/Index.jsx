@@ -8,11 +8,15 @@ import Balance from "../../../components/adminWallet/Balance";
 import {
   useFetchBalance,
   useFetchEarnings,
+  useFetchEarningsChart,
   useFetchTransfers,
+  useFetchWithdrawalsChart,
 } from "../../../hooks/useFetchAdmin";
 import { currencyFormatter } from "../../../utils/functn";
 
-import FilteredCharts from "../../../components/adminWallet/FilteredCharts";
+import FilteredCharts from "../../../components/adminWallet/WithdrawalsCharts";
+import EarningsCharts from "../../../components/adminWallet/EarningsCharts";
+import WithdrawalsCharts from "../../../components/adminWallet/WithdrawalsCharts";
 
 const Skeleton = () => (
   <div className="flex items-start gap-x-3 my-2 animate-pulse">
@@ -73,16 +77,39 @@ const AdminWallet = () => {
     // isLoading: transfersLoading,
     // error: transfersError,
   } = useFetchTransfers();
+  const {
+    fetchData: fetchEarningsChart,
+    data: earningsChart,
+    // isLoading: EarningsChartLoading,
+    // error: EarningsChartError,
+  } = useFetchEarningsChart();
+  const {
+    fetchData: fetchWithdrawalsChart,
+    data: withdrawalsChart,
+    // isLoading: WithdrawalsChartLoading,
+    // error: WithdrawalsChartError,
+  } = useFetchWithdrawalsChart();
 
   useEffect(() => {
     fetchBalance();
     fetchTransfers();
     fetchEarnings();
+    fetchEarningsChart();
+    fetchWithdrawalsChart();
   }, []);
 
   const earningData = earnings?.totalEarnings;
   const transfersData = transfers?.totalWithdrawal;
   const balanceData = balance?.wallet;
+  const earningsChartData = earningsChart;
+  const withdrawalsChartData = withdrawalsChart;
+
+  // console.log(earningsChartData);
+  // console.log(withdrawalsChartData);
+
+  // console.log(Object.keys(earningsChartData?.monthlyEarnings?.[0])?.[0]);
+  // console.log(Object.keys(earningsChartData?.monthlyEarnings?.[0])[0]);
+  // console.log(Object.keys(earningsChartData?.monthlyEarnings?.[0])[1]);
 
   return (
     <ProfileLayout title={"Wallet"}>
@@ -100,7 +127,7 @@ const AdminWallet = () => {
             child1={
               <div className="overflow-x-auto">
                 <div className="w-[700px] md:w-full ">
-                  <FilteredCharts walletData={walletData} />
+                  <EarningsCharts walletData={earningsChartData} />
                 </div>
               </div>
             }
@@ -108,7 +135,7 @@ const AdminWallet = () => {
             child2={
               <div className="overflow-x-auto">
                 <div className="w-[700px] md:w-full">
-                  <FilteredCharts walletData={walletData} />
+                  <WithdrawalsCharts walletData={withdrawalsChartData} />
                 </div>
               </div>
             }

@@ -238,18 +238,18 @@ export const AnalyticsData = [
 ];
 
 export const walletData = [
-  { course: "Jan", purchases: 12000, students: 24000 },
-  { course: "Feb", purchases: 8000, students: 16000 },
-  { course: "Mar", purchases: 9000, students: 18000 },
-  { course: "Apr", purchases: 7000, students: 14000 },
-  { course: "May", purchases: 11000, students: 22000 },
-  { course: "Jun", purchases: 6000, students: 12000 },
-  { course: "Jul", purchases: 8000, students: 16000 },
-  { course: "Aug", purchases: 10000, students: 20000 },
-  { course: "Sep", purchases: 10000, students: 20000 },
-  { course: "Oct", purchases: 9000, students: 18000 },
-  { course: "Nov", purchases: 12000, students: 24000 },
-  { course: "Dec", purchases: 14000, students: 28000 },
+  { course: "Jan", purchases: 12000 },
+  { course: "Feb", purchases: 8000 },
+  { course: "Mar", purchases: 9000 },
+  { course: "Apr", purchases: 7000 },
+  { course: "May", purchases: 11000 },
+  { course: "Jun", purchases: 6000 },
+  { course: "Jul", purchases: 8000 },
+  { course: "Aug", purchases: 10000 },
+  { course: "Sep", purchases: 10000 },
+  { course: "Oct", purchases: 9000 },
+  { course: "Nov", purchases: 12000 },
+  { course: "Dec", purchases: 14000 },
 ];
 
 export const durationOptions = [
