@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Heading } from "../../../components/Heading";
 import logo from "../../../assets/adminDashboardImages/logo.svg";
 import vector1 from "../../../assets/adminDashboardImages/vector1.svg";
@@ -19,22 +19,24 @@ import axios from "axios";
 import { liveSessionSchema } from "../../../schema/liveSession";
 import { durationOptions } from "../../../utils/Constants";
 import { useFetchAdminCourses } from "../../../hooks/useFetchAdmin";
-import Img from "../../../components/adminCourses/Image";
 import Image from "../../../components/adminCourses/Image";
 
 const CreateLive = () => {
-  const authUser = JSON.parse(localStorage.getItem("user")).user;
+  const authUser = useMemo(() => {
+    return JSON.parse(localStorage.getItem("user")).user;
+  }, []);
   const navigate = useNavigate();
-
-  const { fetchCourses, courses, isLoading, error } = useFetchAdminCourses();
-
   const [loading, setLoading] = useState(false);
+
+  const { fetchData: fetchCourses, data: courses } = useFetchAdminCourses();
 
   useEffect(() => {
     fetchCourses();
   }, []);
 
-  const courseList = courses?.map((item) => item.course_title);
+  const courseData = courses?.courses;
+
+  const courseList = courseData?.map((item) => item.course_title);
 
   const formHook = useForm({
     resolver: (data) => {
@@ -160,7 +162,6 @@ const CreateLive = () => {
                 />
               </div>
             </div>
-            {/* <div className="flex gap-12"> */}
             {showAmount && (
               <Input
                 title={"Amount"}
@@ -171,7 +172,6 @@ const CreateLive = () => {
                 required
               />
             )}
-            {/* </div> */}
           </div>
           <Button type={"submit"} className={"w-full text-lg"} py={"py-5"}>
             {loading ? (

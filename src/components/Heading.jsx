@@ -2,11 +2,11 @@ import React from "react";
 import { MdArrowBackIos } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-export const Heading = ({ title, ml }) => {
+export const Heading = ({ title, ml, mb }) => {
   const navigate = useNavigate();
 
   return (
-    <div className={`flex mb-12 ml-${ml || "0"}`}>
+    <div className={`flex ${mb || "mb-12"} ml-${ml || "0"}`}>
       <button onClick={() => navigate(-1)}>
         <MdArrowBackIos className="text-xl" />
       </button>
