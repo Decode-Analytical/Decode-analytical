@@ -12,9 +12,9 @@ import { withdrawalSchema } from "../../../schema/wallet";
 import { banks } from "../../../utils/bankCodes";
 import urls from "../../../utils/Url";
 import LoadingSpinner from "../../../components/LoadingSpinner";
-
 import ProfileHeader2 from "../../../components/ProfileHeader2";
 import { ErrorToast, SuccessToast } from "../../../utils/toast";
+import Axios from "axios";
 
 const AdminWithdraw = () => {
   const navigate = useNavigate();
@@ -60,21 +60,19 @@ const AdminWithdraw = () => {
     setLoading(true);
     const token = JSON.parse(localStorage.getItem("user")).token;
     try {
-      const response = await fetch(urls.adminTransfer, {
-        method: "POST",
+      const response = await Axios.post(urls.adminTransfer, data, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
       });
 
-      if (response.ok) {
-        SuccessToast(response.message);
+      if (response.status === 200 || response.status === 201) {
+        SuccessToast(response.data.message);
         navigate("/admin-dashboard/wallet/withdraw/success");
       }
     } catch (error) {
-      ErrorToast(response.message);
+      ErrorToast(error.response.data.message);
     } finally {
       setLoading(false);
     }
@@ -83,7 +81,6 @@ const AdminWithdraw = () => {
   return (
     <>
       <ProfileHeader2 to={"/admin-dashboard/wallet"} />
-
       <div className="flex justify-between items-center w-[97%] md:w-[90%] mx-auto max-w-[1280px] my-[60px] ">
         <div className="w-[90%] mx-auto lg:mx-0 lg:w-[45%]">
           <h2 className="font-bold text-2xl w-[70%] mb-[25px]">

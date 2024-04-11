@@ -10,7 +10,12 @@ export const withdrawalSchema = yup.object().shape({
     .number()
     .required("Amount is required")
     .positive("Amount must be a positive number"),
-  reason: yup.string().required("Reason is required"),
-  pin: yup.number().required("PIN is required"),
-  // .matches(/^\d{4}$/, "PIN must be a 4-digit number"),
+  reason: yup.string().required("Remark is required"),
+  pin: yup
+    .number()
+    .typeError("PIN must be a number")
+    .required("PIN is required")
+    .test("is-four-digits", "PIN must be a 4-digit number", (value) =>
+      /^\d{4}$/.test(value)
+    ),
 });
