@@ -10,6 +10,7 @@ const urls = {
   adminTransfer: `${baseURL}/wallet/transfer`,
   adminGetTransfers: `${baseURL}/wallet/getWithdrawal`,
   adminGetEarnings: `${baseURL}/admin/adminTotalEarnings`,
+  adminGeneratePin: `${baseURL}/pin/generatePin`,
   adminGetAllRegStudents: `${baseURL}/admin/adminViewTotalStudentRegistered`,
   adminGetCourseVisit: `${baseURL}/admin/adminDailyCourseVisitCount`,
   adminGetAllReviews: `${baseURL}/course/review`,

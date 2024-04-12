@@ -141,6 +141,7 @@ const AdminWithdraw = () => {
                 placeholder={"Enter pin"}
                 register={register("pin")}
                 errorMessage={errors?.pin?.message}
+                href={"/admin-dashboard/wallet/create-pin"}
                 required
               />
 

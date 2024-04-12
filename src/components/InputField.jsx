@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { RxEyeClosed } from "react-icons/rx";
+import { PiEyeBold } from "react-icons/pi";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Input = ({
   title,
@@ -12,29 +15,60 @@ export const Input = ({
   disabled,
   errorMessage,
   notImportant,
+  href, //Temporary
 }) => {
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div className="flex w-full flex-1 flex-col mt-8">
-      <label className="font-light">
-        {title}
-        {notImportant ? "" : <span className="text-red2 text-lg ml-1">*</span>}
-      </label>
-      <input
-        type={type}
-        name={name}
-        id="amount"
-        placeholder={placeholder}
-        className="border border-gray-400 bg-white1 rounded-md p-4"
-        onChange={onChange}
-        value={value}
-        {...register}
-        disabled={disabled}
-        required={required}
-      />
+      <div className="flex justify-between w-full">
+        <label className="font-light">
+          {title}
+          {notImportant ? (
+            ""
+          ) : (
+            <span className="text-red2 text-lg ml-1">*</span>
+          )}
+        </label>
+        {href && (
+          <div className="font-semibold cursor-pointer">
+            <p onClick={() => navigate(href)}>Create Pin</p>
+          </div>
+        )}
+      </div>
+      <div className="relative">
+        <input
+          type={showPassword ? "text" : type}
+          name={name}
+          placeholder={placeholder}
+          className={`border border-gray-400 bg-white1 rounded-md p-4 pr-12 ${
+            errorMessage && "outline-red-500"
+          }`}
+          onChange={onChange}
+          value={value}
+          {...register}
+          disabled={disabled}
+          required={required}
+        />
+        {type === "password" && (
+          <button
+            className="absolute inset-y-0 right-0 flex items-center px-4 bg-transparent border-transparent"
+            onClick={togglePasswordVisibility}
+            type="button"
+          >
+            {showPassword ? <PiEyeBold /> : <RxEyeClosed />}
+          </button>
+        )}
+      </div>
 
       {errorMessage && (
         <div>
-          <p className="text-red-500 text-xs italic">{errorMessage}</p>
+          <p className="text-red-500 mt-1 text-xs italic">{errorMessage}</p>
         </div>
       )}
     </div>

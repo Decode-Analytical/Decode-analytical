@@ -8,6 +8,7 @@ export const withdrawalSchema = yup.object().shape({
     .matches(/^\d+$/, "Account number must be a valid number"),
   amount: yup
     .number()
+    .typeError("Amount must be a number")
     .required("Amount is required")
     .positive("Amount must be a positive number"),
   reason: yup.string().required("Remark is required"),

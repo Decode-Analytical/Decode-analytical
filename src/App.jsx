@@ -59,6 +59,7 @@ import CreateNewCourse from "./pages/AdminDashboard/adminCourses/CreateNewCourse
 import CreateLive from "./pages/AdminDashboard/adminCourses/CreateLive";
 import CreateVideo from "./pages/AdminDashboard/adminCourses/CreateVideo";
 import EditCourse from "./pages/AdminDashboard/adminCourses/EditCourse";
+import AdminCreatePin from "./pages/AdminDashboard/adminWallet/AdminCreatePin";
 
 function App() {
   return (
@@ -144,6 +145,10 @@ function App() {
                 element={<AdminHelpCenter />}
               />
               <Route path="/admin-dashboard/wallet" element={<AdminWallet />} />
+              <Route
+                path="/admin-dashboard/wallet/create-pin"
+                element={<AdminCreatePin />}
+              />
               <Route
                 path="/admin-dashboard/wallet/withdraw"
                 element={<AdminWithdraw />}
