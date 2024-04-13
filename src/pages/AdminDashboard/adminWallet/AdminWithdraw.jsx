@@ -119,7 +119,7 @@ const AdminWithdraw = () => {
       <ProfileHeader2 to={"/admin-dashboard/wallet"} />
       <div className="flex justify-between items-center w-[97%] md:w-[90%] mx-auto max-w-[1280px] my-[60px] ">
         <div className="w-[90%] mx-auto lg:mx-0 lg:w-[45%]">
-          <h2 className="font-bold text-2xl w-[70%] mb-[25px]">
+          <h2 className="font-bold text-2xl w-full md:w-[70%] mb-[25px]">
             Withdraw to Bank or an Online Payment.
           </h2>
           <div className="flex justify-between w-[100%]">
@@ -145,7 +145,6 @@ const AdminWithdraw = () => {
                 register={register("bankName")}
                 errorMessage={errors?.bankName?.message}
                 disabled={loading}
-                // required
                 options={banks}
               />
               <Input
@@ -155,7 +154,6 @@ const AdminWithdraw = () => {
                 register={register("accountNumber")}
                 errorMessage={errors?.accountNumber?.message}
                 disabled={loading}
-                // required
               />
               <Input
                 type={"text"}
@@ -164,7 +162,6 @@ const AdminWithdraw = () => {
                 register={register("amount")}
                 errorMessage={errors?.amount?.message}
                 disabled={loading}
-                // required
               />
               <Input
                 type={"password"}
@@ -174,7 +171,6 @@ const AdminWithdraw = () => {
                 errorMessage={errors?.pin?.message}
                 href={"/admin-dashboard/wallet/create-pin"}
                 disabled={loading}
-                // required
               />
               <Input
                 type={"text"}
@@ -184,7 +180,6 @@ const AdminWithdraw = () => {
                 errorMessage={errors?.reason?.message}
                 disabled={loading}
                 notImportant
-                // required
               />
 
               <button

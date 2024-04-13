@@ -19,8 +19,6 @@ const AdminCreatePin = () => {
   const formHook = useForm({
     resolver: (data) => validate(createPinSchema, data),
     defaultValues: {
-      name: "",
-      email: "",
       pin: "",
       confirmPin: "",
     },
@@ -59,33 +57,15 @@ const AdminCreatePin = () => {
       <ProfileHeader2 to={"/admin-dashboard/wallet/withdraw"} />
       <div className="flex justify-between items-center w-[97%] md:w-[90%] mx-auto max-w-[1280px] my-[60px] ">
         <div className="w-[90%] mx-auto lg:mx-0 lg:w-[45%]">
-          <h2 className="font-bold text-2xl w-[70%] mb-[25px]">
+          <h2 className="font-bold text-2xl w-full md:w-[70%] mb-[25px]">
             Create your transaction pin here
           </h2>
 
           <div>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Input
-                type={"text"}
-                title={"Name"}
-                placeholder={"Enter your name"}
-                register={register("name")}
-                errorMessage={errors?.name?.message}
-                disabled={loading}
-                // required
-              />
-              <Input
-                type={"text"}
-                title={"Email"}
-                placeholder={"Enter your email address"}
-                register={register("email")}
-                errorMessage={errors?.email?.message}
-                disabled={loading}
-                // required
-              />
-              <Input
                 type={"password"}
-                title={"Create Pin"}
+                title={"New Pin"}
                 placeholder={"e.g. 1234"}
                 register={register("pin")}
                 errorMessage={errors?.pin?.message}
