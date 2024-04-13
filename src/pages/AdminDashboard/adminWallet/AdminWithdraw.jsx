@@ -123,16 +123,16 @@ const AdminWithdraw = () => {
             Withdraw to Bank or an Online Payment.
           </h2>
           <div className="flex justify-between w-[100%]">
-            <img className="-mx-3 max-w-[74px]" src={paypal} alt="paypal" />
+            <img className="-mr-5 max-w-[74px]" src={paypal} alt="paypal" />
             <img
               className="-mx-3 max-w-[74px]"
               src={mastercard}
               alt="mastercard"
             />
-            <img className="-mx-10 -mb-5 max-w-[104px]" src={visa} alt="visa" />
+            <img className="-mx-10 -mb-5 max-w-[111px]" src={visa} alt="visa" />
             <img className="-mx-3 max-w-[74px]" src={skrill} alt="skrill" />
             <img
-              className="-mx-3 max-w-[74px]"
+              className="-ml-5 max-w-[74px]"
               src={amazonpay}
               alt="amazonpay"
             />
