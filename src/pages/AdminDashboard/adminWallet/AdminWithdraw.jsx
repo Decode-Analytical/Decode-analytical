@@ -119,20 +119,20 @@ const AdminWithdraw = () => {
       <ProfileHeader2 to={"/admin-dashboard/wallet"} />
       <div className="flex justify-between items-center w-[97%] md:w-[90%] mx-auto max-w-[1280px] my-[60px] ">
         <div className="w-[90%] mx-auto lg:mx-0 lg:w-[45%]">
-          <h2 className="font-bold text-2xl w-[70%] mb-[25px]">
+          <h2 className="font-bold text-2xl w-full md:w-[70%] mb-[25px]">
             Withdraw to Bank or an Online Payment.
           </h2>
           <div className="flex justify-between w-[100%]">
-            <img className="-mx-3 max-w-[74px]" src={paypal} alt="paypal" />
+            <img className="-mr-5 max-w-[74px]" src={paypal} alt="paypal" />
             <img
               className="-mx-3 max-w-[74px]"
               src={mastercard}
               alt="mastercard"
             />
-            <img className="-mx-10 -mb-5 max-w-[104px]" src={visa} alt="visa" />
+            <img className="-mx-10 -mb-5 max-w-[111px]" src={visa} alt="visa" />
             <img className="-mx-3 max-w-[74px]" src={skrill} alt="skrill" />
             <img
-              className="-mx-3 max-w-[74px]"
+              className="-ml-5 max-w-[74px]"
               src={amazonpay}
               alt="amazonpay"
             />
@@ -145,7 +145,6 @@ const AdminWithdraw = () => {
                 register={register("bankName")}
                 errorMessage={errors?.bankName?.message}
                 disabled={loading}
-                // required
                 options={banks}
               />
               <Input
@@ -155,7 +154,6 @@ const AdminWithdraw = () => {
                 register={register("accountNumber")}
                 errorMessage={errors?.accountNumber?.message}
                 disabled={loading}
-                // required
               />
               <Input
                 type={"text"}
@@ -164,7 +162,6 @@ const AdminWithdraw = () => {
                 register={register("amount")}
                 errorMessage={errors?.amount?.message}
                 disabled={loading}
-                // required
               />
               <Input
                 type={"password"}
@@ -174,7 +171,6 @@ const AdminWithdraw = () => {
                 errorMessage={errors?.pin?.message}
                 href={"/admin-dashboard/wallet/create-pin"}
                 disabled={loading}
-                // required
               />
               <Input
                 type={"text"}
@@ -184,7 +180,6 @@ const AdminWithdraw = () => {
                 errorMessage={errors?.reason?.message}
                 disabled={loading}
                 notImportant
-                // required
               />
 
               <button
@@ -203,6 +198,7 @@ const AdminWithdraw = () => {
                 }
                 overlayClose={overlayClose}
                 danger
+                customClass={"flex-col sm2:flex-row mt-10"}
               >
                 <ModalButton onClick={toggleForgot} color>
                   Forgot Pin
@@ -218,10 +214,11 @@ const AdminWithdraw = () => {
                 text={"Please enter your email to reset your pin"}
                 danger
                 overlayClose={overlayClose}
+                customClass={""}
               >
                 <form
                   onSubmit={(e) => onSubmitForgot(e, { email: resetEmail })}
-                  className="flex w-full gap-5"
+                  className="flex flex-col sm:flex-row w-full gap-5"
                 >
                   <ModalInput
                     placeholder={"Enter your email here"}

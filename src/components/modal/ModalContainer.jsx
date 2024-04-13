@@ -8,7 +8,7 @@ const ModalContainer = ({ children, overlayClose }) => {
           className="absolute inset-0 bg-gray-900 opacity-50"
           onClick={overlayClose}
         ></div>
-        <div className="bg-white px-10 pt-6 pb-16 rounded-lg shadow-xl z-20 w-[550px] h-[300px]">
+        <div className="bg-white px-6 md:px-10 pt-6 pb-9 sm:pb-16 rounded-lg shadow-xl z-20 w-[550px] h-[300px]">
           {children}
         </div>
       </div>

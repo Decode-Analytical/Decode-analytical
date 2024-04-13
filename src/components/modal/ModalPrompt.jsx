@@ -6,7 +6,7 @@ export const ModalButton = ({ bg, color, onClick, children }) => (
   <button
     className={`${bg && "bg-blue1"} ${
       color ? "text-blue1" : "text-white"
-    } font-semibold px-6  rounded-md h-full`}
+    } font-semibold px-6  rounded-md h-full py-2 sm:py-0`}
     onClick={onClick}
     type="submit"
   >
@@ -51,6 +51,7 @@ export const ModalPrompt = ({
   danger,
   warning,
   children,
+  customClass,
   overlayClose,
 }) => {
   return (
@@ -65,7 +66,11 @@ export const ModalPrompt = ({
           <hr className="border-[1px]" />
           <p className="text-gray-700 mt-6">{text}</p>
         </div>
-        <div className={`flex  justify-end gap-1 h-10`}>{children}</div>
+        <div
+          className={`flex justify-end flex-col gap-2 sm:gap-1 h-10 ${customClass}`}
+        >
+          {children}
+        </div>
       </div>
     </ModalContainer>
   );
