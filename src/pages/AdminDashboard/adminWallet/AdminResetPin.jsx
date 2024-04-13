@@ -2,25 +2,24 @@ import Axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import safe from "../../../assets/adminDashboardImages/safe.svg";
+import security from "../../../assets/adminDashboardImages/security.svg";
 import { Input } from "../../../components/InputField";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 import ProfileHeader2 from "../../../components/ProfileHeader2";
 import urls from "../../../utils/Url";
 import { ErrorToast, SuccessToast } from "../../../utils/toast";
-import { createPinSchema } from "../../../schema/wallet";
+import { resetPinSchema } from "../../../schema/wallet";
 import { validate } from "../../../utils/functn";
 
-const AdminCreatePin = () => {
+const AdminResetPin = () => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
 
   const formHook = useForm({
-    resolver: (data) => validate(createPinSchema, data),
+    resolver: (data) => validate(resetPinSchema, data),
     defaultValues: {
-      name: "",
-      email: "",
+      otp: "",
       pin: "",
       confirmPin: "",
     },
@@ -36,7 +35,7 @@ const AdminCreatePin = () => {
     setLoading(true);
     const token = JSON.parse(localStorage.getItem("user")).token;
     try {
-      const response = await Axios.post(urls.adminCreatePin, data, {
+      const response = await Axios.put(urls.adminResetPin, data, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -56,50 +55,38 @@ const AdminCreatePin = () => {
 
   return (
     <>
-      <ProfileHeader2 to={"/admin-dashboard/wallet/withdraw"} />
-      <div className="flex justify-between items-center w-[97%] md:w-[90%] mx-auto max-w-[1280px] my-[60px] ">
+      <ProfileHeader2 to={"/admin-dashboard/wallet"} />
+      <div className="flex justify-around items-center w-[97%] md:w-[90%] mx-auto max-w-[1280px] my-[60px] mt-[120px]">
         <div className="w-[90%] mx-auto lg:mx-0 lg:w-[45%]">
           <h2 className="font-bold text-2xl w-[70%] mb-[25px]">
-            Create your transaction pin here
+            Reset your transaction pin here
           </h2>
 
           <div>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Input
                 type={"text"}
-                title={"Name"}
-                placeholder={"Enter your name"}
-                register={register("name")}
-                errorMessage={errors?.name?.message}
-                disabled={loading}
-                // required
-              />
-              <Input
-                type={"text"}
-                title={"Email"}
-                placeholder={"Enter your email address"}
-                register={register("email")}
-                errorMessage={errors?.email?.message}
-                disabled={loading}
+                title={"Enter OTP"}
+                placeholder={"e.g. 1234"}
+                register={register("otp")}
+                errorMessage={errors?.otp?.message}
                 // required
               />
               <Input
                 type={"password"}
-                title={"Create Pin"}
+                title={"Enter New Pin"}
                 placeholder={"e.g. 1234"}
                 register={register("pin")}
                 errorMessage={errors?.pin?.message}
-                disabled={loading}
                 // required
                 isPassword={true}
               />
               <Input
                 type={"password"}
-                title={"Confirm Pin"}
+                title={"Confirm New Pin"}
                 placeholder={"e.g. 1234"}
                 register={register("confirmPin")}
                 errorMessage={errors?.confirmPin?.message}
-                disabled={loading}
                 // required
                 isPassword={true}
               />
@@ -113,12 +100,12 @@ const AdminCreatePin = () => {
             </form>
           </div>
         </div>
-        <div className="w-[45%] hidden lg:block">
-          <img src={safe} alt="safe" />
+        <div className="hidden lg:block">
+          <img src={security} alt="security" />
         </div>
       </div>
     </>
   );
 };
 
-export default AdminCreatePin;
+export default AdminResetPin;

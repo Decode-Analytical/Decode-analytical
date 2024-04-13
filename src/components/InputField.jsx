@@ -27,17 +27,19 @@ export const Input = ({
   return (
     <div className="flex w-full flex-1 flex-col mt-8">
       <div className="flex justify-between w-full">
-        <label className="font-light">
-          {title}
-          {notImportant ? (
-            ""
-          ) : (
-            <span className="text-red2 text-lg ml-1">*</span>
-          )}
-        </label>
+        {title && (
+          <label className="font-light">
+            {title}
+            {notImportant ? (
+              ""
+            ) : (
+              <span className="text-red2 text-lg ml-1">*</span>
+            )}
+          </label>
+        )}
         {href && (
           <div className="font-semibold cursor-pointer">
-            <p onClick={() => navigate(href)}>Create Pin</p>
+            <p onClick={() => navigate(href)}>Don't have Pin?</p>
           </div>
         )}
       </div>
@@ -46,7 +48,9 @@ export const Input = ({
           type={showPassword ? "text" : type}
           name={name}
           placeholder={placeholder}
-          className={`border border-gray-400 bg-white1 rounded-md p-4 pr-12 ${
+          className={`border ${
+            errorMessage ? "border-red-500" : "border-gray-400"
+          }  bg-white1 rounded-md p-4 disabled:bg-gray-100 ${
             errorMessage && "outline-red-500"
           }`}
           onChange={onChange}
@@ -98,7 +102,11 @@ export const TextArea = ({
         name={name}
         id="amount"
         placeholder={placeholder}
-        className="border bg-white1 border-gray-400 rounded-md p-4"
+        className={`border ${
+          errorMessage ? "border-red-500" : "border-gray-400"
+        }  bg-white1 rounded-md p-4 disabled:bg-gray-100 ${
+          errorMessage && "outline-red-500"
+        }`}
         onChange={onChange}
         value={value}
         {...register}
@@ -127,14 +135,16 @@ export const BankSelectInput = ({
   notImportant,
 }) => {
   return (
-    <div className="flex flex-col gap-3 mt-8">
+    <div className="flex flex-col gap-1 mt-8">
       <label className="font-light">
         {title}
         {notImportant ? "" : <span className="text-red2 text-lg ml-1">*</span>}
         <select
           name={name}
           id={name}
-          className="border border-gray-400 bg-white1 rounded-md p-4"
+          className={`border ${
+            errorMessage ? "border-red-500" : "border-gray-400"
+          }   bg-white1 rounded-md p-4 disabled:bg-gray-100`}
           onChange={onChange}
           value={value}
           disabled={disabled}
@@ -215,7 +225,9 @@ export const SelectInput = ({
         <select
           name={name}
           id={name}
-          className={`${customClass} border border-gray-400 rounded-md p-[17px] bg-white1`}
+          className={`${customClass} border rounded-md p-[17px] bg-white1 disabled:bg-gray-100 ${
+            errorMessage ? "border-red-500" : "border-gray-400"
+          } ${errorMessage && "outline-red-500"}`}
           onChange={onChange}
           value={value}
           disabled={disabled}

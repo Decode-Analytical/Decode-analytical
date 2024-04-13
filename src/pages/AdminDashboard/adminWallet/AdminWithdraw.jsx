@@ -15,32 +15,36 @@ import LoadingSpinner from "../../../components/LoadingSpinner";
 import ProfileHeader2 from "../../../components/ProfileHeader2";
 import { ErrorToast, SuccessToast } from "../../../utils/toast";
 import Axios from "axios";
+import {
+  ModalButton,
+  ModalInput,
+  ModalPrompt,
+} from "../../../components/modal/ModalPrompt";
+import { validate } from "../../../utils/functn";
 
 const AdminWithdraw = () => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [forgot, setForgot] = useState(false);
+  const [resetEmail, setResetEmail] = useState("");
+
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+  };
+  const toggleForgot = () => {
+    toggleModal();
+    setForgot(!forgot);
+  };
+
+  const overlayClose = () => {
+    setIsOpen(false);
+    setForgot(false);
+  };
 
   const formHook = useForm({
-    resolver: (data) => {
-      return withdrawalSchema.validate(data, { abortEarly: false }).then(
-        () => {
-          return { values: data, errors: {} };
-        },
-        (validationErrors) => {
-          return {
-            values: {},
-            errors: validationErrors.inner.reduce((acc, error) => {
-              acc[error.path] = {
-                message: error.message,
-                type: error.type,
-              };
-              return acc;
-            }, {}),
-          };
-        }
-      );
-    },
+    resolver: (data) => validate(withdrawalSchema, data),
     defaultValues: {
       bankName: "",
       accountNumber: "",
@@ -70,6 +74,38 @@ const AdminWithdraw = () => {
       if (response.status === 200 || response.status === 201) {
         SuccessToast(response.data.message);
         navigate("/admin-dashboard/wallet/withdraw/success");
+      }
+    } catch (error) {
+      ErrorToast(error.response.data.message);
+      if (error.response.data.message === "Invalid pin") {
+        toggleModal();
+      }
+      // if (error.response.data.message === "Insufficient funds") {
+      //   toggleModal();
+      // }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onSubmitForgot = async (e, data) => {
+    e.preventDefault();
+    setLoading(true);
+    const token = JSON.parse(localStorage.getItem("user")).token;
+    try {
+      const response = await Axios.post(urls.adminForgotPin, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      console.log(response, "response");
+
+      if (response.status === 200 || response.status === 201) {
+        SuccessToast(response.data.message);
+        navigate("/admin-dashboard/wallet/reset-pin");
+        overlayClose();
       }
     } catch (error) {
       ErrorToast(error.response.data.message);
@@ -108,7 +144,8 @@ const AdminWithdraw = () => {
                 placeholder={"Enter your bank name"}
                 register={register("bankName")}
                 errorMessage={errors?.bankName?.message}
-                required
+                disabled={loading}
+                // required
                 options={banks}
               />
               <Input
@@ -117,23 +154,17 @@ const AdminWithdraw = () => {
                 placeholder={"Enter your account number"}
                 register={register("accountNumber")}
                 errorMessage={errors?.accountNumber?.message}
-                required
+                disabled={loading}
+                // required
               />
               <Input
                 type={"text"}
                 title={"Amount"}
-                placeholder={"Amount"}
+                placeholder={"min. ₦5000"}
                 register={register("amount")}
                 errorMessage={errors?.amount?.message}
-                required
-              />
-              <Input
-                type={"text"}
-                title={"Remark"}
-                placeholder={"Enter remark"}
-                register={register("reason")}
-                errorMessage={errors?.reason?.message}
-                required
+                disabled={loading}
+                // required
               />
               <Input
                 type={"password"}
@@ -142,7 +173,18 @@ const AdminWithdraw = () => {
                 register={register("pin")}
                 errorMessage={errors?.pin?.message}
                 href={"/admin-dashboard/wallet/create-pin"}
-                required
+                disabled={loading}
+                // required
+              />
+              <Input
+                type={"text"}
+                title={"Remark"}
+                placeholder={"Enter remark"}
+                register={register("reason")}
+                errorMessage={errors?.reason?.message}
+                disabled={loading}
+                notImportant
+                // required
               />
 
               <button
@@ -152,6 +194,48 @@ const AdminWithdraw = () => {
                 {loading ? <LoadingSpinner color={"white"} /> : "Continue"}
               </button>
             </form>
+            {/* <button onClick={toggleModal}>Toggle</button> */}
+            {isOpen && (
+              <ModalPrompt
+                title={"You entered a wrong pin"}
+                text={
+                  'Select “Forgot Pin” to reset your pin or "Retry" to try again'
+                }
+                overlayClose={overlayClose}
+                danger
+              >
+                <ModalButton onClick={toggleForgot} color>
+                  Forgot Pin
+                </ModalButton>
+                <ModalButton onClick={toggleModal} bg>
+                  Retry
+                </ModalButton>
+              </ModalPrompt>
+            )}
+            {forgot && (
+              <ModalPrompt
+                title={"Reset with Email"}
+                text={"Please enter your email to reset your pin"}
+                danger
+                overlayClose={overlayClose}
+              >
+                <form
+                  onSubmit={(e) => onSubmitForgot(e, { email: resetEmail })}
+                  className="flex w-full gap-5"
+                >
+                  <ModalInput
+                    placeholder={"Enter your email here"}
+                    notImportant
+                    onChange={(e) => {
+                      setResetEmail(e.target.value);
+                    }}
+                  />
+                  <ModalButton onClick={toggleModal} bg>
+                    Reset Pin
+                  </ModalButton>
+                </form>
+              </ModalPrompt>
+            )}
           </div>
         </div>
         <div className="w-[45%] hidden lg:block">
