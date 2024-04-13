@@ -25,7 +25,7 @@ export const Input = ({
   };
 
   return (
-    <div className="flex w-full flex-1 flex-col mt-6 md:mt-8">
+    <div className="flex w-full flex-1 flex-col mt-6">
       <div className="flex justify-between w-full">
         {title && (
           <label className="font-light">
@@ -50,7 +50,7 @@ export const Input = ({
           placeholder={placeholder}
           className={`border ${
             errorMessage ? "border-red-500" : "border-gray-400"
-          }  bg-white1 rounded-md px-4 py-2 md:py-4 disabled:bg-gray-100 ${
+          }  bg-white1 rounded-md px-4 py-2 sm:py-4 disabled:bg-gray-100 ${
             errorMessage && "outline-red-500"
           }`}
           onChange={onChange}
@@ -92,7 +92,7 @@ export const TextArea = ({
   notImportant,
 }) => {
   return (
-    <div className="flex flex-col mt-6 md:mt-8">
+    <div className="flex flex-col mt-6">
       <div className="flex">
         <label className="font-light">{title}</label>
         {notImportant ? "" : <span className="text-red2 text-lg ml-1">*</span>}
@@ -146,7 +146,7 @@ export const BankSelectInput = ({
             errorMessage ? "border-red-500" : "border-gray-400"
           } ${
             errorMessage && "outline-red-500"
-          }  bg-white1 rounded-md px-4 py-2 md:py-4 disabled:bg-gray-100`}
+          }  bg-white1 rounded-md px-4 py-2 sm:py-4 disabled:bg-gray-100`}
           onChange={onChange}
           value={value}
           disabled={disabled}
@@ -220,7 +220,7 @@ export const SelectInput = ({
   customClass,
 }) => {
   return (
-    <div className="flex flex-1 flex-col mt-6 md:mt-8">
+    <div className="flex flex-1 flex-col mt-6">
       <label className="font-light">
         {title}
         <span className="text-red2 text-lg ml-1">*</span>
