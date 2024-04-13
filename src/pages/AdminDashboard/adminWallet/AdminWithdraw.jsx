@@ -198,6 +198,7 @@ const AdminWithdraw = () => {
                 }
                 overlayClose={overlayClose}
                 danger
+                customClass={"flex-col sm2:flex-row mt-10"}
               >
                 <ModalButton onClick={toggleForgot} color>
                   Forgot Pin
@@ -213,10 +214,11 @@ const AdminWithdraw = () => {
                 text={"Please enter your email to reset your pin"}
                 danger
                 overlayClose={overlayClose}
+                customClass={""}
               >
                 <form
                   onSubmit={(e) => onSubmitForgot(e, { email: resetEmail })}
-                  className="flex w-full gap-5"
+                  className="flex flex-col sm:flex-row w-full gap-5"
                 >
                   <ModalInput
                     placeholder={"Enter your email here"}
