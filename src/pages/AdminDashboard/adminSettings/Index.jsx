@@ -10,11 +10,7 @@ const AdminSettings = () => {
     <ProfileLayout title={"Settings"}>
       <Tab
         title1={"Account settings"}
-        child1={
-          <div>
-            <AccountSetting />
-          </div>
-        }
+        child1={<AccountSetting />}
         title2={"Notification settings"}
         child2={<NotificationSettings />}
         title3={"Payment settings"}

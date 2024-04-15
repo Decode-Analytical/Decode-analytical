@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { RxEyeClosed } from "react-icons/rx";
 import { PiEyeBold } from "react-icons/pi";
-import { Link, useNavigate } from "react-router-dom";
 
 export const Input = ({
-  title,
+  label,
   type,
   name,
   placeholder,
@@ -14,10 +13,8 @@ export const Input = ({
   required,
   disabled,
   errorMessage,
-  notImportant,
-  href, //Temporary
+  important,
 }) => {
-  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -25,22 +22,13 @@ export const Input = ({
   };
 
   return (
-    <div className="flex w-full flex-1 flex-col mt-6">
-      <div className="flex justify-between w-full">
-        {title && (
+    <div className="flex w-full flex-1 flex-col mt-2">
+      <div>
+        {label && (
           <label className="font-light">
-            {title}
-            {notImportant ? (
-              ""
-            ) : (
-              <span className="text-red2 text-lg ml-1">*</span>
-            )}
+            {label}
+            {important ? <span className="text-red2 text-lg ml-1">*</span> : ""}
           </label>
-        )}
-        {href && (
-          <div className="font-semibold cursor-pointer">
-            <p onClick={() => navigate(href)}>Don't have Pin?</p>
-          </div>
         )}
       </div>
       <div className="relative">
@@ -69,18 +57,19 @@ export const Input = ({
           </button>
         )}
       </div>
-
-      {errorMessage && (
-        <div>
-          <p className="text-red-500 mt-1 text-xs italic">{errorMessage}</p>
-        </div>
-      )}
+      <div className="h-5">
+        {errorMessage && (
+          <div>
+            <p className="text-red-500 mt-1 text-xs italic">{errorMessage}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
 export const TextArea = ({
-  title,
+  label,
   name,
   placeholder,
   onChange,
@@ -89,13 +78,13 @@ export const TextArea = ({
   required,
   disabled,
   errorMessage,
-  notImportant,
+  important,
 }) => {
   return (
-    <div className="flex flex-col mt-6">
+    <div className="flex flex-col mt-2">
       <div className="flex">
-        <label className="font-light">{title}</label>
-        {notImportant ? "" : <span className="text-red2 text-lg ml-1">*</span>}
+        <label className="font-light">{label}</label>
+        {important ? <span className="text-red2 text-lg ml-1">*</span> : ""}
       </div>
       <textarea
         type={"text"}
@@ -113,17 +102,19 @@ export const TextArea = ({
         disabled={disabled}
         required={required}
       />
-      {errorMessage && (
-        <div>
-          <p className="text-red-500 text-xs italic">{errorMessage}</p>
-        </div>
-      )}
+      <div className="h-5">
+        {errorMessage && (
+          <div>
+            <p className="text-red-500 text-xs italic">{errorMessage}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
 export const BankSelectInput = ({
-  title,
+  label,
   name,
   options,
   onChange,
@@ -132,13 +123,13 @@ export const BankSelectInput = ({
   disabled,
   errorMessage,
   register,
-  notImportant,
+  important,
 }) => {
   return (
-    <div className="flex flex-col gap-1 mt-8">
+    <div className="flex flex-col gap-1 mt-6">
       <label className="font-light">
-        {title}
-        {notImportant ? "" : <span className="text-red2 text-lg ml-1">*</span>}
+        {label}
+        {important ? <span className="text-red2 text-lg ml-1">*</span> : ""}
         <select
           name={name}
           id={name}
@@ -153,7 +144,7 @@ export const BankSelectInput = ({
           required={required}
           {...register}
         >
-          <option value="">Select {title}</option>
+          <option value="">Select {label}</option>
           {options.map((option, index) => (
             <option key={index} value={option.CBNBankCode}>
               {option.bankName}
@@ -161,17 +152,19 @@ export const BankSelectInput = ({
           ))}
         </select>
       </label>
-      {errorMessage && (
-        <div>
-          <p className="text-red-500 text-xs italic">{errorMessage}</p>
-        </div>
-      )}
+      <div className="h-5">
+        {errorMessage && (
+          <div>
+            <p className="text-red-500 text-xs italic">{errorMessage}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
 export const Radio = ({
-  title,
+  label,
   name,
   onChange,
   value,
@@ -199,13 +192,13 @@ export const Radio = ({
         onClick={onClick}
       />
       <label htmlFor={value} className="font-light">
-        {title}
+        {label}
       </label>
     </div>
   );
 };
 export const Checkbox = ({
-  title,
+  label,
   name,
   onChange,
   value,
@@ -235,14 +228,14 @@ export const Checkbox = ({
         />
       </span>
       <label htmlFor={value} className="font-light">
-        {title}
+        {label}
       </label>
     </div>
   );
 };
 
 export const SelectInput = ({
-  title,
+  label,
   name,
   options,
   onChange,
@@ -256,9 +249,9 @@ export const SelectInput = ({
   customClass,
 }) => {
   return (
-    <div className="flex flex-1 flex-col mt-6">
+    <div className="flex flex-1 flex-col mt-2">
       <label className="font-light">
-        {title}
+        {label}
         <span className="text-red2 text-lg ml-1">*</span>
         <select
           name={name}
@@ -272,7 +265,7 @@ export const SelectInput = ({
           required={required}
           {...register}
         >
-          <option value="">Select {title}</option>
+          <option value="">Select {label}</option>
           {options?.map((option, index) => (
             <option key={index} value={valueKey ? option[valueKey] : option}>
               {labelKey ? option[labelKey] : option}
@@ -280,11 +273,13 @@ export const SelectInput = ({
           ))}
         </select>
       </label>
-      {errorMessage && (
-        <div>
-          <p className="text-red-500 text-xs italic">{errorMessage}</p>
-        </div>
-      )}
+      <div className="h-5">
+        {errorMessage && (
+          <div>
+            <p className="text-red-500 text-xs italic">{errorMessage}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

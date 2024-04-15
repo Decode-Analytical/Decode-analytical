@@ -66,31 +66,31 @@ const AdminResetPin = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
               <Input
                 type={"text"}
-                title={"Enter OTP"}
+                label={"Enter OTP"}
                 placeholder={"e.g. 1234"}
                 register={register("otp")}
                 errorMessage={errors?.otp?.message}
                 disabled={loading}
-                // required
+                important
               />
               <Input
                 type={"password"}
-                title={"Enter New Pin"}
+                label={"Enter New Pin"}
                 placeholder={"e.g. 1234"}
                 register={register("pin")}
                 errorMessage={errors?.pin?.message}
                 disabled={loading}
-                // required
+                important
                 isPassword={true}
               />
               <Input
                 type={"password"}
-                title={"Confirm New Pin"}
+                label={"Confirm New Pin"}
                 placeholder={"e.g. 1234"}
                 register={register("confirmPin")}
                 errorMessage={errors?.confirmPin?.message}
                 disabled={loading}
-                // required
+                important
                 isPassword={true}
               />
 

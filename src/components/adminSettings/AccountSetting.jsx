@@ -6,33 +6,36 @@ const AccountSetting = () => {
   return (
     <div>
       <form>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-5 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-0 mb-10">
+          <Input label="First Name" placeholder="Gabrielle Torrez" />
           <Input
-            title="First Name"
-            placeholder="Gabrielle Torrez"
-            notImportant
-          />
-          <Input
-            title="Email Address"
+            label="Email Address"
             placeholder="Gabrielletorrez@gmail.com"
-            notImportant
           />
-          <Input
-            title="Language"
-            placeholder="English (British)"
-            notImportant
-          />
-          <Input title="Country" placeholder="Nigeria" notImportant />
+          <Input label="Language" placeholder="English (British)" />
+          <Input label="Country" placeholder="Nigeria" />
         </div>
         <Button px={"px-16"}>Save</Button>
       </form>
       <div className="mt-20">
         <h3 className="font-semibold">Password</h3>
         <form>
-          <div className="flex flex-col sm:flex-row gap-x-12 mb-10">
-            <Input title="Current password" notImportant />
-            <Input title="New password" notImportant />
-            <Input title="Retype password" notImportant />
+          <div className="flex flex-col sm:flex-row gap-x-12 mb-10 gap-y-0">
+            <Input
+              label="Current password"
+              notImportant
+              placeholder="Current password"
+            />
+            <Input
+              label="New password"
+              notImportant
+              placeholder="New password"
+            />
+            <Input
+              label="Retype password"
+              notImportant
+              placeholder="Retype password"
+            />
           </div>
           <Button px={"px-16"}>Change password</Button>
         </form>
