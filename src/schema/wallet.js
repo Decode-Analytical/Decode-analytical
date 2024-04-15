@@ -23,8 +23,6 @@ export const withdrawalSchema = yup.object().shape({
 });
 
 export const createPinSchema = yup.object().shape({
-  name: yup.string().required("Name is required"),
-  email: yup.string().required("Email is required"),
   pin: yup
     .string()
     .required("PIN is required")

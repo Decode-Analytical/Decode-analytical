@@ -77,7 +77,7 @@ const AdminWithdraw = () => {
       }
     } catch (error) {
       ErrorToast(error.response.data.message);
-      if (error.response.data.message === "Invalid pin") {
+      if (error.response.data.message === "Invalid Pin") {
         toggleModal();
       }
       // if (error.response.data.message === "Insufficient funds") {

@@ -204,6 +204,42 @@ export const Radio = ({
     </div>
   );
 };
+export const Checkbox = ({
+  title,
+  name,
+  onChange,
+  value,
+  required,
+  disabled,
+  register,
+  checked,
+  defaultChecked,
+  onClick,
+}) => {
+  return (
+    <div className="flex gap-1">
+      <span className="flex items-start">
+        <input
+          className="checkbox-select"
+          onChange={onChange}
+          value={value}
+          disabled={disabled}
+          required={required}
+          {...register}
+          type="checkbox"
+          name={name}
+          id={value}
+          checked={checked}
+          defaultChecked={defaultChecked}
+          onClick={onClick}
+        />
+      </span>
+      <label htmlFor={value} className="font-light">
+        {title}
+      </label>
+    </div>
+  );
+};
 
 export const SelectInput = ({
   title,
