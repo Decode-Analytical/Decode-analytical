@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { RxEyeClosed } from "react-icons/rx";
 import { PiEyeBold } from "react-icons/pi";
+import { useNavigate } from "react-router-dom";
 
 export const Input = ({
   label,
@@ -14,7 +15,9 @@ export const Input = ({
   disabled,
   errorMessage,
   important,
+  href,
 }) => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -23,12 +26,17 @@ export const Input = ({
 
   return (
     <div className="flex w-full flex-1 flex-col mt-2">
-      <div>
+      <div className="flex justify-between w-full">
         {label && (
           <label className="font-light">
             {label}
             {important ? <span className="text-red2 text-lg ml-1">*</span> : ""}
           </label>
+        )}
+        {href && (
+          <div className="font-semibold cursor-pointer">
+            <p onClick={() => navigate(href)}>Don't have a Pin?</p>
+          </div>
         )}
       </div>
       <div className="relative">
