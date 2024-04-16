@@ -113,30 +113,34 @@ const CreateLive = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="w-full mb-7">
             <SelectInput
-              title={"Title"}
+              label={"Title"}
               options={courseList}
               register={register("courseName")}
               errorMessage={errors?.courseName?.message}
+              important
             />
             <TextArea
-              title={"Description"}
+              label={"Description"}
               placeholder={"Enter your course description"}
               register={register("description")}
               errorMessage={errors?.description?.message}
+              important
             />
             <div className="flex flex-col md:flex-row gap-x-12 w-full">
               <Input
-                title={"Start Date"}
+                label={"Start Date"}
                 type={"date"}
                 register={register("date")}
+                important
                 errorMessage={errors?.date?.message}
               />
               <SelectInput
-                title={"Duration"}
+                label={"Duration"}
                 options={durationOptions}
                 valueKey={"value"}
                 labelKey={"label"}
                 register={register("time")}
+                important
                 errorMessage={errors?.time?.message}
               />
             </div>
@@ -144,7 +148,7 @@ const CreateLive = () => {
               <legend className="font-light">Pricing</legend>
               <div className="flex gap-4">
                 <Radio
-                  title={"Free"}
+                  label={"Free"}
                   name={"isPaid"}
                   value={"free"}
                   defaultChecked
@@ -153,7 +157,7 @@ const CreateLive = () => {
                   onClick={() => setShowAmount(false)}
                 />
                 <Radio
-                  title={"Paid"}
+                  label={"Paid"}
                   name={"isPaid"}
                   value={"paid"}
                   register={register("isPaid")}
@@ -164,7 +168,7 @@ const CreateLive = () => {
             </div>
             {showAmount && (
               <Input
-                title={"Amount"}
+                label={"Amount"}
                 type={"text"}
                 placeholder={"Enter amount"}
                 register={register("amount")}

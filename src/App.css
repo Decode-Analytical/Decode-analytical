@@ -143,7 +143,7 @@ input[type="radio"]:focus-visible {
   transform: scale(1.05);
 }
 
-.radio-select {
+/* .radio-select {
 }
 .radio-select::after {
   content: "";
@@ -160,7 +160,7 @@ input[type="radio"]:focus-visible {
   height: 20px;
   border: 6px solid blue;
   border-radius: 50%;
-}
+} */
 
 .dash-grid {
   display: grid;

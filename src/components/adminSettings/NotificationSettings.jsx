@@ -9,22 +9,23 @@ const NotificationSettings = () => {
       <form>
         <div className="flex flex-col gap-16 mb-6 max-w-[650px]">
           <Checkbox
-            title={
+            label={
               "Helpful resources and important updates related to being an Instructor on Decocde Analytical"
             }
           />
+
           <Checkbox
-            title={
+            label={
               "Notifications when students enrolled for my published courses"
             }
           />
           <Checkbox
-            title={
+            label={
               "Notifications when students opt out of my published courses"
             }
           />
           <Checkbox
-            title={
+            label={
               <div>
                 <h3 className="font-semibold">
                   Don’t send me promotional emails

@@ -140,46 +140,49 @@ const AdminWithdraw = () => {
           <div>
             <form onSubmit={handleSubmit(onSubmit)}>
               <BankSelectInput
-                title={"Bank Name"}
+                label={"Bank Name"}
                 placeholder={"Enter your bank name"}
                 register={register("bankName")}
                 errorMessage={errors?.bankName?.message}
                 disabled={loading}
                 options={banks}
+                important
               />
               <Input
                 type={"text"}
-                title={"Account Number"}
+                label={"Account Number"}
                 placeholder={"Enter your account number"}
                 register={register("accountNumber")}
                 errorMessage={errors?.accountNumber?.message}
                 disabled={loading}
+                important
               />
               <Input
                 type={"text"}
-                title={"Amount"}
+                label={"Amount"}
                 placeholder={"min. ₦5000"}
                 register={register("amount")}
                 errorMessage={errors?.amount?.message}
                 disabled={loading}
+                important
               />
               <Input
                 type={"password"}
-                title={"Pin"}
+                label={"Pin"}
                 placeholder={"Enter pin"}
                 register={register("pin")}
                 errorMessage={errors?.pin?.message}
                 href={"/admin-dashboard/wallet/create-pin"}
                 disabled={loading}
+                important
               />
               <Input
                 type={"text"}
-                title={"Remark"}
+                label={"Remark"}
                 placeholder={"Enter remark"}
                 register={register("reason")}
                 errorMessage={errors?.reason?.message}
                 disabled={loading}
-                notImportant
               />
 
               <button

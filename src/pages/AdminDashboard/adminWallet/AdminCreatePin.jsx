@@ -65,22 +65,20 @@ const AdminCreatePin = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
               <Input
                 type={"password"}
-                title={"New Pin"}
+                label={"New Pin"}
                 placeholder={"e.g. 1234"}
                 register={register("pin")}
                 errorMessage={errors?.pin?.message}
                 disabled={loading}
-                // required
                 isPassword={true}
               />
               <Input
                 type={"password"}
-                title={"Confirm Pin"}
+                label={"Confirm Pin"}
                 placeholder={"e.g. 1234"}
                 register={register("confirmPin")}
                 errorMessage={errors?.confirmPin?.message}
                 disabled={loading}
-                // required
                 isPassword={true}
               />
 

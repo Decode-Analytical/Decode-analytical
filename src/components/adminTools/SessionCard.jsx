@@ -22,7 +22,7 @@ const SessionCard = ({
           <option value="monthly">This Month</option>
         </select>
       </div>
-      <p className="">{sub}</p>
+      <p>{sub}</p>
       <div className="h-[250px] overflow-scroll my-4">
         <div className="flex flex-col gap-3">
           <p className="mb-5 font-semibold text-sm">{courseData?.createdAt}</p>
@@ -36,11 +36,19 @@ const SessionCard = ({
             courseData?.map((item, index) => (
               <div key={index} className="flex items-start gap-x-3">
                 <div>
-                  <img
-                    src={courseImg}
-                    className="w-[83px] h-[63px] bg-gray1 rounded-lg object-cover"
-                    alt=""
-                  />
+                  {item?.course_image[0]?.path ? (
+                    <img
+                      src={item?.course_image[0]?.path}
+                      className="w-[83px] h-[63px] bg-gray1 rounded-lg object-cover"
+                      alt={item?.courseName}
+                    />
+                  ) : (
+                    <img
+                      src={courseImg}
+                      className="w-[83px] h-[63px] bg-gray1 rounded-lg object-cover"
+                      alt=""
+                    />
+                  )}
                 </div>
                 <div>
                   <h2 className="font-semibold text-lg">{item?.courseName}</h2>
@@ -49,7 +57,6 @@ const SessionCard = ({
                   </p>
                 </div>
               </div>
-              // />
             ))
           )}
         </div>
