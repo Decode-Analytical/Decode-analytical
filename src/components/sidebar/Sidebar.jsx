@@ -2,7 +2,7 @@ import React from "react";
 import { CgCloseR } from "react-icons/cg";
 import { FiLogOut } from "react-icons/fi";
 import { IoPerson } from "react-icons/io5";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { useLogout } from "../../hooks/useLogout";
 
 const Sidebar = ({
@@ -32,16 +32,18 @@ const Sidebar = ({
         <CgCloseR className="text-xl" />
       </span>
       <div className={`flex items-start min-h-[65px] px-1 gap-4 mt-10`}>
-        {authUser?.picture[0]?.path ? (
-          <img
-            className="max-w-[50px] mt-1 rounded-full"
-            src={authUser?.picture[0]?.path}
-          />
-        ) : (
-          <div className="flex justify-center items-center min-w-[50px] h-[50px] bg-gray-400 mt-1 rounded-full">
-            <IoPerson className="text-[30px] text-white1" />
-          </div>
-        )}
+        <Link to="/admin-dashboard/profile">
+          {authUser?.picture[0]?.path ? (
+            <img
+              className="max-w-[50px] mt-1 rounded-full"
+              src={authUser?.picture[0]?.path}
+            />
+          ) : (
+            <div className="flex justify-center items-center min-w-[50px] h-[50px] bg-gray-400 mt-1 rounded-full">
+              <IoPerson className="text-[30px] text-white1" />
+            </div>
+          )}
+        </Link>
         <div
           className={`transition-[display] duration-700 ease-in-out overflow-hidden`}
         >
