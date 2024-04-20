@@ -81,7 +81,6 @@ const AdminResetPin = () => {
                 errorMessage={errors?.pin?.message}
                 disabled={loading}
                 important
-                isPassword={true}
               />
               <Input
                 type={"password"}
@@ -91,7 +90,6 @@ const AdminResetPin = () => {
                 errorMessage={errors?.confirmPin?.message}
                 disabled={loading}
                 important
-                isPassword={true}
               />
 
               <button

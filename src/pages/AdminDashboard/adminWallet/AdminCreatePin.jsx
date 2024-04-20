@@ -70,7 +70,6 @@ const AdminCreatePin = () => {
                 register={register("pin")}
                 errorMessage={errors?.pin?.message}
                 disabled={loading}
-                isPassword={true}
               />
               <Input
                 type={"password"}
@@ -79,7 +78,6 @@ const AdminCreatePin = () => {
                 register={register("confirmPin")}
                 errorMessage={errors?.confirmPin?.message}
                 disabled={loading}
-                isPassword={true}
               />
 
               <button

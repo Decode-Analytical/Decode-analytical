@@ -61,6 +61,7 @@ import CreateVideo from "./pages/AdminDashboard/adminCourses/CreateVideo";
 import EditCourse from "./pages/AdminDashboard/adminCourses/EditCourse";
 import AdminResetPin from "./pages/AdminDashboard/adminWallet/AdminResetPin";
 import AdminCreatePin from "./pages/AdminDashboard/adminWallet/AdminCreatePin";
+import AdminProfile from "./pages/AdminDashboard/adminProfile/Index";
 
 function App() {
   return (
@@ -103,6 +104,10 @@ function App() {
               <Route path="/noAuth" element={<NoAuthPage />} />
               <Route path="/newmodule/:courseId" element={<NewModules />} />
               <Route path="/newcourse" element={<NewCourse />} />
+              <Route
+                path="/admin-dashboard/profile"
+                element={<AdminProfile />}
+              />
               <Route
                 path="/admin-dashboard/home"
                 element={<AdminDashboard />}

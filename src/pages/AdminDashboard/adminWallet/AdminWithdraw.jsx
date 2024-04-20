@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import amazonpay from "../../../assets/adminDashboardImages/amazonpay.svg";
@@ -21,14 +21,17 @@ import {
   ModalPrompt,
 } from "../../../components/modal/ModalPrompt";
 import { validate } from "../../../utils/functn";
+import ModalContainer from "../../../components/modal/ModalContainer";
 
 const AdminWithdraw = () => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
+  const [vloading, setVLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [forgot, setForgot] = useState(false);
   const [resetEmail, setResetEmail] = useState("");
+  const [accountName, setAccountName] = useState("");
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
@@ -57,8 +60,42 @@ const AdminWithdraw = () => {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = formHook;
+
+  const fetchAccountName = async () => {
+    const data = getValues();
+    if (data.bankName && data.accountNumber.length === 10) {
+      setVLoading(true);
+      try {
+        const token = JSON.parse(localStorage.getItem("user")).token;
+        const response = await Axios.get(
+          `https://decode-mnjh.onrender.com/api/wallet/verifyAccountName/${data.accountNumber}/${data.bankName}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        if (response.status === 200) {
+          setAccountName(response?.data?.data?.account_name);
+        }
+      } catch (error) {
+        ErrorToast(
+          error.response.data.message ===
+            "Could not resolve account name. Check parameters or try again."
+            ? "Incorrect account number or bank name"
+            : error.response.data.message
+        );
+        setAccountName("");
+      } finally {
+        setVLoading(false);
+      }
+    } else {
+      setAccountName("");
+    }
+  };
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -80,9 +117,6 @@ const AdminWithdraw = () => {
       if (error.response.data.message === "Invalid Pin") {
         toggleModal();
       }
-      // if (error.response.data.message === "Insufficient funds") {
-      //   toggleModal();
-      // }
     } finally {
       setLoading(false);
     }
@@ -99,8 +133,6 @@ const AdminWithdraw = () => {
           "Content-Type": "application/json",
         },
       });
-
-      console.log(response, "response");
 
       if (response.status === 200 || response.status === 201) {
         SuccessToast(response.data.message);
@@ -151,11 +183,29 @@ const AdminWithdraw = () => {
               <Input
                 type={"text"}
                 label={"Account Number"}
+                name={"accountNumber"}
                 placeholder={"Enter your account number"}
-                register={register("accountNumber")}
+                register={register("accountNumber", {
+                  onChange: () => {
+                    fetchAccountName();
+                  },
+                })}
                 errorMessage={errors?.accountNumber?.message}
                 disabled={loading}
                 important
+              />
+              {vloading && (
+                <ModalContainer noBg>
+                  <LoadingSpinner color={"blue1"} />
+                </ModalContainer>
+              )}
+              <Input
+                type={"text"}
+                label={"Account Name"}
+                placeholder={"Account Name"}
+                value={accountName}
+                customClass={"text-gray-500"}
+                disabled={true}
               />
               <Input
                 type={"text"}
@@ -192,7 +242,7 @@ const AdminWithdraw = () => {
                 {loading ? <LoadingSpinner color={"white"} /> : "Continue"}
               </button>
             </form>
-            {/* <button onClick={toggleModal}>Toggle</button> */}
+
             {isOpen && (
               <ModalPrompt
                 title={"You entered a wrong pin"}

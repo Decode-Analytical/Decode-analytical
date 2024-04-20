@@ -4,6 +4,7 @@ import { LuSend } from "react-icons/lu";
 import { FiEdit } from "react-icons/fi";
 import { TbCellSignal5 } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
+import ProgressBar from "../ProgressBar";
 
 const Button = ({ Icon, text, danger, onClick }) => {
   return (
@@ -14,21 +15,6 @@ const Button = ({ Icon, text, danger, onClick }) => {
       <Icon />
       <div>{text}</div>
     </button>
-  );
-};
-
-const ProgressBar = ({ progress }) => {
-  return (
-    <div className="relative pt-1">
-      <div className="flex flex-col">
-        <div className="bg-gray-200 rounded-full">
-          <div
-            style={{ width: `${progress}%` }}
-            className="text-center py-1 text-xs rounded-full bg-blue1"
-          ></div>
-        </div>
-      </div>
-    </div>
   );
 };
 
