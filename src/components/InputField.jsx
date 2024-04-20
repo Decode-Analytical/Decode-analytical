@@ -16,6 +16,8 @@ export const Input = ({
   errorMessage,
   important,
   href,
+  customClass,
+  ...inputProps
 }) => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -48,12 +50,13 @@ export const Input = ({
             errorMessage ? "border-red-500" : "border-gray-400"
           }  bg-white1 rounded-md px-4 py-2 sm:py-4 disabled:bg-gray-100 ${
             errorMessage && "outline-red-500"
-          }`}
+          } ${customClass}`}
           onChange={onChange}
           value={value}
           {...register}
           disabled={disabled}
           required={required}
+          {...inputProps}
         />
         {type === "password" && (
           <button
@@ -145,7 +148,7 @@ export const BankSelectInput = ({
             errorMessage ? "border-red-500" : "border-gray-400"
           } ${
             errorMessage && "outline-red-500"
-          }  bg-white1 rounded-md px-4 py-2 sm:py-4 disabled:bg-gray-100`}
+          }  bg-white1 rounded-md text-black px-4 py-2 sm:py-4 disabled:bg-gray-100`}
           onChange={onChange}
           value={value}
           disabled={disabled}

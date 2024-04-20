@@ -3,9 +3,10 @@ import * as yup from "yup";
 export const withdrawalSchema = yup.object().shape({
   bankName: yup.string().required("Bank name is required"),
   accountNumber: yup
-    .string()
+    .number()
     .required("Account number is required")
-    .matches(/^\d+$/, "Account number must be a valid number"),
+    .typeError("Account number must be a number"),
+  // .matches(/^\d+$/, "Account number must be a valid number"),
   amount: yup
     .number()
     .required("Amount is required")

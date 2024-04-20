@@ -15,6 +15,7 @@ const urls = {
   adminForgotPin: `${baseURL}/pin/forgotPin`,
   adminGetAllRegStudents: `${baseURL}/admin/adminViewTotalStudentRegistered`,
   adminGetCourseVisit: `${baseURL}/admin/adminDailyCourseVisitCount`,
+  adminValidateAccount: `${baseURL}/wallet/verifyAccountName`,
   adminGetAllReviews: `${baseURL}/course/review`,
   adminCreateLiveSession: `${baseURL}/admin/adminScheduleMeeting`,
   adminEarningsChart: `${baseURL}/admin/adminWeeklyMonthlyAndYearlyEarnings`,

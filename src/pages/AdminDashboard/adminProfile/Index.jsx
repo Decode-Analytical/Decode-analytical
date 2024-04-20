@@ -34,8 +34,6 @@ const AdminProfile = () => {
   const reviewsLength = reviews?.reviews?.length;
   const coursesData = courses?.courses;
 
-  console.log(coursesData);
-
   const displayCourses = showAllCourses
     ? coursesData
     : coursesData?.slice(0, 3);
