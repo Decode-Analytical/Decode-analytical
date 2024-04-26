@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import amazonpay from "../../../assets/adminDashboardImages/amazonpay.svg";
@@ -24,6 +24,10 @@ import { validate } from "../../../utils/functn";
 import ModalContainer from "../../../components/modal/ModalContainer";
 
 const AdminWithdraw = () => {
+  const authUser = useMemo(() => {
+    return JSON.parse(localStorage.getItem("user")).user;
+  }, []);
+  const isPinCreated = authUser?.isPinCreated;
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
@@ -222,6 +226,7 @@ const AdminWithdraw = () => {
                 placeholder={"Enter pin"}
                 register={register("pin")}
                 errorMessage={errors?.pin?.message}
+                isPinCreated={isPinCreated}
                 href={"/admin-dashboard/wallet/create-pin"}
                 disabled={loading}
                 important

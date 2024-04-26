@@ -104,13 +104,6 @@ const AdminWallet = () => {
   const earningsChartData = earningsChart;
   const withdrawalsChartData = withdrawalsChart;
 
-  // console.log(earningsChartData);
-  // console.log(withdrawalsChartData);
-
-  // console.log(Object.keys(earningsChartData?.monthlyEarnings?.[0])?.[0]);
-  // console.log(Object.keys(earningsChartData?.monthlyEarnings?.[0])[0]);
-  // console.log(Object.keys(earningsChartData?.monthlyEarnings?.[0])[1]);
-
   return (
     <ProfileLayout title={"Wallet"}>
       <div className="px-0 md:px-4 lg:px-14">
