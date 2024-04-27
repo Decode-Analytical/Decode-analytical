@@ -17,6 +17,7 @@ export const Input = ({
   important,
   href,
   customClass,
+  isPinCreated,
   ...inputProps
 }) => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ export const Input = ({
             {important ? <span className="text-red2 text-lg ml-1">*</span> : ""}
           </label>
         )}
-        {href && (
+        {href && !isPinCreated && (
           <div className="font-semibold cursor-pointer">
             <p onClick={() => navigate(href)}>Don't have a Pin?</p>
           </div>

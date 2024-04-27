@@ -11,6 +11,7 @@ import ProgressBar from "../../../components/ProgressBar";
 import { TbCellSignal5 } from "react-icons/tb";
 import { IoMdTime } from "react-icons/io";
 import StarRating from "../../../components/StarRating";
+import { Link } from "react-router-dom";
 
 const AdminProfile = () => {
   const authUser = useMemo(() => {
@@ -162,22 +163,29 @@ const AdminProfile = () => {
                 <div>
                   <h2 className="font-semibold text-xl my-3">
                     {course?.course_title}
+
+                    {console.log(course)}
                   </h2>
-                  <ProgressBar progress={100} completion />
+                  <ProgressBar
+                    progress={course?.isUploadedCompleted ? 100 : 50}
+                    completion
+                  />
 
                   <span className="flex items-center gap-2 mt-5 mb-5">
                     {" "}
                     <div className="w-9 h-9 rounded-full">
-                      {authUser?.picture[0]?.path ? (
-                        <img
-                          className="w-full h-full rounded-full"
-                          src={authUser?.picture[0]?.path}
-                        />
-                      ) : (
-                        <div className="flex justify-center items-center w-full h-full bg-gray-400 rounded-full">
-                          <IoPerson className="text-lg text-white1" />
-                        </div>
-                      )}
+                      <Link to="/admin-dashboard/profile">
+                        {authUser?.picture[0]?.path ? (
+                          <img
+                            className="w-full h-full rounded-full"
+                            src={authUser?.picture[0]?.path}
+                          />
+                        ) : (
+                          <div className="flex justify-center items-center w-full h-full bg-gray-400 rounded-full">
+                            <IoPerson className="text-lg text-white1" />
+                          </div>
+                        )}
+                      </Link>
                     </div>
                     <p className="text-gray-500">
                       by {`${authUser?.firstName} ${authUser?.lastName}`}
