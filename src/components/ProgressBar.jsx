@@ -9,7 +9,9 @@ const ProgressBar = ({ progress, completion }) => {
           ></div>
         </div>
         {completion && (
-          <p className="font-medium mt-1">{progress}% completed</p>
+          <p className="font-medium mt-1">
+            {`${progress === 50 ? "Not completed" : "100% completed"}`}
+          </p>
         )}
       </div>
     </div>

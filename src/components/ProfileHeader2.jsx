@@ -10,16 +10,18 @@ const ProfileHeader2 = ({ to }) => {
       <div className="w-[90%] mx-auto max-w-[1280px] ">
         <div className="flex justify-between items-center  ">
           <div>
-            {authUser?.picture[0]?.path ? (
-              <img
-                className="max-w-[40px] mt-1 rounded-full"
-                src={authUser?.picture[0]?.path}
-              />
-            ) : (
-              <div className="flex justify-center items-center min-w-[50px] h-[50px] bg-gray-400 mt-1 rounded-full">
-                <IoPerson className="text-[30px] text-white1" />
-              </div>
-            )}
+            <Link to="/admin-dashboard/profile">
+              {authUser?.picture[0]?.path ? (
+                <img
+                  className="max-w-[40px] mt-1 rounded-full"
+                  src={authUser?.picture[0]?.path}
+                />
+              ) : (
+                <div className="flex justify-center items-center min-w-[50px] h-[50px] bg-gray-400 mt-1 rounded-full">
+                  <IoPerson className="text-[30px] text-white1" />
+                </div>
+              )}
+            </Link>
           </div>
           <Link to="/">
             <img src={logo} alt="logo" className="w-[50px]" />
