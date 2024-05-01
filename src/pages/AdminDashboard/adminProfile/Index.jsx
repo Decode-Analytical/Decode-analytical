@@ -1,109 +1,310 @@
-import React, { useEffect, useMemo, useState } from "react";
-import ProfileLayout from "../../../components/layout/AdminProfileLayout";
-import { LiaPenSolid } from "react-icons/lia";
+import React, { useEffect, useState } from "react";
 import { BsLinkedin } from "react-icons/bs";
-import { FaSquareXTwitter, FaSquareFacebook } from "react-icons/fa6";
+import {
+  FaSquareFacebook,
+  FaSquareXTwitter,
+  FaSquareGithub,
+  FaSquareYoutube,
+} from "react-icons/fa6";
+import { IoMdTime } from "react-icons/io";
+import { IoPerson } from "react-icons/io5";
+import { LiaPenSolid } from "react-icons/lia";
+import { TbCellSignal5 } from "react-icons/tb";
+import { Link } from "react-router-dom";
+import Button from "../../../components/Button";
+import ProgressBar from "../../../components/ProgressBar";
+import StarRating from "../../../components/StarRating";
+import ProfileLayout from "../../../components/layout/AdminProfileLayout";
 import {
   useFetchAdminCourses,
+  useFetchAdminProfile,
   useFetchReviews,
+  useFetchTotalRegStudents,
 } from "../../../hooks/useFetchAdmin";
-import ProgressBar from "../../../components/ProgressBar";
-import { TbCellSignal5 } from "react-icons/tb";
-import { IoMdTime } from "react-icons/io";
-import StarRating from "../../../components/StarRating";
-import { Link } from "react-router-dom";
+import Axios from "axios";
+import { useForm } from "react-hook-form";
+import { GoChevronDown, GoChevronRight } from "react-icons/go";
+import ProfileImageEditor from "../../../components/ProfileImageEditor";
+import UpdateAdminProfile from "../../../components/adminProfile/UpdateAdminProfile";
+import { profileUpdateSchema } from "../../../schema/profile";
+import urls from "../../../utils/Url";
+import { validate } from "../../../utils/functn";
+import { ErrorToast, SuccessToast } from "../../../utils/toast";
+import { TbCameraPlus } from "react-icons/tb";
+// import Avatar from "../../../components/Avatar";
 
 const AdminProfile = () => {
-  const authUser = useMemo(() => {
-    return JSON.parse(localStorage.getItem("user")).user;
-  }, []);
   const [showAllCourses, setShowAllCourses] = useState(false);
 
+  const [profileImagePopup, setProfileImagePopup] = useState(false);
+  // Profile update popup
+  const [profileUpdatepopup, setProfileUpdatepopup] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // loading state for the profile update
+  const [loading, setLoading] = useState(false);
+
+  const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+
+  // Image change handler
+  const handleImageChange = (e) => {
+    const selectedImage = e.target.files[0];
+    setImage(selectedImage);
+
+    // Preview the selected image
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagePreview(reader.result);
+    };
+    reader.readAsDataURL(selectedImage);
+  };
+
+  // profile update popup handler
+  const handleProfileUpdatePopup = () => {
+    setProfileUpdatepopup(!profileUpdatepopup);
+  };
+  // profile image popup handler
+  const handleProfileImagePopup = () => {
+    setProfileImagePopup(!profileImagePopup);
+  };
+
   const { fetchData: fetchReviews, data: reviews } = useFetchReviews();
-  const {
-    fetchData: fetchCourses,
-    data: courses,
-    isLoading: coursesLoading,
-    error: coursesError,
-  } = useFetchAdminCourses();
+  const { fetchData: fetchTotalStudents, data: totalStudents } =
+    useFetchTotalRegStudents();
+  const { fetchData: fetchAdminProfile, data: adminProfile } =
+    useFetchAdminProfile();
+  const { fetchData: fetchCourses, data: courses } = useFetchAdminCourses();
 
   useEffect(() => {
     fetchReviews();
     fetchCourses();
+    fetchTotalStudents();
+    fetchAdminProfile();
   }, []);
 
   const reviewsLength = reviews?.reviews?.length;
   const coursesData = courses?.courses;
+  const totalStudentsCount = totalStudents?.count;
+  const adminProfileData = adminProfile?.user;
+
+  const currentProfileImg = adminProfileData?.picture[0]?.path;
 
   const displayCourses = showAllCourses
     ? coursesData
     : coursesData?.slice(0, 3);
 
+  useEffect(() => {
+    if (adminProfileData) {
+      setValue("firstName", adminProfileData?.firstName);
+      setValue("lastName", adminProfileData?.lastName);
+      setValue("linkedinUrl", adminProfileData?.linkedinUrl);
+      setValue("facebook", adminProfileData?.facebook);
+      setValue("twitter", adminProfileData?.twitter);
+      setValue("youtubeUrl", adminProfileData?.youtubeUrl);
+      setValue("githubUrl", adminProfileData?.githubUrl);
+      setValue("aboutMe", adminProfileData?.aboutMe);
+    }
+  }, [adminProfileData]);
+
+  const formHook = useForm({
+    resolver: (data) => validate(profileUpdateSchema, data),
+    defaultValues: {
+      firstName: adminProfileData?.firstName || "",
+      lastName: adminProfileData?.lastName || "",
+      linkedinUrl: adminProfileData?.linkedinUrl || "",
+      facebook: adminProfileData?.facebook || "",
+      twitter: adminProfileData?.twitter || "",
+      youtubeUrl: adminProfileData?.youtubeUrl || "",
+      githubUrl: adminProfileData?.githubUrl || "",
+      aboutMe: adminProfileData?.aboutMe || "",
+    },
+  });
+  const { register, handleSubmit, setValue } = formHook;
+
+  const onSubmit = async (data) => {
+    setLoading(true);
+
+    try {
+      const token = JSON.parse(localStorage.getItem("user")).token;
+      if (!token) {
+        throw new Error("Token not found");
+      }
+      const response = await Axios.put(urls.adminProfileUpdate, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response?.status === 200 || response?.status === 201) {
+        SuccessToast("Profile updated successfully");
+        handleProfileUpdatePopup();
+        fetchAdminProfile();
+      }
+    } catch (error) {
+      ErrorToast(error?.response?.data?.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleImageUpload = async () => {
+    setLoading(true);
+    const token = JSON.parse(localStorage.getItem("user")).token;
+    const formData = new FormData();
+    formData.append("picture", image);
+
+    try {
+      if (!token) {
+        throw new Error("Token not found");
+      }
+      const response = await Axios.put(urls.adminImageUpdate, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      if (response?.status === 200 || response?.status === 201) {
+        SuccessToast("Profile image updated successfully");
+        fetchAdminProfile();
+      }
+    } catch (error) {
+      ErrorToast(error?.response?.data?.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <ProfileLayout noShadow>
-      <div className="h-[300px] bg-blue1 w-full grid place-items-center relative">
+      {/* Profile Image Update Modal */}
+      {profileImagePopup && (
+        <ProfileImageEditor
+          onClose={handleProfileImagePopup}
+          profileImg={currentProfileImg}
+          imagePreview={imagePreview}
+          uploadBtn={handleImageUpload}
+          onChange={handleImageChange}
+        />
+      )}
+      {/* Profile Update Modal */}
+      {profileUpdatepopup && (
+        <UpdateAdminProfile
+          onSubmit={handleSubmit(onSubmit)}
+          register={register}
+          loading={loading}
+          onClose={handleProfileUpdatePopup}
+        />
+      )}
+      <div className="h-[300px] bg-blue1 w-full grid place-items-center relative rounded-xl">
         <h3 className="text-center text-white font-semibold text-xl">
           DECODE ANALYTICS
         </h3>
-        <div className="w-[200px] h-[200px] md:w-[300px] md:h-[300px] rounded-full absolute md:left-[40px] -bottom-10 md:-bottom-[80px]">
-          {authUser?.picture[0]?.path ? (
+        <div
+          className="w-[200px] h-[200px] md:w-[250px] md:h-[250px] rounded-full absolute md:left-[40px] -bottom-10 md:-bottom-[80px] cursor-pointer"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {adminProfileData?.picture[0]?.path ? (
             <img
-              className="w-full h-full rounded-full"
-              src={authUser?.picture[0]?.path}
+              className="w-full h-full rounded-full object-cover"
+              src={adminProfileData?.picture[0]?.path}
             />
           ) : (
+            // <Avatar
+            //   name={`${adminProfileData?.firstName} ${adminProfileData?.lastName}`}
+            // />
             <div className="flex justify-center items-center w-full h-full bg-gray-400 rounded-full">
-              <IoPerson className="text-[30px] text-white1" />
+              <IoPerson className="text-[200px] text-white1" />
+            </div>
+          )}
+          {/* Overlay */}
+          {isHovered && (
+            <div
+              className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-25 rounded-full"
+              onClick={handleProfileImagePopup}
+            >
+              <TbCameraPlus className="text-white text-4xl" />
             </div>
           )}
         </div>
-        <LiaPenSolid className="absolute right-5 top-5 text-white text-2xl cursor-pointer" />
       </div>
       <div className="ml-[50px]">
         <div className="mt-[130px]">
           <p>Instructor</p>
-          <h2 className="text-4xl font-semibold">{`${authUser?.firstName} ${authUser?.lastName}`}</h2>
+          <div className="flex w-full justify-between">
+            <h2 className="text-4xl font-semibold">{`${adminProfileData?.firstName} ${adminProfileData?.lastName}`}</h2>
+
+            <Button
+              onClick={handleProfileUpdatePopup}
+              leftIcon={<LiaPenSolid />}
+              className="bg-transparent border-[##BFBFBF] hover:bg-blue1 hover:text-white1 font-semibold border-2"
+              textColor="black"
+            >
+              Edit Profile
+            </Button>
+          </div>
         </div>
         <div className="flex gap-5 items-center mt-8">
-          {authUser?.linkedinUrl && (
+          {adminProfileData?.linkedinUrl && (
             <a
-              href={authUser?.linkedinUrl}
+              href={`https://${adminProfileData?.linkedinUrl}`}
               target="_blank"
               rel="noopener noreferrer"
             >
               <BsLinkedin className="text-gray3 text-[24px]" />
             </a>
           )}
-          {authUser?.twitter && (
+          {adminProfileData?.twitter && (
             <a
-              href={authUser?.twitter}
+              href={`https://${adminProfileData?.twitter}`}
               target="_blank"
               rel="noopener noreferrer"
             >
               <FaSquareXTwitter className="text-gray3 text-[27px]" />
             </a>
           )}
-          {authUser?.facebook && (
+          {adminProfileData?.facebook && (
             <a
-              href={authUser?.facebook}
+              href={`https://${adminProfileData?.facebook}`}
               target="_blank"
               rel="noopener noreferrer"
             >
               <FaSquareFacebook className="text-gray3 text-[27px]" />
             </a>
           )}
+          {adminProfileData?.githubUrl && (
+            <a
+              href={`https://${adminProfileData?.githubUrl}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaSquareGithub className="text-gray3 text-[27px]" />
+            </a>
+          )}
+          {adminProfileData?.youtubeUrl && (
+            <a
+              href={`https://${adminProfileData?.youtubeUrl}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaSquareYoutube className="text-gray3 text-[27px]" />
+            </a>
+          )}
         </div>
       </div>
-      <div className="bg-[#E6E7EE] w-full flex flex-col md:flex-row justify-between gap-16 py-9 px-16 my-[76px] border-y-2 border-gray-300">
+      <div className="bg-[#E6E7EE] w-full flex flex-col md:flex-row justify-between gap-16 py-9 px-16 my-[76px] border-y-2 border-gray-300 rounded-xl">
         <div className="flex flex-col gap-3 items-center">
           <h3 className="font-semibold text-2xl text-center">Total Students</h3>
-          <h3 className="font-semibold text-3xl">67,000</h3>
+          <h3 className="font-semibold text-3xl">{totalStudentsCount || 0}</h3>
         </div>
         <div className="flex flex-col gap-3 items-center">
           <h3 className="font-semibold text-2xl text-center">Total Courses</h3>
           <h3 className="font-semibold text-3xl">
             {" "}
-            {authUser?.courses?.length || 0}
+            {coursesData?.length || 0}
           </h3>
         </div>
         <div className="flex flex-col gap-3 items-center">
@@ -111,42 +312,28 @@ const AdminProfile = () => {
           <h3 className="font-semibold text-3xl">{reviewsLength || 0}</h3>
         </div>
       </div>
-      <div>
-        <h3 className="font-semibold text-2xl">About me</h3>
-        <p>
-          Lorem ipsum dolor sit amet consectetur. Mauris facilisis aliquam
-          fringilla malesuada commodo nulla adipiscing vel. Et lacus eget
-          pretium tristique porta suspendisse id. Viverra lectus egestas donec
-          sed condimentum proin etiam at est. Tellus morbi pellentesque
-          ullamcorper ac eu nisl habitant. Nunc velit libero sed iaculis sed
-          tincidunt. Sit nec convallis neque consequat. Blandit etiam elementum
-          hendrerit ut. Ipsum suscipit ipsum enim sed in eros tristique proin.
-          Ultrices maecenas faucibus viverra commodo molestie elit. Lorem ipsum
-          dolor sit amet consectetur. Mauris facilisis aliquam fringilla
-          malesuada commodo nulla adipiscing vel. Et lacus eget pretium
-          tristique porta suspendisse id. Viverra lectus egestas donec sed
-          condimentum proin etiam at est. Tellus morbi pellentesque ullamcorper
-          ac eu nisl habitant. Nunc velit libero sed iaculis sed tincidunt. Sit
-          nec convallis neque consequat. Blandit etiam elementum hendrerit ut.
-          Ipsum suscipit ipsum enim sed in eros tristique proin. Ultrices
-          maecenas faucibus viverra commodo molestie elit. Lorem ipsum dolor sit
-          amet consectetur. Mauris facilisis aliquam fringilla malesuada commodo
-          nulla adipiscing vel. Et lacus eget pretium tristique porta
-          suspendisse id. Viverra lectus egestas donec sed condimentum proin
-          etiam at est. Tellus morbi pellentesque elit.
-        </p>
+      <div className="bg-shadow p-5 rounded-xl">
+        <div className="flex justify-between w-full mb-3">
+          <h3 className="font-semibold text-2xl">About me</h3>
+        </div>
+        <p>{adminProfileData?.aboutMe || "Tell us about yourself"}</p>
       </div>
-      <div className="bg-shadow mt-[80px] h-full">
+      <div className="bg-shadow mt-[80px] h-full rounded-xl">
         <div className="flex flex-col md:flex-row gap-y-4 justify-between w-[95%] items-center mx-auto py-6 border-b-2 mb-10">
           <h2 className="font-semibold text-3xl">
             My Courses ({coursesData?.length})
           </h2>
           <button
             type="button"
-            className="text-xl"
+            className="text-xl flex gap-1 items-center"
             onClick={() => setShowAllCourses(!showAllCourses)}
           >
-            {showAllCourses ? "Hide all" : "See all"}
+            <p>{showAllCourses ? "Hide all" : "See all"}</p>
+            {showAllCourses ? (
+              <GoChevronDown className="text-2xl" />
+            ) : (
+              <GoChevronRight className="text-2xl" />
+            )}
           </button>
         </div>
         <div className="flex justify-center w-full">
@@ -163,8 +350,6 @@ const AdminProfile = () => {
                 <div>
                   <h2 className="font-semibold text-xl my-3">
                     {course?.course_title}
-
-                    {console.log(course)}
                   </h2>
                   <ProgressBar
                     progress={course?.isUploadedCompleted ? 100 : 50}
@@ -175,10 +360,10 @@ const AdminProfile = () => {
                     {" "}
                     <div className="w-9 h-9 rounded-full">
                       <Link to="/admin-dashboard/profile">
-                        {authUser?.picture[0]?.path ? (
+                        {adminProfileData?.picture[0]?.path ? (
                           <img
-                            className="w-full h-full rounded-full"
-                            src={authUser?.picture[0]?.path}
+                            className="w-full h-full rounded-full object-cover"
+                            src={adminProfileData?.picture[0]?.path}
                           />
                         ) : (
                           <div className="flex justify-center items-center w-full h-full bg-gray-400 rounded-full">
@@ -188,7 +373,8 @@ const AdminProfile = () => {
                       </Link>
                     </div>
                     <p className="text-gray-500">
-                      by {`${authUser?.firstName} ${authUser?.lastName}`}
+                      by{" "}
+                      {`${adminProfileData?.firstName} ${adminProfileData?.lastName}`}
                     </p>
                   </span>
                 </div>

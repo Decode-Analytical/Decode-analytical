@@ -18,6 +18,7 @@ export const Input = ({
   href,
   customClass,
   isPinCreated,
+  defaultValue,
   ...inputProps
 }) => {
   const navigate = useNavigate();
@@ -58,6 +59,7 @@ export const Input = ({
           disabled={disabled}
           required={required}
           {...inputProps}
+          defaultValue={defaultValue}
         />
         {type === "password" && (
           <button
@@ -91,6 +93,7 @@ export const TextArea = ({
   disabled,
   errorMessage,
   important,
+  defaultValue,
 }) => {
   return (
     <div className="flex flex-col mt-2">
@@ -113,6 +116,7 @@ export const TextArea = ({
         {...register}
         disabled={disabled}
         required={required}
+        defaultValue={defaultValue}
       />
       <div className="h-5">
         {errorMessage && (

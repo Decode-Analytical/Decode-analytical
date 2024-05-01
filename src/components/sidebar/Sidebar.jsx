@@ -33,16 +33,18 @@ const Sidebar = ({
       </span>
       <div className={`flex items-start min-h-[65px] px-1 gap-4 mt-10`}>
         <Link to="/admin-dashboard/profile">
-          {authUser?.picture[0]?.path ? (
-            <img
-              className="max-w-[50px] mt-1 rounded-full"
-              src={authUser?.picture[0]?.path}
-            />
-          ) : (
-            <div className="flex justify-center items-center min-w-[50px] h-[50px] bg-gray-400 mt-1 rounded-full">
-              <IoPerson className="text-[30px] text-white1" />
-            </div>
-          )}
+          <div className="rounded-full overflow-hidden">
+            {authUser?.picture[0]?.path ? (
+              <img
+                className="max-w-[50px] mt-1 object-cover object-center"
+                src={authUser?.picture[0]?.path}
+              />
+            ) : (
+              <div className="flex justify-center items-center min-w-[50px] h-[50px] bg-gray-400 mt-1 rounded-full">
+                <IoPerson className="text-[30px] text-white1" />
+              </div>
+            )}
+          </div>
         </Link>
         <div
           className={`transition-[display] duration-700 ease-in-out overflow-hidden`}
