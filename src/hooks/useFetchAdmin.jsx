@@ -21,6 +21,9 @@ const useFetchData = (url, initialData) => {
           Authorization: `Bearer ${token}`,
         },
       });
+      // if (!response) {
+      //   return;
+      // }
       if (response.status === 200 || response.status === 201)
         setData(response?.data);
     } catch (error) {
@@ -34,6 +37,9 @@ const useFetchData = (url, initialData) => {
   return { fetchData, data, isLoading, error };
 };
 
+export const useFetchAdminProfile = () => {
+  return useFetchData(urls.adminProfile, []);
+};
 export const useFetchAdminCourses = () => {
   return useFetchData(urls.adminOwnedCourses, []);
 };
@@ -63,6 +69,9 @@ export const useFetchWithdrawalsChart = () => {
 export const useFetchAllRegStudents = () => {
   return useFetchData(urls.adminGetAllRegStudents, 0);
 };
+export const useFetchTotalRegStudents = () => {
+  return useFetchData(urls.adminGetTotalRegStudents, 0);
+};
 
 export const useFetchCourseVisit = () => {
   return useFetchData(urls.adminGetCourseVisit, 0);
@@ -70,6 +79,9 @@ export const useFetchCourseVisit = () => {
 
 export const useFetchReviews = () => {
   return useFetchData(urls.adminGetAllReviews, 0);
+};
+export const useFetchAboutMe = () => {
+  return useFetchData(urls.adminGetAboutMe, "");
 };
 
 export const useFetchCourseById = (id) => {

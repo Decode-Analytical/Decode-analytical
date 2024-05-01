@@ -9,18 +9,21 @@ const Button = ({
   py,
   px,
   type,
+  textColor,
 }) => {
   return (
     <button
       onClick={onClick}
       className={`flex items-center ${py ?? "py-3"} ${
         px ?? "px-4"
-      } rounded-lg  gap-2 bg-blue1 text-white justify-center ${className}`}
+      } rounded-lg gap-2 bg-blue1 ${
+        textColor || "text-white"
+      } justify-center ${className}`}
       type={type}
     >
-      {leftIcon && <div>{leftIcon}</div>}
+      {leftIcon && <div className={`${textColor}`}>{leftIcon}</div>}
       {children}
-      {rightIcon && <div>{rightIcon}</div>}
+      {rightIcon && <div className={`${textColor}`}>{rightIcon}</div>}
     </button>
   );
 };

@@ -4,6 +4,7 @@ export const baseURL = "https://decode-mnjh.onrender.com/api";
 const urls = {
   studentLogin: `${baseURL}/user/login`,
   adminLogin: `${baseURL}/admin/adminSignIn`,
+  adminProfile: `${baseURL}/user/viewProfile`,
   adminOwnedCourses: `${baseURL}/course/viewCourse`,
   adminOwnedSession: `${baseURL}/admin/getRoomId`,
   adminGetBalance: `${baseURL}/wallet/getBalance`,
@@ -14,7 +15,10 @@ const urls = {
   adminResetPin: `${baseURL}/pin/updatePin`,
   adminForgotPin: `${baseURL}/pin/forgotPin`,
   adminGetAllRegStudents: `${baseURL}/admin/adminViewTotalStudentRegistered`,
+  adminGetTotalRegStudents: `${baseURL}/student/studentPaidCount`,
   adminGetCourseVisit: `${baseURL}/admin/adminDailyCourseVisitCount`,
+  adminProfileUpdate: `${baseURL}/user/userUpdateProfile`,
+  adminImageUpdate: `${baseURL}/user/studentUpdate`,
   adminValidateAccount: `${baseURL}/wallet/verifyAccountName`,
   adminGetAllReviews: `${baseURL}/course/review`,
   adminCreateLiveSession: `${baseURL}/admin/adminScheduleMeeting`,
