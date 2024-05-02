@@ -58,6 +58,12 @@ import Success from "./pages/AdminDashboard/adminWallet/Success";
 import CreateNewCourse from "./pages/AdminDashboard/adminCourses/CreateNewCourse";
 import CreateLive from "./pages/AdminDashboard/adminCourses/CreateLive";
 import CreateVideo from "./pages/AdminDashboard/adminCourses/CreateVideo";
+import CreateVideoModule from "./pages/AdminDashboard/adminCourses/CreateVideoModule";
+import CreateQuiz from "./pages/AdminDashboard/adminCourses/quiz/CreateQuiz";
+import CreateQuestion from "./pages/AdminDashboard/adminCourses/quiz/CreateQuestion";
+import QuizSuccess from "./pages/AdminDashboard/adminCourses/quiz/QuizSuccess";
+import EditModule from "./pages/AdminDashboard/adminCourses/EditModule";
+
 
 function App() {
   return (
@@ -119,6 +125,26 @@ function App() {
               <Route
                 path="/admin-dashboard/courses/create-new-course/create-video"
                 element={<CreateVideo />}
+              />
+              <Route
+                path="/admin-dashboard/courses/create-new-course/create-video-module/:id"
+                element={<CreateVideoModule />}
+              />
+              <Route
+                path="/admin-dashboard/courses/create-new-course/edit-module"
+                element={<EditModule />}
+              />
+              <Route
+                path="/admin-dashboard/courses/create-new-course/create-quiz"
+                element={<CreateQuiz />}
+              />
+              <Route
+                path="/admin-dashboard/courses/create-new-course/create-question"
+                element={<CreateQuestion />}
+              />
+              <Route
+                path="/admin-dashboard/courses/create-new-course/quiz-success"
+                element={<QuizSuccess />}
               />
               <Route path="/admin-dashboard/tools" element={<AdminTools />} />
               <Route

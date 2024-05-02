@@ -1,11 +1,13 @@
 import React, { useCallback, useState } from "react";
 import Header from "./Header";
-import CourseUpload from "./CourseUpload";
+// import CourseUpload from "./CourseUpload";
 import Footer from "./Footer";
 import Tracker from "./Tracker";
-import ModuleUpload from "./ModuleUpload";
+// import ModuleUpload from "./ModuleUpload";
 import ALert from "./ALert";
 import WarningAlert from "./WarningAlert";
+import CreateVideo from "../AdminDashboard/adminCourses/CreateVideo";
+import CreateVideoModule from "../AdminDashboard/adminCourses/CreateVideoModule";
 
 const Upload = () => {
   // let quickbook = "657214fae8826654aafa56ed"
@@ -95,13 +97,22 @@ const Upload = () => {
         />
       )}
       {selectedCourse.select ? (
-        <CourseUpload update={showAlert} ErrorC={AlertCourseError} />
+        // <CourseUpload update={showAlert} ErrorC={AlertCourseError} />
+        <CreateVideo update={showAlert} ErrorC={AlertCourseError} />
       ) : (
-        <ModuleUpload
+        // <ModuleUpload
+        //   id={selectedCourse.id}
+        //   Alert={showModuleAlert}
+        //   ErrorM={ModuleAlertError}
+        // />
+
+        <CreateVideoModule
           id={selectedCourse.id}
           Alert={showModuleAlert}
           ErrorM={ModuleAlertError}
         />
+
+        
       )}
       <Footer />
       {courseSuccess && (

@@ -12,5 +12,6 @@ const urls = {
   adminGetAllRegStudents: `${baseURL}/admin/adminViewTotalStudentRegistered`,
   adminGetCourseVisit: `${baseURL}/admin/adminDailyCourseVisitCount`,
   adminGetAllReviews: `${baseURL}/course/review`,
+  adminAddNewCourse: `${baseURL}/course/registeredCourse`
 };
 export default urls;
