@@ -1,6 +1,8 @@
 import React from "react";
 import {
   CartesianGrid,
+  Label,
+  // Legend,
   Line,
   LineChart,
   ResponsiveContainer,
@@ -9,7 +11,7 @@ import {
   YAxis,
 } from "recharts";
 
-const WalletChart = ({ data }) => {
+const WalletChart = ({ data, x, y, name, xTitle, yTitle, position }) => {
   return (
     <div className="h-[500px] mt-10">
       <ResponsiveContainer width="100%" height="100%">
@@ -18,22 +20,32 @@ const WalletChart = ({ data }) => {
           height={300}
           data={data}
           margin={{
-            top: 5,
+            top: 45,
             right: 30,
             left: 20,
-            bottom: 5,
+            bottom: 45,
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="course" />
-          <YAxis />
+          <XAxis dataKey={x}>
+            <Label
+              value={xTitle}
+              angle={0}
+              position="insideBottomRight"
+              offset="-18"
+            />
+          </XAxis>
+          <YAxis>
+            <Label value={yTitle} angle={0} position={position} offset="-44" />
+          </YAxis>
           <Tooltip />
+          {/* <Legend /> */}
           <Line
             type="monotone"
-            dataKey="purchases"
+            dataKey={y}
             stroke="#98eac8"
             strokeWidth={5}
-            name="Purchases"
+            name={name}
             activeDot={{ r: 8 }}
           />
         </LineChart>

@@ -1,21 +1,28 @@
 import React, { useEffect } from "react";
-import ProfileLayout from "../../../components/ProfileLayout";
-import SalesTable from "../../../components/adminTools/SalesTable";
+import ProfileLayout from "../../../components/layout/AdminProfileLayout";
+// import CourseSalesTable from "../../../components/adminTools/CourseSalesTable";
 import { Heading } from "../../../components/Heading";
 import Tab from "../../../components/Tab";
 import {
   useFetchAdminCourses,
   useFetchAdminSessions,
 } from "../../../hooks/useFetchAdmin";
+import LiveSalesTable from "../../../components/adminTools/LiveSalesTable";
+import CourseSalesTable from "../../../components/adminTools/CourseSalesTable";
 
 const SalesHistory = () => {
-  const { fetchCourses, courses, isLoading, error } = useFetchAdminCourses();
+  const {
+    fetchData: fetchCourses,
+    data: courses,
+    isLoading: coursesLoading,
+    error: coursesError,
+  } = useFetchAdminCourses();
 
   const {
-    fetchSessions,
-    sessions,
-    isLoading: sessionLoading,
-    error: sessionError,
+    fetchData: fetchSessions,
+    data: session,
+    isLoading: sessionsLoading,
+    error: sessionsError,
   } = useFetchAdminSessions();
 
   useEffect(() => {
@@ -23,21 +30,36 @@ const SalesHistory = () => {
     fetchSessions();
   }, []);
 
+  const coursesData = courses?.courses;
+  const sessionsData = session?.meeting;
+
   return (
     <ProfileLayout px={"4"}>
       <Heading title={"Sales History"} ml={"4"} />
       <Tab
         title1={"Original Course"}
         child1={
-          <SalesTable data={courses} isLoading={isLoading} error={error} />
+          <div className="overflow-x-auto">
+            <div className="w-[800px] md:w-full">
+              <CourseSalesTable
+                data={coursesData}
+                isLoading={coursesLoading}
+                error={coursesError}
+              />
+            </div>
+          </div>
         }
         title2={"Live Session"}
         child2={
-          <SalesTable
-            data={sessions}
-            isLoading={sessionLoading}
-            error={sessionError}
-          />
+          <div className="overflow-x-auto">
+            <div className="w-[800px] md:w-full">
+              <LiveSalesTable
+                data={sessionsData}
+                isLoading={sessionsLoading}
+                error={sessionsError}
+              />
+            </div>
+          </div>
         }
       />
     </ProfileLayout>

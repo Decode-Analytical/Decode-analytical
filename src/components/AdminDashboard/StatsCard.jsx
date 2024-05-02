@@ -1,4 +1,5 @@
 import React from "react";
+import CountUp from "react-countup";
 
 const StatsCard = ({ minW, title, count, className }) => {
   return (
@@ -7,7 +8,9 @@ const StatsCard = ({ minW, title, count, className }) => {
     >
       <div className="flex flex-col justify-between gap-4">
         <p className="text-lg">{title}</p>
-        <h1 className="font-bold">{count}</h1>
+        <h1 className="font-bold">
+          {<CountUp start={0} end={count} duration={2} separator="," />}
+        </h1>
       </div>
     </div>
   );

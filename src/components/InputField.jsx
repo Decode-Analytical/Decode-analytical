@@ -1,7 +1,12 @@
-import React, { useState} from "react";
+
+import React, { useState } from "react";
+import { RxEyeClosed } from "react-icons/rx";
+import { PiEyeBold } from "react-icons/pi";
+import { useNavigate } from "react-router-dom";
+
 
 export const Input = ({
-  title,
+  label,
   type,
   name,
   placeholder,
@@ -11,31 +16,70 @@ export const Input = ({
   required,
   disabled,
   errorMessage,
-  notImportant,
+  important,
+  href,
+  customClass,
+  isPinCreated,
+  defaultValue,
+  ...inputProps
 }) => {
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
-    <div className="flex flex-1 flex-col mt-8">
-      <label className="font-light">
-        {title}
-        {notImportant ? "" : <span className="text-red2 text-lg ml-1">*</span>}
+    <div className="flex w-full flex-1 flex-col mt-2">
+      <div className="flex justify-between w-full">
+        {label && (
+          <label className="font-light">
+            {label}
+            {important ? <span className="text-red2 text-lg ml-1">*</span> : ""}
+          </label>
+        )}
+        {href && !isPinCreated && (
+          <div className="font-semibold cursor-pointer">
+            <p onClick={() => navigate(href)}>Don't have a Pin?</p>
+          </div>
+        )}
+      </div>
+      <div className="relative">
         <input
-          type={type}
+          type={showPassword ? "text" : type}
           name={name}
-          id="amount"
           placeholder={placeholder}
-          className="border border-gray-400 bg-white1 rounded-md p-4"
+          className={`border ${
+            errorMessage ? "border-red-500" : "border-gray-400"
+          }  bg-white1 rounded-md px-4 py-2 sm:py-4 disabled:bg-gray-100 ${
+            errorMessage && "outline-red-500"
+          } ${customClass}`}
           onChange={onChange}
           value={value}
           {...register}
           disabled={disabled}
           required={required}
+          {...inputProps}
+          defaultValue={defaultValue}
         />
-      </label>
-      {errorMessage && (
-        <div>
-          <p className="text-red-500 text-xs italic">{errorMessage}</p>
-        </div>
-      )}
+        {type === "password" && (
+          <button
+            className="absolute inset-y-0 right-0 flex items-center px-4 bg-transparent border-transparent"
+            onClick={togglePasswordVisibility}
+            type="button"
+          >
+            {showPassword ? <PiEyeBold /> : <RxEyeClosed />}
+          </button>
+        )}
+      </div>
+      <div className="h-5">
+        {errorMessage && (
+          <div>
+            <p className="text-red-500 mt-1 text-xs italic">{errorMessage}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
@@ -80,7 +124,7 @@ export const AnswerInput = ({
 };
 
 export const TextArea = ({
-  title,
+  label,
   name,
   placeholder,
   onChange,
@@ -89,37 +133,45 @@ export const TextArea = ({
   required,
   disabled,
   errorMessage,
-  notImportant,
+  important,
+  defaultValue,
 }) => {
   return (
-    <div className="flex flex-col mt-8">
+    <div className="flex flex-col mt-2">
       <div className="flex">
-        <label className="font-light">{title}</label>
-        {notImportant ? "" : <span className="text-red2 text-lg ml-1">*</span>}
+        <label className="font-light">{label}</label>
+        {important ? <span className="text-red2 text-lg ml-1">*</span> : ""}
       </div>
       <textarea
         type={"text"}
         name={name}
         id="amount"
         placeholder={placeholder}
-        className="border bg-white1 border-gray-400 rounded-md p-4"
+        className={`border ${
+          errorMessage ? "border-red-500" : "border-gray-400"
+        }  bg-white1 rounded-md p-4 disabled:bg-gray-100 ${
+          errorMessage && "outline-red-500"
+        }`}
         onChange={onChange}
         value={value}
         {...register}
         disabled={disabled}
         required={required}
+        defaultValue={defaultValue}
       />
-      {errorMessage && (
-        <div>
-          <p className="text-red-500 text-xs italic">{errorMessage}</p>
-        </div>
-      )}
+      <div className="h-5">
+        {errorMessage && (
+          <div>
+            <p className="text-red-500 text-xs italic">{errorMessage}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
 export const BankSelectInput = ({
-  title,
+  label,
   name,
   options,
   onChange,
@@ -128,24 +180,28 @@ export const BankSelectInput = ({
   disabled,
   errorMessage,
   register,
-  notImportant,
+  important,
 }) => {
   return (
-    <div className="flex flex-col gap-3 mt-8">
+    <div className="flex flex-col gap-1 mt-6">
       <label className="font-light">
-        {title}
-        {notImportant ? "" : <span className="text-red2 text-lg ml-1">*</span>}
+        {label}
+        {important ? <span className="text-red2 text-lg ml-1">*</span> : ""}
         <select
           name={name}
           id={name}
-          className="border border-gray-400 bg-white1 rounded-md p-4"
+          className={`border ${
+            errorMessage ? "border-red-500" : "border-gray-400"
+          } ${
+            errorMessage && "outline-red-500"
+          }  bg-white1 rounded-md text-black px-4 py-2 sm:py-4 disabled:bg-gray-100`}
           onChange={onChange}
           value={value}
           disabled={disabled}
           required={required}
           {...register}
         >
-          <option value="">Select {title}</option>
+          <option value="">Select {label}</option>
           {options.map((option, index) => (
             <option key={index} value={option.CBNBankCode}>
               {option.bankName}
@@ -153,17 +209,19 @@ export const BankSelectInput = ({
           ))}
         </select>
       </label>
-      {errorMessage && (
-        <div>
-          <p className="text-red-500 text-xs italic">{errorMessage}</p>
-        </div>
-      )}
+      <div className="h-5">
+        {errorMessage && (
+          <div>
+            <p className="text-red-500 text-xs italic">{errorMessage}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
 export const Radio = ({
-  title,
+  label,
   name,
   onChange,
   value,
@@ -172,6 +230,7 @@ export const Radio = ({
   register,
   checked,
   defaultChecked,
+  onClick,
 }) => {
   return (
     <div className="flex items-center gap-1">
@@ -187,16 +246,53 @@ export const Radio = ({
         id={value}
         checked={checked}
         defaultChecked={defaultChecked}
+        onClick={onClick}
       />
       <label htmlFor={value} className="font-light">
-        {title}
+        {label}
+      </label>
+    </div>
+  );
+};
+export const Checkbox = ({
+  label,
+  name,
+  onChange,
+  value,
+  required,
+  disabled,
+  register,
+  checked,
+  defaultChecked,
+  onClick,
+}) => {
+  return (
+    <div className="flex gap-1">
+      <span className="flex items-start">
+        <input
+          className="checkbox-select"
+          onChange={onChange}
+          value={value}
+          disabled={disabled}
+          required={required}
+          {...register}
+          type="checkbox"
+          name={name}
+          id={value}
+          checked={checked}
+          defaultChecked={defaultChecked}
+          onClick={onClick}
+        />
+      </span>
+      <label htmlFor={value} className="font-light">
+        {label}
       </label>
     </div>
   );
 };
 
 export const SelectInput = ({
-  title,
+  label,
   name,
   options,
   onChange,
@@ -210,33 +306,37 @@ export const SelectInput = ({
   customClass,
 }) => {
   return (
-    <div className="flex flex-1 flex-col gap-3 mt-8">
+    <div className="flex flex-1 flex-col mt-2">
       <label className="font-light">
-        {title}
+        {label}
         <span className="text-red2 text-lg ml-1">*</span>
         <select
           name={name}
           id={name}
-          className={`${customClass} border border-gray-400 rounded-md p-4 bg-white1`}
+          className={`${customClass} border rounded-md  py-2 md:py-[17px] px-[17px] bg-white1 disabled:bg-gray-100 ${
+            errorMessage ? "border-red-500" : "border-gray-400"
+          } ${errorMessage && "outline-red-500"}`}
           onChange={onChange}
           value={value}
           disabled={disabled}
           required={required}
           {...register}
         >
-          <option value="">Select {title}</option>
-          {options.map((option, index) => (
-            <option key={index} value={option[valueKey]}>
-              {option[labelKey]}
+          <option value="">Select {label}</option>
+          {options?.map((option, index) => (
+            <option key={index} value={valueKey ? option[valueKey] : option}>
+              {labelKey ? option[labelKey] : option}
             </option>
           ))}
         </select>
       </label>
-      {errorMessage && (
-        <div>
-          <p className="text-red-500 text-xs italic">{errorMessage}</p>
-        </div>
-      )}
+      <div className="h-5">
+        {errorMessage && (
+          <div>
+            <p className="text-red-500 text-xs italic">{errorMessage}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

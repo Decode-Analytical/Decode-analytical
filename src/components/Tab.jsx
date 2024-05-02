@@ -1,7 +1,16 @@
 // TabComponent.js
 import React, { useState } from "react";
 
-const Tab = ({ title1, title2, child1, child2 }) => {
+const Tab = ({
+  title1,
+  title2,
+  title3,
+  child1,
+  child2,
+  child3,
+  mt,
+  border,
+}) => {
   const [activeTab, setActiveTab] = useState(1);
 
   const handleTabClick = (tabNumber) => {
@@ -9,8 +18,8 @@ const Tab = ({ title1, title2, child1, child2 }) => {
   };
 
   return (
-    <div className="w-full mx-auto mt-8 p-4">
-      <div className="flex space-x-4 border-b-2 mb-[70px]">
+    <div className={`w-full mx-auto ${mt || "mt-8"} p-4`}>
+      <div className={`flex space-x-4 ${border || "border-b-2"} mb-[70px]`}>
         <div
           className={`cursor-pointer p-2 tab-title font-medium ${
             activeTab === 1
@@ -31,12 +40,24 @@ const Tab = ({ title1, title2, child1, child2 }) => {
         >
           {title2}
         </div>
+        <div
+          className={`cursor-pointer p-2 tab-title font-medium ${
+            activeTab === 3
+              ? "text-blue1 border-b-2 border-blue1 -mb-1"
+              : "text-gray6"
+          }`}
+          onClick={() => handleTabClick(3)}
+        >
+          {title3}
+        </div>
       </div>
 
       <div className="mt-4">
         {activeTab === 1 && <div>{child1}</div>}
 
         {activeTab === 2 && <div>{child2}</div>}
+
+        {activeTab === 3 && <div>{child3}</div>}
       </div>
     </div>
   );
