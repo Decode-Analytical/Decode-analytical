@@ -34,7 +34,7 @@ const SalesHistory = () => {
   const sessionsData = session?.meeting;
 
   return (
-    <ProfileLayout px={"4"}>
+    <ProfileLayout px={"4"} isLoading={coursesLoading || sessionsLoading}>
       <Heading title={"Sales History"} ml={"4"} />
       <Tab
         title1={"Original Course"}

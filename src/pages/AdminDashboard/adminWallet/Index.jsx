@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 import WalletTab from "../../../components/adminWallet/WalletTab";
 import ProfileLayout from "../../../components/layout/AdminProfileLayout";
 import { walletData } from "../../../utils/Constants";
@@ -17,6 +17,7 @@ import { currencyFormatter } from "../../../utils/functn";
 import FilteredCharts from "../../../components/adminWallet/WithdrawalsCharts";
 import EarningsCharts from "../../../components/adminWallet/EarningsCharts";
 import WithdrawalsCharts from "../../../components/adminWallet/WithdrawalsCharts";
+import { UserProfileContext } from "../../../context/UserProfileContext";
 
 const Skeleton = () => (
   <div className="flex items-start gap-x-3 my-2 animate-pulse">
@@ -55,38 +56,36 @@ const WalletStats = ({ title, amount, isLoading }) => {
 };
 
 const AdminWallet = () => {
-  const authUser = useMemo(() => {
-    return JSON.parse(localStorage.getItem("user")).user;
-  }, []);
+  const userProfile = useContext(UserProfileContext);
 
   const {
     fetchData: fetchEarnings,
     data: earnings,
-    // isLoading: earningsLoading,
+    isLoading: earningsLoading,
     // error: earningsError,
   } = useFetchEarnings();
   const {
     fetchData: fetchBalance,
     data: balance,
-    // isLoading: balanceLoading,
+    isLoading: balanceLoading,
     // error: balanceError,
   } = useFetchBalance();
   const {
     fetchData: fetchTransfers,
     data: transfers,
-    // isLoading: transfersLoading,
+    isLoading: transfersLoading,
     // error: transfersError,
   } = useFetchTransfers();
   const {
     fetchData: fetchEarningsChart,
     data: earningsChart,
-    // isLoading: EarningsChartLoading,
+    isLoading: EarningsChartLoading,
     // error: EarningsChartError,
   } = useFetchEarningsChart();
   const {
     fetchData: fetchWithdrawalsChart,
     data: withdrawalsChart,
-    // isLoading: WithdrawalsChartLoading,
+    isLoading: WithdrawalsChartLoading,
     // error: WithdrawalsChartError,
   } = useFetchWithdrawalsChart();
 
@@ -105,10 +104,19 @@ const AdminWallet = () => {
   const withdrawalsChartData = withdrawalsChart;
 
   return (
-    <ProfileLayout title={"Wallet"}>
+    <ProfileLayout
+      title={"Wallet"}
+      isLoading={
+        earningsLoading ||
+        balanceLoading ||
+        transfersLoading ||
+        EarningsChartLoading ||
+        WithdrawalsChartLoading
+      }
+    >
       <div className="px-0 md:px-4 lg:px-14">
         <h2 className="font-bold mb-10 text-2xl">
-          Welcome back, {authUser?.firstName}
+          Welcome back, {userProfile?.firstName}
         </h2>
         <div className="flex flex-col md:flex-row flex-1 gap-8 md:gap-12">
           <WalletStats title={"Earnings"} amount={earningData} />

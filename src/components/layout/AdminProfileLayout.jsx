@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import AdminSidebar from "../sidebar/AdminSidebar";
 import ProfileHeader from "../ProfileHeader";
+import LoadingSpinner from "../LoadingSpinner";
 
-const ProfileLayout = ({ title, children, noShadow }) => {
+const ProfileLayout = ({ title, children, noShadow, isLoading }) => {
   const [menuOpen, setMenuopen] = useState(false);
 
   const toggleOpenMenu = () => {
@@ -28,7 +29,13 @@ const ProfileLayout = ({ title, children, noShadow }) => {
               noShadow ? "" : "bg-shadow px-4 md:px-10 py-8 md:py-16"
             } rounded-lg mx-auto w-[95%] md:w-[100%]`}
           >
-            {children}
+            {isLoading ? (
+              <div className="shadow-bg h-[80vh] w-full grid place-items-center">
+                <LoadingSpinner />
+              </div>
+            ) : (
+              <>{children}</>
+            )}
           </div>
         </div>
       </div>

@@ -45,7 +45,7 @@ const SalesAndPerformance = () => {
 
   return (
     <div>
-      <ProfileLayout>
+      <ProfileLayout isLoading={coursesLoading}>
         <Heading title={"Sales And Performance"} />
         <div className="flex flex-col sm:flex-row flex-wrap items-stretch justify-between gap-6 w-full">
           <SalesStats

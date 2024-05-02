@@ -10,7 +10,7 @@ import { IoMdTime } from "react-icons/io";
 import { IoPerson } from "react-icons/io5";
 import { LiaPenSolid } from "react-icons/lia";
 import { TbCellSignal5 } from "react-icons/tb";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../../components/Button";
 import ProgressBar from "../../../components/ProgressBar";
 import StarRating from "../../../components/StarRating";
@@ -47,6 +47,8 @@ const AdminProfile = () => {
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
 
+  const navigate = useNavigate();
+
   // Image change handler
   const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];
@@ -72,8 +74,11 @@ const AdminProfile = () => {
   const { fetchData: fetchReviews, data: reviews } = useFetchReviews();
   const { fetchData: fetchTotalStudents, data: totalStudents } =
     useFetchTotalRegStudents();
-  const { fetchData: fetchAdminProfile, data: adminProfile } =
-    useFetchAdminProfile();
+  const {
+    fetchData: fetchAdminProfile,
+    data: adminProfile,
+    isLoading,
+  } = useFetchAdminProfile();
   const { fetchData: fetchCourses, data: courses } = useFetchAdminCourses();
 
   useEffect(() => {
@@ -141,6 +146,7 @@ const AdminProfile = () => {
         SuccessToast("Profile updated successfully");
         handleProfileUpdatePopup();
         fetchAdminProfile();
+        window.location.reload();
       }
     } catch (error) {
       ErrorToast(error?.response?.data?.message);
@@ -169,6 +175,7 @@ const AdminProfile = () => {
       if (response?.status === 200 || response?.status === 201) {
         SuccessToast("Profile image updated successfully");
         fetchAdminProfile();
+        window.location.reload();
       }
     } catch (error) {
       ErrorToast(error?.response?.data?.message);
@@ -177,8 +184,12 @@ const AdminProfile = () => {
     }
   };
 
+  // if (!adminProfileData) {
+  //   return null;
+  // }
+
   return (
-    <ProfileLayout noShadow>
+    <ProfileLayout noShadow isLoading={isLoading}>
       {/* Profile Image Update Modal */}
       {profileImagePopup && (
         <ProfileImageEditor

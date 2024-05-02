@@ -16,7 +16,7 @@ const AdminCourses = () => {
   const {
     fetchData: fetchCourseVisit,
     data: courseVisit,
-    // isLoading: courseVisitLoading,
+    isLoading: courseVisitLoading,
     // error: courseVisitError,
   } = useFetchCourseVisit();
   const {
@@ -35,7 +35,10 @@ const AdminCourses = () => {
   const coursesData = courses?.courses;
 
   return (
-    <ProfileLayout title={"Courses"}>
+    <ProfileLayout
+      title={"Courses"}
+      isLoading={coursesLoading || courseVisitLoading}
+    >
       <div className="flex justify-end">
         <Link
           className="flex items-center py-3 px-4 rounded-lg font-extrabold gap-2 bg-blue1 text-white"
