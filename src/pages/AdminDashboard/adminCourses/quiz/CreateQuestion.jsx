@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Heading } from "../../../../components/Heading";
 import logo from "../../../../assets/adminDashboardImages/logo.svg";
 
-import clock from "../../../../assets/adminDashboardImages/Clock.svg";
+import clock from "../../../../assets/adminDashboardImages/clock.svg";
 import { Link } from "react-router-dom";
 import {
     AnswerInput,
