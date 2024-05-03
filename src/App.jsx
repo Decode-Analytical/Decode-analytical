@@ -127,6 +127,7 @@ function App() {
                 element={<CreateVideo />}
               />
               <Route
+              
                 path="/admin-dashboard/courses/create-new-course/create-video-module/:id"
                 element={<CreateVideoModule />}
               />

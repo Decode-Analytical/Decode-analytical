@@ -250,6 +250,11 @@ const EditModule = () => {
             <div className="first-circle">
             <div className="white-dot"></div>
             </div>
+
+            <div className="single-line"></div>
+            <div className="first-circle">
+            <div className="white-dot"></div>
+            </div>
           </div>
           <div className="text-white flex flex-col gap-20 mt-2">
             <div>

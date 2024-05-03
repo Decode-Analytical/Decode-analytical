@@ -16,6 +16,7 @@ import Loader from "../../../components/Loader";
 import FileUpload, {Input, Textarea } from "./InputFile";
 import VideoUpload from "../../uploadCourses/VideoUpload";
 import { useAuthContext } from "../../../hooks/authContext";
+import Warning from "./warning/Warning";
 
 
 
@@ -33,6 +34,7 @@ const CreateVideoModule = () => {
     upload_image: null,
     module_duration: "",
   });
+  const [notSuccess, setNotSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useAuthContext();
   const baseURL = import.meta.env.VITE_BASE_URL;
@@ -263,14 +265,14 @@ const CreateVideoModule = () => {
           </div>
         </div>
       </div>
-      {/* {notSuccess ? (
+      {notSuccess ? (
         <>
         <div className="notification-wrapper"></div>
 
-        <Warning title={"Warning"} description={"Your course will be uploaded without a quiz"} planeButton={"Add Quiz"} button={"Continue"} />
+        <Warning title={"Successful"} description={"Course module uploaded successfully"} planeButton={"Add Quiz"} button={"Done"} />
         </>
       ) : ("")
-      } */}
+      }
     </div>
   )
 };

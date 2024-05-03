@@ -1,6 +1,7 @@
 import React from 'react'
 import "../CreateVideo.css"
 import notification from "../../../../assets/adminDashboardImages/notification.svg"; 
+import { Link } from 'react-router-dom';
 
 const Warning = ({title, description, planeButton, button, id}) => {
   return (
@@ -14,6 +15,7 @@ const Warning = ({title, description, planeButton, button, id}) => {
             <p>{description}</p>
             
             <div className='flex justify-end gap-5 mt-10'>
+              <Link to="/admin-dashboard/courses/create-new-course/create-quiz" className='text-blue1 font-bold '>+ Add a Quiz</Link>
               <button className='bg-white text-sm text-blue1 border rounded px-3'>{planeButton}</button>
               <button className='bg-blue1 py-2 px-10 rounded text-white'>{button}</button>
             </div>
