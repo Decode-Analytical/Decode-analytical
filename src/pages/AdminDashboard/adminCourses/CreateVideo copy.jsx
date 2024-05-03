@@ -99,7 +99,6 @@ const CreateVideo = ({ update }) => {
       console.log(form.price)
       console.log("hi")
       console.log(response)
-      
       console.log(response.ok)
       if (response.ok) {
         
@@ -109,10 +108,9 @@ const CreateVideo = ({ update }) => {
         setIsLoading(false);
         setError(null); // Clear any previous error
         let mess = "Course is created successfully";
-        navigate(`/admin-dashboard/courses/create-new-course/create-video-module/${id}`);
+        // navigate(`/newmodule/${id}`);
         console.log(mess)
         update(id, mess);
-        console.log(update)
       } else {
         const errorData = await response.json();
         setError(errorData.message);
@@ -335,14 +333,6 @@ const CreateVideo = ({ update }) => {
         </div>
       </div>
      
-     {/* {notSuccess ? (
-        <>
-        <div className="notification-wrapper"></div>
-
-        <Warning id={id} title={"Warning"} description={"Your course will be uploaded without a quiz"} planeButton={"Add Quiz"} button={"Continue"} />
-        </>
-      ) : ("")
-      } */}
     </div>
   )
 };

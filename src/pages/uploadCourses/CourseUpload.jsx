@@ -10,7 +10,7 @@ const CourseUpload = ({ update, ErrorC }) => {
   let navigate = useNavigate();
   const { user } = useAuthContext();
   const baseURL = import.meta.env.VITE_BASE_URL;
-  // console.log(user)
+  console.log(user)
   const [isLoading, setIsLoading] = useState(false);
   const [isPaid, setIsPaid] = useState(false);
 
@@ -68,6 +68,9 @@ const CourseUpload = ({ update, ErrorC }) => {
     if (form.course_image) {
       formData.set("course_image", form.course_image);
     }
+    console.log(form, "Form")
+    console.log(formData, "formData")
+    
 
     try {
       const response = await fetch(`${baseURL}course/registeredCourse`, {
