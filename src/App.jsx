@@ -57,7 +57,7 @@ import AdminWithdraw from "./pages/AdminDashboard/adminWallet/AdminWithdraw";
 import Success from "./pages/AdminDashboard/adminWallet/Success";
 import CreateNewCourse from "./pages/AdminDashboard/adminCourses/CreateNewCourse";
 import CreateLive from "./pages/AdminDashboard/adminCourses/CreateLive";
-import CreateVideo from "./pages/AdminDashboard/adminCourses/Cr
+import CreateVideo from "./pages/AdminDashboard/adminCourses/CreateVideo";
 import CreateVideoModule from "./pages/AdminDashboard/adminCourses/CreateVideoModule";
 import CreateQuiz from "./pages/AdminDashboard/adminCourses/quiz/CreateQuiz";
 import CreateQuestion from "./pages/AdminDashboard/adminCourses/quiz/CreateQuestion";
