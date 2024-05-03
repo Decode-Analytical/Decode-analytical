@@ -17,10 +17,6 @@ const CourseCard = ({
     <div className={`bg-shadow rounded-md sm:w-fit flex-1 p-5  ${customClass}`}>
       <div className="flex justify-between gap-4">
         <h2 className="font-bold text-lg md:text-xl mb-1">{heading}</h2>
-        <select className="w-[110px] rounded-lg bg-white text-sm" name="" id="">
-          <option value="weekly">This Week</option>
-          <option value="monthly">This Month</option>
-        </select>
       </div>
       <p className="">{sub}</p>
       <div className="h-[250px] overflow-scroll my-4">

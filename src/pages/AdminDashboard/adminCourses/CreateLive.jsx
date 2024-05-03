@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Heading } from "../../../components/Heading";
 import logo from "../../../assets/adminDashboardImages/logo.svg";
 import vector1 from "../../../assets/adminDashboardImages/vector1.svg";
 import vector2 from "../../../assets/adminDashboardImages/vector2.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Input,
   Radio,
@@ -12,120 +12,60 @@ import {
 } from "../../../components/InputField";
 import Button from "../../../components/Button";
 import { useForm } from "react-hook-form";
+import LoadingSpinner from "../../../components/LoadingSpinner";
+import { ErrorToast, SuccessToast } from "../../../utils/toast";
+import urls from "../../../utils/Url";
+import axios from "axios";
+import { liveSessionSchema } from "../../../schema/liveSession";
+import { durationOptions } from "../../../utils/Constants";
+import { useFetchAdminCourses } from "../../../hooks/useFetchAdmin";
+import Image from "../../../components/adminCourses/Image";
 
 const CreateLive = () => {
-  const timeZoneOptions = [
-    {
-      label: "West African Time",
-      value: "wat",
-    },
-    {
-      label: "Central European Time",
-      value: "cet",
-    },
-    {
-      label: "Eastern Standard Time",
-      value: "est",
-    },
-    {
-      label: "Pacific Standard Time",
-      value: "pst",
-    },
-    {
-      label: "Indian Standard Time",
-      value: "ist",
-    },
-
-    {
-      label: "Brasília Time",
-      value: "brt",
-    },
-    {
-      label: "Japan Standard Time",
-      value: "jst",
-    },
-    {
-      label: "Greenwich Mean Time",
-      value: "gmt",
-    },
-    {
-      label: "Mountain Standard Time",
-      value: "mst",
-    },
-  ];
-
-  const durationOptions = [
-    {
-      label: "0 hour",
-      value: "0",
-    },
-    {
-      label: "1 hour",
-      value: "1",
-    },
-    {
-      label: "2 hours",
-      value: "2",
-    },
-    {
-      label: "3 hours",
-      value: "3",
-    },
-    {
-      label: "4 hours",
-      value: "4",
-    },
-    {
-      label: "5 hours",
-      value: "5",
-    },
-    {
-      label: "6 hours",
-      value: "6",
-    },
-    {
-      label: "7 hours",
-      value: "7",
-    },
-    {
-      label: "8 hours",
-      value: "8",
-    },
-    {
-      label: "9 hours",
-      value: "9",
-    },
-  ];
-
+  const authUser = useMemo(() => {
+    return JSON.parse(localStorage.getItem("user")).user;
+  }, []);
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
+  const { fetchData: fetchCourses, data: courses } = useFetchAdminCourses();
+
+  useEffect(() => {
+    fetchCourses();
+  }, []);
+
+  const courseData = courses?.courses;
+
+  const courseList = courseData?.map((item) => item.course_title);
+
   const formHook = useForm({
-    // resolver: (data) => {
-    //   return withdrawalSchema.validate(data, { abortEarly: false }).then(
-    //     () => {
-    //       return { values: data, errors: {} };
-    //     },
-    //     (validationErrors) => {
-    //       return {
-    //         values: {},
-    //         errors: validationErrors.inner.reduce((acc, error) => {
-    //           acc[error.path] = {
-    //             message: error.message,
-    //             type: error.type,
-    //           };
-    //           return acc;
-    //         }, {}),
-    //       };
-    //     }
-    //   );
-    // },
+    resolver: (data) => {
+      return liveSessionSchema.validate(data, { abortEarly: false }).then(
+        () => {
+          return { values: data, errors: {} };
+        },
+        (validationErrors) => {
+          return {
+            values: {},
+            errors: validationErrors.inner.reduce((acc, error) => {
+              acc[error.path] = {
+                message: error.message,
+                type: error.type,
+              };
+              return acc;
+            }, {}),
+          };
+        }
+      );
+    },
     defaultValues: {
-      title: "",
+      email: authUser.email,
+      courseName: "",
       description: "",
-      startDate: "",
-      startTime: "",
-      duration: null,
-      timeZone: "",
+      date: "",
+      time: "",
+      isPaid: "",
+      amount: 0,
     },
   });
 
@@ -138,112 +78,119 @@ const CreateLive = () => {
   const onSubmit = async (data) => {
     setLoading(true);
     const token = JSON.parse(localStorage.getItem("user")).token;
+
     try {
-      const response = await fetch(urls.adminTransfer, {
-        method: "POST",
+      const response = await axios.post(urls.adminCreateLiveSession, data, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
       });
 
-      if (response.ok) {
-        SuccessToast(response.message);
-        navigate("/admin-dashboard/wallet/withdraw/success");
+      if (response.status === 200 || response.status === 201) {
+        console.log(response, "response");
+        SuccessToast(response?.data?.message);
+        navigate("/admin-dashboard/courses");
       }
     } catch (error) {
-      ErrorToast(response.message);
+      ErrorToast(error.response?.data?.message);
     } finally {
       setLoading(false);
     }
   };
 
-  const [selected, setSelected] = useState("Free");
-
-  const handleSelect = (e) => {
-    setSelected(e.target.value);
-  };
-
-  console.log(selected);
+  const [showAmount, setShowAmount] = useState(false);
 
   return (
-    <div className="max-w-[1280px] gap-8 w-full flex items-center mx-auto">
-      <div className="mx-auto w-[50%]">
+    <div className="max-w-[1280px] gap-8 w-[90%] flex items-center mx-auto ">
+      <div className="mx-auto w-full md:w-[45%]">
         <div className="mb-6">
           <Link to="/">
             <img src={logo} alt="logo" className="w-[90px]" />
           </Link>
         </div>
         <Heading title={"Create your Live Lesson here."} />
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="w-full mb-7">
-            <Input
-              title={"Title"}
-              placeholder={"Enter your course title"}
-              type={"text"}
+            <SelectInput
+              label={"Title"}
+              options={courseList}
+              register={register("courseName")}
+              errorMessage={errors?.courseName?.message}
+              important
             />
             <TextArea
-              title={"Description"}
+              label={"Description"}
               placeholder={"Enter your course description"}
+              register={register("description")}
+              errorMessage={errors?.description?.message}
+              important
             />
-            <div className="flex gap-12 w-full">
+            <div className="flex flex-col md:flex-row gap-x-12 w-full">
               <Input
-                title={"Start Date"}
+                label={"Start Date"}
                 type={"date"}
-                onChange={handleSelect}
+                register={register("date")}
+                important
+                errorMessage={errors?.date?.message}
               />
-              <Input
-                title={"Start Time"}
-                type={"time"}
-                onChange={handleSelect}
-              />
-            </div>
-            <div className="flex gap-12">
               <SelectInput
-                title={"Duration"}
+                label={"Duration"}
                 options={durationOptions}
                 valueKey={"value"}
                 labelKey={"label"}
-                // customClass={"flex-1"}
-              />
-              <SelectInput
-                title={"Time zone"}
-                options={timeZoneOptions}
-                valueKey={"value"}
-                labelKey={"label"}
-                // customClass={"flex-1"}
+                register={register("time")}
+                important
+                errorMessage={errors?.time?.message}
               />
             </div>
             <div className="mt-9">
               <legend className="font-light">Pricing</legend>
               <div className="flex gap-4">
                 <Radio
-                  title={"Free"}
-                  name={"price"}
+                  label={"Free"}
+                  name={"isPaid"}
                   value={"free"}
                   defaultChecked
-                  // checked={selected === "free"}
-                  onChange={handleSelect}
+                  register={register("isPaid")}
+                  errorMessage={errors?.isPaid?.message}
+                  onClick={() => setShowAmount(false)}
                 />
                 <Radio
-                  title={"Paid"}
-                  name={"price"}
+                  label={"Paid"}
+                  name={"isPaid"}
                   value={"paid"}
-                  // checked={selected === "paid"}
-                  onChange={handleSelect}
+                  register={register("isPaid")}
+                  errorMessage={errors?.isPaid?.message}
+                  onClick={() => setShowAmount(true)}
                 />
               </div>
             </div>
+            {showAmount && (
+              <Input
+                label={"Amount"}
+                type={"text"}
+                placeholder={"Enter amount"}
+                register={register("amount")}
+                errorMessage={errors?.amount?.message}
+                required
+              />
+            )}
           </div>
-          <Button className={"w-full text-lg"} py={"py-5"}>
-            Proceed to create lesson
+          <Button type={"submit"} className={"w-full text-lg"} py={"py-5"}>
+            {loading ? (
+              <LoadingSpinner color={"white"} />
+            ) : (
+              "Proceed to create lesson"
+            )}
           </Button>
         </form>
       </div>
-      <div className="hidden md:flex w-[40%]">
-        <img src={vector1} className="w-[250px]" alt="vector1" />
-        <img src={vector2} className="w-[250px]" alt="vector2" />
+      <div className=" hidden md:flex w-[45%]">
+        <div className="hidden md:flex gap-2">
+          <Image src={vector1} alt="vector1" />
+          <Image src={vector2} alt="vector2" />
+        </div>
       </div>
     </div>
   );

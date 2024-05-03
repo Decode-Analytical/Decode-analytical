@@ -63,7 +63,10 @@ import CreateQuiz from "./pages/AdminDashboard/adminCourses/quiz/CreateQuiz";
 import CreateQuestion from "./pages/AdminDashboard/adminCourses/quiz/CreateQuestion";
 import QuizSuccess from "./pages/AdminDashboard/adminCourses/quiz/QuizSuccess";
 import EditModule from "./pages/AdminDashboard/adminCourses/EditModule";
-
+import EditCourse from "./pages/AdminDashboard/adminCourses/EditCourse";
+import AdminResetPin from "./pages/AdminDashboard/adminWallet/AdminResetPin";
+import AdminCreatePin from "./pages/AdminDashboard/adminWallet/AdminCreatePin";
+import AdminProfile from "./pages/AdminDashboard/adminProfile/Index";
 
 function App() {
   return (
@@ -107,12 +110,20 @@ function App() {
               <Route path="/newmodule/:courseId" element={<NewModules />} />
               <Route path="/newcourse" element={<NewCourse />} />
               <Route
+                path="/admin-dashboard/profile"
+                element={<AdminProfile />}
+              />
+              <Route
                 path="/admin-dashboard/home"
                 element={<AdminDashboard />}
               />
               <Route
                 path="/admin-dashboard/courses"
                 element={<AdminCourses />}
+              />
+              <Route
+                path="/admin-dashboard/courses/:id"
+                element={<EditCourse />}
               />
               <Route
                 path="/admin-dashboard/courses/create-new-course"
@@ -166,6 +177,14 @@ function App() {
                 element={<AdminHelpCenter />}
               />
               <Route path="/admin-dashboard/wallet" element={<AdminWallet />} />
+              <Route
+                path="/admin-dashboard/wallet/reset-pin"
+                element={<AdminResetPin />}
+              />
+              <Route
+                path="/admin-dashboard/wallet/create-pin"
+                element={<AdminCreatePin />}
+              />
               <Route
                 path="/admin-dashboard/wallet/withdraw"
                 element={<AdminWithdraw />}

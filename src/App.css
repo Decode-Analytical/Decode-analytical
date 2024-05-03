@@ -28,6 +28,10 @@ input::-webkit-inner-spin-button {
   --radio-checked-color: #040e53;
   --radio-hover-color: #a3cef1;
   --radio-disabled-bg-color: #d9d9d9;
+  --checkbox-border-color: #303030;
+  --checkbox-checked-color: #040e53;
+  --checkbox-hover-color: #a3cef1;
+  --checkbox-disabled-bg-color: #d9d9d9;
 }
 
 /* THIS IS EXPORTED TO THE PREMIUM COURSES PAGE */
@@ -125,13 +129,13 @@ input[type="radio"]:disabled:checked {
   );
 }
 
-/* @media (hover: hover) {
+@media (hover: hover) {
   input[type="radio"]:not(:disabled):hover {
     background-color: var(--radio-hover-color);
     outline: 6px solid var(--radio-hover-color);
     transform: scale(1.05);
   }
-} */
+}
 
 input[type="radio"]:focus-visible {
   background-color: var(--radio-hover-color);
@@ -156,5 +160,54 @@ input[type="radio"]:focus-visible {
   height: 20px;
   border: 6px solid blue;
   border-radius: 50%;
-
 } */
+
+.dash-grid {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+input[type="checkbox"] {
+  box-sizing: border-box;
+  width: 17px;
+  height: 17px;
+  /* margin: 6px; */
+  margin-right: 8px;
+  margin-top: 4px;
+  padding: 0;
+  border: 2px solid var(--checkbox-border-color);
+  border-radius: 4px;
+  appearance: none;
+  background-color: transparent;
+  outline: none;
+  transition: outline 0.1s;
+}
+
+input[type="checkbox"]:not(:disabled):checked {
+  border-color: var(--checkbox-checked-color);
+  background-color: var(--checkbox-checked-color);
+}
+
+.checkbox-select {
+  position: relative;
+}
+.checkbox-select::after {
+  content: "\2713";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 16px;
+  display: none;
+}
+
+.checkbox-select + label {
+  margin-left: 6px;
+}
+
+/* Added styling for checked checkboxes */
+input[type="checkbox"]:checked + label .checkbox-select::after {
+  display: inline-block; /* Show the checkmark when checkbox is checked */
+}

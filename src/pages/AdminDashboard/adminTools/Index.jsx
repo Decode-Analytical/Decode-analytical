@@ -1,5 +1,5 @@
 import React from "react";
-import ProfileLayout from "../../../components/ProfileLayout";
+import ProfileLayout from "../../../components/layout/AdminProfileLayout";
 import { Link } from "react-router-dom";
 import sales from "../../../assets/adminDashboardImages/sales.svg";
 import community from "../../../assets/adminDashboardImages/community.svg";

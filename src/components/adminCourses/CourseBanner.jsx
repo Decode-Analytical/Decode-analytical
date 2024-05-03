@@ -3,6 +3,8 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import { LuSend } from "react-icons/lu";
 import { FiEdit } from "react-icons/fi";
 import { TbCellSignal5 } from "react-icons/tb";
+import { useNavigate } from "react-router-dom";
+import ProgressBar from "../ProgressBar";
 
 const Button = ({ Icon, text, danger, onClick }) => {
   return (
@@ -16,22 +18,17 @@ const Button = ({ Icon, text, danger, onClick }) => {
   );
 };
 
-const ProgressBar = ({ progress }) => {
-  return (
-    <div className="relative pt-1">
-      <div className="flex flex-col">
-        <div className="bg-gray-200 rounded-full">
-          <div
-            style={{ width: `${progress}%` }}
-            className="text-center py-1 text-xs rounded-full bg-blue1"
-          ></div>
-        </div>
-      </div>
-    </div>
-  );
-};
+const CourseBanner = ({
+  ongoing,
+  completed,
+  level,
+  title,
+  progress,
+  img,
+  id,
+}) => {
+  const navigate = useNavigate();
 
-const CourseBanner = ({ ongoing, completed, level, title, progress, img }) => {
   return (
     <div className="bg-shadow rounded-md mt-[45px] pb-[18px] px-[18px] pt-[13px] relative">
       <div className="">
@@ -68,9 +65,13 @@ const CourseBanner = ({ ongoing, completed, level, title, progress, img }) => {
             <ProgressBar progress={progress} />
             <div className="flex gap-3">
               {ongoing ? (
-                <Button Icon={LuSend} text={"Publish"} />
+                <Button Icon={LuSend} text={"Publish"} id={id} />
               ) : completed ? (
-                <Button Icon={FiEdit} text={"Manage/Edit"} />
+                <Button
+                  Icon={FiEdit}
+                  text={"Manage/Edit"}
+                  onClick={() => navigate(`/admin-dashboard/courses/${id}`)}
+                />
               ) : null}
               <Button danger Icon={RiDeleteBinLine} text={"Remove"} />
             </div>

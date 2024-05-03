@@ -34,6 +34,7 @@ export default {
         gray1: "#D9DBE5",
         gray2: "#B1B4CA",
         gray3: "#303030",
+        gray4: "#B3BDC0",
         gray6: "#1E1E1E",
         blue1: "#040E53",
         green1: "#067934",
@@ -42,7 +43,6 @@ export default {
       },
       screens: {
         sm2: { min: "350px" },
-        // '2xl': {'min': '1536px'},
       },
     },
   },
