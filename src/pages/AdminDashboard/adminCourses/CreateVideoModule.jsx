@@ -35,6 +35,20 @@ const CreateVideoModule = () => {
     module_duration: "",
   });
   const [notSuccess, setNotSuccess] = useState(false);
+  const handleMoreModules = () => {
+    setNotSuccess(false)
+    setForm({
+      Topic: "",
+      Description: "",
+      upload_video: null,
+      upload_image: null,
+      module_duration: "",
+    });
+
+  }
+  // const handleSuccess = () => {
+  //   setNotSuccess(!notSuccess)
+  // }
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useAuthContext();
   const baseURL = import.meta.env.VITE_BASE_URL;
@@ -106,18 +120,21 @@ const CreateVideoModule = () => {
       });
       console.log(response)
 
-      if (response.ok) {
+      if (response) {
+        setNotSuccess(true)
         const data = await response.json();
-        setMessage(data.message);
+        // setMessage(data.message);
         setIsLoading(false);
-        Alert(data.message);
-        setForm({
-          Topic: "",
-          Description: "",
-          upload_video: null,
-          upload_image: null,
-          module_duration: "",
-        });
+        
+        // Alert(data.message);
+        // setForm({
+        //   Topic: "",
+        //   Description: "",
+        //   upload_video: null,
+        //   upload_image: null,
+        //   module_duration: "",
+        // });
+        setNotSuccess(true)
       } else {
         // Handle non-JSON response here
         const errorData = await response.text();
@@ -269,7 +286,7 @@ const CreateVideoModule = () => {
         <>
         <div className="notification-wrapper"></div>
 
-        <Warning title={"Successful"} description={"Course module uploaded successfully"} planeButton={"Add Quiz"} button={"Done"} />
+        <Warning title={"Successful"} handleMoreModules={handleMoreModules} id={id} description={"Course module uploaded successfully"} planeButton={"Add More"} button={"Done"} />
         </>
       ) : ("")
       }
