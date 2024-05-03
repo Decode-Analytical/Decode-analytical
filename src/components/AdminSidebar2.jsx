@@ -39,6 +39,7 @@ const AdminSidebar2 = ({ name, imgURL }) => {
   ];
   return (
     <>
+
       <button
         onClick={() => openMenu(true)}
         className={`fixed top-2 left-2 bg-gray-950 p-3 rounded-md md:hidden fill-white ${

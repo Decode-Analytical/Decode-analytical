@@ -21,6 +21,7 @@ const urls = {
   adminImageUpdate: `${baseURL}/user/studentUpdate`,
   adminValidateAccount: `${baseURL}/wallet/verifyAccountName`,
   adminGetAllReviews: `${baseURL}/course/review`,
+  adminAddNewCourse: `${baseURL}/course/registeredCourse`,
   adminCreateLiveSession: `${baseURL}/admin/adminScheduleMeeting`,
   adminEarningsChart: `${baseURL}/admin/adminWeeklyMonthlyAndYearlyEarnings`,
   adminWithdrawalsChart: `${baseURL}/admin/adminWeeklyMonthlyAndYearlyWithdrawals`,
