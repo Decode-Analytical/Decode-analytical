@@ -19,7 +19,7 @@ const CourseCard = ({
         <h2 className="font-bold text-lg md:text-xl mb-1">{heading}</h2>
       </div>
       <p className="">{sub}</p>
-      <div className="h-[250px] overflow-scroll my-4">
+      <div className="h-[250px] overflow-y-auto my-4">
         <div className="flex flex-col gap-3">
           <p className="mb-5 font-semibold text-sm">{courseData?.createdAt}</p>
           {isLoading ? (

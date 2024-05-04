@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Bar,
   BarChart,
@@ -10,8 +10,49 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import {
+  useFetchMonthlyAnalytics,
+  useFetchWeeklyAnalytics,
+} from "../../hooks/useFetchAdmin";
+import LoadingSpinner from "../LoadingSpinner";
 
 const AnalyticsBarchart = ({ data, title, sub, legend1, legend2 }) => {
+  const [date, setdate] = useState("weekly");
+
+  const {
+    fetchData: fetchWeeklyAnalytics,
+    data: weekly,
+    isLoading: isLoadingWeekly,
+  } = useFetchWeeklyAnalytics();
+  const {
+    fetchData: fetchMonthlyAnalytics,
+    data: monthly,
+    isLoading: isLoadingMonthly,
+  } = useFetchMonthlyAnalytics();
+
+  useEffect(() => {
+    fetchWeeklyAnalytics();
+    fetchMonthlyAnalytics();
+  }, []);
+
+  const weeklyData = weekly?.salesAnalytics;
+  const monthlyData = monthly?.salesAnalytics;
+
+  // console.log(weeklyData);
+  // console.log(monthlyData);
+
+  const handleDateChange = (e) => {
+    setdate(e.target.value);
+  };
+
+  if (isLoadingWeekly || isLoadingMonthly) {
+    return (
+      <div className="shadow-bg h-full w-full grid place-items-center">
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="mb-16">
@@ -30,6 +71,7 @@ const AnalyticsBarchart = ({ data, title, sub, legend1, legend2 }) => {
               className="w-[110px] px-1 rounded-lg bg-white text-sm"
               name=""
               id=""
+              onChange={handleDateChange}
             >
               <option value="weekly">This Week</option>
               <option value="monthly">This Month</option>
@@ -51,7 +93,8 @@ const AnalyticsBarchart = ({ data, title, sub, legend1, legend2 }) => {
         <BarChart
           width={500}
           height={300}
-          data={data}
+          // data={data}
+          data={date === "weekly?" ? weeklyData : monthlyData}
           margin={{
             top: 20,
             right: 30,
@@ -60,12 +103,12 @@ const AnalyticsBarchart = ({ data, title, sub, legend1, legend2 }) => {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
+          <XAxis dataKey={date === "weekly?" ? "week" : "month"} />
           <YAxis />
           <Tooltip />
           {/* <Legend /> */}
-          <Bar dataKey="purchases" stackId="a" fill="#040E53" />
-          <Bar dataKey="views" stackId="a" fill="#D2D6F2" />
+          <Bar dataKey="totalSales" stackId="a" fill="#040E53" />
+          {/* <Bar dataKey="views" stackId="a" fill="#D2D6F2" /> */}
         </BarChart>
       </ResponsiveContainer>
       {/* </div> */}

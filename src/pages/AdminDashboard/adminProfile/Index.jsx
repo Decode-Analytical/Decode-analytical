@@ -1,36 +1,35 @@
+import Axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { BsLinkedin } from "react-icons/bs";
 import {
   FaSquareFacebook,
-  FaSquareXTwitter,
   FaSquareGithub,
+  FaSquareXTwitter,
   FaSquareYoutube,
 } from "react-icons/fa6";
+import { GoChevronDown, GoChevronRight } from "react-icons/go";
 import { IoMdTime } from "react-icons/io";
 import { IoPerson } from "react-icons/io5";
 import { LiaPenSolid } from "react-icons/lia";
-import { TbCellSignal5 } from "react-icons/tb";
+import { TbCameraPlus, TbCellSignal5 } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import Button from "../../../components/Button";
+import ProfileImageEditor from "../../../components/ProfileImageEditor";
 import ProgressBar from "../../../components/ProgressBar";
 import StarRating from "../../../components/StarRating";
+import UpdateAdminProfile from "../../../components/adminProfile/UpdateAdminProfile";
 import ProfileLayout from "../../../components/layout/AdminProfileLayout";
 import {
   useFetchAdminCourses,
   useFetchAdminProfile,
+  useFetchRegStudents,
   useFetchReviews,
-  useFetchTotalRegStudents,
 } from "../../../hooks/useFetchAdmin";
-import Axios from "axios";
-import { useForm } from "react-hook-form";
-import { GoChevronDown, GoChevronRight } from "react-icons/go";
-import ProfileImageEditor from "../../../components/ProfileImageEditor";
-import UpdateAdminProfile from "../../../components/adminProfile/UpdateAdminProfile";
 import { profileUpdateSchema } from "../../../schema/profile";
 import urls from "../../../utils/Url";
 import { validate } from "../../../utils/functn";
 import { ErrorToast, SuccessToast } from "../../../utils/toast";
-import { TbCameraPlus } from "react-icons/tb";
 // import Avatar from "../../../components/Avatar";
 
 const AdminProfile = () => {
@@ -70,22 +69,29 @@ const AdminProfile = () => {
   };
 
   const { fetchData: fetchReviews, data: reviews } = useFetchReviews();
-  const { fetchData: fetchTotalStudents, data: totalStudents } =
-    useFetchTotalRegStudents();
-  const { fetchData: fetchAdminProfile, data: adminProfile } =
-    useFetchAdminProfile();
+  const {
+    fetchData: fetchRegStudents,
+    data: regStudents,
+    isLoading: regStudentsLoading,
+    // error: regStudentsError,
+  } = useFetchRegStudents();
+  const {
+    fetchData: fetchAdminProfile,
+    data: adminProfile,
+    isLoading,
+  } = useFetchAdminProfile();
   const { fetchData: fetchCourses, data: courses } = useFetchAdminCourses();
 
   useEffect(() => {
     fetchReviews();
     fetchCourses();
-    fetchTotalStudents();
+    fetchRegStudents();
     fetchAdminProfile();
   }, []);
 
   const reviewsLength = reviews?.reviews?.length;
   const coursesData = courses?.courses;
-  const totalStudentsCount = totalStudents?.count;
+  const totalStudentsCount = regStudents?.count;
   const adminProfileData = adminProfile?.user;
 
   const currentProfileImg = adminProfileData?.picture[0]?.path;
@@ -141,6 +147,7 @@ const AdminProfile = () => {
         SuccessToast("Profile updated successfully");
         handleProfileUpdatePopup();
         fetchAdminProfile();
+        window.location.reload();
       }
     } catch (error) {
       ErrorToast(error?.response?.data?.message);
@@ -156,9 +163,9 @@ const AdminProfile = () => {
     formData.append("picture", image);
 
     try {
-      if (!token) {
-        throw new Error("Token not found");
-      }
+      // if (!token) {
+      //   throw new Error("Token not found");
+      // }
       const response = await Axios.put(urls.adminImageUpdate, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -169,6 +176,7 @@ const AdminProfile = () => {
       if (response?.status === 200 || response?.status === 201) {
         SuccessToast("Profile image updated successfully");
         fetchAdminProfile();
+        window.location.reload();
       }
     } catch (error) {
       ErrorToast(error?.response?.data?.message);
@@ -177,8 +185,12 @@ const AdminProfile = () => {
     }
   };
 
+  // if (!adminProfileData) {
+  //   return null;
+  // }
+
   return (
-    <ProfileLayout noShadow>
+    <ProfileLayout noShadow isLoading={isLoading || regStudentsLoading}>
       {/* Profile Image Update Modal */}
       {profileImagePopup && (
         <ProfileImageEditor
