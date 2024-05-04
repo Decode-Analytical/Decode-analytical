@@ -31,7 +31,9 @@ const SessionCard = ({
           ) : error ? (
             <p className="mb-5 font-semibold text-sm">Error fetching data</p>
           ) : courseData?.length === 0 ? (
-            <p className="mb-5 font-semibold text-sm">No courses available</p>
+            <p className="mb-5 font-semibold text-sm">
+              No Live Sessions available
+            </p>
           ) : (
             courseData?.map((item, index) => (
               <div key={index} className="flex items-start gap-x-3">

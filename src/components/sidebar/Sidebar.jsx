@@ -36,14 +36,14 @@ const Sidebar = ({
       </span>
       <div className={`flex items-start min-h-[65px] px-1 gap-4 mt-10`}>
         <Link to="/admin-dashboard/profile">
-          <div className="w-[50px] h-[50px]  rounded-full overflow-hidden">
+          <div className="w-[50px] h-[50px] overflow-hidden rounded-full grid place-items-center">
             {userProfile?.picture[0]?.path ? (
               <img
-                className="max-w-[50px] mt-1 object-cover object-center"
+                className="max-w-[50px] object-cover object-center scale-[1.3]"
                 src={userProfile?.picture[0]?.path}
               />
             ) : (
-              <div className="flex justify-center items-center min-w-[50px] h-[50px] bg-gray-400 mt-1 rounded-full">
+              <div className="flex justify-center items-center min-w-[50px] h-[50px] bg-gray-400 rounded-full">
                 <IoPerson className="text-[30px] text-white1" />
               </div>
             )}

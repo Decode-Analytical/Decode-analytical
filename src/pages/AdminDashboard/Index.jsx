@@ -5,25 +5,25 @@ import ProfileLayout from "../../components/layout/AdminProfileLayout";
 import { AnalyticsData } from "../../utils/Constants";
 import {
   useFetchAdminCourses,
-  useFetchAllRegStudents,
   useFetchCourseVisit,
+  useFetchRegStudents,
   useFetchReviews,
 } from "../../hooks/useFetchAdmin";
 import { UserProfileContext } from "../../context/UserProfileContext";
 
 const AdminDashboard = () => {
-  const authUser = useMemo(() => {
-    return JSON.parse(localStorage.getItem("user")).user;
-  }, []);
+  // const authUser = useMemo(() => {
+  //   return JSON.parse(localStorage.getItem("user")).user;
+  // }, []);
 
   const userProfile = useContext(UserProfileContext);
 
   const {
-    fetchData: fetchAllRegStudents,
-    data: allRegStudents,
+    fetchData: fetchRegStudents,
+    data: regStudents,
     isLoading: regStudentsLoading,
     // error: regStudentsError,
-  } = useFetchAllRegStudents();
+  } = useFetchRegStudents();
   const {
     fetchData: fetchCourseVisit,
     data: courseVisit,
@@ -44,13 +44,13 @@ const AdminDashboard = () => {
   } = useFetchReviews();
 
   useEffect(() => {
-    fetchAllRegStudents();
+    fetchRegStudents();
     fetchCourseVisit();
     fetchCourses();
     fetchReviews();
   }, []);
 
-  const regStudentsData = allRegStudents?.totalStudents;
+  const regStudentsData = regStudents?.count;
   const courseVisitData = courseVisit?.visitCount;
   const coursesLength = courses?.courses?.length;
   const reviewsLength = reviews?.reviews?.length;

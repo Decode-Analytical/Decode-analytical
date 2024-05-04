@@ -8,7 +8,7 @@ const TopPerformances = ({ isLoading, data, error }) => {
     <div className="bg-shadow mt-20 rounded-md p-5 flex-1">
       <h2 className="font-bold text-xl mb-1">Top Performances</h2>
       <p>See best selling courses performances</p>
-      <div className="h-[550px] overflow-scroll my-4">
+      <div className="h-[550px] overflow-y-auto my-4">
         <div className=" flex flex-col gap-4">
           {isLoading ? (
             <CourseLoader />
