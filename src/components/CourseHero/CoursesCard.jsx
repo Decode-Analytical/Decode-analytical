@@ -10,8 +10,8 @@ import Ellipse from "../../assets/courses Images/Ellipse.png";
 
 import { AuthContext } from '../../context/AuthContext';
 
-const courseURL = 'https://server-eight-beige.vercel.app/api/course/viewAllCourses';
-
+const courseURL = 'https://decode-mnjh.onrender.com/api/course/viewAllCourses';
+const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGI1NmVmMzUxZTgzNGM1NmI4ZTg1MDkiLCJpYXQiOjE3MTQ1NjE0MjUsImV4cCI6MTcxNDY0NzgyNX0.R21FUdP_NRFYkHqj_Bmf316Iyk3ay_KpNWZ_P_OSD7Y';
 export default function CoursesCard(props) {
   const { user } = useContext(AuthContext);
   let stars = [
@@ -94,7 +94,8 @@ export default function CoursesCard(props) {
         try {
           const response = await axios.get(courseURL, {
             headers: {
-              Authorization: `Bearer ${user.accessToken}`,
+              // Authorization: `Bearer ${user.accessToken}`,
+              Authorization: `Bearer ${TOKEN}`
             },
           });
   

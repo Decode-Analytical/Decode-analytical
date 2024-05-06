@@ -19,6 +19,7 @@ import PurchasedPage from "./pages/purchsedPages/PurchasedPage";
 import AllPages from "./pages/AllPages";
 import InstrucructorProfile from "./pages/instructorProfile/InstrucructorProfile";
 import Courses from "./pages/courses/Courses";
+import Search from "./pages/courses/Search/search";
 import Signin from "./pages/authetication/Signin";
 import Password from "./pages/authetication/Password";
 import Auth from "./pages/authetication/Auth";
@@ -78,6 +79,7 @@ function App() {
                 element={<SalesHistory />}
               />
               <Route path="/Courses" element={<Courses />} />
+              <Route path="/Courses/Search" element={<Search />} />
               <Route path="/nysc" element={<Nysc />} />
               <Route path="/login" element={<Signin />} />
               <Route path="/forgetpassword" element={<Password />} />
