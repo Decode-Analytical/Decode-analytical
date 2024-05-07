@@ -26,6 +26,7 @@ const CourseBanner = ({
   progress,
   img,
   id,
+  handlePopup,
 }) => {
   const navigate = useNavigate();
 
@@ -63,9 +64,9 @@ const CourseBanner = ({
               </div>
             </div>
             <ProgressBar progress={progress} />
-            <div className="flex gap-3">
+            <div className="flex gap-5 flex-wrap">
               {ongoing ? (
-                <div className="flex gap-3">
+                <div className="flex gap-5 flex-wrap">
                   <Button
                     Icon={FiEdit}
                     text={"Manage/Edit"}
@@ -80,7 +81,13 @@ const CourseBanner = ({
                   onClick={() => navigate(`/admin-dashboard/courses/${id}`)}
                 />
               ) : null}
-              <Button danger Icon={RiDeleteBinLine} text={"Remove"} />
+              <Button
+                danger
+                // onClick={handlePopup}
+                onClick={() => handlePopup(id)}
+                Icon={RiDeleteBinLine}
+                text={"Remove"}
+              />
             </div>
           </div>
         </div>

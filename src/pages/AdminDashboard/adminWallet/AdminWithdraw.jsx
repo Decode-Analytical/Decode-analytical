@@ -112,13 +112,13 @@ const AdminWithdraw = () => {
         },
       });
 
-      if (response.status === 200 || response.status === 201) {
-        SuccessToast(response.data.message);
+      if (response?.status === 200 || response?.status === 201) {
+        SuccessToast(response?.data?.message);
         navigate("/admin-dashboard/wallet/withdraw/success");
       }
     } catch (error) {
-      ErrorToast(error.response.data.message);
-      if (error.response.data.message === "Invalid Pin") {
+      ErrorToast(error?.response?.data?.message);
+      if (error?.response?.data?.message === "Invalid Pin") {
         toggleModal();
       }
     } finally {
@@ -138,13 +138,13 @@ const AdminWithdraw = () => {
         },
       });
 
-      if (response.status === 200 || response.status === 201) {
-        SuccessToast(response.data.message);
+      if (response?.status === 200 || response?.status === 201) {
+        SuccessToast(response?.data?.message);
         navigate("/admin-dashboard/wallet/reset-pin");
         overlayClose();
       }
     } catch (error) {
-      ErrorToast(error.response.data.message);
+      ErrorToast(error?.response?.data?.message);
     } finally {
       setLoading(false);
     }

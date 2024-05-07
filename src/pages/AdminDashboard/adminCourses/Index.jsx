@@ -1,18 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosAdd } from "react-icons/io";
 import { Link } from "react-router-dom";
 import StatsCard from "../../../components/AdminDashboard/StatsCard";
 import DataErrMsg from "../../../components/DataErrMsg";
 import NoDataMsg from "../../../components/NoDataMsg";
-import ProfileLayout from "../../../components/layout/AdminProfileLayout";
-import BannerSkeleton from "../../../components/adminCourses/BannerSkeleton";
 import CourseBanner from "../../../components/adminCourses/CourseBanner";
+import ProfileLayout from "../../../components/layout/AdminProfileLayout";
 import {
   useFetchAdminCourses,
   useFetchCourseVisit,
 } from "../../../hooks/useFetchAdmin";
+import ModalContainer from "../../../components/modal/ModalContainer";
+import axios from "axios";
+import { IoWarning } from "react-icons/io5";
+import { ErrorToast, SuccessToast } from "../../../utils/toast";
+import LoadingSpinner from "../../../components/LoadingSpinner";
+import urls from "../../../utils/Url";
 
 const AdminCourses = () => {
+  const [deleteCoursePopup, setDeleteCoursePopup] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [id, setId] = useState();
+
   const {
     fetchData: fetchCourseVisit,
     data: courseVisit,
@@ -34,11 +43,85 @@ const AdminCourses = () => {
   const courseVisitData = courseVisit?.visitCount;
   const coursesData = courses?.courses;
 
+  const handleCourseDelete = async () => {
+    setDeleteCoursePopup(true);
+    setLoading(true);
+    const token = JSON.parse(localStorage.getItem("user")).token;
+    try {
+      const response = await axios.delete(urls.adminDeleteCourseById(id), {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!id) {
+        return;
+      }
+      if (response.status === 200 || response.status === 201) {
+        SuccessToast("Course deleted successfully");
+        fetchCourses();
+        closePopup();
+      }
+    } catch (error) {
+      ErrorToast("An error occurred while deleting the course");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Receive ID from CourseBanner
+  const handlePopup = (id) => {
+    setDeleteCoursePopup(true);
+    setId(id); // Set ID to state
+  };
+
+  const closePopup = () => {
+    setDeleteCoursePopup(false);
+  };
+
   return (
     <ProfileLayout
       title={"Courses"}
       isLoading={coursesLoading || courseVisitLoading}
     >
+      {deleteCoursePopup && (
+        <ModalContainer>
+          <div className="flex flex-col h-full justify-between">
+            <div>
+              <div className="flex justify-between border-b-[1px] pb-4">
+                <h3 className="font-semibold text-xl">Warning</h3>
+                <IoWarning className="text-red-700 text-2xl" />
+              </div>
+              <div className="mt-4">
+                <p>
+                  Are you sure you want to remove this course? You cannot undo
+                  this
+                </p>
+              </div>
+            </div>
+            <div className="flex justify-end gap-4">
+              <button
+                className="border px-4 py-2 rounded-lg"
+                onClick={closePopup}
+              >
+                Cancel
+              </button>
+              <button
+                className="bg-red-700 text-white1 px-4 py-2 rounded-lg"
+                onClick={handleCourseDelete}
+                disabled={loading}
+              >
+                {loading ? (
+                  <div className="w-[66px]">
+                    <LoadingSpinner color={"white"} />
+                  </div>
+                ) : (
+                  "Remove"
+                )}
+              </button>
+            </div>
+          </div>
+        </ModalContainer>
+      )}
       <div className="flex justify-end">
         <Link
           className="flex items-center py-3 px-4 rounded-lg font-extrabold gap-2 bg-blue1 text-white"
@@ -62,7 +145,7 @@ const AdminCourses = () => {
           <div>
             {coursesData
               ?.filter((item) => item.isUploadedCompleted === false)
-              .map((item, i) => (
+              .map((item) => (
                 <CourseBanner
                   title={item?.course_title}
                   key={item?._id}
@@ -70,6 +153,7 @@ const AdminCourses = () => {
                   progress={50}
                   level={item?.course_level}
                   id={item?._id}
+                  handlePopup={handlePopup}
                   ongoing
                 />
               ))}
@@ -93,6 +177,7 @@ const AdminCourses = () => {
                   level={item?.course_level}
                   id={item?._id}
                   completed
+                  handlePopup={handlePopup}
                 />
               ))}
           </div>
