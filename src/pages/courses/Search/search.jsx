@@ -18,9 +18,9 @@ const search = () => {
     const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [nextPage, setNextPage] = useState(null);
-    const [courseTitle, setCouseTitle] = useState([])
-    const [skilLevel, setSkillLevel] = useState([])
-    const [searched, setSearched] = useState([]);
+    // const [courseTitle, setCouseTitle] = useState([])
+    // const [skilLevel, setSkillLevel] = useState([])
+    // const [searched, setSearched] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     
     // useEffect(() => {
