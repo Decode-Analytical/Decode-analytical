@@ -13,7 +13,7 @@ import {
   
   TextArea,
 } from "../../../../components/InputField";
-import Button from "../../../../components/Button";
+import {Button} from "../../../../components/Button";
 import { useForm } from "react-hook-form";
 
 

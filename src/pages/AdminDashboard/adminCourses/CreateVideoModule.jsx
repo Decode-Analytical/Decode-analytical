@@ -9,24 +9,18 @@ import { Heading } from "../../../components/Heading";
 //   TextArea,
 //   ImageInput,
 // } from "../../../components/InputField";
-import Button from "../../../components/Button";
-import "./CreateVideo.css"
+import { Button } from "../../../components/Button";
+import "./CreateVideo.css";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../../components/Loader";
-import FileUpload, {Input, Textarea } from "./InputFile";
+import FileUpload, { Input, Textarea } from "./InputFile";
 import VideoUpload from "../../uploadCourses/VideoUpload";
 import { useAuthContext } from "../../../hooks/authContext";
 import Warning from "./warning/Warning";
 
-
-
-
-
 const CreateVideoModule = () => {
-  const {id} = useParams()
-  console.log(id, "identify")
-  
-  
+  const { id } = useParams();
+
   const [form, setForm] = useState({
     Topic: "",
     Description: "",
@@ -36,7 +30,7 @@ const CreateVideoModule = () => {
   });
   const [notSuccess, setNotSuccess] = useState(false);
   const handleMoreModules = () => {
-    setNotSuccess(false)
+    setNotSuccess(false);
     setForm({
       Topic: "",
       Description: "",
@@ -44,8 +38,7 @@ const CreateVideoModule = () => {
       upload_image: null,
       module_duration: "",
     });
-
-  }
+  };
   // const handleSuccess = () => {
   //   setNotSuccess(!notSuccess)
   // }
@@ -113,19 +106,22 @@ const CreateVideoModule = () => {
     };
 
     try {
-      const response = await fetch(`https://decode-mnjh.onrender.com/api/course/createSubject/${id}`, {
-        headers: headers,
-        method: "POST",
-        body: formdata,
-      });
-      console.log(response)
+      const response = await fetch(
+        `https://decode-mnjh.onrender.com/api/course/createSubject/${id}`,
+        {
+          headers: headers,
+          method: "POST",
+          body: formdata,
+        }
+      );
+      console.log(response);
 
       if (response) {
-        setNotSuccess(true)
+        setNotSuccess(true);
         const data = await response.json();
         // setMessage(data.message);
         setIsLoading(false);
-        
+
         // Alert(data.message);
         // setForm({
         //   Topic: "",
@@ -134,12 +130,12 @@ const CreateVideoModule = () => {
         //   upload_image: null,
         //   module_duration: "",
         // });
-        setNotSuccess(true)
+        setNotSuccess(true);
       } else {
         // Handle non-JSON response here
         const errorData = await response.text();
         setIsLoading(false);
-        console.log(errorData.error)
+        console.log(errorData.error);
         const errorMessage = errorData.error || "Please fill the form";
         // ErrorM(errorMessage)
       }
@@ -230,10 +226,14 @@ const CreateVideoModule = () => {
           </div>
           {isLoading == true && <Loader />}
           {imageError.err && (
-            <p className="text-sm text-red-400 font-semibold">{imageError.mes}</p>
+            <p className="text-sm text-red-400 font-semibold">
+              {imageError.mes}
+            </p>
           )}
           {videoError.err && (
-            <p className="text-sm text-red-400 font-semibold">{videoError.mes}</p>
+            <p className="text-sm text-red-400 font-semibold">
+              {videoError.mes}
+            </p>
           )}
 
           <button
@@ -263,11 +263,11 @@ const CreateVideoModule = () => {
         <div className="flex gap-5">
           <div className="flex flex-col justify-center items-center">
             <div className="checked-circle">
-            <div className="white-dot"></div>
+              <div className="white-dot"></div>
             </div>
             <div className="single-line"></div>
             <div className="first-circle">
-            <div className="white-dot"></div>
+              <div className="white-dot"></div>
             </div>
           </div>
           <div className="text-white flex flex-col gap-20 mt-2">
@@ -284,14 +284,22 @@ const CreateVideoModule = () => {
       </div>
       {notSuccess ? (
         <>
-        <div className="notification-wrapper"></div>
+          <div className="notification-wrapper"></div>
 
-        <Warning title={"Successful"} handleMoreModules={handleMoreModules} id={id} description={"Course module uploaded successfully"} planeButton={"Add More"} button={"Done"} />
+          <Warning
+            title={"Successful"}
+            handleMoreModules={handleMoreModules}
+            id={id}
+            description={"Course module uploaded successfully"}
+            planeButton={"Add More"}
+            button={"Done"}
+          />
         </>
-      ) : ("")
-      }
+      ) : (
+        ""
+      )}
     </div>
-  )
+  );
 };
 
 export default CreateVideoModule;

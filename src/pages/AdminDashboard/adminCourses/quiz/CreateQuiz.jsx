@@ -9,16 +9,12 @@ import {
   Input,
   Radio,
   SelectInput,
-  
   TextArea,
 } from "../../../../components/InputField";
-import Button from "../../../../components/Button";
+import { Button } from "../../../../components/Button";
 import { useForm } from "react-hook-form";
 
-
 const CreateQuiz = () => {
- 
-
   const durationOptions = [
     {
       label: "0 hour",
@@ -64,65 +60,65 @@ const CreateQuiz = () => {
 
   const quizNumber = [
     {
-        label: "0",
-        value: "0",
-      },
-      {
-        label: "1",
-        value: "1",
-      },
-      {
-        label: "2",
-        value: "2",
-      },
-      {
-        label: "3",
-        value: "3",
-      },
-      {
-        label: "4",
-        value: "4",
-      },
-      {
-        label: "5",
-        value: "5",
-      },
-      {
-        label: "6",
-        value: "6",
-      },
-      {
-        label: "7",
-        value: "7",
-      },
-      {
-        label: "8",
-        value: "8",
-      },
-      {
-        label: "9",
-        value: "9",
-      },
-  ]
+      label: "0",
+      value: "0",
+    },
+    {
+      label: "1",
+      value: "1",
+    },
+    {
+      label: "2",
+      value: "2",
+    },
+    {
+      label: "3",
+      value: "3",
+    },
+    {
+      label: "4",
+      value: "4",
+    },
+    {
+      label: "5",
+      value: "5",
+    },
+    {
+      label: "6",
+      value: "6",
+    },
+    {
+      label: "7",
+      value: "7",
+    },
+    {
+      label: "8",
+      value: "8",
+    },
+    {
+      label: "9",
+      value: "9",
+    },
+  ];
 
   const questionType = [
     {
-        label: "Choice1",
-        value: "Choice1",
-      },
-      {
-        label: "Choice2",
-        value: "Choice2",
-      },
-      {
-        label: "Choice3",
-        value: "Choice3",
-      },
-      {
-        label: "Choice4",
-        value: "Choice4",
-      },
-  ]
+      label: "Choice1",
+      value: "Choice1",
+    },
+    {
+      label: "Choice2",
+      value: "Choice2",
+    },
+    {
+      label: "Choice3",
+      value: "Choice3",
+    },
+    {
+      label: "Choice4",
+      value: "Choice4",
+    },
+  ];
 
   const [loading, setLoading] = useState(false);
 
@@ -212,30 +208,27 @@ const CreateQuiz = () => {
             />
 
             <SelectInput
-                title={"Question Type"}
-                options={questionType}
-                valueKey={"value"}
-                labelKey={"label"}
-                // customClass={"flex-1"}
+              title={"Question Type"}
+              options={questionType}
+              valueKey={"value"}
+              labelKey={"label"}
+              // customClass={"flex-1"}
             />
             <SelectInput
-                title={"Number of Questions"}
-                options={quizNumber}
-                valueKey={"value"}
-                labelKey={"label"}
-                // customClass={"flex-1"}
+              title={"Number of Questions"}
+              options={quizNumber}
+              valueKey={"value"}
+              labelKey={"label"}
+              // customClass={"flex-1"}
             />
-           
-           
-           <SelectInput
-                title={"Duration"}
-                options={durationOptions}
-                valueKey={"value"}
-                labelKey={"label"}
-                // customClass={"flex-1"}
+
+            <SelectInput
+              title={"Duration"}
+              options={durationOptions}
+              valueKey={"value"}
+              labelKey={"label"}
+              // customClass={"flex-1"}
             />
-            
-            
           </div>
           <Button className={"w-full text-lg"} py={"py-5"}>
             Continue

@@ -1,6 +1,6 @@
 import React from "react";
 import { Input } from "../InputField";
-import Button from "../Button";
+import { Button } from "../Button";
 
 const AccountSetting = () => {
   return (

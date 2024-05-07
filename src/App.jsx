@@ -67,6 +67,7 @@ import EditCourse from "./pages/AdminDashboard/adminCourses/EditCourse";
 import AdminResetPin from "./pages/AdminDashboard/adminWallet/AdminResetPin";
 import AdminCreatePin from "./pages/AdminDashboard/adminWallet/AdminCreatePin";
 import AdminProfile from "./pages/AdminDashboard/adminProfile/Index";
+import CourseDetails from "./pages/AdminDashboard/adminCourses/CourseDetails";
 
 function App() {
   return (
@@ -124,6 +125,10 @@ function App() {
               <Route
                 path="/admin-dashboard/courses/:id"
                 element={<EditCourse />}
+              />
+              <Route
+                path="/admin-dashboard/courses/:id/course-details"
+                element={<CourseDetails />}
               />
               <Route
                 path="/admin-dashboard/courses/create-new-course"

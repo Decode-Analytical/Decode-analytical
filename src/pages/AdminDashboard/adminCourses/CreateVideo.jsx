@@ -9,22 +9,19 @@ import { Heading } from "../../../components/Heading";
 //   TextArea,
 //   ImageInput,
 // } from "../../../components/InputField";
-import Button from "../../../components/Button";
-import "./CreateVideo.css"
+// import Button from "../../../components/Button";
+import "./CreateVideo.css";
 import { useNavigate } from "react-router-dom";
 // import Warning from "./warning/Warning";
-import FileUpload, {Input, Options, Textarea } from "./InputFile";
+import FileUpload, { Input, Options, Textarea } from "./InputFile";
 import { useAuthContext } from "../../../hooks/authContext";
 
-
 const CreateVideo = ({ update }) => {
-
-  
   // const token = JSON.parse(localStorage.getItem("user")).token;
   let navigate = useNavigate();
   const { user } = useAuthContext();
   const baseURL = import.meta.env.VITE_BASE_URL;
-  console.log(user)
+  console.log(user);
   const [isLoading, setIsLoading] = useState(false);
   const [isPaid, setIsPaid] = useState(false);
 
@@ -70,7 +67,7 @@ const CreateVideo = ({ update }) => {
   let paidorNot = ["free", "paid"];
   async function Submit(e) {
     e.preventDefault();
-    console.log("first")
+    console.log("first");
     setIsLoading(true);
     const formData = new FormData();
     formData.set("course_title", form.Title);
@@ -84,35 +81,37 @@ const CreateVideo = ({ update }) => {
       formData.set("course_image", form.course_image);
     }
 
-    console.log(form)
+    console.log(form);
 
     try {
-      const response = await fetch("https://server-eight-beige.vercel.app/api/course/registeredCourse", {
-        
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-          
-        },
-        method: "POST",
-        body: formData,
-      });
-      console.log(form.price)
-      console.log("hi")
-      console.log(response)
-      
-      console.log(response.ok)
+      const response = await fetch(
+        "https://server-eight-beige.vercel.app/api/course/registeredCourse",
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+          method: "POST",
+          body: formData,
+        }
+      );
+      console.log(form.price);
+      console.log("hi");
+      console.log(response);
+
+      console.log(response.ok);
       if (response.ok) {
-        
         const data = await response.json();
         const res = data.newCourse;
         const id = res._id;
         setIsLoading(false);
         setError(null); // Clear any previous error
         let mess = "Course is created successfully";
-        navigate(`/admin-dashboard/courses/create-new-course/create-video-module/${id}`);
-        console.log(mess)
+        navigate(
+          `/admin-dashboard/courses/create-new-course/create-video-module/${id}`
+        );
+        console.log(mess);
         update(id, mess);
-        console.log(update)
+        console.log(update);
       } else {
         const errorData = await response.json();
         setError(errorData.message);
@@ -209,50 +208,50 @@ const CreateVideo = ({ update }) => {
           </Button>
         </form> */}
 
-<form className="flex flex-col gap-6 w-full" onSubmit={Submit}>
-        <Input
-          name="Title"
-          label="Title"
-          placeholder="Enter your couse title"
-          type="text"
-          value={form.Title}
-          onChange={onChange}
-        />
-        <Textarea
-          name="Description"
-          onChange={onChange}
-          value={form.Description}
-          label="Description"
-          placeholder="Enter your couse description"
-        />
-        <div className="flex md:gap-28 max-md:flex-col">
-          <Options
-            label="Category"
-            options={Category}
-            name="Category"
-            value={form.Category}
-            onChange={onChange}
-            placeholder="Select Category"
-          />
+        <form className="flex flex-col gap-6 w-full" onSubmit={Submit}>
           <Input
-            name="course_language"
-            label="Course Language"
-            placeholder="Enter a Course Language"
+            name="Title"
+            label="Title"
+            placeholder="Enter your couse title"
             type="text"
-            value={form.course_language}
+            value={form.Title}
             onChange={onChange}
           />
-        </div>
-        <div className="flex md:gap-28 max-md:flex-col">
-          <Options
-            label="Skill Level"
-            options={skill}
-            name="skill_level"
-            value={form.skill_level}
+          <Textarea
+            name="Description"
             onChange={onChange}
-            placeholder="Select Skill Level"
+            value={form.Description}
+            label="Description"
+            placeholder="Enter your couse description"
           />
-          {/* <Input
+          <div className="flex md:gap-28 max-md:flex-col">
+            <Options
+              label="Category"
+              options={Category}
+              name="Category"
+              value={form.Category}
+              onChange={onChange}
+              placeholder="Select Category"
+            />
+            <Input
+              name="course_language"
+              label="Course Language"
+              placeholder="Enter a Course Language"
+              type="text"
+              value={form.course_language}
+              onChange={onChange}
+            />
+          </div>
+          <div className="flex md:gap-28 max-md:flex-col">
+            <Options
+              label="Skill Level"
+              options={skill}
+              name="skill_level"
+              value={form.skill_level}
+              onChange={onChange}
+              placeholder="Select Skill Level"
+            />
+            {/* <Input
             name="price"
             label="Price"
             placeholder="Enter a price"
@@ -260,43 +259,42 @@ const CreateVideo = ({ update }) => {
             value={form.price}
             onChange={onChange}
           /> */}
-          <Options
-            label="isPaid"
-            options={paidorNot}
-            name="ispaid"
-            value={form.ispaid}
-            onChange={onChange}
-            placeholder="Select is it paid or not"
+            <Options
+              label="isPaid"
+              options={paidorNot}
+              name="ispaid"
+              value={form.ispaid}
+              onChange={onChange}
+              placeholder="Select is it paid or not"
+            />
+          </div>
+          {isPaid && (
+            <Input
+              name="price"
+              label="Price"
+              placeholder="Enter a price"
+              type="number"
+              required={isPaid}
+              value={form.price}
+              onChange={onChange}
+            />
+          )}
+          <FileUpload
+            onDrop={onDrop}
+            label="Upload Cover Image"
+            value={form.course_image}
+            error={imageError}
+            image="image/*"
+            className="w-full h-72 border border-dotted border-black my-2 flex justify-center items-center"
           />
-        </div>
-        {isPaid && (
-          <Input
-            name="price"
-            label="Price"
-            placeholder="Enter a price"
-            type="number"
-            required={isPaid}
-            value={form.price}
-            onChange={onChange}
-          />
-        )}
-        <FileUpload
-          onDrop={onDrop}
-          label="Upload Cover Image"
 
-          value={form.course_image}
-          error={imageError}
-          image="image/*"
-          className="w-full h-72 border border-dotted border-black my-2 flex justify-center items-center"
-        />
-
-        <button
-          type="submit"
-          className="w-full bg-blue1 mb-5 text-lg text-white py-5 rounded"
-        >
-          Proceed to create course
-        </button>
-        {/* <div className="flex w-full justify-center gap-5">
+          <button
+            type="submit"
+            className="w-full bg-blue1 mb-5 text-lg text-white py-5 rounded"
+          >
+            Proceed to create course
+          </button>
+          {/* <div className="flex w-full justify-center gap-5">
           <button
             type="button"
             onClick={() => navigate("/AdminDashboard")}
@@ -311,13 +309,13 @@ const CreateVideo = ({ update }) => {
             Save & continue
           </button>
         </div> */}
-      </form>
+        </form>
       </div>
       <div className="w-[35%] bg-blue1 flex justify-center items-center">
         <div className="flex gap-5">
           <div className="flex flex-col justify-center items-center">
             <div className="first-circle">
-            <div className="white-dot"></div>
+              <div className="white-dot"></div>
             </div>
             <div className="single-line"></div>
             <div className="second-circle"></div>
@@ -334,8 +332,8 @@ const CreateVideo = ({ update }) => {
           </div>
         </div>
       </div>
-     
-     {/* {notSuccess ? (
+
+      {/* {notSuccess ? (
         <>
         <div className="notification-wrapper"></div>
 
@@ -344,7 +342,7 @@ const CreateVideo = ({ update }) => {
       ) : ("")
       } */}
     </div>
-  )
+  );
 };
 
 export default CreateVideo;

@@ -56,14 +56,7 @@ const AdminCourses = () => {
       </div>
       <div className="my-[45px]">
         <h2 className="font-bold text-2xl">Ongoing</h2>
-        {coursesLoading ? (
-          <>
-            <BannerSkeleton />
-            <BannerSkeleton />
-          </>
-        ) : coursesError ? (
-          <DataErrMsg />
-        ) : coursesData?.length < 1 ? (
+        {coursesData?.length < 1 ? (
           <NoDataMsg />
         ) : (
           <div>
@@ -76,6 +69,7 @@ const AdminCourses = () => {
                   img={item?.course_image[0]?.path}
                   progress={50}
                   level={item?.course_level}
+                  id={item?._id}
                   ongoing
                 />
               ))}
@@ -84,13 +78,7 @@ const AdminCourses = () => {
       </div>
       <div>
         <h2 className="font-bold text-2xl">Completed</h2>
-        {coursesLoading ? (
-          <>
-            <BannerSkeleton />
-            <BannerSkeleton />
-            <BannerSkeleton />
-          </>
-        ) : coursesError ? (
+        {coursesError ? (
           <DataErrMsg />
         ) : (
           <div>

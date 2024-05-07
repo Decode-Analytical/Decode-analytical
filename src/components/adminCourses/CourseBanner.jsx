@@ -35,7 +35,7 @@ const CourseBanner = ({
         <div className="flex flex-col sm:flex-row items-center gap-[22px] my-5 sm:my-0 ">
           <div>
             <img
-              className="w-[150px] rounded-lg object-cover"
+              className="w-[150px] h-[90px] rounded-lg object-cover"
               src={img}
               alt={`${title} image`}
             />
@@ -65,7 +65,14 @@ const CourseBanner = ({
             <ProgressBar progress={progress} />
             <div className="flex gap-3">
               {ongoing ? (
-                <Button Icon={LuSend} text={"Publish"} id={id} />
+                <div className="flex gap-3">
+                  <Button
+                    Icon={FiEdit}
+                    text={"Manage/Edit"}
+                    onClick={() => navigate(`/admin-dashboard/courses/${id}`)}
+                  />
+                  <Button Icon={LuSend} text={"Publish"} id={id} />
+                </div>
               ) : completed ? (
                 <Button
                   Icon={FiEdit}

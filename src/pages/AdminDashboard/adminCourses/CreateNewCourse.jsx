@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ProfileHeader2 from "../../../components/ProfileHeader2";
 import { FiBookOpen } from "react-icons/fi";
-import Button from "../../../components/Button";
+import { Button } from "../../../components/Button";
 import { useNavigate } from "react-router-dom";
 
 const CreateTile = ({ icon, title, description, onSelect, customClass }) => {

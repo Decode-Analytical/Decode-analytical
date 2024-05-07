@@ -1,6 +1,6 @@
 import React from "react";
 import { Checkbox } from "../InputField";
-import Button from "../Button";
+import { Button } from "../Button";
 
 const NotificationSettings = () => {
   return (

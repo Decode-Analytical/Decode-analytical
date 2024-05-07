@@ -9,23 +9,18 @@ import { Heading } from "../../../components/Heading";
 //   TextArea,
 //   ImageInput,
 // } from "../../../components/InputField";
-import Button from "../../../components/Button";
-import "./CreateVideo.css"
+import { Button } from "../../../components/Button";
+import "./CreateVideo.css";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../../components/Loader";
-import FileUpload, {Input, Textarea } from "./InputFile";
+import FileUpload, { Input, Textarea } from "./InputFile";
 import VideoUpload from "../../uploadCourses/VideoUpload";
 import { useAuthContext } from "../../../hooks/authContext";
 
-
-
-
-
 const EditModule = () => {
-  const {id} = useParams()
-  console.log(id, "identify")
-  
-  
+  const { id } = useParams();
+  console.log(id, "identify");
+
   const [form, setForm] = useState({
     Topic: "",
     Description: "",
@@ -97,12 +92,15 @@ const EditModule = () => {
     };
 
     try {
-      const response = await fetch(`https://decode-mnjh.onrender.com/api/course/createSubject/${id}`, {
-        headers: headers,
-        method: "POST",
-        body: formdata,
-      });
-      console.log(response)
+      const response = await fetch(
+        `https://decode-mnjh.onrender.com/api/course/createSubject/${id}`,
+        {
+          headers: headers,
+          method: "POST",
+          body: formdata,
+        }
+      );
+      console.log(response);
 
       if (response.ok) {
         const data = await response.json();
@@ -120,7 +118,7 @@ const EditModule = () => {
         // Handle non-JSON response here
         const errorData = await response.text();
         setIsLoading(false);
-        console.log(errorData.error)
+        console.log(errorData.error);
         const errorMessage = errorData.error || "Please fill the form";
         // ErrorM(errorMessage)
       }
@@ -211,10 +209,14 @@ const EditModule = () => {
           </div>
           {isLoading == true && <Loader />}
           {imageError.err && (
-            <p className="text-sm text-red-400 font-semibold">{imageError.mes}</p>
+            <p className="text-sm text-red-400 font-semibold">
+              {imageError.mes}
+            </p>
           )}
           {videoError.err && (
-            <p className="text-sm text-red-400 font-semibold">{videoError.mes}</p>
+            <p className="text-sm text-red-400 font-semibold">
+              {videoError.mes}
+            </p>
           )}
 
           <button
@@ -244,16 +246,16 @@ const EditModule = () => {
         <div className="flex gap-5">
           <div className="flex flex-col justify-center items-center">
             <div className="checked-circle">
-            <div className="white-dot"></div>
+              <div className="white-dot"></div>
             </div>
             <div className="single-line"></div>
             <div className="first-circle">
-            <div className="white-dot"></div>
+              <div className="white-dot"></div>
             </div>
 
             <div className="single-line"></div>
             <div className="first-circle">
-            <div className="white-dot"></div>
+              <div className="white-dot"></div>
             </div>
           </div>
           <div className="text-white flex flex-col gap-20 mt-2">
@@ -277,7 +279,7 @@ const EditModule = () => {
       ) : ("")
       } */}
     </div>
-  )
+  );
 };
 
 export default EditModule;
