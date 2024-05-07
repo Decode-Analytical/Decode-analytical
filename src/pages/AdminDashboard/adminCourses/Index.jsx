@@ -10,12 +10,11 @@ import {
   useFetchAdminCourses,
   useFetchCourseVisit,
 } from "../../../hooks/useFetchAdmin";
-import ModalContainer from "../../../components/modal/ModalContainer";
 import axios from "axios";
-import { IoWarning } from "react-icons/io5";
 import { ErrorToast, SuccessToast } from "../../../utils/toast";
-import LoadingSpinner from "../../../components/LoadingSpinner";
+
 import urls from "../../../utils/Url";
+import DeleteModal from "../../../components/adminCourses/DeleteModal";
 
 const AdminCourses = () => {
   const [deleteCoursePopup, setDeleteCoursePopup] = useState(false);
@@ -84,43 +83,14 @@ const AdminCourses = () => {
       isLoading={coursesLoading || courseVisitLoading}
     >
       {deleteCoursePopup && (
-        <ModalContainer>
-          <div className="flex flex-col h-full justify-between">
-            <div>
-              <div className="flex justify-between border-b-[1px] pb-4">
-                <h3 className="font-semibold text-xl">Warning</h3>
-                <IoWarning className="text-red-700 text-2xl" />
-              </div>
-              <div className="mt-4">
-                <p>
-                  Are you sure you want to remove this course? You cannot undo
-                  this
-                </p>
-              </div>
-            </div>
-            <div className="flex justify-end gap-4">
-              <button
-                className="border px-4 py-2 rounded-lg"
-                onClick={closePopup}
-              >
-                Cancel
-              </button>
-              <button
-                className="bg-red-700 text-white1 px-4 py-2 rounded-lg"
-                onClick={handleCourseDelete}
-                disabled={loading}
-              >
-                {loading ? (
-                  <div className="w-[66px]">
-                    <LoadingSpinner color={"white"} />
-                  </div>
-                ) : (
-                  "Remove"
-                )}
-              </button>
-            </div>
-          </div>
-        </ModalContainer>
+        <DeleteModal
+          closePopup={closePopup}
+          handleCourseDelete={handleCourseDelete}
+          loading={loading}
+          text={
+            "Are you sure you want to remove this course? You cannot undo this action."
+          }
+        />
       )}
       <div className="flex justify-end">
         <Link
