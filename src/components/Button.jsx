@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Button = ({
+export const Button = ({
   onClick,
   leftIcon,
   rightIcon,
@@ -28,4 +29,30 @@ const Button = ({
   );
 };
 
-export default Button;
+export const LinkButton = ({
+  leftIcon,
+  rightIcon,
+  className,
+  children,
+  py,
+  px,
+  type,
+  textColor,
+  to,
+}) => {
+  return (
+    <Link
+      to={to}
+      className={`flex items-center ${py ?? "py-3"} ${
+        px ?? "px-4"
+      } rounded-lg gap-2 bg-blue1 ${
+        textColor || "text-white"
+      } justify-center ${className}`}
+      type={type}
+    >
+      {leftIcon && <div className={`${textColor}`}>{leftIcon}</div>}
+      {children}
+      {rightIcon && <div className={`${textColor}`}>{rightIcon}</div>}
+    </Link>
+  );
+};

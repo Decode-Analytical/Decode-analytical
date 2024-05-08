@@ -10,7 +10,7 @@ import {
   SelectInput,
   TextArea,
 } from "../../../components/InputField";
-import Button from "../../../components/Button";
+import { Button } from "../../../components/Button";
 import { useForm } from "react-hook-form";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 import { ErrorToast, SuccessToast } from "../../../utils/toast";

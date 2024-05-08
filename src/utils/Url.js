@@ -7,6 +7,7 @@ const urls = {
   adminProfile: `${baseURL}/user/viewProfile`,
   adminOwnedCourses: `${baseURL}/course/viewCourse`,
   adminOwnedSession: `${baseURL}/admin/tutorViewOwnMeetings`,
+  adminDeleteCourse: `${baseURL}/course/deleteCourse`,
   adminGetBalance: `${baseURL}/wallet/getBalance`,
   adminTransfer: `${baseURL}/wallet/transfer`,
   adminGetTransfers: `${baseURL}/wallet/getWithdrawal`,
@@ -31,6 +32,9 @@ const urls = {
   adminWithdrawalsChart: `${baseURL}/admin/adminWeeklyMonthlyAndYearlyWithdrawals`,
   adminViewCourseById: (requestId) =>
     `${baseURL}/course/getViewCourseById/${requestId}`,
+  adminDeleteCourseById: (requestId) =>
+    `${baseURL}/course/deleteCourse/${requestId}`,
+
   adminDeleteCourseById: (requestId) =>
     `${baseURL}/course/deleteCourse/${requestId}`,
 };

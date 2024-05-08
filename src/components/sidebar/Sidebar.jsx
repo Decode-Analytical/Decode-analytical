@@ -72,7 +72,7 @@ const Sidebar = ({
                 menuOpen ? "w-[215px]" : ""
               } transition-[width] duration-700 ease-in-out overflow-hidden ${
                 isCurrentRoute(item.path)
-                  ? "bg-[#E6E7EE] text-gray3 font-semibold"
+                  ? "bg-[#E6E7EE] text-gray3 font-bold"
                   : ""
               }`}
             >

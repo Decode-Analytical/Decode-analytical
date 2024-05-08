@@ -14,7 +14,7 @@ import { IoPerson } from "react-icons/io5";
 import { LiaPenSolid } from "react-icons/lia";
 import { TbCameraPlus, TbCellSignal5 } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import Button from "../../../components/Button";
+import { Button } from "../../../components/Button";
 import ProfileImageEditor from "../../../components/ProfileImageEditor";
 import ProgressBar from "../../../components/ProgressBar";
 import StarRating from "../../../components/StarRating";
@@ -349,16 +349,17 @@ const AdminProfile = () => {
           </button>
         </div>
         <div className="flex justify-center w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 justify-items-center w-full mx-auto mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-9 gap-y-10 justify-items-center w-full mx-auto mb-16">
             {displayCourses?.map((course, index) => (
               <div
                 key={index}
-                className="max-w-[300px] bg-white1 shadow-lg p-4 rounded-lg"
+                className="bg-white1 shadow-lg p-4 rounded-lg flex-1"
               >
                 <img
                   src={course?.course_image[0]?.path}
                   className="w-full rounded-xl h-[200px] object-cover"
                 />
+
                 <div>
                   <h2 className="font-semibold text-xl my-3">
                     {course?.course_title}
