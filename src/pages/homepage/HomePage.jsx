@@ -5,10 +5,8 @@ import TutorComponent from "../../components/homepageComponents/TutorComponent";
 import Hero from "../../components/homepageComponents/Hero";
 import Course from "../../components/homepageComponents/Course";
 
-
 export default function Homepage() {
   const { logout } = useLogout();
-
 
   const handleLogout = (e) => {
     e.preventDefault();

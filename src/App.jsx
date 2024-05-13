@@ -47,7 +47,10 @@ function App() {
               <Route path="/" exact element={<HomePage />} />
               <Route path="/LoginSignUp" element={<LoginSignUp />} />
               <Route path="/PasswordReset" element={<PasswordReset />} />
-              <Route path="/premiumCourses/:_id" element={<PremiumCourses />} />
+              <Route
+                path="courseDetailPage/premiumCourses/:_id"
+                element={<PremiumCourses />}
+              />
               <Route path="/CartPage" element={<CartPage />} />
               <Route path="/PaymentPage" element={<PaymentPage />} />
               <Route path="/Dashboard" element={<Dashboard />} />
