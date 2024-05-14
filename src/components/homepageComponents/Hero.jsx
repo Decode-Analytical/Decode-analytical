@@ -1,8 +1,13 @@
 import React from "react";
 import AbsoluteComponent from "./AbsoluteComponent";
 import Values from "../../pages/homepage/Values";
+import Course from "./Course";
+import { Header, Detail, Value } from "./styles";
+import str from "./structur_icon.png";
+import prof from "./profe_icon.png";
+import skill from "./skill_icon.png";
+
 import { Link } from "react-router-dom";
-import { Header, Detail } from "./styles";
 
 export default function Hero() {
   return (
@@ -55,6 +60,54 @@ export default function Hero() {
           </div>
         </div>
       </Detail>
+      <Value>
+        <div className="img"></div>
+        <div className="box">
+          <h5 className="head">OUR CORE LEARNING VALUES</h5>
+          <div className="boxes">
+            <div className="icons">
+              <img src={str} />
+            </div>
+            <div className="txt">
+              <p className="txt_head">Structured Learning Content</p>
+              <p className="txt_p">
+                Explore structured learning content on Decode Analytical's
+                platform. Access organized courses, quizzes, and resources.
+                Enjoy enhanced understanding, progress tracking, and flexible
+                learning at your pace for meaningful knowledge acquisition.
+              </p>
+            </div>
+          </div>
+          <div className="boxes">
+            <div className="icons">
+              <img src={prof} />
+            </div>
+            <div className="txt">
+              <p className="txt_head">Skills and Value Oriented</p>
+              <p className="txt_p">
+                Decode Analytical offers skills and value-oriented courses.
+                Acquire practical expertise, align with industry demands, and
+                enhance employability. Gain tangible skills for real-world
+                success in a dynamic learning environment.
+              </p>
+            </div>
+          </div>
+          <div className="boxes">
+            <div className="icons">
+              <img src={skill} />
+            </div>
+            <div className="txt">
+              <p className="txt_head">Professional And Quality Instructors</p>
+              <p className="txt_p">
+                Learn from professional instructors on Decode Analytical.
+                Benefit from their expertise, industry insights, and quality
+                teaching. Gain practical skills and knowledge for personal and
+                professional growth.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Value>
     </>
 
     // <section className="bg-white">

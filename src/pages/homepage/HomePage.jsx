@@ -4,7 +4,8 @@ import BecomeTutor from "../../components/homepageComponents/BecomeTutor";
 import TutorComponent from "../../components/homepageComponents/TutorComponent";
 import Hero from "../../components/homepageComponents/Hero";
 import Course from "../../components/homepageComponents/Course";
-
+import Footer from "../../components/footer/index";
+import Feedback from "../../components/homepageComponents/Feedback";
 export default function Homepage() {
   const { logout } = useLogout();
 
@@ -18,8 +19,10 @@ export default function Homepage() {
       <button onClick={handleLogout}>LogOut</button>
       <Hero />
       <Course />
-      <TutorComponent />
-      <BecomeTutor />
+      <Feedback />
+      {/*<TutorComponent />
+      <BecomeTutor /> */}
+      <Footer />
     </main>
   );
 }

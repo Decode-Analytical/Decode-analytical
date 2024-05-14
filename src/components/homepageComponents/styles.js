@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import bg from "./homeBg.png";
-
+import person from "./person.png";
 export const Header = styled.div`
   margin: 1rem 0 3rem 0;
   color: #ffffff;
@@ -50,7 +50,7 @@ export const Header = styled.div`
     &__button {
       display: flex;
       gap: 2rem;
-      margin-top: 4rem;
+      margin-top: 5rem;
 
       .Btn {
         border: 1px solid #ffffff;
@@ -123,4 +123,275 @@ export const Detail = styled.div`
       }
     }
   }
+`;
+
+export const Value = styled.div`
+  padding: 4rem 5.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 7rem;
+
+  .img {
+    background-image: linear-gradient(
+        360deg,
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 0, 0, 0) 100%
+      ),
+      url(${person});
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 45%;
+    height: 600px;
+    border-radius: 0.6rem;
+  }
+
+  .box {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 600px;
+    justify-content: space-between;
+
+    .head {
+      font-family: Montserrat;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .boxes {
+      display: flex;
+      gap: 1rem;
+
+      .icons {
+        width: 9rem;
+        height: 9rem;
+      }
+      .txt {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+
+        &_head {
+          font-family: Montserrat;
+          font-size: 1.2rem;
+          font-weight: 700;
+          color: #000000;
+        }
+        &_p {
+          //styleName: Body/Regular;
+          font-family: Montserrat;
+          font-size: 0.87rem;
+          font-weight: 500;
+          text-align: justify;
+          line-height: 1.9;
+          width: 95%;
+        }
+      }
+    }
+  }
+`;
+
+export const Explore = styled.div`
+  padding: 3rem;
+  /* display: flex;
+  align-items: center; */
+  width: 100%;
+
+  .explore {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    &__head {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+
+      .heading {
+        font-family: Montserrat;
+        font-size: 31px;
+        font-weight: 700;
+        color: #000000;
+      }
+      .txt {
+        //styleName: Subtitle/Semibold;
+        font-family: Montserrat;
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: #040e53;
+      }
+      .sub_txt {
+        //styleName: Subtitle/Medium;
+        font-family: Montserrat;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #000000;
+        width: 80%;
+        line-height: 1.8;
+        text-align: center;
+      }
+    }
+  }
+`;
+
+export const Course = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  padding-bottom: 4rem;
+  align-items: center;
+
+  .container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    place-items: center;
+    grid-column-gap: 5px;
+    grid-row-gap: 50px;
+    padding: 0 4rem;
+  }
+
+  .card {
+    /* margin-top: 4rem; */
+    height: 500px;
+    width: 23rem;
+    padding: 1.2rem 1.2rem 1.6rem 1.2rem;
+    border-radius: 1.2rem;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0px 1.64px 8.18px 1.64px #00000029;
+
+    &__image {
+      border-radius: 1.2rem;
+      height: 50%;
+      width: 100%;
+      // border: 1px solid grey;
+    }
+    &__heading {
+      font-family: Montserrat;
+      font-size: 25px;
+      font-weight: 600;
+      line-height: 32.85px;
+      color: #040e53;
+    }
+    &__figure {
+      display: flex;
+      gap: 0.5rem;
+      color: #1e1e1ebf;
+
+      /* justify-content: center; */
+      align-items: center;
+
+      &--img {
+        width: 2.7rem;
+        height: 2.7rem;
+        border-radius: 100%;
+      }
+      &--name {
+        font-size: 0.9rem;
+        font-weight: 400;
+      }
+      span {
+        font-weight: 500;
+      }
+    }
+
+    &__star {
+      display: flex;
+      gap: 1rem;
+
+      .stars {
+        display: flex;
+        gap: 0.1rem;
+        align-items: center;
+      }
+      .star {
+        color: gold;
+        font-size: 1.3rem;
+      }
+      .empty-star {
+        color: grey;
+        font-size: 1.3rem;
+      }
+    }
+    &__date {
+      display: flex;
+      justify-content: space-between;
+
+      &--time {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+
+        p {
+          font-family: Montserrat;
+          font-size: 17px;
+          font-weight: 400;
+        }
+      }
+    }
+    &__btns {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      /* padding: 0 1rem; */
+      font-family: Montserrat;
+
+      p {
+        font-size: 1rem;
+      }
+      .enroll-btn {
+        /* padding: 0.5rem 3rem; */
+        color: #000;
+        border-radius: 0.7rem;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        font-weight: 600;
+
+        &-2 {
+          border: 1px solid grey;
+          padding: 0.4rem 1.2rem;
+          transition: all 0.3s;
+          &:hover {
+            background: #040e53;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+  .LinkToCoursePage {
+    display: flex;
+    align-self: center;
+
+    .link {
+      border: 2px solid black;
+
+      padding: 0.6rem 1.3rem;
+      border-radius: 0.7rem;
+      font-family: Rubik;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #040e53;
+      transition: all 0.3s;
+
+      &:hover {
+        transform: translateY(-14px);
+        background: #040e53;
+        color: #ffffff;
+      }
+    }
+  }
+`;
+
+export const FeedBack = styled.div`
+  background: #f9f9f9;
+  height: 1440px;
+  padding: 4rem;
 `;
