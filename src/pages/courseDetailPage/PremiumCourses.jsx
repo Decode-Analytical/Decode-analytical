@@ -37,7 +37,7 @@ import { useParams } from "react-router-dom";
 
 const TOKEN =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGI1NmVmMzUxZTgzNGM1NmI4ZTg1MDkiLCJpYXQiOjE3MTU2MDk0ODUsImV4cCI6MTcxNTY5NTg4NX0.h_QWfMvfjZ8Gn8J98Z7ggiH_zkl6PNmIIftcdo0bvUs";
-const API_URL = "http://localhost:3980/api/course/getCoursesById/";
+const API_URL = "https://decode-mnjh.onrender.com/api/course/getCoursesById/";
 function CourseDetail() {
   const [course, setCourse] = useState(null);
   const { _id } = useParams();
@@ -49,6 +49,7 @@ function CourseDetail() {
 
         if (response.ok) {
           const data = await response.json();
+          console.log(data.course);
           setCourse(data.course);
         } else {
           console.error("Failed to fetch courses:", response.statusText);
@@ -67,8 +68,8 @@ function CourseDetail() {
 
   return (
     <div>
-      <h1>{course.title}</h1>
-      <p>{course.description}</p>
+      <h1>{course.course_title}</h1>
+      <p>{course.course_description}</p>
       {/* Render other course details */}
     </div>
   );

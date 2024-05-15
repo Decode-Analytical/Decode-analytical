@@ -20,8 +20,7 @@ export default function Homepage() {
       <Hero />
       <Course />
       <Feedback />
-      {/*<TutorComponent />
-      <BecomeTutor /> */}
+      <BecomeTutor />
       <Footer />
     </main>
   );

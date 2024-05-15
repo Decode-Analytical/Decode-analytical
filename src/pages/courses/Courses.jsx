@@ -77,7 +77,8 @@ import CoursesCard from "../../components/CourseHero/CoursesCard";
 const API_URL = "https://decode-mnjh.onrender.com/api/course/getCoursesDisplay";
 const TOKEN =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGI1NmVmMzUxZTgzNGM1NmI4ZTg1MDkiLCJpYXQiOjE3MTU1MDYyMjYsImV4cCI6MTcxNTU5MjYyNn0.5i3NOXfPb-Z3jEMtCYxy_shvZAX0BLpmQyosymmTySo";
-const API_SEARCH = "https://decode-mnjh.onrender.com/api/course/search/";
+const API_SEARCH =
+  "https://decode-mnjh.onrender.com/api/course/getCoursesDisplayBycourse_title/";
 
 const Courses = () => {
   const [courses, setCourses] = useState([]);
@@ -128,14 +129,11 @@ const Courses = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await fetch(`${API_SEARCH}${searchTerm}`, {
-        headers: {
-          Authorization: `Bearer ${TOKEN}`,
-        },
-      });
+      const response = await fetch(`${API_SEARCH}${searchTerm}`);
       if (response.ok) {
         const data = await response.json();
-        setSearch(data.course);
+        setSearch(data.courses);
+        console.log(data);
       } else {
         console.error("Failed to fetch courses:", response.statusText);
       }
@@ -219,7 +217,7 @@ const Courses = () => {
         </main>
         <section className="linear"></section>
 
-        {searchTerm.length > 0 ? (
+        {searchTerm ? (
           <Container>
             <section className="container">
               <div className="container__filter">

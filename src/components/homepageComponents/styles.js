@@ -194,8 +194,7 @@ export const Value = styled.div`
 
 export const Explore = styled.div`
   padding: 3rem;
-  /* display: flex;
-  align-items: center; */
+
   width: 100%;
 
   .explore {
@@ -223,6 +222,13 @@ export const Explore = styled.div`
         font-size: 1.15rem;
         font-weight: 600;
         color: #040e53;
+      }
+      .tx-1 {
+        //styleName: Subtitle/Bold;
+        font-family: Montserrat;
+        font-size: 20px;
+        font-weight: 700;
+        background: #000000;
       }
       .sub_txt {
         //styleName: Subtitle/Medium;
@@ -392,6 +398,161 @@ export const Course = styled.div`
 
 export const FeedBack = styled.div`
   background: #f9f9f9;
-  height: 1440px;
-  padding: 4rem;
+  /* height: 1440px; */
+
+  .explore {
+    padding: 5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    &__head {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+
+      .heading {
+        font-family: Montserrat;
+        font-size: 31px;
+        font-weight: 700;
+        color: #000000;
+      }
+      .txt {
+        font-family: Montserrat;
+        font-size: 20px;
+        font-weight: 700;
+        color: #000000;
+      }
+      .sub_txt {
+        font-family: Montserrat;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #000000;
+        width: 70%;
+        line-height: 1.8;
+        text-align: center;
+      }
+    }
+    &__box {
+      display: flex;
+      padding: 3rem 0rem;
+      align-items: center;
+      justify-content: center;
+      gap: 1.3rem;
+
+      .box {
+        width: 380px;
+        height: 377px;
+        box-shadow: 0px 0px 4px 0px #030b4240;
+        background: #f9f9f9;
+        padding: 1.7rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        border-radius: 0.5rem;
+
+        &__img {
+          width: 148.3px;
+          height: 148.3px;
+        }
+        .box__txt {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 1rem;
+
+          .head {
+            //styleName: Subtitle/Bold;
+            font-family: Montserrat;
+            font-size: 20px;
+            font-weight: 700;
+          }
+          .stars {
+            display: flex;
+            gap: 0.4rem;
+            font-size: 1.3rem;
+
+            .star {
+              color: gold;
+            }
+            .empty-star {
+              color: gray;
+              border: gray;
+            }
+          }
+          .sub_txt {
+            font-family: Montserrat;
+            font-size: 13.96px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #000000;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const Tutor = styled.div`
+  padding: 4rem 10rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .box__txt {
+    width: 50%;
+    display: flex;
+    gap: 0.7rem;
+    /* height: 10rem; */
+    flex-direction: column;
+    justify-content: space-between;
+
+    .head_txt {
+      font-family: Montserrat;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 33.33px;
+      color: #000000;
+    }
+    .sub_head {
+      font-family: Montserrat;
+      font-size: 31px;
+      font-weight: 700;
+      line-height: 51.67px;
+      color: #040e53;
+    }
+    .sub_txt {
+      font-family: Montserrat;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.8;
+      color: #000000;
+      width: 90%;
+      padding-top: 0.5rem;
+    }
+    .link {
+      width: 12rem;
+      .btn_link {
+        margin-top: 3rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.6rem 1.1rem;
+        background: #040e53;
+
+        color: #ffffff;
+        border-radius: 0.5rem;
+        //styleName: Body/Medium;
+        font-family: Montserrat;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 26.67px;
+        text-align: left;
+      }
+    }
+  }
 `;
