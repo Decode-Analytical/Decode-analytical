@@ -529,19 +529,20 @@ export const Tutor = styled.div`
       font-family: Montserrat;
       font-size: 16px;
       font-weight: 400;
-      line-height: 1.8;
+      line-height: 1.7;
       color: #000000;
-      width: 90%;
+      /* width: 100%; */
+      text-align: justify;
       padding-top: 0.5rem;
     }
     .link {
-      width: 12rem;
+      width: 15rem;
       .btn_link {
         margin-top: 3rem;
         display: flex;
         align-items: center;
-        gap: 0.5rem;
-        padding: 0.6rem 1.1rem;
+        gap: 0.9rem;
+        padding: 0.9rem 1.1rem;
         background: #040e53;
 
         color: #ffffff;
@@ -552,6 +553,11 @@ export const Tutor = styled.div`
         font-weight: 500;
         line-height: 26.67px;
         text-align: left;
+        transition: all 0.3s;
+
+        &:hover {
+          opacity: 0.8;
+        }
       }
     }
   }
