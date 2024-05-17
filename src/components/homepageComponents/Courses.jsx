@@ -90,20 +90,7 @@ export default function Courses() {
               </section>
               <section className="card__btns">
                 <Link
-                  to={`/premiumCourses/${_id}`}
-                  state={{
-                    course_title,
-                    course_description,
-                    course_image: {
-                      0: {
-                        path,
-                      },
-                    },
-                    isPrice_course,
-                    isPaid_course,
-                    modules,
-                    // Include other properties as needed
-                  }}
+                  to={`/courseDetailPage/PremiumCourses/${_id}`}
                   className="enroll-btn"
                 >
                   view Courses &rarr;
@@ -161,20 +148,7 @@ export default function Courses() {
               <section className="card__btns">
                 {/* <p>{isPrice_course  || "500"} NGN</p> */}
                 <Link
-                  to={`/premiumCourses/${_id}`}
-                  state={{
-                    course_title,
-                    course_description,
-                    course_image: {
-                      0: {
-                        path,
-                      },
-                    },
-                    isPrice_course,
-                    isPaid_course,
-                    modules,
-                    // Include other properties as needed
-                  }}
+                  to={`/courseDetailPage/PremiumCourses/${_id}`}
                   className="enroll-btn-2"
                 >
                   {isPrice_course === 0 ? "Free" : ` ${isPrice_course} NGN`}

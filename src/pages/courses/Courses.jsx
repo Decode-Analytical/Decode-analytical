@@ -230,23 +230,24 @@ const Courses = () => {
                 </div>
                 <div className="check_box">
                   <input type="checkbox" className="check"></input>
-                  <label>Artificial Intelligence</label>
+                  <label>React</label>
                 </div>
                 <div className="check_box">
                   <input type="checkbox" className="check"></input>
-                  <label>Artificial Intelligence</label>
+                  <label>Flutter</label>
                 </div>
                 <div className="check_box">
                   <input type="checkbox" className="check"></input>
-                  <label>Artificial Intelligence</label>
+                  <label>UI & UX</label>
                 </div>
                 <div className="check_box">
                   <input type="checkbox" className="check"></input>
-                  <label>Artificial Intelligence</label>
+                  <label>Express</label>
                 </div>
 
                 {/* <button className='btn_showMore'>show more</button> */}
               </div>
+
               <div className="container__result">
                 {loading && <Spinner />}
                 {search.map((details, index) => {
@@ -258,6 +259,7 @@ const Courses = () => {
                     },
                     isPrice_course,
                     isPaid_course,
+                    skill_level,
                     _id,
                     modules,
                   } = details;
@@ -291,12 +293,21 @@ const Courses = () => {
                         </div>
                         <div className="card__date--time">
                           <img src={level}></img>
-                          <p>Intermidiate</p>
+                          <p>{skill_level || "Intermidiate"}</p>
                         </div>
                       </section>
                       <section className="card__btns">
-                        <p>{isPrice_course || "500"} NGN</p>
-                        <button className="enroll-btn"> Enroll</button>
+                        <p>
+                          {isPrice_course === 0
+                            ? "Free"
+                            : `Price: ${isPrice_course} NGN`}
+                        </p>
+                        <Link
+                          className="enroll-btn"
+                          to={`/courseDetailPage/PremiumCourses/${_id}`}
+                        >
+                          Enroll
+                        </Link>
                       </section>
                     </div>
                   );
@@ -328,7 +339,9 @@ const Courses = () => {
                     isPrice_course,
                     isPaid_course,
                     _id,
+                    skill_level,
                     modules,
+                    creator_name,
                   } = details;
 
                   // Use the 'courses' state here
@@ -336,14 +349,12 @@ const Courses = () => {
                     <div className="card" key={_id}>
                       <img src={path || heroImage} className="card__image" />
                       <h1 className="card__heading">
-                        <Link to={`/courseDetailPage/PremiumCourses/${_id}`}>
-                          {course_title || "Early Design and its Principles"}
-                        </Link>
+                        {course_title || "Early Design and its Principles"}
                       </h1>
                       <figcaption className="card__figure">
                         <img src={Ellipse} className="card__figure--img" />
                         <h3 className="card__figure--name">
-                          <span>By:</span> James Cameroon
+                          <span>By:</span> {creator_name || "James Cameroon"}
                         </h3>
                       </figcaption>
                       <div className="card__star">
@@ -363,12 +374,22 @@ const Courses = () => {
                         </div>
                         <div className="card__date--time">
                           <img src={level}></img>
-                          <p>Intermidiate</p>
+                          <p>{skill_level || "Intermidiate"}</p>
                         </div>
                       </section>
                       <section className="card__btns">
-                        <p>{isPrice_course || "500"} NGN</p>
-                        <button className="enroll-btn"> Enroll</button>
+                        <p>
+                          {isPrice_course === 0
+                            ? "Free"
+                            : `Price: ${isPrice_course} NGN`}
+                        </p>
+                        <Link
+                          className="enroll-btn"
+                          to={`/courseDetailPage/PremiumCourses/${_id}`}
+                        >
+                          Enroll
+                        </Link>
+                        {/* <button className="enroll-btn"> Enroll</button> */}
                       </section>
                     </div>
                   );
@@ -406,7 +427,9 @@ const Courses = () => {
                     },
                     isPrice_course,
                     isPaid_course,
+                    skill_level,
                     _id,
+                    creator_name,
                     modules,
                   } = details;
 
@@ -419,7 +442,7 @@ const Courses = () => {
                       <figcaption className="card__figure">
                         <img src={Ellipse} className="card__figure--img" />
                         <h3 className="card__figure--name">
-                          <span>By:</span> James Cameroon
+                          <span>By:</span> {creator_name || "James Cameroon"}
                         </h3>
                       </figcaption>
                       <div className="card__star">
@@ -439,26 +462,13 @@ const Courses = () => {
                         </div>
                         <div className="card__date--time">
                           <img src={level}></img>
-                          <p>Intermidiate</p>
+                          <p>{skill_level || "Intermidiate"}</p>
                         </div>
                       </section>
                       <section className="card__btns">
                         {/* <p>{isPrice_course  || "500"} NGN</p> */}
                         <Link
-                          to={`/premiumCourses/${_id}`}
-                          state={{
-                            course_title,
-                            course_description,
-                            course_image: {
-                              0: {
-                                path,
-                              },
-                            },
-                            isPrice_course,
-                            isPaid_course,
-                            modules,
-                            // Include other properties as needed
-                          }}
+                          to={`/courseDetailPage/PremiumCourses/${_id}`}
                           className="enroll-btn"
                         >
                           {isPrice_course === 0
