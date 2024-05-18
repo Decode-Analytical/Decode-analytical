@@ -60,6 +60,7 @@ function CourseDetail() {
   const [module, setModule] = useState([]);
   const [paragraphVisibility, setParagraphVisibility] = useState([]);
   const { _id } = useParams();
+  const [cart, setCart] = useState([]);
 
   const [isVisible, setIsVisible] = useState(true);
 
@@ -70,6 +71,20 @@ function CourseDetail() {
       updatedVisibility[index] = !updatedVisibility[index];
       return updatedVisibility;
     });
+  };
+
+  // const addToCart = (item) => {
+  //   const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+  //   const updatedCart = [...existingCart, item];
+  //   localStorage.setItem("cart", JSON.stringify(updatedCart));
+  // };
+
+  const addToCart = (item) => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const updatedCart = [...cart, item];
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    alert("Cart added successfully ");
   };
 
   useEffect(() => {
@@ -175,7 +190,9 @@ function CourseDetail() {
           </p>
           <button className="btn__enroll">Enroll Now</button>
           <div className="card_cart">
-            <button className="cart">Add to Cart</button>
+            <button className="cart" onClick={() => addToCart(course)}>
+              Add to Cart
+            </button>
             <button className="like">
               <FaRegHeart className="icon" />
             </button>
