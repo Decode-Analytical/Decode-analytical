@@ -1,25 +1,28 @@
-import React, { useContext, useMemo } from "react";
+import React, { useEffect } from "react";
+import { sideBarItems } from "../utils/Constants";
 import { CgCloseR } from "react-icons/cg";
 import { FiLogOut } from "react-icons/fi";
 import { IoPerson } from "react-icons/io5";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { useLogout } from "../../hooks/useLogout";
-import { UserProfileContext } from "../../context/UserProfileContext";
+import { useLogout } from "../hooks/useLogout";
 
-const Sidebar = ({
-  toggleOpenMenu,
-  toggleCloseMenu,
-  menuOpen,
-  btnLinks,
-  role,
-}) => {
-  const userProfile = useContext(UserProfileContext);
+import Avatar from "./Avatar";
+import { useFetchAdminProfile } from "../hooks/useFetchAdmin";
+
+const AdminSidebar = ({ toggleOpenMenu, toggleCloseMenu, menuOpen }) => {
+  const { fetchData: fetchAdminProfile, data: adminProfile } =
+    useFetchAdminProfile();
+
+  useEffect(() => {
+    fetchAdminProfile();
+  }, []);
+
+  const userProfile = adminProfile?.user;
 
   const { logout } = useLogout();
   const currentRoute = useLocation().pathname;
 
   const isCurrentRoute = (path) => currentRoute.includes(path);
-
   return (
     <div
       onMouseEnter={toggleOpenMenu}
@@ -39,8 +42,14 @@ const Sidebar = ({
           <div className="w-[50px] h-[50px] overflow-hidden rounded-full grid place-items-center">
             {userProfile?.picture[0]?.path ? (
               <img
-                className="max-w-[50px] object-cover object-center scale-[1.3]"
+                className="w-[50px] h-[50px] rounded-full object-cover object-center"
                 src={userProfile?.picture[0]?.path}
+              />
+            ) : userProfile?.firstName ? (
+              <Avatar
+                firstName={userProfile?.firstName}
+                lastName={userProfile?.lastName}
+                size="xl"
               />
             ) : (
               <div className="flex justify-center items-center min-w-[50px] h-[50px] bg-gray-400 rounded-full">
@@ -58,12 +67,12 @@ const Sidebar = ({
             </p>
           </Link>
           <p className="font-semibold px-2 bg-[#005508] rounded-md text-sm text-white1 w-fit uppercase">
-            {role}
+            {"instructor"}
           </p>
         </div>
       </div>
       <div className={`flex flex-col gap-4`}>
-        {btnLinks.map((item, index) => (
+        {sideBarItems.map((item, index) => (
           <div key={index} className={`text-gray3 flex gap-2`}>
             <NavLink
               onClick={toggleCloseMenu}
@@ -101,4 +110,4 @@ const Sidebar = ({
   );
 };
 
-export default Sidebar;
+export default AdminSidebar;

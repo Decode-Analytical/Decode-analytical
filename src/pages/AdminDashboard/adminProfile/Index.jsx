@@ -1,5 +1,4 @@
-import Axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { BsLinkedin } from "react-icons/bs";
 import {
@@ -19,7 +18,6 @@ import ProfileImageEditor from "../../../components/ProfileImageEditor";
 import ProgressBar from "../../../components/ProgressBar";
 import StarRating from "../../../components/StarRating";
 import UpdateAdminProfile from "../../../components/adminProfile/UpdateAdminProfile";
-import ProfileLayout from "../../../components/layout/AdminProfileLayout";
 import {
   useFetchAdminCourses,
   useFetchAdminProfile,
@@ -30,10 +28,16 @@ import { profileUpdateSchema } from "../../../schema/profile";
 import urls from "../../../utils/Url";
 import { validate } from "../../../utils/functn";
 import { ErrorToast, SuccessToast } from "../../../utils/toast";
+import axios from "../../../services/axios";
+import PageLoader from "../../../components/loader/PageLoader";
+import { AuthContext } from "../../../context/AuthContext";
 // import Avatar from "../../../components/Avatar";
 
 const AdminProfile = () => {
+  const { user, dispatch } = useContext(AuthContext);
   const [showAllCourses, setShowAllCourses] = useState(false);
+
+  console.log(user, "profile user");
 
   const [profileImagePopup, setProfileImagePopup] = useState(false);
   // Profile update popup
@@ -132,11 +136,13 @@ const AdminProfile = () => {
     setLoading(true);
 
     try {
-      const token = JSON.parse(localStorage.getItem("user")).token;
+      const user = JSON.parse(localStorage.getItem("user"));
+      const token = user?.token;
+
       if (!token) {
         throw new Error("Token not found");
       }
-      const response = await Axios.put(urls.adminProfileUpdate, data, {
+      const response = await axios.put(urls.adminProfileUpdate, data, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -147,6 +153,10 @@ const AdminProfile = () => {
         SuccessToast("Profile updated successfully");
         handleProfileUpdatePopup();
         fetchAdminProfile();
+        // const updatedUser = response?.data?.updatedUser;
+        // updatedUser.token = token;
+        // localStorage.setItem("user", JSON.stringify(updatedUser));
+        // dispatch({ type: "LOGIN", payload: updatedUser });
         window.location.reload();
       }
     } catch (error) {
@@ -158,15 +168,17 @@ const AdminProfile = () => {
 
   const handleImageUpload = async () => {
     setLoading(true);
-    const token = JSON.parse(localStorage.getItem("user")).token;
     const formData = new FormData();
     formData.append("picture", image);
 
     try {
-      // if (!token) {
-      //   throw new Error("Token not found");
-      // }
-      const response = await Axios.put(urls.adminImageUpdate, formData, {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const token = user?.token;
+
+      if (!token) {
+        throw new Error("Token not found");
+      }
+      const response = await axios.put(urls.adminImageUpdate, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
@@ -176,6 +188,10 @@ const AdminProfile = () => {
       if (response?.status === 200 || response?.status === 201) {
         SuccessToast("Profile image updated successfully");
         fetchAdminProfile();
+        // const updatedUser = response?.data?.updatedUser;
+        // updatedUser.token = token; // Preserve the token
+        // localStorage.setItem("user", JSON.stringify(updatedUser));
+        // dispatch({ type: "LOGIN", payload: updatedUser });
         window.location.reload();
       }
     } catch (error) {
@@ -185,12 +201,12 @@ const AdminProfile = () => {
     }
   };
 
-  // if (!adminProfileData) {
-  //   return null;
-  // }
+  if (regStudentsLoading || isLoading) {
+    return <PageLoader />;
+  }
 
   return (
-    <ProfileLayout noShadow isLoading={isLoading || regStudentsLoading}>
+    <>
       {/* Profile Image Update Modal */}
       {profileImagePopup && (
         <ProfileImageEditor
@@ -407,7 +423,7 @@ const AdminProfile = () => {
           </div>
         </div>
       </div>
-    </ProfileLayout>
+    </>
   );
 };
 

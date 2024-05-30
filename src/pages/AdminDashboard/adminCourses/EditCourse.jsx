@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "../../../components/Button";
 import { Heading } from "../../../components/Heading";
 import ToggleBtn from "../../../components/ToggleBtn";
-import ProfileLayout from "../../../components/layout/AdminProfileLayout";
+// import ProfileLayout from "../../../components/layout/AdminProfileLayout";
 import { useFetchCourseById } from "../../../hooks/useFetchAdmin";
 
 const EditCourse = () => {
@@ -23,7 +23,7 @@ const EditCourse = () => {
   const courseData = course?.course;
 
   return (
-    <ProfileLayout isLoading={courseLoading}>
+    <>
       <Heading mb="mb-2" />
       {courseError ? (
         <div className="grid place-items-center w-full h-[70vh]">
@@ -61,7 +61,7 @@ const EditCourse = () => {
           </div>
         </div>
       )}
-    </ProfileLayout>
+    </>
   );
 };
 

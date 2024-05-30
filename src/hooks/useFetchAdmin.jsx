@@ -1,34 +1,27 @@
-import { useState, useMemo } from "react";
-import axios from "axios";
+import { useState } from "react";
 import urls from "../utils/Url";
-import handleErrorResponse from "../utils/errorHandler";
+import axios from "../services/axios";
+// import handleErrorResponse from "../utils/errorHandler";
 
 const useFetchData = (url, initialData) => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState(initialData);
 
-  const token = useMemo(() => {
-    return JSON.parse(localStorage.getItem("user")).token;
-  }, []);
-
   const fetchData = async () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      // if (!response) {
-      //   return;
-      // }
+      const response = await axios.get(url);
+
       if (response.status === 200 || response.status === 201)
         setData(response?.data);
     } catch (error) {
-      handleErrorResponse(error);
-      setError(error.response?.data?.message);
+      // console.log(error?.response, "error");
+      const errorMessage =
+        error.response?.data?.message || "An unexpected error occurred";
+      // handleErrorResponse(error);
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }

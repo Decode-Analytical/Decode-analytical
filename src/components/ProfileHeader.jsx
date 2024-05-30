@@ -8,7 +8,7 @@ const ProfileHeader = ({ title, toggleOpenMenu }) => {
   return (
     <div className="flex justify-between items-center mx-auto  w-[95%] md:w-full">
       <button onClick={toggleOpenMenu} className="md:hidden">
-        <RxHamburgerMenu className="text-4xl  " />
+        <RxHamburgerMenu className="text-4xl" />
       </button>
       {title && (
         <h2 className="font-bold hidden md:block text-[26px]">{title}</h2>

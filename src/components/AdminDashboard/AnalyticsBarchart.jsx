@@ -14,7 +14,7 @@ import {
   useFetchMonthlyAnalytics,
   useFetchWeeklyAnalytics,
 } from "../../hooks/useFetchAdmin";
-import LoadingSpinner from "../LoadingSpinner";
+import PageLoader from "../loader/PageLoader";
 
 const AnalyticsBarchart = ({ data, title, sub, legend1, legend2 }) => {
   const [date, setdate] = useState("weekly");
@@ -38,37 +38,32 @@ const AnalyticsBarchart = ({ data, title, sub, legend1, legend2 }) => {
   const weeklyData = weekly?.salesAnalytics;
   const monthlyData = monthly?.salesAnalytics;
 
-  // console.log(weeklyData);
-  // console.log(monthlyData);
-
   const handleDateChange = (e) => {
     setdate(e.target.value);
   };
 
   if (isLoadingWeekly || isLoadingMonthly) {
-    return (
-      <div className="shadow-bg h-full w-full grid place-items-center">
-        <LoadingSpinner />
-      </div>
-    );
+    return <PageLoader />;
   }
 
   return (
     <>
       <div className="mb-16">
-        <div className="flex justify-between">
+        <div className="flex flex-col-reverse gap-3 md:flex-row justify-between mr-5">
           <h2 className="font-bold text-2xl ">{title}</h2>
-          <div className="flex gap-6">
-            <div className="flex gap-2 items-center">
+          <div className="flex md:gap-6">
+            <div className="flex">
+              {/* <div className="flex gap-2 items-center">
               <div className="w-4 h-4 rounded-full bg-blue1" />
               <p>{legend1 || "Purchases"}</p>
-            </div>
-            <div className="flex gap-2 items-center">
+              </div>
+              <div className="flex gap-2 items-center">
               <div className="w-4 h-4 rounded-full bg-gray2" />
               <p>{legend2 || "Views"}</p>
+            </div> */}
             </div>
             <select
-              className="w-[110px] px-1 rounded-lg bg-white text-sm"
+              className="w-[110px] px-1 rounded-md bg-white text-sm"
               name=""
               id=""
               onChange={handleDateChange}
@@ -89,29 +84,32 @@ const AnalyticsBarchart = ({ data, title, sub, legend1, legend2 }) => {
         </select>
       </div>
       {/* <div className="px-4"> */}
-      <ResponsiveContainer width="100%" height="60%">
-        <BarChart
-          width={500}
-          height={300}
-          // data={data}
-          data={date === "weekly?" ? weeklyData : monthlyData}
-          margin={{
-            top: 20,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey={date === "weekly?" ? "week" : "month"} />
-          <YAxis />
-          <Tooltip />
-          {/* <Legend /> */}
-          <Bar dataKey="totalSales" stackId="a" fill="#040E53" />
-          {/* <Bar dataKey="views" stackId="a" fill="#D2D6F2" /> */}
-        </BarChart>
-      </ResponsiveContainer>
-      {/* </div> */}
+      <div className="overflow-x-auto">
+        <div className="w-[600px] h-[350px] md:h-[300px]">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart
+              width={500}
+              height={300}
+              // data={data}
+              data={date === "weekly?" ? weeklyData : monthlyData}
+              margin={{
+                top: 20,
+                right: 30,
+                left: 20,
+                bottom: 5,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey={date === "weekly?" ? "week" : "month"} />
+              <YAxis />
+              {/* <Tooltip /> */}
+              {/* <Legend /> */}
+              <Bar dataKey="totalSales" stackId="a" fill="#040E53" />
+              {/* <Bar dataKey="views" stackId="a" fill="#D2D6F2" /> */}
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
     </>
   );
 };

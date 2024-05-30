@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import ProfileLayout from "../../../components/layout/AdminProfileLayout";
+// import ProfileLayout from "../../../components/layout/AdminProfileLayout";
 // import CourseSalesTable from "../../../components/adminTools/CourseSalesTable";
 import { Heading } from "../../../components/Heading";
 import Tab from "../../../components/Tab";
@@ -34,7 +34,7 @@ const SalesHistory = () => {
   const sessionsData = session?.meeting;
 
   return (
-    <ProfileLayout px={"4"} isLoading={coursesLoading || sessionsLoading}>
+    <>
       <Heading title={"Sales History"} ml={"4"} />
       <Tab
         title1={"Original Course"}
@@ -62,7 +62,7 @@ const SalesHistory = () => {
           </div>
         }
       />
-    </ProfileLayout>
+    </>
   );
 };
 

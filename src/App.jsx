@@ -37,7 +37,7 @@ import CourseInfo from "./pages/courseUpload/CourseInfo";
 import ResetPassword from "./pages/authetication/ResetPassword";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Nysc from "./pages/authetication/Nysc";
-import CourseOverview from "./components/coursesComponents/premium/CourseOverview";
+// import CourseOverview from "./components/coursesComponents/premium/CourseOverview";
 import NoAuthPage from "./pages/NoAuth/noAuthPage";
 import AdminLogin from "./pages/AdminLogin/adminLogin";
 import PaystackCard from "./components/cartAndPaymentComponents/PaystackCard";
@@ -47,7 +47,6 @@ import AdminDashboard from "./pages/AdminDashboard/Index";
 import AdminWallet from "./pages/AdminDashboard/adminWallet/Index";
 import AdminHelpCenter from "./pages/AdminDashboard/adminHelpCenter/Index";
 import AdminMessages from "./pages/AdminDashboard/adminMessages/Index";
-import AdminForum from "./pages/AdminDashboard/adminForum/Index";
 import AdminCourses from "./pages/AdminDashboard/adminCourses/Index";
 import SalesAndPerformance from "./pages/AdminDashboard/adminTools/SalesAndPerformance";
 import AdminSettings from "./pages/AdminDashboard/adminSettings/Index";
@@ -68,6 +67,9 @@ import AdminResetPin from "./pages/AdminDashboard/adminWallet/AdminResetPin";
 import AdminCreatePin from "./pages/AdminDashboard/adminWallet/AdminCreatePin";
 import AdminProfile from "./pages/AdminDashboard/adminProfile/Index";
 import CourseDetails from "./pages/AdminDashboard/adminCourses/CourseDetails";
+import AdminSubLayout from "./components/layout/AdminSubLayout";
+import AdminMainLayout from "./components/layout/AdminMainLayout";
+// import { AdminMainLayout, AdminSubLayout } from "./pages/AdminDashboard/Layout";
 
 function App() {
   return (
@@ -110,18 +112,127 @@ function App() {
               <Route path="/noAuth" element={<NoAuthPage />} />
               <Route path="/newmodule/:courseId" element={<NewModules />} />
               <Route path="/newcourse" element={<NewCourse />} />
+              {/* Routes for parts of admin dashboard that does not iclude sidebar or header */}
               <Route
-                path="/admin-dashboard/profile"
-                element={<AdminProfile />}
+                path="/admin-dashboard/courses/create-new-course/create-live"
+                element={<CreateLive />}
               />
               <Route
-                path="/admin-dashboard/home"
-                element={<AdminDashboard />}
+                path="/admin-dashboard/courses/create-new-course/create-video"
+                element={<CreateVideo />}
               />
               <Route
-                path="/admin-dashboard/courses"
-                element={<AdminCourses />}
+                path="/admin-dashboard/courses/create-new-course/create-video-module/:id"
+                element={<CreateVideoModule />}
               />
+              <Route
+                path="/admin-dashboard/courses/create-new-course/edit-module"
+                element={<EditModule />}
+              />
+              <Route
+                path="/admin-dashboard/courses/create-new-course/create-quiz"
+                element={<CreateQuiz />}
+              />
+              <Route
+                path="/admin-dashboard/courses/create-new-course/create-question"
+                element={<CreateQuestion />}
+              />
+              <Route
+                path="/admin-dashboard/courses/create-new-course/quiz-success"
+                element={<QuizSuccess />}
+              />
+              <Route
+                path="/admin-dashboard/wallet/withdraw/success"
+                element={<Success />}
+              />
+              {/* Routes for parts of admin dashboard that does not include sidebar but header */}
+              <Route path="/" element={<AdminSubLayout />}>
+                <Route
+                  path="/admin-dashboard/wallet/withdraw"
+                  element={<AdminWithdraw />}
+                />
+
+                <Route
+                  path="/admin-dashboard/courses/create-new-course"
+                  element={<CreateNewCourse />}
+                />
+
+                <Route
+                  path="/admin-dashboard/wallet/reset-pin"
+                  element={<AdminResetPin />}
+                />
+                <Route
+                  path="/admin-dashboard/wallet/create-pin"
+                  element={<AdminCreatePin />}
+                />
+              </Route>
+              {/* Routes for parts of admin dashboard that include sidebar */}
+              <Route path="/" element={<AdminMainLayout />}>
+                <Route
+                  path="/admin-dashboard/profile"
+                  element={<AdminProfile />}
+                />
+                <Route
+                  path="/admin-dashboard/home"
+                  element={<AdminDashboard />}
+                />
+                <Route
+                  path="admin-dashboard/courses"
+                  element={<AdminCourses />}
+                />
+                <Route
+                  path="/admin-dashboard/courses/:id"
+                  element={<EditCourse />}
+                />
+                <Route
+                  path="/admin-dashboard/courses/:id/course-details"
+                  element={<CourseDetails />}
+                />
+                <Route path="/admin-dashboard/tools" element={<AdminTools />} />
+                <Route
+                  path="/admin-dashboard/tools/sales-performance"
+                  element={<SalesAndPerformance />}
+                />
+                <Route
+                  path="/admin-dashboard/tools/sales-performance/sales-history"
+                  element={<SalesHistory />}
+                />
+                <Route
+                  path="/admin-dashboard/messages"
+                  element={<AdminMessages />}
+                />
+                <Route
+                  path="/admin-dashboard/help-center"
+                  element={<AdminHelpCenter />}
+                />
+                <Route
+                  path="/admin-dashboard/wallet"
+                  element={<AdminWallet />}
+                />
+
+                <Route path="/admin-dashboard/tools" element={<AdminTools />} />
+                <Route
+                  path="/admin-dashboard/tools/sales-performance"
+                  element={<SalesAndPerformance />}
+                />
+                <Route
+                  path="/admin-dashboard/tools/sales-performance/sales-history"
+                  element={<SalesHistory />}
+                />
+                <Route
+                  path="/admin-dashboard/settings"
+                  element={<AdminSettings />}
+                />
+                <Route
+                  path="/admin-dashboard/messages"
+                  element={<AdminMessages />}
+                />
+                <Route
+                  path="/admin-dashboard/help-center"
+                  element={<AdminHelpCenter />}
+                />
+              </Route>
+              {/*
               <Route
                 path="/admin-dashboard/courses/:id"
                 element={<EditCourse />}
@@ -172,7 +283,6 @@ function App() {
                 path="/admin-dashboard/tools/sales-performance/sales-history"
                 element={<SalesHistory />}
               />
-              <Route path="/admin-dashboard/forum" element={<AdminForum />} />
               <Route
                 path="/admin-dashboard/messages"
                 element={<AdminMessages />}
@@ -197,11 +307,7 @@ function App() {
               <Route
                 path="/admin-dashboard/wallet/withdraw/success"
                 element={<Success />}
-              />
-              <Route
-                path="/admin-dashboard/settings"
-                element={<AdminSettings />}
-              />
+              /> */}
               {/* </Route> */}
               <Route path="/PaystackCard/:price" element={<PaystackCard />} />
               <Route path="/AllPages" element={<AllPages />} />{" "}

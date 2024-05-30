@@ -53,6 +53,7 @@ export const Input = ({
           }  bg-white1 rounded-md px-4 py-2 sm:py-4 disabled:bg-gray-100 ${
             errorMessage && "outline-red-500"
           } ${customClass}`}
+          autoComplete="off"
           onChange={onChange}
           value={value}
           {...register}
@@ -83,7 +84,6 @@ export const Input = ({
 };
 
 export const AnswerInput = ({
-  
   type,
   name,
   placeholder,
@@ -93,12 +93,9 @@ export const AnswerInput = ({
   required,
   disabled,
   errorMessage,
-  
 }) => {
   return (
     <div className="flex flex-1 flex-col mt-8">
-      
-        
       <input
         type={type}
         name={name}
@@ -111,7 +108,7 @@ export const AnswerInput = ({
         disabled={disabled}
         required={required}
       />
-      
+
       {errorMessage && (
         <div>
           <p className="text-red-500 text-xs italic">{errorMessage}</p>
@@ -355,7 +352,6 @@ export const SelectChoice = ({
 }) => {
   return (
     <div className="flex flex-1 flex-col gap-3 mt-8">
-      
       <select
         name={name}
         id={name}
@@ -373,7 +369,7 @@ export const SelectChoice = ({
           </option>
         ))}
       </select>
-      
+
       {errorMessage && (
         <div>
           <p className="text-red-500 text-xs italic">{errorMessage}</p>
@@ -382,9 +378,6 @@ export const SelectChoice = ({
     </div>
   );
 };
-
-
-
 
 // export const ImageInput = ({
 //   title,
@@ -425,7 +418,6 @@ export const SelectChoice = ({
 //   );
 // };
 
-
 export const ImageInput = ({
   title,
   name,
@@ -461,10 +453,10 @@ export const ImageInput = ({
       {image && (
         <img src={image} alt="Preview" className="block w-full h-auto mb-4" />
       )}
-      
+
       <div className="flex">
-         <label className="font-light">{title}</label>
-          {notImportant ? "" : <span className="text-red2 text-lg ml-1">*</span>}
+        <label className="font-light">{title}</label>
+        {notImportant ? "" : <span className="text-red2 text-lg ml-1">*</span>}
       </div>
       {/* Image Input Field */}
       <input
@@ -478,13 +470,10 @@ export const ImageInput = ({
         {...register}
         disabled={disabled}
         required={required}
-      
-      
-        
         accept="image/*"
         // className="appearance-none border border-gray-300 rounded py-2 px-4 block w-full leading-tight focus:outline-none focus:border-blue-500"
-        />
-        {errorMessage && (
+      />
+      {errorMessage && (
         <div>
           <p className="text-red-500 text-xs italic">{errorMessage}</p>
         </div>
@@ -492,6 +481,3 @@ export const ImageInput = ({
     </div>
   );
 };
-
-
-
