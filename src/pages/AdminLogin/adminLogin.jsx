@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../authetication/auth.css";
 import { FaUser } from "react-icons/fa";
 import close from "../../assets/auth images/Vector.png";
@@ -25,9 +25,16 @@ export default function adminLogin() {
     navigate("/");
   };
 
+  const user = JSON.parse(localStorage.getItem("user"));
+  useEffect(() => {
+    if (user && user?.user?.roles === "admin") {
+      navigate("/admin-dashboard/home");
+    }
+  }, []);
+
   return (
     <div className="bg-zinc-100 py-10 min-h-screen">
-      <div className="bg-white p-10 rounded-3xl w-[80%] lg:w-[50%] center ">
+      <div className="bg-white px-5 py-10 md:px-10 rounded-3xl w-[95%] lg:w-[50%] center ">
         <div className="flex flex-wrap justify-end">
           <img
             src={close}

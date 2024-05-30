@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuthContext } from "./authContext";
 import { useNavigate } from "react-router-dom";
 import { ErrorToast, SuccessToast } from "../utils/toast";
+import { setHasDisplayedTokenError } from "../utils/errorFlag";
 
 export const useLogin = () => {
   const navigate = useNavigate();
@@ -41,12 +42,14 @@ export const useLogin = () => {
 
     if (response.ok) {
       // save the user to local storage
-
       localStorage.setItem("user", JSON.stringify(json));
 
       // update the auth context
       dispatch({ type: "LOGIN", payload: json });
       setIsloading(false);
+
+      setHasDisplayedTokenError(false);
+
       if (json.user.roles == "student") {
         navigate("/");
       } else {

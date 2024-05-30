@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useMemo } from "react";
 import StatsCard from "../../components/AdminDashboard/StatsCard";
 import AnalyticsBarchart from "../../components/AdminDashboard/AnalyticsBarchart";
-import ProfileLayout from "../../components/layout/AdminProfileLayout";
+// import ProfileLayout from "../../components/layout/AdminProfileLayout";
 import { AnalyticsData } from "../../utils/Constants";
 import {
   useFetchAdminCourses,
@@ -9,14 +9,14 @@ import {
   useFetchRegStudents,
   useFetchReviews,
 } from "../../hooks/useFetchAdmin";
-import { UserProfileContext } from "../../context/UserProfileContext";
+// import { UserProfileContext } from "../../context/UserProfileContext";
+import PageLoader from "../../components/loader/PageLoader";
+import { AuthContext } from "../../context/AuthContext";
 
 const AdminDashboard = () => {
-  // const authUser = useMemo(() => {
-  //   return JSON.parse(localStorage.getItem("user")).user;
-  // }, []);
+  const { user } = useContext(AuthContext);
 
-  const userProfile = useContext(UserProfileContext);
+  const userProfile = user?.user;
 
   const {
     fetchData: fetchRegStudents,
@@ -55,17 +55,18 @@ const AdminDashboard = () => {
   const coursesLength = courses?.courses?.length;
   const reviewsLength = reviews?.reviews?.length;
 
+  if (
+    regStudentsLoading ||
+    courseVisitLoading ||
+    coursesLoading ||
+    reviewsLoading
+  ) {
+    return <PageLoader />;
+  }
+
   return (
-    <ProfileLayout
-      title={"Dashboard"}
-      isLoading={
-        regStudentsLoading ||
-        courseVisitLoading ||
-        coursesLoading ||
-        reviewsLoading
-      }
-    >
-      <h2 className="font-bold mb-14 text-2xl">
+    <>
+      <h2 className="font-bold mb-3 md:mb-14 text-xl md:text-2xl">
         Welcome back, {userProfile?.firstName}
       </h2>
       <div className="flex flex-1 flex-wrap gap-8">
@@ -90,8 +91,8 @@ const AdminDashboard = () => {
           <StatsCard minW={"200"} title="Reviews" count={reviewsLength} />
         </div>
       </div>
-      <div className="h-[700px] mt-16 bg-shadow rounded-md px-3 lg:px-[80px] pt-10 overflow-x-auto">
-        <div className="w-[700px] md:w-full mx-4 h-[600px] pt-11">
+      <div className="h-[700px] mt-16 bg-shadow rounded-md px-3 lg:px-[80px] pt-10">
+        <div className="md:w-full mx-4 pt-2 md:pt-11">
           <AnalyticsBarchart
             data={AnalyticsData}
             title={"Sales Analytics"}
@@ -99,8 +100,8 @@ const AdminDashboard = () => {
           />
         </div>
       </div>
-      <div className="h-[700px] mt-16 bg-shadow rounded-md px-3 lg:px-[80px] pt-10 overflow-x-auto">
-        <div className="w-[700px] md:w-full mx-4 h-[600px] pt-11">
+      <div className="h-[700px] mt-16 bg-shadow rounded-md px-3 lg:px-[80px] pt-10">
+        <div className="md:w-full mx-4 pt-2 md:pt-11">
           <AnalyticsBarchart
             data={AnalyticsData}
             title={"Best Selling Course"}
@@ -108,7 +109,7 @@ const AdminDashboard = () => {
           />
         </div>
       </div>
-    </ProfileLayout>
+    </>
   );
 };
 

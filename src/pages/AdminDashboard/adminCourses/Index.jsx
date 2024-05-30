@@ -5,7 +5,7 @@ import StatsCard from "../../../components/AdminDashboard/StatsCard";
 import DataErrMsg from "../../../components/DataErrMsg";
 import NoDataMsg from "../../../components/NoDataMsg";
 import CourseBanner from "../../../components/adminCourses/CourseBanner";
-import ProfileLayout from "../../../components/layout/AdminProfileLayout";
+// import ProfileLayout from "../../../components/layout/AdminProfileLayout";
 import {
   useFetchAdminCourses,
   useFetchCourseVisit,
@@ -15,6 +15,7 @@ import { ErrorToast, SuccessToast } from "../../../utils/toast";
 
 import urls from "../../../utils/Url";
 import DeleteModal from "../../../components/adminCourses/DeleteModal";
+import PageLoader from "../../../components/loader/PageLoader";
 
 const AdminCourses = () => {
   const [deleteCoursePopup, setDeleteCoursePopup] = useState(false);
@@ -77,11 +78,12 @@ const AdminCourses = () => {
     setDeleteCoursePopup(false);
   };
 
+  if (courseVisitLoading || coursesLoading) {
+    return <PageLoader />;
+  }
+
   return (
-    <ProfileLayout
-      title={"Courses"}
-      isLoading={coursesLoading || courseVisitLoading}
-    >
+    <>
       {deleteCoursePopup && (
         <DeleteModal
           closePopup={closePopup}
@@ -94,7 +96,7 @@ const AdminCourses = () => {
       )}
       <div className="flex justify-end">
         <Link
-          className="flex items-center py-3 px-4 rounded-lg font-extrabold gap-2 bg-blue1 text-white"
+          className="flex items-center py-2 md:py-3 px-4 rounded-lg font-semibold md:font-extrabold gap-2 bg-blue1 text-white"
           to={"/admin-dashboard/courses/create-new-course"}
         >
           <div className="flex gap-2 items-center">
@@ -103,7 +105,7 @@ const AdminCourses = () => {
           </div>
         </Link>
       </div>
-      <div className="flex flex-col sm:flex-row gap-7 lg:gap-20 mt-[65px] ">
+      <div className="flex flex-col sm:flex-row gap-7 lg:gap-20 mt-[45px] md:mt-[65px] ">
         <StatsCard title={"Courses Created"} count={coursesData?.length} />
         <StatsCard title={"Daily Course Visit"} count={courseVisitData} />
       </div>
@@ -153,7 +155,7 @@ const AdminCourses = () => {
           </div>
         )}
       </div>
-    </ProfileLayout>
+    </>
   );
 };
 

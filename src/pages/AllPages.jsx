@@ -7,7 +7,8 @@ export default function AllPages() {
   useEffect(() => {
     function checkUser() {
       let userLoginData = JSON.parse(localStorage.getItem("user"));
-      if (userLoginData?.user.role == "admin") {
+      console.log(userLoginData, "kkk");
+      if (userLoginData?.user?.roles == "admin") {
         setAdmin(true);
       } else {
         setAdmin(false);

@@ -1,15 +1,14 @@
-import Axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import security from "../../../assets/adminDashboardImages/security.svg";
 import { Input } from "../../../components/InputField";
 import LoadingSpinner from "../../../components/LoadingSpinner";
-import ProfileHeader2 from "../../../components/ProfileHeader2";
 import urls from "../../../utils/Url";
 import { ErrorToast, SuccessToast } from "../../../utils/toast";
 import { resetPinSchema } from "../../../schema/wallet";
 import { validate } from "../../../utils/functn";
+import axios from "../../../services/axios";
 
 const AdminResetPin = () => {
   const navigate = useNavigate();
@@ -35,7 +34,7 @@ const AdminResetPin = () => {
     setLoading(true);
     const token = JSON.parse(localStorage.getItem("user")).token;
     try {
-      const response = await Axios.put(urls.adminResetPin, data, {
+      const response = await axios.put(urls.adminResetPin, data, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -55,7 +54,6 @@ const AdminResetPin = () => {
 
   return (
     <>
-      <ProfileHeader2 to={"/admin-dashboard/wallet"} />
       <div className="flex justify-around items-center w-[97%] md:w-[90%] mx-auto max-w-[1280px] my-[60px] mt-[120px]">
         <div className="w-[90%] mx-auto lg:mx-0 lg:w-[45%]">
           <h2 className="font-bold text-2xl w-full md:w-[70%] mb-[25px]">

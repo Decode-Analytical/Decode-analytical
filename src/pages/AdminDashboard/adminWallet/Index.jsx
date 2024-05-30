@@ -1,8 +1,5 @@
-import React, { useContext, useEffect, useMemo } from "react";
+import React, { useContext, useEffect } from "react";
 import WalletTab from "../../../components/adminWallet/WalletTab";
-import ProfileLayout from "../../../components/layout/AdminProfileLayout";
-import { walletData } from "../../../utils/Constants";
-
 import CountUp from "react-countup";
 import Balance from "../../../components/adminWallet/Balance";
 import {
@@ -13,11 +10,11 @@ import {
   useFetchWithdrawalsChart,
 } from "../../../hooks/useFetchAdmin";
 import { currencyFormatter } from "../../../utils/functn";
-
-import FilteredCharts from "../../../components/adminWallet/WithdrawalsCharts";
 import EarningsCharts from "../../../components/adminWallet/EarningsCharts";
 import WithdrawalsCharts from "../../../components/adminWallet/WithdrawalsCharts";
-import { UserProfileContext } from "../../../context/UserProfileContext";
+// import { UserProfileContext } from "../../../context/UserProfileContext";
+import PageLoader from "../../../components/loader/PageLoader";
+import { AuthContext } from "../../../context/AuthContext";
 
 const Skeleton = () => (
   <div className="flex items-start gap-x-3 my-2 animate-pulse">
@@ -56,7 +53,9 @@ const WalletStats = ({ title, amount, isLoading }) => {
 };
 
 const AdminWallet = () => {
-  const userProfile = useContext(UserProfileContext);
+  const { user } = useContext(AuthContext);
+
+  const userProfile = user?.user;
 
   const {
     fetchData: fetchEarnings,
@@ -103,17 +102,18 @@ const AdminWallet = () => {
   const earningsChartData = earningsChart;
   const withdrawalsChartData = withdrawalsChart;
 
+  if (
+    earningsLoading ||
+    balanceLoading ||
+    transfersLoading ||
+    EarningsChartLoading ||
+    WithdrawalsChartLoading
+  ) {
+    return <PageLoader />;
+  }
+
   return (
-    <ProfileLayout
-      title={"Wallet"}
-      isLoading={
-        earningsLoading ||
-        balanceLoading ||
-        transfersLoading ||
-        EarningsChartLoading ||
-        WithdrawalsChartLoading
-      }
-    >
+    <>
       <div className="px-0 md:px-4 lg:px-14">
         <h2 className="font-bold mb-10 text-2xl">
           Welcome back, {userProfile?.firstName}
@@ -144,11 +144,7 @@ const AdminWallet = () => {
         </div>
         <Balance amount={balanceData} rate={"34"} />
       </div>
-    </ProfileLayout>
+    </>
   );
 };
-
-// AdminWallet.getLayout = (page) => <ProtectedLayout>{page}</ProtectedLayout>;
-
-// AdminWallet.requireAuth = true;
 export default AdminWallet;

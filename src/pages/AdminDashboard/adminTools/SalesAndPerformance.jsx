@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import ProfileLayout from "../../../components/layout/AdminProfileLayout";
+// import ProfileLayout from "../../../components/layout/AdminProfileLayout";
 import CourseCard from "../../../components/adminTools/CourseCard";
 import SalesStats from "../../../components/adminTools/SalesStats";
 import TopPerformances from "../../../components/adminTools/TopPerformances";
@@ -13,6 +13,7 @@ import {
 } from "../../../hooks/useFetchAdmin";
 import SessionCard from "../../../components/adminTools/SessionCard";
 import CountUp from "react-countup";
+import PageLoader from "../../../components/loader/PageLoader";
 
 const SalesAndPerformance = () => {
   const {
@@ -59,16 +60,13 @@ const SalesAndPerformance = () => {
     ?.map((item) => item.isPrice_course * item.totalRegisteredByStudent)
     .reduce((a, b) => a + b, 0);
 
+  if (courseSalesLoading || sessionSalesLoading) {
+    return <PageLoader />;
+  }
+
   return (
     <div>
-      <ProfileLayout
-        isLoading={
-          coursesLoading ||
-          sessionsLoading ||
-          courseSalesLoading ||
-          sessionSalesLoading
-        }
-      >
+      <>
         <Heading title={"Sales And Performance"} />
         <div className="flex flex-col sm:flex-row flex-wrap items-stretch justify-between gap-6 w-full">
           <SalesStats
@@ -143,7 +141,7 @@ const SalesAndPerformance = () => {
             error={coursesError}
           />
         </div>
-      </ProfileLayout>
+      </>
     </div>
   );
 };

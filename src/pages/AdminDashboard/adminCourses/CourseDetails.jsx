@@ -2,13 +2,14 @@ import React, { useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Heading } from "../../../components/Heading";
 // import ToggleBtn from "../../../components/ToggleBtn";
-import ProfileLayout from "../../../components/layout/AdminProfileLayout";
+// import ProfileLayout from "../../../components/layout/AdminProfileLayout";
 import { useFetchCourseById } from "../../../hooks/useFetchAdmin";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { GoPlus } from "react-icons/go";
 import { Button, LinkButton } from "../../../components/Button";
 import ToggleBtn from "../../../components/ToggleBtn";
+import PageLoader from "../../../components/loader/PageLoader";
 
 const Btn = ({ Icon, text, danger, onClick }) => {
   return (
@@ -38,8 +39,12 @@ const CourseDetails = () => {
 
   const courseData = course?.course;
 
+  if (courseLoading) {
+    return <PageLoader />;
+  }
+
   return (
-    <ProfileLayout isLoading={courseLoading}>
+    <>
       <Heading mb="mb-2" />
       {courseError ? (
         <div className="grid place-items-center w-full h-[70vh]">
@@ -102,7 +107,7 @@ const CourseDetails = () => {
           </div>
         </div>
       )}
-    </ProfileLayout>
+    </>
   );
 };
 

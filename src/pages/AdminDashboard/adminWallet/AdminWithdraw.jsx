@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import amazonpay from "../../../assets/adminDashboardImages/amazonpay.svg";
@@ -12,9 +12,7 @@ import { withdrawalSchema } from "../../../schema/wallet";
 import { banks } from "../../../utils/bankCodes";
 import urls from "../../../utils/Url";
 import LoadingSpinner from "../../../components/LoadingSpinner";
-import ProfileHeader2 from "../../../components/ProfileHeader2";
 import { ErrorToast, SuccessToast } from "../../../utils/toast";
-import Axios from "axios";
 import {
   ModalButton,
   ModalInput,
@@ -22,6 +20,8 @@ import {
 } from "../../../components/modal/ModalPrompt";
 import { validate } from "../../../utils/functn";
 import ModalContainer from "../../../components/modal/ModalContainer";
+import axios from "axios";
+// import axios from "../../../services/axios";
 
 const AdminWithdraw = () => {
   const authUser = useMemo(() => {
@@ -68,13 +68,14 @@ const AdminWithdraw = () => {
     formState: { errors },
   } = formHook;
 
+  // Validate account bank name and account number
   const fetchAccountName = async () => {
     const data = getValues();
     if (data.bankName && data.accountNumber.length === 10) {
       setVLoading(true);
       try {
         const token = JSON.parse(localStorage.getItem("user")).token;
-        const response = await Axios.get(
+        const response = await axios.get(
           `https://decode-mnjh.onrender.com/api/wallet/verifyAccountName/${data.accountNumber}/${data.bankName}`,
           {
             headers: {
@@ -101,11 +102,12 @@ const AdminWithdraw = () => {
     }
   };
 
+  // submit form and initiate withdrawal/transfer
   const onSubmit = async (data) => {
     setLoading(true);
     const token = JSON.parse(localStorage.getItem("user")).token;
     try {
-      const response = await Axios.post(urls.adminTransfer, data, {
+      const response = await axios.post(urls.adminTransfer, data, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -118,6 +120,7 @@ const AdminWithdraw = () => {
       }
     } catch (error) {
       ErrorToast(error?.response?.data?.message);
+      console.log(error?.response?.data?.message);
       if (error?.response?.data?.message === "Invalid Pin") {
         toggleModal();
       }
@@ -126,12 +129,13 @@ const AdminWithdraw = () => {
     }
   };
 
+  // submit form to reset pin
   const onSubmitForgot = async (e, data) => {
     e.preventDefault();
     setLoading(true);
     const token = JSON.parse(localStorage.getItem("user")).token;
     try {
-      const response = await Axios.post(urls.adminForgotPin, data, {
+      const response = await axios.post(urls.adminForgotPin, data, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -152,8 +156,7 @@ const AdminWithdraw = () => {
 
   return (
     <>
-      <ProfileHeader2 to={"/admin-dashboard/wallet"} />
-      <div className="flex justify-between items-center w-[97%] md:w-[90%] mx-auto max-w-[1280px] my-[60px] ">
+      <div className="flex justify-between items-center mx-auto max-w-[1280px] my-[60px] ">
         <div className="w-[90%] mx-auto lg:mx-0 lg:w-[45%]">
           <h2 className="font-bold text-2xl w-full md:w-[70%] mb-[25px]">
             Withdraw to Bank or an Online Payment.
@@ -247,7 +250,7 @@ const AdminWithdraw = () => {
                 {loading ? <LoadingSpinner color={"white"} /> : "Continue"}
               </button>
             </form>
-
+            {/* Popup for when user enters wrong pin */}
             {isOpen && (
               <ModalPrompt
                 title={"You entered a wrong pin"}
@@ -266,6 +269,7 @@ const AdminWithdraw = () => {
                 </ModalButton>
               </ModalPrompt>
             )}
+            {/* Popup to reset pin by entering registered email for this user */}
             {forgot && (
               <ModalPrompt
                 title={"Reset with Email"}

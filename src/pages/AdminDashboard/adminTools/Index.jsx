@@ -1,5 +1,5 @@
 import React from "react";
-import ProfileLayout from "../../../components/layout/AdminProfileLayout";
+// import ProfileLayout from "../../../components/layout/AdminProfileLayout";
 import { Link } from "react-router-dom";
 import sales from "../../../assets/adminDashboardImages/sales.svg";
 import community from "../../../assets/adminDashboardImages/community.svg";
@@ -22,7 +22,7 @@ const ToolCard = ({ icon, title, text, to }) => {
 
 const AdminTools = () => {
   return (
-    <ProfileLayout title={"Tools"}>
+    <>
       {/* <div className="grid place-items-center w-full"> */}
       <div className="flex flex-col gap-8 justify-center">
         {/* {ToolCardData.map(({ icon, title, text, to }, index) => ( */}
@@ -70,7 +70,7 @@ const AdminTools = () => {
           <ToolCard key={index} icon={icon} title={title} text={text} to={to} />
         ))}
       </div> */}
-    </ProfileLayout>
+    </>
   );
 };
 

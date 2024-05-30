@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ProfileHeader2 from "../../../components/ProfileHeader2";
+// import ProfileHeader2 from "../../../components/ProfileHeader2";
 import { FiBookOpen } from "react-icons/fi";
 import { Button } from "../../../components/Button";
 import { useNavigate } from "react-router-dom";
@@ -35,7 +35,7 @@ const CreateNewCourse = () => {
 
   return (
     <div>
-      <ProfileHeader2 to={"/admin-dashboard/courses"} />
+      {/* <ProfileHeader2 to={"/admin-dashboard/courses"} /> */}
       <div className="flex  flex-col  max-w-[1280px]  justify-center my-[70px] bg-shadow rounded-lg py-[50px] md:py-[60px] mx-auto ">
         <div className="w-[90%] max-w-none md:max-w-[750px] flex flex-col mx-auto justify-around gap-[70px]">
           <h1 className=" text-2xl md:text-4xl mx-auto font-bold text-center flex flex-col">
