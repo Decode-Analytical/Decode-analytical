@@ -13,10 +13,11 @@ import { Button } from "../../../components/Button";
 import "./CreateVideo.css";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../../components/Loader";
-import FileUpload, { Input, Textarea } from "./InputFile";
+// import FileUpload, { Input, Textarea } from "./InputFile";
 import VideoUpload from "../../uploadCourses/VideoUpload";
 import { useAuthContext } from "../../../hooks/authContext";
 import Warning from "./warning/Warning";
+import FileUpload, { Input, TextArea } from "../../../components/InputField";
 
 const CreateVideoModule = () => {
   const { id } = useParams();
@@ -184,7 +185,7 @@ const CreateVideoModule = () => {
           </Button>
         </form> */}
 
-        <form className="w-full flex flex-col gap-6" onSubmit={ModuleSubmit}>
+        <form className="w-full" onSubmit={ModuleSubmit}>
           <Input
             name="Topic"
             label="Topic"
@@ -193,7 +194,7 @@ const CreateVideoModule = () => {
             value={form.Topic}
             onChange={onChange}
           />
-          <Textarea
+          <TextArea
             name="Description"
             onChange={onChange}
             value={form.Description}
@@ -208,20 +209,20 @@ const CreateVideoModule = () => {
             value={form.module_duration}
             onChange={onChange}
           />
-          <div className="w-full flex justify-center gap-10">
-            <VideoUpload
+          <div className="w-full flex justify-between gap-10">
+            <FileUpload
               onDrop={onDrop}
               label="Upload course Video"
               value={form.upload_video}
               error={videoError}
-              className="h-32 border border-dotted border-black px-5 my-2 flex justify-center items-center rounded-lg"
+              className="h-32 border border-dotted border-black px-5 my-2 flex flex-1 justify-center items-center rounded-lg"
             />
             <FileUpload
               onDrop={onDropImage}
               label="Upload Cover Image"
               value={form.upload_image}
               error={imageError}
-              className="h-32 border border-dotted border-black px-5 my-2 flex justify-center items-center rounded-lg"
+              className="h-32 border border-dotted border-black px-5 my-2 flex flex-1 justify-center items-center rounded-lg"
             />
           </div>
           {isLoading == true && <Loader />}
@@ -236,12 +237,14 @@ const CreateVideoModule = () => {
             </p>
           )}
 
-          <button
-            type="submit"
-            className="w-full text-white bg-blue1 text-lg py-5 rounded mb-10"
-          >
-            Proceed to create lesson
-          </button>
+          <div className="my-5">
+            <Button
+              type="submit"
+              className="w-full text-white bg-blue1 text-lg py-5 rounded mb-10"
+            >
+              Proceed to create lesson
+            </Button>
+          </div>
           {/* <div className="flex w-full justify-center gap-5">
             <button
               type="button"
@@ -259,7 +262,7 @@ const CreateVideoModule = () => {
           </div> */}
         </form>
       </div>
-      <div className="w-[30%] bg-blue1 flex justify-center items-center">
+      <div className="w-[30%] hidden bg-blue1 lg:flex justify-center items-center">
         <div className="flex gap-5">
           <div className="flex flex-col justify-center items-center">
             <div className="checked-circle">
