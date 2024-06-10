@@ -75,8 +75,6 @@ import { Link } from "react-router-dom";
 
 import CoursesCard from "../../components/CourseHero/CoursesCard";
 const API_URL = "https://decode-mnjh.onrender.com/api/course/getCoursesDisplay";
-const TOKEN =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGI1NmVmMzUxZTgzNGM1NmI4ZTg1MDkiLCJpYXQiOjE3MTU1MDYyMjYsImV4cCI6MTcxNTU5MjYyNn0.5i3NOXfPb-Z3jEMtCYxy_shvZAX0BLpmQyosymmTySo";
 const API_SEARCH =
   "https://decode-mnjh.onrender.com/api/course/getCoursesDisplayBycourse_title/";
 
@@ -112,7 +110,7 @@ const Courses = () => {
             data.courses.filter((course) => course.isPaid_course === "free")
           );
           setLoading(false);
-          // console.log(data);
+          console.log(data);
         } else {
           console.error("Failed to fetch courses:", response.statusText);
         }
@@ -128,6 +126,7 @@ const Courses = () => {
   const searchBtn = async (e) => {
     e.preventDefault();
     setLoading(true);
+
     try {
       const response = await fetch(`${API_SEARCH}${searchTerm}`);
       if (response.ok) {
@@ -153,6 +152,34 @@ const Courses = () => {
     }
   };
 
+  const fetchCourses = async (filterType) => {
+    setLoading(true);
+    try {
+      const response = await fetch(API_URL);
+      if (response.ok) {
+        const data = await response.json();
+        let filteredCourses = data.courses;
+
+        // Apply filtering based on filterType
+        if (filterType === "free") {
+          filteredCourses = data.courses.filter(
+            (course) => course.isPaid_course === "free"
+          );
+        } else if (filterType === "paid") {
+          filteredCourses = data.courses.filter(
+            (course) => course.isPaid_course === "paid"
+          );
+        }
+        setSearch(filteredCourses);
+      } else {
+        console.error("Failed to fetch courses:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+    }
+    setLoading(false);
+  };
+
   const loadMore = async () => {
     // const response = await fetch(
     //   `https://decode-mnjh.onrender.com/api/course/viewAllCourses&currentPage=${nextPage}`
@@ -175,10 +202,10 @@ const Courses = () => {
               <select name="course" id="cars">
                 <option value="all">All</option>
                 <option value="ui-ux">UI&UX</option>
-                <option value="python">Pyton</option>
+                <option value="python">Python</option>
                 <option value="backenk">Backend</option>
                 <option value="python">Business Analyst</option>
-                <option value="backenk">Frontend</option>
+                <option value="backend">Frontend</option>
               </select>
 
               <input
@@ -197,21 +224,11 @@ const Courses = () => {
               >
                 <CiSearch className="icon" />
               </button>
-              {/* <input type='text' 
-          className='box__search-input' 
-          value={inputValue} 
-          onChange={handleChange}  
-          placeholder='Search all categories'/>
-         
-          <button className='box__search-btn' onClick={handleSubmit}>
-          <Link to='/Courses/Search' >
-            <CiSearch className='icon' /></Link>
-            </button> */}
             </div>
             <section className="buttons">
-              <button>Free</button>
-              <button>Paid</button>
-              <button>All Levels</button>
+              <button onClick={() => fetchCourses("free")}>Free</button>
+              <button onClick={() => fetchCourses("paid")}>Paid</button>
+              <button onClick={() => fetchCourses()}>All Levels</button>
             </section>
           </div>
         </main>
@@ -365,7 +382,7 @@ const Courses = () => {
                           <MdStarRate className="star" />
                           <IoIosStarOutline className="empty-star" />
                         </div>
-                        <p>rating----</p>
+                        <p>3/5 rating----</p>
                       </div>
                       <section className="card__date">
                         <div className="card__date--time">

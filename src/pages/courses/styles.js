@@ -133,7 +133,7 @@ export const Wrapper = styled.div`
     }
   }
   .freeBox {
-    padding: 3rem 4.5rem;
+    padding: 3rem 7rem;
   }
   .freeCourse {
     /* position: relative; */
@@ -173,15 +173,15 @@ export const Wrapper = styled.div`
     grid-template-rows: repeat(1, 1fr);
     place-items: center;
     grid-column-gap: 15px;
-    grid-row-gap: 70px;
+    grid-row-gap: 50px;
     /* padding: 4rem; */
     /* gap: 1rem; */
 
     .card {
       /* margin-top: 4rem; */
-      height: 548px;
-      width: 24.5rem;
-      padding: 1rem;
+      height: 450px;
+      width: 23rem;
+      padding: 1.2rem;
       border-radius: 1.2rem;
       background: #ffffff;
       display: flex;
@@ -282,7 +282,7 @@ export const Wrapper = styled.div`
 
 export const Content = styled.div`
   background: #ffffff;
-  padding: 4rem 5rem;
+  padding: 4rem 7.1rem;
   font-family: Montserrat;
 
   .Heading {
@@ -330,20 +330,21 @@ export const Content = styled.div`
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
     place-items: center;
-    grid-column-gap: 15px;
-    grid-row-gap: 70px;
+    grid-column-gap: 5px;
+    grid-row-gap: 50px;
     /* gap: 1rem; */
 
     .card {
       /* margin-top: 4rem; */
-      height: 548px;
-      width: 24.5rem;
-      padding: 1rem;
+      height: 450px;
+      width: 21.5rem;
+      padding: 1.2rem;
       border-radius: 1.2rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       box-shadow: 0px 1.64px 8.18px 1.64px #00000029;
+      gap: 0.6rem;
 
       &__image {
         border-radius: 1.2rem;
@@ -357,10 +358,11 @@ export const Content = styled.div`
         font-family: Montserrat; */
 
         font-family: Montserrat;
-        font-size: 26.95px;
+        font-size: 22px;
         font-weight: 600;
         line-height: 32.85px;
         color: #040e53;
+        padding: 0.6rem 0;
       }
       &__figure {
         display: flex;
@@ -386,7 +388,7 @@ export const Content = styled.div`
 
       &__star {
         display: flex;
-        gap: 1rem;
+        justify-content: space-between;
 
         .stars {
           display: flex;
@@ -404,7 +406,7 @@ export const Content = styled.div`
       }
       &__date {
         display: flex;
-        gap: 3rem;
+        justify-content: space-between;
 
         &--time {
           display: flex;
@@ -430,7 +432,7 @@ export const Content = styled.div`
           font-weight: 600;
         }
         .enroll-btn {
-          padding: 0.5rem 3rem;
+          padding: 0.4rem 2rem;
           background: #040e53;
           color: #ffffff;
           border-radius: 0.7rem;
@@ -588,7 +590,6 @@ export const Container = styled.div`
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 0 1rem;
 
           p {
             font-family: Montserrat;
@@ -596,10 +597,11 @@ export const Container = styled.div`
             font-weight: 600;
           }
           .enroll-btn {
-            padding: 0.5rem 3rem;
+            padding: 0.4rem 1.5rem;
             background: #040e53;
             color: #ffffff;
-            border-radius: 0.7rem;
+            font-size: 0.9rem;
+            border-radius: 0.6rem;
           }
         }
       }
