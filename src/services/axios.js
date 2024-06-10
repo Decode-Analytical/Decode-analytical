@@ -11,8 +11,6 @@ const axios = Axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
-let hasDisplayedTokenError = false;
-
 const axiosConfiguration = (config) => {
   const user = localStorage.getItem("user");
   const token = user ? JSON.parse(user).token : null;
@@ -30,15 +28,15 @@ axios.interceptors.response.use(
   (res) => res,
   (error) => {
     if (Axios.isAxiosError(error)) {
-      const response = error.response;
+      const response = error?.response;
       const data = response?.data;
 
       if (response?.status === 401 && data?.message === "Token expired") {
         if (!getHasDisplayedTokenError) {
           setHasDisplayedTokenError(true);
 
-          ErrorToast("Token is invalid or expired. Please login to continue");
           window.location.href = "/AdminLogin";
+          ErrorToast("Token is invalid or expired. Please login to continue");
           localStorage.removeItem("user");
         }
         return Promise.reject(error);

@@ -13,15 +13,21 @@ import { Heading } from "../../../components/Heading";
 import "./CreateVideo.css";
 import { useNavigate } from "react-router-dom";
 // import Warning from "./warning/Warning";
-import FileUpload, { Input, Options, Textarea } from "./InputFile";
+// import FileUpload, { Input, Options, Textarea } from "./InputFile";
 import { useAuthContext } from "../../../hooks/authContext";
+import FileUpload, {
+  Input,
+  SelectInput,
+  TextArea,
+} from "../../../components/InputField";
+import { Button } from "../../../components/Button";
 
 const CreateVideo = ({ update }) => {
   // const token = JSON.parse(localStorage.getItem("user")).token;
   let navigate = useNavigate();
   const { user } = useAuthContext();
   const baseURL = import.meta.env.VITE_BASE_URL;
-  console.log(user);
+  // console.log(user);
   const [isLoading, setIsLoading] = useState(false);
   const [isPaid, setIsPaid] = useState(false);
 
@@ -67,7 +73,7 @@ const CreateVideo = ({ update }) => {
   let paidorNot = ["free", "paid"];
   async function Submit(e) {
     e.preventDefault();
-    console.log("first");
+    // console.log("first");
     setIsLoading(true);
     const formData = new FormData();
     formData.set("course_title", form.Title);
@@ -94,11 +100,11 @@ const CreateVideo = ({ update }) => {
           body: formData,
         }
       );
-      console.log(form.price);
-      console.log("hi");
-      console.log(response);
+      // console.log(form.price);
+      // console.log("hi");
+      // console.log(response);
 
-      console.log(response.ok);
+      // console.log(response.ok);
       if (response.ok) {
         const data = await response.json();
         const res = data.newCourse;
@@ -109,9 +115,9 @@ const CreateVideo = ({ update }) => {
         navigate(
           `/admin-dashboard/courses/create-new-course/create-video-module/${id}`
         );
-        console.log(mess);
+        // console.log(mess);
         update(id, mess);
-        console.log(update);
+        // console.log(update);
       } else {
         const errorData = await response.json();
         setError(errorData.message);
@@ -208,24 +214,24 @@ const CreateVideo = ({ update }) => {
           </Button>
         </form> */}
 
-        <form className="flex flex-col gap-6 w-full" onSubmit={Submit}>
+        <form className="w-full" onSubmit={Submit}>
           <Input
             name="Title"
             label="Title"
-            placeholder="Enter your couse title"
+            placeholder="Enter your course title"
             type="text"
             value={form.Title}
             onChange={onChange}
           />
-          <Textarea
+          <TextArea
             name="Description"
             onChange={onChange}
             value={form.Description}
             label="Description"
-            placeholder="Enter your couse description"
+            placeholder="Enter your course description"
           />
-          <div className="flex md:gap-28 max-md:flex-col">
-            <Options
+          <div className="flex md:gap-[7%] flex-col md:flex-row">
+            <SelectInput
               label="Category"
               options={Category}
               name="Category"
@@ -242,8 +248,8 @@ const CreateVideo = ({ update }) => {
               onChange={onChange}
             />
           </div>
-          <div className="flex md:gap-28 max-md:flex-col">
-            <Options
+          <div className="flex md:gap-[7%] flex-col md:flex-row">
+            <SelectInput
               label="Skill Level"
               options={skill}
               name="skill_level"
@@ -259,13 +265,13 @@ const CreateVideo = ({ update }) => {
             value={form.price}
             onChange={onChange}
           /> */}
-            <Options
-              label="isPaid"
+            <SelectInput
+              label="Price"
               options={paidorNot}
               name="ispaid"
               value={form.ispaid}
               onChange={onChange}
-              placeholder="Select is it paid or not"
+              // placeholder="Choose Price Type"
             />
           </div>
           {isPaid && (
@@ -285,15 +291,19 @@ const CreateVideo = ({ update }) => {
             value={form.course_image}
             error={imageError}
             image="image/*"
-            className="w-full h-72 border border-dotted border-black my-2 flex justify-center items-center"
+            className="w-full h-72 border border-gray-400 my-2 flex justify-center items-center rounded-md cursor-pointer"
           />
 
-          <button
-            type="submit"
-            className="w-full bg-blue1 mb-5 text-lg text-white py-5 rounded"
-          >
-            Proceed to create course
-          </button>
+          <div className="mb-5 w-full">
+            <Button
+              py={"py-5"}
+              type="submit"
+              className={"w-full text-lg mt-8"}
+              // className="w-full bg-blue1 mb-5 text-lg text-white py-5 rounded"
+            >
+              Proceed to create course
+            </Button>
+          </div>
           {/* <div className="flex w-full justify-center gap-5">
           <button
             type="button"
@@ -311,7 +321,7 @@ const CreateVideo = ({ update }) => {
         </div> */}
         </form>
       </div>
-      <div className="w-[35%] bg-blue1 flex justify-center items-center">
+      <div className="w-[35%] hidden lg:flex bg-blue1 justify-center items-center">
         <div className="flex gap-5">
           <div className="flex flex-col justify-center items-center">
             <div className="first-circle">
