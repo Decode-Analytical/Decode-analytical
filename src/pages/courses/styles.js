@@ -507,7 +507,7 @@ export const Container = styled.div`
 
       .card {
         /* margin-top: 4rem; */
-        height: 500px;
+        height: 450px;
         width: 20rem;
         padding: 1rem;
         border-radius: 1.2rem;
@@ -525,7 +525,7 @@ export const Container = styled.div`
         }
         &__heading {
           font-family: Montserrat;
-          font-size: 26px;
+          font-size: 24px;
           font-weight: 600;
           line-height: 32.85px;
           color: #040e53;
@@ -544,7 +544,7 @@ export const Container = styled.div`
             border-radius: 100%;
           }
           &--name {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 400;
           }
           span {
@@ -554,7 +554,7 @@ export const Container = styled.div`
 
         &__star {
           display: flex;
-          gap: 1rem;
+          justify-content: space-between;
 
           .stars {
             display: flex;
@@ -572,7 +572,7 @@ export const Container = styled.div`
         }
         &__date {
           display: flex;
-          gap: 3rem;
+          justify-content: space-between;
 
           &--time {
             display: flex;
@@ -581,7 +581,7 @@ export const Container = styled.div`
 
             p {
               font-family: Montserrat;
-              font-size: 17px;
+              font-size: 16px;
               font-weight: 400;
             }
           }

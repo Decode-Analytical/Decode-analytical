@@ -86,6 +86,8 @@ const Courses = () => {
   const [inputValue, setInputValue] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [search, setSearch] = useState([]);
+  const [filter, setFilter] = useState("");
+  const [selectedCourse, setSelectedCourse] = useState("");
   // let history = useNavigate();
 
   const handleChange = (e) => {
@@ -170,6 +172,7 @@ const Courses = () => {
             (course) => course.isPaid_course === "paid"
           );
         }
+        setFilter(filteredCourses);
         setSearch(filteredCourses);
       } else {
         console.error("Failed to fetch courses:", response.statusText);
@@ -190,6 +193,26 @@ const Courses = () => {
     // setLoading(false);
   };
 
+  const handleSelectChange = async (e) => {
+    const selectedValue = e.target.value;
+    setSearchTerm(selectedValue); // Update the search term to the selected value
+    setLoading(true);
+    try {
+      const response = await fetch(`${API_SEARCH}${selectedValue}`);
+      if (response.ok) {
+        const data = await response.json();
+        setCourses(data.courses);
+        setSelectedCourse(data.courses); // Set the courses to filteredCourses as well
+      } else {
+        console.error("Failed to fetch courses:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+    }
+    setLoading(false);
+  };
+  handleSelectChange();
+
   return (
     <>
       <Wrapper>
@@ -199,12 +222,17 @@ const Courses = () => {
             <h1 className="box__head">Courses</h1>
             <p className="box__txt">Empower Your Digital Journey with Us</p>
             <div className="box__search">
-              <select name="course" id="cars">
+              <select
+                name="course"
+                id="cars"
+                // onChange={handleCourseChange}
+                onChange={handleSelectChange}
+              >
                 <option value="all">All</option>
-                <option value="ui-ux">UI&UX</option>
-                <option value="python">Python</option>
-                <option value="backenk">Backend</option>
-                <option value="python">Business Analyst</option>
+                <option value="Flutter">Flutter</option>
+                <option value="react.js">react</option>
+                <option value="Vue Js">Vue Js</option>
+                <option value="Typescript">Typescript</option>
                 <option value="backend">Frontend</option>
               </select>
 
@@ -234,7 +262,7 @@ const Courses = () => {
         </main>
         <section className="linear"></section>
 
-        {searchTerm ? (
+        {searchTerm || filter || selectedCourse ? (
           <Container>
             <section className="container">
               <div className="container__filter">
@@ -267,68 +295,72 @@ const Courses = () => {
 
               <div className="container__result">
                 {loading && <Spinner />}
-                {search.map((details, index) => {
-                  const {
-                    course_title,
-                    course_description,
-                    course_image: {
-                      0: { path },
-                    },
-                    isPrice_course,
-                    isPaid_course,
-                    skill_level,
-                    _id,
-                    modules,
-                  } = details;
+                {search.length === 0 ? (
+                  <p>Course not found</p>
+                ) : (
+                  search.map((details, index) => {
+                    const {
+                      course_title,
+                      course_description,
+                      course_image: {
+                        0: { path },
+                      },
+                      isPrice_course,
+                      isPaid_course,
+                      skill_level,
+                      _id,
+                      modules,
+                    } = details;
 
-                  return (
-                    <div className="card" key={_id}>
-                      <img src={path || heroImage} className="card__image" />
-                      <h1 className="card__heading">
-                        {course_title || "Early Design and its Principles"}
-                      </h1>
-                      <figcaption className="card__figure">
-                        <img src={Ellipse} className="card__figure--img" />
-                        <h3 className="card__figure--name">
-                          <span>By:</span> James Cameroon
-                        </h3>
-                      </figcaption>
-                      <div className="card__star">
-                        <div className="stars">
-                          <MdStarRate className="star" />
-                          <MdStarRate className="star" />
-                          <MdStarRate className="star" />
-                          <MdStarRate className="star" />
-                          <IoIosStarOutline className="empty-star" />
+                    return (
+                      <div className="card" key={_id}>
+                        <img src={path || heroImage} className="card__image" />
+                        <h1 className="card__heading">
+                          {course_title || "Early Design and its Principles"}
+                        </h1>
+                        <figcaption className="card__figure">
+                          <img src={Ellipse} className="card__figure--img" />
+                          <h3 className="card__figure--name">
+                            <span>By:</span> James Cameroon
+                          </h3>
+                        </figcaption>
+                        <div className="card__star">
+                          <div className="stars">
+                            <MdStarRate className="star" />
+                            <MdStarRate className="star" />
+                            <MdStarRate className="star" />
+                            <MdStarRate className="star" />
+                            <IoIosStarOutline className="empty-star" />
+                          </div>
+                          <p>rating----</p>
                         </div>
-                        <p>rating----</p>
+                        <section className="card__date">
+                          <div className="card__date--time">
+                            <IoMdTime />
+                            <p>2h 3m</p>
+                          </div>
+                          <div className="card__date--time">
+                            <img src={level}></img>
+                            <p>{skill_level || "Intermidiate"}</p>
+                          </div>
+                        </section>
+                        <section className="card__btns">
+                          <p>
+                            {isPrice_course === 0
+                              ? "Free"
+                              : `Price: ${isPrice_course} NGN`}
+                          </p>
+                          <Link
+                            className="enroll-btn"
+                            to={`/courseDetailPage/PremiumCourses/${_id}`}
+                          >
+                            Enroll
+                          </Link>
+                        </section>
                       </div>
-                      <section className="card__date">
-                        <div className="card__date--time">
-                          <IoMdTime />
-                          <p>2h 3m</p>
-                        </div>
-                        <div className="card__date--time">
-                          <img src={level}></img>
-                          <p>{skill_level || "Intermidiate"}</p>
-                        </div>
-                      </section>
-                      <section className="card__btns">
-                        <p>
-                          {isPrice_course === 0
-                            ? "Free"
-                            : `Price: ${isPrice_course} NGN`}
-                        </p>
-                        <Link
-                          className="enroll-btn"
-                          to={`/courseDetailPage/PremiumCourses/${_id}`}
-                        >
-                          Enroll
-                        </Link>
-                      </section>
-                    </div>
-                  );
-                })}
+                    );
+                  })
+                )}
               </div>
             </section>
           </Container>
