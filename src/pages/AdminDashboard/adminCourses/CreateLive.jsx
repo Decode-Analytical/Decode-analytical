@@ -34,9 +34,14 @@ const CreateLive = () => {
     fetchCourses();
   }, []);
 
-  const courseData = courses?.courses;
+  const courseData = courses?.courses || [];
+  const courseList = Array.isArray(courseData)
+    ? courseData.map((item) => item.course_title)
+    : [];
+  const [selectedCourse, setSelectedCourse] = useState("");
+  // const courseData = courses?.courses;
 
-  const courseList = courseData?.map((item) => item.course_title);
+  // const courseList = courseData?.map((item) => item.course_title);
 
   const formHook = useForm({
     resolver: (data) => {
@@ -88,7 +93,7 @@ const CreateLive = () => {
       });
 
       if (response.status === 200 || response.status === 201) {
-        console.log(response, "response");
+        // console.log(response, "response");
         SuccessToast(response?.data?.message);
         navigate("/admin-dashboard/courses");
       }
@@ -100,6 +105,10 @@ const CreateLive = () => {
   };
 
   const [showAmount, setShowAmount] = useState(false);
+
+  const handleSelectChange = (e) => {
+    setSelectedCourse(e.target.value);
+  };
 
   return (
     <div className="max-w-[1280px] gap-8 w-[90%] flex items-center mx-auto ">
@@ -113,12 +122,35 @@ const CreateLive = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="w-full mb-7">
             <SelectInput
-              label={"Title"}
-              options={courseList}
+              label={"Course Name"}
+              name={"courseName"}
+              options={[...courseList, "others"]}
+              onChange={handleSelectChange}
+              value={selectedCourse}
               register={register("courseName")}
               errorMessage={errors?.courseName?.message}
-              important
+              required
             />
+            {selectedCourse === "others" && (
+              <div className="mt-2">
+                <label className="font-light">
+                  Please specify:
+                  <input
+                    type="text"
+                    name="otherCourseName"
+                    {...register("otherCourseName", { required: true })}
+                    className="border rounded-md py-2 px-4 bg-white1 border-gray-400"
+                  />
+                </label>
+                <div className="h-5">
+                  {/* {errors?.otherCourseName && (
+                    <p className="text-red-500 text-xs italic">
+                      {errors.otherCourseName.message}
+                    </p>
+                  )} */}
+                </div>
+              </div>
+            )}
             <TextArea
               label={"Description"}
               placeholder={"Enter your course description"}

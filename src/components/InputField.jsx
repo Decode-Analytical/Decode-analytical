@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { RxEyeClosed } from "react-icons/rx";
 import { PiEyeBold } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
+import { useDropzone } from "react-dropzone";
 
 export const Input = ({
   label,
@@ -301,38 +302,83 @@ export const SelectInput = ({
   customClass,
 }) => {
   return (
-    <div className="flex flex-1 flex-col mt-2">
-      <label className="font-light">
-        {label}
-        <span className="text-red2 text-lg ml-1">*</span>
-        <select
-          name={name}
-          id={name}
-          className={`${customClass} border rounded-md  py-2 md:py-[17px] px-[17px] bg-white1 disabled:bg-gray-100 ${
-            errorMessage ? "border-red-500" : "border-gray-400"
-          } ${errorMessage && "outline-red-500"}`}
-          onChange={onChange}
-          value={value}
-          disabled={disabled}
-          required={required}
-          {...register}
-        >
-          <option value="">Select {label}</option>
-          {options?.map((option, index) => (
-            <option key={index} value={valueKey ? option[valueKey] : option}>
-              {labelKey ? option[labelKey] : option}
-            </option>
-          ))}
-        </select>
-      </label>
-      <div className="h-5">
-        {errorMessage && (
-          <div>
-            <p className="text-red-500 text-xs italic">{errorMessage}</p>
-          </div>
-        )}
+    <>
+      <div className="flex flex-1 flex-col my-2">
+        <label className="font-light">
+          {label}
+          <span className="text-red2 text-lg ml-1">*</span>
+          <select
+            name={name}
+            id={name}
+            className={`${customClass} border rounded-md py-3 md:py-[17px] px-[17px] bg-white1 disabled:bg-gray-100 ${
+              errorMessage ? "border-red-500" : "border-gray-400"
+            } ${errorMessage && "outline-red-500"}`}
+            onChange={onChange}
+            value={value}
+            disabled={disabled}
+            required={required}
+            {...register}
+          >
+            <option value="">Select {label}</option>
+            {options?.map((option, index) => (
+              <option key={index} value={valueKey ? option[valueKey] : option}>
+                {labelKey ? option[labelKey] : option}
+              </option>
+            ))}
+          </select>
+        </label>
+        <div className="h-5">
+          {errorMessage && (
+            <div>
+              <p className="text-red-500 text-xs italic">{errorMessage}</p>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+
+      {/* Others option for input select */}
+      {/* {othersValue && (
+        <div className="flex w-full flex-1 flex-col mt-2">
+          <div className="flex justify-between w-full">
+            {othersTitle && (
+              <label className="font-light">
+                {othersTitle}
+                <span className="text-red2 text-lg ml-1">*</span>
+              </label>
+            )}
+          </div>
+          <div className="relative">
+            <input
+              type="text"
+              // name={name}
+              placeholder="Enter Course Title"
+              className={`border ${
+                othersErrorMessage ? "border-red-500" : "border-gray-400"
+              }  bg-white1 rounded-md px-4 py-2 sm:py-4 disabled:bg-gray-100 ${
+                othersErrorMessage && "outline-red-500"
+              } ${customClass}`}
+              autoComplete="off"
+              // onChange={onChange}
+              // value={value}
+              {...othersRegister}
+              // disabled={disabled}
+              // required={required}
+              // {...inputProps}
+              // defaultValue={defaultValue}
+            />
+          </div>
+          <div className="h-5">
+            {othersErrorMessage && (
+              <div>
+                <p className="text-red-500 mt-1 text-xs italic">
+                  {othersErrorMessage}
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      )} */}
+    </>
   );
 };
 
@@ -481,3 +527,40 @@ export const ImageInput = ({
     </div>
   );
 };
+
+export default function FileUpload({ onDrop, className, important, label }) {
+  const { getRootProps, getInputProps, open, acceptedFiles } = useDropzone({
+    accept: { "image/*": [], "video/*": [] },
+    maxFiles: 1, // Set maxFiles to 1 to accept only one file
+    onDrop,
+  });
+
+  return (
+    <div className="w-full mt-2 cursor-pointer">
+      {label && (
+        <label className="font-light">
+          {label}
+          {important ? <span className="text-red2 text-lg ml-1">*</span> : ""}
+        </label>
+      )}
+      <div {...getRootProps({ className: className })}>
+        <input {...getInputProps()} />
+        <div className="flex flex-col gap-2">
+          <button
+            type="button"
+            onClick={open}
+            // className="border bg-white1 border-gray-400 border-dashed rounded-md p-4 flex justify-center "
+            className={`border bg-white1 rounded-md px-4 py-2 sm:py-4 disabled:bg-gray-100 `}
+          >
+            Browse
+          </button>
+          <aside>
+            {acceptedFiles.length > 0 && (
+              <h4>Selected File: {acceptedFiles[0].name}</h4>
+            )}
+          </aside>
+        </div>
+      </div>
+    </div>
+  );
+}
