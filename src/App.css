@@ -1,0 +1,84 @@
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow-x: hidden;
+}
+.prog::-webkit-progress-bar {
+  background-color: #B1B4CA; 
+  border-radius: 10px; 
+  width: 400px;
+  height: 6px;
+}
+
+.prog::-webkit-progress-value {
+  background-color: #030B42;
+  border-radius: 10px; 
+}
+.progs::-webkit-progress-bar {
+  background-color: #B1B4CA; 
+  border-radius: 10px; 
+  width: 165px;
+  height: 6px;
+}
+
+.progs::-webkit-progress-value {
+  background-color: #030B42;
+  border-radius: 10px; 
+}
+@media (max-width: 1205px) {
+  .prog::-webkit-progress-bar{
+    width: 320px;
+  }
+}
+@media (max-width: 1085px) {
+  .prog::-webkit-progress-bar{
+    width: 270px;
+  }
+}
+@media (max-width: 975px) {
+  .prog::-webkit-progress-bar{
+    width: 240px;
+  }
+}
+@media (max-width: 935px) {
+  .prog::-webkit-progress-bar{
+    width: 200px;
+  }
+}
+@media (max-width: 875px) {
+  .prog::-webkit-progress-bar{
+    width: 100%;
+  }
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+/* THIS IS EXPORTED TO THE PREMIUM COURSES PAGE */
+.bg-img {
+  background-image: url("../src/assets/courses\ Images/Rectangle1.png");
+}
+
+/* THIS EXPORTED TO FREE COURSES */
+.free-bg {
+  background-image: url("../src/assets/courses\ Images/Rectangle2.png");
+}
+
+/* THIS IS EXPORTED TO THE CART DETAILS COMPONENT */
+.cart-bg {
+  background-image: url("../src/assets/Images/cartBG.png");
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.bg-shadow {
+  box-shadow: 0px 0px 16.746360778808594px 0px #00000026;
+}
+
+.tab-title {
+  transition: border-bottom-color 0.3s ease;
+}

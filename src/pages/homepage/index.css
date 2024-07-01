@@ -1,0 +1,57 @@
+
+.hero {
+  background-image: url(../src/assets/homepageImages/main.png);
+background-size: 100% 2%;
+}
+.bg {
+  background-image: url(../src//assets/homepageImages/bg.png);
+  background-repeat: no-repeat;
+  background-size: 100% 35%;
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.absoluteDiv {
+  position: absolute;
+  right: 0;
+  left:  0;
+  top: 98%;
+  bottom: 0;
+  margin: auto;
+}
+.shawdow {
+ box-shadow:  5px 5px 4px 5px rgb(240, 240, 243)
+}
+
+
+@media only screen and (min-width: 258px) {
+  .btnCreator {
+    margin-left: 15px;
+  
+  }
+  
+}
+
+@media only screen and (max-width: 350px) {
+  .icon {
+  display: none;
+  
+  }
+  
+}
+
+@media only screen and (max-width: 650px) {
+  .absoluteDiv {
+    margin-top: 10px;
+    
+  
+  }
+  .valueDiv {
+    margin-top: 100px;
+  }
+  
+}
+
+
